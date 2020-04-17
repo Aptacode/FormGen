@@ -1,4 +1,5 @@
-﻿using Aptacode.Forms.Fields;
+﻿using Aptacode.Forms.Elements.Fields;
+using Aptacode.Forms.Enums;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {

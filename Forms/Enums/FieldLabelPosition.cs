@@ -1,4 +1,4 @@
-﻿namespace Aptacode.Forms.Fields
+﻿namespace Aptacode.Forms.Enums
 {
     public enum FieldLabelPosition
     {

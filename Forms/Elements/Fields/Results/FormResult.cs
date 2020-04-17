@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aptacode.Forms.Results
+namespace Aptacode.Forms.Elements.Fields.Results
 {
     public class FormResult
     {

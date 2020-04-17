@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using Aptacode.Forms.Fields.ValidationRules;
-using Aptacode.Forms.Results;
+using Aptacode.Forms.Elements.Fields.Results;
+using Aptacode.Forms.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Enums;
 
-namespace Aptacode.Forms.Fields
+namespace Aptacode.Forms.Elements.Fields
 {
     public abstract class FormField : FormElement
     {

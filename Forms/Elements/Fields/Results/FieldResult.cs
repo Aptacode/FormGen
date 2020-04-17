@@ -1,6 +1,4 @@
-﻿using Aptacode.Forms.Fields;
-
-namespace Aptacode.Forms.Results
+﻿namespace Aptacode.Forms.Elements.Fields.Results
 {
     public abstract class FieldResult
     {

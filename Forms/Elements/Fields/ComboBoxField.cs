@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aptacode.Forms.Fields.ValidationRules;
-using Aptacode.Forms.Results;
+using Aptacode.Forms.Elements.Fields.Results;
+using Aptacode.Forms.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Enums;
 
-namespace Aptacode.Forms.Fields.Inputs
+namespace Aptacode.Forms.Elements.Fields
 {
     public class ComboBoxField : FormField
     {

@@ -1,6 +1,4 @@
-﻿using Aptacode.Forms.Fields.Inputs;
-
-namespace Aptacode.Forms.Fields.ValidationRules
+﻿namespace Aptacode.Forms.Elements.Fields.ValidationRules
 {
     public class TextFieldLengthValidationRule : ValidationRule<TextField>
     {

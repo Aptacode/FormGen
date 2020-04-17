@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aptacode.Forms.Fields.ValidationRules
+namespace Aptacode.Forms.Elements.Fields.ValidationRules
 {
     [Flags]
     public enum EqualityOperator
