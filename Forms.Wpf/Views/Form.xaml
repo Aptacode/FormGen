@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary
@@ -27,8 +28,8 @@
     <ItemsControl ItemsSource="{Binding Rows}">
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type viewmodels:FormRowViewModel}">
-                <materialDesign:Card Padding="32" Margin="16">
-                    <views:FormRow DataContext="{Binding}" />
+                <materialDesign:Card Padding="16" Margin="16">
+                    <views:FormRow DataContext="{Binding}"/>
                 </materialDesign:Card>
             </DataTemplate>
         </ItemsControl.ItemTemplate>

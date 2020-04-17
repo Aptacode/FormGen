@@ -6,6 +6,5 @@
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <TextBlock Text="{Binding Content}" />
-
+    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="{Binding Label}"></CheckBox>
 </UserControl>

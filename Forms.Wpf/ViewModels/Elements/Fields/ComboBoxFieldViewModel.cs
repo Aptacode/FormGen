@@ -5,24 +5,24 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
     public class ComboBoxFieldViewModel : FormFieldViewModel
     {
-        private string _selectedContent;
+        private string _selectedItem;
         public ComboBoxField ComboBoxField;
 
         public ComboBoxFieldViewModel(ComboBoxField comboBoxField) : base(comboBoxField)
         {
             ComboBoxField = comboBoxField;
-            SelectedContent = ComboBoxField.DefaultSelectedItem;
+            SelectedItem = ComboBoxField.DefaultSelectedItem;
             Items = new ObservableCollection<string>(comboBoxField.Items);
         }
 
         public ObservableCollection<string> Items { get; set; }
 
-        public string SelectedContent
+        public string SelectedItem
         {
-            get => _selectedContent;
+            get => _selectedItem;
             set
             {
-                SetProperty(ref _selectedContent, value);
+                SetProperty(ref _selectedItem, value);
                 UpdateValidationMessage();
             }
         }

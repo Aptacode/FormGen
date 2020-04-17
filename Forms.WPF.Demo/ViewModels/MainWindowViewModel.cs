@@ -18,13 +18,19 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                 {
                     new FormRow(new FormHtmlContent("Paragraph",
                         "<h1><em>This is a test</em></h1>\r\n<p>a</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">poops od&nbsp;&nbsp; </span></p>")),
-                    new FormRow(new TextField("firstName", FieldLabelPosition.AboveElement, "Firstname",
+                    new FormRow(new TextField("firstName", FieldLabelPosition.AboveElement, "First Name",
                         new ValidationRule<TextField>[]
                         {
                             new TextFieldLengthValidationRule(EqualityOperator.GreaterThan, 2)
                         })),
-                    new FormRow(new TextField("lasName", FieldLabelPosition.AboveElement, "LastName",
-                        new ValidationRule<TextField>[0]))
+                    new FormRow(new TextField("lasName", FieldLabelPosition.AboveElement, "Last Name",
+                        new ValidationRule<TextField>[0])),
+
+                    new FormRow(new CheckBoxField("receiveEmail", FieldLabelPosition.AboveElement, "Do you want to receive emails",
+                        new ValidationRule<CheckBoxField>[0], false)),
+
+                        new FormRow(new ComboBoxField("yearsOfExperience", FieldLabelPosition.AboveElement, "Years of experiance",
+                        new ValidationRule<ComboBoxField>[0], new []{ "0-1", "1-5", "5+"}, "0-1")),
                 });
 
             FormViewModel = new FormViewModel(nameForm);

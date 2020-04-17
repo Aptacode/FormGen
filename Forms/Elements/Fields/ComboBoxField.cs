@@ -16,7 +16,7 @@ namespace Aptacode.Forms.Elements.Fields
 
         public ComboBoxField(string name, FieldLabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items, string defaultSelectedItem) :
-            base(nameof(TextField), name, labelPosition, label, rules)
+            base(nameof(ComboBoxField), name, labelPosition, label, rules)
         {
             _rules = rules;
             DefaultSelectedItem = defaultSelectedItem;
