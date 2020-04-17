@@ -1,12 +1,12 @@
-﻿namespace Aptacode.Forms.Forms.Fields
+﻿namespace Aptacode.Forms.Fields
 {
-    public abstract class FormRow
+    public abstract class FormElement
     {
-        protected FormRow()
+        protected FormElement()
         {
-            
+
         }
-        protected FormRow(string type, string name)
+        protected FormElement(string type, string name)
         {
             Name = name;
             Type = type;

@@ -1,6 +1,6 @@
-﻿namespace Aptacode.Forms.Forms.Fields
+﻿namespace Aptacode.Forms.Fields
 {
-    public class FormHtmlContent: FormRow
+    public class FormHtmlContent: FormElement
     {
         public FormHtmlContent()
         {
