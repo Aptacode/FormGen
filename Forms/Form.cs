@@ -8,7 +8,6 @@ namespace Aptacode.Forms
     {
         public Form()
         {
-                
         }
 
         public Form(string name, string title, IEnumerable<FormRow> rows)
@@ -23,8 +22,11 @@ namespace Aptacode.Forms
 
         public IEnumerable<FormRow> Rows { get; set; }
 
-        private IEnumerable<FormField> Fields() => Rows.Select(row => row.Element as FormField).Where(field => field != null);
-
         public bool IsValid => Fields().All(field => field.Input.IsValid());
+
+        private IEnumerable<FormField> Fields()
+        {
+            return Rows.Select(row => row.Element as FormField).Where(field => field != null);
+        }
     }
 }

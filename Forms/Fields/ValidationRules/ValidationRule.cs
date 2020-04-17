@@ -6,13 +6,13 @@ namespace Aptacode.Forms.Fields.ValidationRules
     {
         protected ValidationRule()
         {
-            
         }
 
         protected ValidationRule(string type)
         {
             Type = type;
         }
+
         public string Type { get; set; }
         public string PassMessage { get; set; }
         public string FailMessage { get; set; }
@@ -22,12 +22,10 @@ namespace Aptacode.Forms.Fields.ValidationRules
     {
         protected ValidationRule()
         {
-
         }
 
         protected ValidationRule(string type) : base(type)
         {
-
         }
 
         public abstract bool Passed(TInput fieldInput);
@@ -36,6 +34,5 @@ namespace Aptacode.Forms.Fields.ValidationRules
         {
             return Passed(fieldInput) ? PassMessage : FailMessage;
         }
-
     }
 }

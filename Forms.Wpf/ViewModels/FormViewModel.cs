@@ -5,14 +5,19 @@ namespace Aptacode.Forms.Wpf.ViewModels
 {
     public class FormViewModel : BindableBase
     {
-        public Form Form { get; }
-
         public FormViewModel(Form form)
         {
             Form = form;
+            Rows = new ObservableCollection<FormRowViewModel>();
+
+            foreach (var formRow in form.Rows)
+            {
+                Rows.Add(new FormRowViewModel(formRow));
+            }
         }
 
-        public ObservableCollection<FormRowViewModel> Rows { get; set; }
+        public Form Form { get; }
 
+        public ObservableCollection<FormRowViewModel> Rows { get; set; }
     }
 }

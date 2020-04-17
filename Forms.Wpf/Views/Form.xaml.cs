@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 
-namespace Forms.Wpf.Views
+namespace Aptacode.Forms.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    ///     Interaction logic for UserControl1.xaml
     /// </summary>
     public partial class Form : UserControl
     {

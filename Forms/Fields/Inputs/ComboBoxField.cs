@@ -4,22 +4,26 @@ using Aptacode.Forms.Fields.ValidationRules;
 
 namespace Aptacode.Forms.Fields.Inputs
 {
-
-    public class ComboBoxBaseField : BaseFieldInput
+    public class ComboBoxField : BaseFieldInput
     {
-        private readonly IEnumerable<ValidationRule<ComboBoxBaseField>> _rules;
-        public ComboBoxBaseField()
-        {
+        private readonly IEnumerable<ValidationRule<ComboBoxField>> _rules;
 
+        public ComboBoxField()
+        {
         }
 
-        public ComboBoxBaseField(IEnumerable<ValidationRule<ComboBoxBaseField>> rules) : base(nameof(ComboBoxBaseField), rules)
+        public ComboBoxField(IEnumerable<ValidationRule<ComboBoxField>> rules) : base(nameof(ComboBoxField), rules)
         {
-
         }
 
-        public override bool IsValid() => ValidationRules.All(r => r is ValidationRule<ComboBoxBaseField> rule && rule.Passed(this));
-        public override IEnumerable<string> GetValidationMessages() => _rules.Select(rule => rule.GetMessage(this));
+        public override bool IsValid()
+        {
+            return ValidationRules.All(r => r is ValidationRule<ComboBoxField> rule && rule.Passed(this));
+        }
 
+        public override IEnumerable<string> GetValidationMessages()
+        {
+            return _rules.Select(rule => rule.GetMessage(this));
+        }
     }
 }

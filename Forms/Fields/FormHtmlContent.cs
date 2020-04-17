@@ -1,11 +1,11 @@
 ﻿namespace Aptacode.Forms.Fields
 {
-    public class FormHtmlContent: FormElement
+    public class FormHtmlContent : FormElement
     {
         public FormHtmlContent()
         {
-            
         }
+
         public FormHtmlContent(string name, string content) : base(nameof(FormHtmlContent), name)
         {
             Content = content;

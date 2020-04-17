@@ -2,6 +2,8 @@
 {
     public enum FieldLabelPosition
     {
-        AboveElement, BelowElement, InsideElement
+        AboveElement,
+        BelowElement,
+        InsideElement
     }
 }
