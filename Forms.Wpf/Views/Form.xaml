@@ -28,9 +28,7 @@
     <ItemsControl ItemsSource="{Binding Rows}">
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type viewmodels:FormRowViewModel}">
-                <materialDesign:Card Padding="16" Margin="16">
-                    <views:FormRow DataContext="{Binding}"/>
-                </materialDesign:Card>
+                <views:FormRow DataContext="{Binding}"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

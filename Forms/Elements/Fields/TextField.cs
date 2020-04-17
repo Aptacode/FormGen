@@ -14,7 +14,7 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        public TextField(string name, FieldLabelPosition labelPosition, string label,
+        public TextField(string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label, rules)
         {
             _rules = rules;

@@ -11,19 +11,14 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        protected FormField(string type, string name, FieldLabelPosition labelPosition, string label,
+        protected FormField(string type, string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule> rules) : base(
-            type, name)
+            type, name, labelPosition, label)
         {
-            LabelPosition = labelPosition;
-            Label = label;
             ValidationRules = rules;
         }
 
         public IEnumerable<ValidationRule> ValidationRules { get; set; }
-
-        public string Label { get; set; }
-        public FieldLabelPosition LabelPosition { get; set; }
 
         public abstract bool IsValid();
 

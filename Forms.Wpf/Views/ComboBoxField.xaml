@@ -6,5 +6,7 @@
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"/>
+    <GroupBox Header="{Binding Label}">
+        <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"/>
+    </GroupBox>
 </UserControl>

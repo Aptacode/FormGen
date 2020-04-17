@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Forms.Enums
 {
-    public enum FieldLabelPosition
+    public enum LabelPosition
     {
         AboveElement,
         BelowElement,

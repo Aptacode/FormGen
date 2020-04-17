@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Forms.Elements
+﻿using Aptacode.Forms.Enums;
+
+namespace Aptacode.Forms.Elements
 {
     public class FormHtmlContent : FormElement
     {
@@ -6,7 +8,7 @@
         {
         }
 
-        public FormHtmlContent(string name, string content) : base(nameof(FormHtmlContent), name)
+        public FormHtmlContent(string name, string content, LabelPosition labelPosition, string label) : base(nameof(FormHtmlContent), name, labelPosition, label)
         {
             Content = content;
         }
