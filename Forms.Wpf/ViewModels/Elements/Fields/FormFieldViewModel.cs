@@ -10,6 +10,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         private FieldLabelPosition _labelPosition;
 
         private string _validationMessage;
+        private bool _isValid;
 
         protected FormFieldViewModel(FormField field) : base(field)
         {
@@ -38,8 +39,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             set => SetProperty(ref _validationMessage, value);
         }
 
-        public void UpdateMessage()
+        public bool IsValid
         {
+            get => _isValid;
+            set => SetProperty(ref _isValid, value);
+        }
+
+        public void UpdateValidationMessage()
+        {
+            IsValid = Field.IsValid();
             ValidationMessage = Field.GetValidationMessage();
         }
     }

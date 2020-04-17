@@ -19,7 +19,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _isChecked, value);
-                UpdateMessage();
+                UpdateValidationMessage();
             }
         }
     }

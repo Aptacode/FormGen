@@ -23,7 +23,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _selectedContent, value);
-                UpdateMessage();
+                UpdateValidationMessage();
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             {
                 SetProperty(ref _content, value);
                 TextField.Content = _content;
-                UpdateMessage();
+                UpdateValidationMessage();
             }
         }
     }
