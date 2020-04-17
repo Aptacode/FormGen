@@ -7,13 +7,13 @@ namespace Aptacode.Forms.Elements.Fields
 {
     public abstract class FormField : FormElement
     {
-        public FormField()
+        protected FormField()
         {
         }
 
-        public FormField(string type, string name, FieldLabelPosition labelPosition, string label,
+        protected FormField(string type, string name, FieldLabelPosition labelPosition, string label,
             IEnumerable<ValidationRule> rules) : base(
-            nameof(FormField), name)
+            type, name)
         {
             LabelPosition = labelPosition;
             Label = label;

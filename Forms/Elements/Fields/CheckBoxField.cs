@@ -18,6 +18,7 @@ namespace Aptacode.Forms.Elements.Fields
             IEnumerable<ValidationRule<CheckBoxField>> rules, bool defaultIsChecked) : base(nameof(ComboBoxField), name,
             labelPosition, label, rules)
         {
+            _rules = rules;
             DefaultIsChecked = defaultIsChecked;
             IsChecked = defaultIsChecked;
         }
