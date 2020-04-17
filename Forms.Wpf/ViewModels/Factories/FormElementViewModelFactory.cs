@@ -1,7 +1,6 @@
 ﻿using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Factories
 {

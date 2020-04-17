@@ -6,6 +6,8 @@ namespace Aptacode.Forms.Wpf.ViewModels
 {
     public class FormViewModel : BindableBase
     {
+        private string _title;
+
         public FormViewModel(Form form)
         {
             Form = form;
@@ -21,20 +23,19 @@ namespace Aptacode.Forms.Wpf.ViewModels
 
         public Form Form { get; }
 
-        private string _title;
         public string Title
         {
             get => _title;
-            set
-            {
-                SetProperty(ref _title, value);
-            }
+            set => SetProperty(ref _title, value);
         }
 
         public ObservableCollection<FormRowViewModel> Rows { get; set; }
 
         public bool IsValid => Form.IsValid;
 
-        public FormResult GetResult() => Form.GetResult();
+        public FormResult GetResult()
+        {
+            return Form.GetResult();
+        }
     }
 }

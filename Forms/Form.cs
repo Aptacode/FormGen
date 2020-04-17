@@ -31,9 +31,14 @@ namespace Aptacode.Forms
             return Rows.Select(row => row.Element as FormField).Where(field => field != null);
         }
 
-        public IEnumerable<FieldResult> GetResults() => Fields().Select(field => field.GetResult());
+        public IEnumerable<FieldResult> GetResults()
+        {
+            return Fields().Select(field => field.GetResult());
+        }
 
-        public FormResult GetResult() => new FormResult(this, GetResults());
-
+        public FormResult GetResult()
+        {
+            return new FormResult(this, GetResults());
+        }
     }
 }

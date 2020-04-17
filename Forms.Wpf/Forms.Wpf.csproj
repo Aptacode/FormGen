@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ViewModels\Elements\Fields\CheckBoxFieldViewModel.cs" />
     <Compile Include="ViewModels\Factories\FormFieldInputViewModelFactory.cs" />
     <Compile Include="ViewModels\Elements\FormHtmlContentViewModel.cs" />
     <Compile Include="ViewModels\Elements\FormElementViewModel.cs" />
@@ -75,8 +76,8 @@
     <Compile Include="ViewModels\Factories\FormElementViewModelFactory.cs" />
     <Compile Include="ViewModels\FormRowViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
-    <Compile Include="ViewModels\Elements\Fields\ComboBoxFieldInputViewModel.cs" />
-    <Compile Include="ViewModels\Elements\Fields\TextFieldInputViewModel.cs" />
+    <Compile Include="ViewModels\Elements\Fields\ComboBoxFieldViewModel.cs" />
+    <Compile Include="ViewModels\Elements\Fields\TextFieldViewModel.cs" />
     <Compile Include="Views\Form.xaml.cs">
       <DependentUpon>Form.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -13,6 +13,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Factories
                     return new TextFieldViewModel(textField);
                 case ComboBoxField comboBoxField:
                     return new ComboBoxFieldViewModel(comboBoxField);
+                case CheckBoxField checkBoxField:
+                    return new CheckBoxFieldViewModel(checkBoxField);
             }
 
             return null;

@@ -11,15 +11,19 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        public FormField(string type, string name, FieldLabelPosition labelPosition, string label, IEnumerable<ValidationRule> rules) : base(
+        public FormField(string type, string name, FieldLabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule> rules) : base(
             nameof(FormField), name)
         {
             LabelPosition = labelPosition;
             Label = label;
             ValidationRules = rules;
         }
-        
+
         public IEnumerable<ValidationRule> ValidationRules { get; set; }
+
+        public string Label { get; set; }
+        public FieldLabelPosition LabelPosition { get; set; }
 
         public abstract bool IsValid();
 
@@ -31,8 +35,5 @@ namespace Aptacode.Forms.Elements.Fields
         }
 
         public abstract FieldResult GetResult();
-
-        public string Label { get; set; }
-        public FieldLabelPosition LabelPosition { get; set; }
     }
 }

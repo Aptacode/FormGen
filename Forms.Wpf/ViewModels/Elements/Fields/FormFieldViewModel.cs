@@ -9,6 +9,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 
         private FieldLabelPosition _labelPosition;
 
+        private string _validationMessage;
+
         protected FormFieldViewModel(FormField field) : base(field)
         {
             Field = field;
@@ -29,8 +31,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             get => _labelPosition;
             set => SetProperty(ref _labelPosition, value);
         }
-
-        private string _validationMessage;
 
         public string ValidationMessage
         {

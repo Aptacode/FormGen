@@ -14,15 +14,21 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        public CheckBoxField(string name, FieldLabelPosition labelPosition, string label, IEnumerable<ValidationRule<CheckBoxField>> rules) : base(nameof(TextField), name, labelPosition, label, rules)
+        public CheckBoxField(string name, FieldLabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule<CheckBoxField>> rules, bool defaultIsChecked) : base(nameof(ComboBoxField), name,
+            labelPosition, label, rules)
         {
+            DefaultIsChecked = defaultIsChecked;
+            IsChecked = defaultIsChecked;
         }
 
-        public string Content { get; set; }
+        public bool DefaultIsChecked { get; set; }
+
+        public bool IsChecked { get; set; }
 
         public override bool IsValid()
         {
-            return _rules.All(rule => rule.Passed(this));
+            return ValidationRules.All(r => r is ValidationRule<CheckBoxField> rule && rule.Passed(this));
         }
 
         public override IEnumerable<string> GetValidationMessages()
@@ -32,7 +38,7 @@ namespace Aptacode.Forms.Elements.Fields
 
         public override FieldResult GetResult()
         {
-            return new CheckBoxFieldResult(this, Content);
+            return new CheckBoxFieldResult(this, IsChecked);
         }
     }
 }
