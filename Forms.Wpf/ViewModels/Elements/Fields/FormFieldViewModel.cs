@@ -5,12 +5,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
     public abstract class FormFieldViewModel : FormElementViewModel
     {
+        private bool _isValid;
         private string _label;
 
         private FieldLabelPosition _labelPosition;
 
         private string _validationMessage;
-        private bool _isValid;
 
         protected FormFieldViewModel(FormField field) : base(field)
         {

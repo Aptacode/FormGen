@@ -1,12 +1,12 @@
 ﻿namespace Aptacode.Forms.Elements
 {
-    public abstract class FormRow
+    public class FormRow
     {
-        protected FormRow()
+        public FormRow()
         {
         }
 
-        protected FormRow(FormElement element)
+        public FormRow(FormElement element)
         {
             Element = element;
         }
