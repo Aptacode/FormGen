@@ -1,13 +1,13 @@
 ﻿using Aptacode.Forms.Fields.Inputs;
 
-namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields.Inputs
+namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
-    public class TextFieldInputViewModel : FormFieldInputViewModel
+    public class TextFieldViewModel : FormFieldViewModel
     {
         private string _content;
         public TextField TextField;
 
-        public TextFieldInputViewModel(TextField textField) : base(textField)
+        public TextFieldViewModel(TextField textField) : base(textField)
         {
             TextField = textField;
         }

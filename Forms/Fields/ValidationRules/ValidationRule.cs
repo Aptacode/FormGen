@@ -18,7 +18,7 @@ namespace Aptacode.Forms.Fields.ValidationRules
         public string FailMessage { get; set; }
     }
 
-    public abstract class ValidationRule<TInput> : ValidationRule where TInput : BaseFieldInput
+    public abstract class ValidationRule<TField> : ValidationRule where TField : FormField
     {
         protected ValidationRule()
         {
@@ -28,9 +28,9 @@ namespace Aptacode.Forms.Fields.ValidationRules
         {
         }
 
-        public abstract bool Passed(TInput fieldInput);
+        public abstract bool Passed(TField fieldInput);
 
-        public string GetMessage(TInput fieldInput)
+        public string GetMessage(TField fieldInput)
         {
             return Passed(fieldInput) ? PassMessage : FailMessage;
         }

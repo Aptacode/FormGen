@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Forms.Fields.ValidationRules;
+using Aptacode.Forms.Results;
 
 namespace Aptacode.Forms.Fields.Inputs
 {
-    public class TextField : BaseFieldInput
+    public class TextField : FormField
     {
         private readonly IEnumerable<ValidationRule<TextField>> _rules;
 
@@ -12,9 +13,8 @@ namespace Aptacode.Forms.Fields.Inputs
         {
         }
 
-        public TextField(IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), rules)
+        public TextField(string name, FieldLabelPosition labelPosition, string label, IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label, rules)
         {
-            _rules = rules;
         }
 
         public string Content { get; set; }
@@ -27,6 +27,11 @@ namespace Aptacode.Forms.Fields.Inputs
         public override IEnumerable<string> GetValidationMessages()
         {
             return _rules.Select(rule => rule.GetMessage(this));
+        }
+
+        public override FieldResult GetResult()
+        {
+            return new TextFieldResult(this, Content);
         }
     }
 }

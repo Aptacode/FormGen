@@ -71,13 +71,12 @@
     <Compile Include="ViewModels\Factories\FormFieldInputViewModelFactory.cs" />
     <Compile Include="ViewModels\Elements\FormHtmlContentViewModel.cs" />
     <Compile Include="ViewModels\Elements\FormElementViewModel.cs" />
-    <Compile Include="ViewModels\Elements\Fields\Inputs\FormFieldInputViewModel.cs" />
     <Compile Include="ViewModels\Elements\Fields\FormFieldViewModel.cs" />
     <Compile Include="ViewModels\Factories\FormElementViewModelFactory.cs" />
     <Compile Include="ViewModels\FormRowViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
-    <Compile Include="ViewModels\Elements\Fields\Inputs\ComboBoxFieldInputViewModel.cs" />
-    <Compile Include="ViewModels\Elements\Fields\Inputs\TextFieldInputViewModel.cs" />
+    <Compile Include="ViewModels\Elements\Fields\ComboBoxFieldInputViewModel.cs" />
+    <Compile Include="ViewModels\Elements\Fields\TextFieldInputViewModel.cs" />
     <Compile Include="Views\Form.xaml.cs">
       <DependentUpon>Form.xaml</DependentUpon>
       <SubType>Code</SubType>

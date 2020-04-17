@@ -1,13 +1,13 @@
 ﻿using Aptacode.Forms.Fields.Inputs;
 
-namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields.Inputs
+namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
-    public class ComboBoxFieldInputViewModel : FormFieldInputViewModel
+    public class ComboBoxFieldViewModel : FormFieldViewModel
     {
         private string _content;
         public ComboBoxField ComboBoxField;
 
-        public ComboBoxFieldInputViewModel(ComboBoxField comboBoxField) : base(comboBoxField)
+        public ComboBoxFieldViewModel(ComboBoxField comboBoxField) : base(comboBoxField)
         {
             ComboBoxField = comboBoxField;
         }

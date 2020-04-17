@@ -1,18 +1,19 @@
-﻿using Aptacode.Forms.Fields.Inputs;
-using Aptacode.Forms.Wpf.ViewModels.Elements.Fields.Inputs;
+﻿using Aptacode.Forms.Fields;
+using Aptacode.Forms.Fields.Inputs;
+using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Factories
 {
-    public class FormFieldInputFactory
+    public class FormFieldViewModelFactory
     {
-        public static FormFieldInputViewModel Create(BaseFieldInput fieldInput)
+        public static FormFieldViewModel Create(FormField formField)
         {
-            switch (fieldInput)
+            switch (formField)
             {
                 case TextField textField:
-                    return new TextFieldInputViewModel(textField);
+                    return new TextFieldViewModel(textField);
                 case ComboBoxField comboBoxField:
-                    return new ComboBoxFieldInputViewModel(comboBoxField);
+                    return new ComboBoxFieldViewModel(comboBoxField);
             }
 
             return null;

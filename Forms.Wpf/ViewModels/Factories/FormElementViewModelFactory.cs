@@ -11,7 +11,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Factories
             switch (formElement)
             {
                 case FormField field:
-                    return new FormFieldViewModel(field);
+                    return FormFieldViewModelFactory.Create(field);
                 case FormHtmlContent htmlContent:
                     return new FormHtmlContentViewModel(htmlContent);
             }

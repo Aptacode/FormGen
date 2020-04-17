@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Forms.Fields;
+using Aptacode.Forms.Results;
 
 namespace Aptacode.Forms
 {
@@ -22,11 +23,16 @@ namespace Aptacode.Forms
 
         public IEnumerable<FormRow> Rows { get; set; }
 
-        public bool IsValid => Fields().All(field => field.Input.IsValid());
+        public bool IsValid => Fields().All(field => field.IsValid());
 
         private IEnumerable<FormField> Fields()
         {
             return Rows.Select(row => row.Element as FormField).Where(field => field != null);
         }
+
+        public IEnumerable<FieldResult> GetResults() => Fields().Select(field => field.GetResult());
+
+        public FormResult GetResult() => new FormResult(this, GetResults());
+
     }
 }
