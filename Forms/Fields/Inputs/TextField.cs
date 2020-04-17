@@ -19,20 +19,7 @@ namespace Aptacode.Forms.Fields.Inputs
         }
 
         public override bool IsValid() => _rules.All(rule => rule.Passed(this));
-        public override string GetValidationMessage()
-        {
-            var validationMessageBuilder = new StringBuilder();
-            foreach (var validationRule in _rules)
-            {
-                var validationMessage = validationRule.GetMessage(this);
-                if(string.IsNullOrEmpty(validationMessage))
-                    continue;
-                validationMessageBuilder.AppendLine(validationMessage);
-            }
-
-            return validationMessageBuilder.ToString();
-        }
-
+        public override IEnumerable<string> GetValidationMessages() => _rules.Select(rule => rule.GetMessage(this));
         public string Content { get; set; }
     }
 }

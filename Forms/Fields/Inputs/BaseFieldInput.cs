@@ -21,6 +21,11 @@ namespace Aptacode.Forms.Fields.Inputs
 
         public abstract bool IsValid();
 
-        public abstract string GetValidationMessage();
+        public abstract IEnumerable<string> GetValidationMessages();
+
+        public string GetValidationMessage()
+        {
+            return string.Join("\n", GetValidationMessages());
+        }
     }
 }

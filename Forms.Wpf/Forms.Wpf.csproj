@@ -68,7 +68,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ViewModels\FormElementViewModel.cs" />
+    <Compile Include="ViewModels\FormFieldInputViewModel.cs" />
+    <Compile Include="ViewModels\FormFieldViewModel.cs" />
+    <Compile Include="ViewModels\FormRowViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
+    <Compile Include="ViewModels\TextFieldInputViewModel.cs" />
     <Compile Include="Views\Form.xaml.cs">
       <DependentUpon>Form.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,6 +108,9 @@
       <Project>{fb7ec7f7-3015-4a11-a4b3-1b1790118333}</Project>
       <Name>Forms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
