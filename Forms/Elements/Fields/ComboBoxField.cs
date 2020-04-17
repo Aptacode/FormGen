@@ -14,15 +14,15 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        public ComboBoxField(string name, FieldLabelPosition labelPosition, string label, IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items) : base(nameof(ComboBoxField),name,labelPosition,label, rules)
+        public ComboBoxField(string name, FieldLabelPosition labelPosition, string label, IEnumerable<ValidationRule<ComboBoxField>> rules, bool defaultIsChecked) : base(nameof(ComboBoxField),name,labelPosition,label, rules)
         {
-            Items = items;
+            DefaultIsChecked = defaultIsChecked;
+            IsChecked = defaultIsChecked;
         }
 
-        public string SelectedItem { get; set; }
+        public bool DefaultIsChecked { get; set; }
 
-        public IEnumerable<string> Items { get; set; }
-
+        public bool IsChecked { get; set; }
 
         public override bool IsValid()
         {
@@ -36,7 +36,7 @@ namespace Aptacode.Forms.Elements.Fields
 
         public override FieldResult GetResult()
         {
-            return new ComboBoxFieldResult(this, Items, SelectedItem);
+            return new ComboBoxFieldResult(this, IsChecked);
         }
     }
 }

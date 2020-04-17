@@ -4,12 +4,11 @@ namespace Aptacode.Forms.Elements.Fields.Results
 {
     public class ComboBoxFieldResult : FieldResult
     {
-        public ComboBoxFieldResult(ComboBoxField comboBoxField, IEnumerable<string> Items, string selectedItem) : base(comboBoxField)
+        public ComboBoxFieldResult(ComboBoxField comboBoxField, bool isChecked) : base(comboBoxField)
         {
-            SelectedItem = selectedItem;
+            IsChecked = isChecked;
         }
 
-        public string SelectedItem { get; set; }
-        public IEnumerable<string> Items { get; set; }
+        public bool IsChecked { get; set; }
     }
 }
