@@ -26,10 +26,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
         private DelegateCommand _buttonClickedCommand;
 
         public DelegateCommand ButtonClickedCommand =>
-            _buttonClickedCommand ?? (_buttonClickedCommand = new DelegateCommand(() =>
-            {
-                ButtonElement.Clicked();
-            }));
+            _buttonClickedCommand ?? (_buttonClickedCommand = new DelegateCommand(() => { ButtonElement.Clicked(); }));
 
         #endregion
     }

@@ -13,7 +13,7 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
     {
         private FormViewModel _formViewModel;
 
-        private Form _myForm;
+        private readonly Form _myForm;
 
         public MainWindowViewModel()
         {
@@ -43,7 +43,8 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                                 new TextField("lastName", LabelPosition.AboveElement, "Last Name",
                                     new ValidationRule<TextField>[]
                                     {
-                                        new TextFieldLengthValidationRule(EqualityOperator.LessThan | EqualityOperator.EqualTo, 10)
+                                        new TextFieldLengthValidationRule(
+                                            EqualityOperator.LessThan | EqualityOperator.EqualTo, 10)
                                     })
                             )
                         }),
@@ -53,7 +54,10 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                             new FormColumn(1,
                                 new CheckBoxField("receiveEmail", LabelPosition.AboveElement,
                                     "Do you accept the terms and conditions",
-                                    new ValidationRule<CheckBoxField>[0], "I Agree", false)
+                                    new ValidationRule<CheckBoxField>[]
+                                    {
+                                        new CheckBoxCheckedValidationRule(true)
+                                    }, "I Agree", false)
                             )
                         }),
 
@@ -62,7 +66,10 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                             new FormColumn(1,
                                 new ComboBoxField("yearsOfExperience", LabelPosition.AboveElement,
                                     "Years of Experience",
-                                    new ValidationRule<ComboBoxField>[0], new[] {"0-1", "1-5", "5+"}, "0-1")
+                                    new ValidationRule<ComboBoxField>[]
+                                    {
+                                        new ComboBoxSelectionRequiredValidationRule()
+                                    }, new[] {"0-1", "1-5", "5+"})
                             )
                         }),
 
@@ -80,7 +87,13 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
             FormViewModel = new FormViewModel(_myForm);
         }
 
-        private void NameForm_OnFormEvent(object sender, Events.FormEventArgs e)
+        public FormViewModel FormViewModel
+        {
+            get => _formViewModel;
+            set => SetProperty(ref _formViewModel, value);
+        }
+
+        private void NameForm_OnFormEvent(object sender, FormEventArgs e)
         {
             if (!(e is ButtonClickedEventArgs buttonClickedEvent) || buttonClickedEvent.Button.Name != "SubmitButton")
             {
@@ -88,12 +101,6 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
             }
 
             MessageBox.Show(_myForm.IsValid ? "Submitted" : _myForm.GetValidationMessage());
-        }
-
-        public FormViewModel FormViewModel
-        {
-            get => _formViewModel;
-            set => SetProperty(ref _formViewModel, value);
         }
     }
 }

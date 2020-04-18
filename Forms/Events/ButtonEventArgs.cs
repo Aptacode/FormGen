@@ -11,11 +11,11 @@ namespace Aptacode.Forms.Events
 
         public ButtonElement Button { get; set; }
     }
+
     public class ButtonClickedEventArgs : ButtonEventArgs
     {
         public ButtonClickedEventArgs(ButtonElement button) : base(button)
         {
         }
     }
-
 }

@@ -22,39 +22,19 @@ namespace Aptacode.Forms
             SubscribeToElementEvents();
         }
 
-        #region Events
-
-        private void SubscribeToElementEvents()
-        {
-            foreach (var formField in Elements())
-            {
-                formField.OnFormEvent += FormField_OnFormEvent;
-            }
-        }
-
-        public event EventHandler<FormEventArgs> OnFormEvent;
-        private void FormField_OnFormEvent(object sender, FormElementEvent e)
-        {
-            OnFormEvent?.Invoke(this, e);
-        }
-        #endregion
-
-        #region Properties
-
-        public string Name { get; set; }
-        public string Title { get; set; }
-
-        public IEnumerable<FormGroup> Groups { get; set; }
-
-        #endregion
-
 
         public bool IsValid => Fields().All(field => field.IsValid());
 
-        public IEnumerable<string> GetValidationMessages() => Fields().Select(field => field.GetValidationMessages())
-            .Aggregate((a, b) => a.Concat(b));
+        public IEnumerable<string> GetValidationMessages()
+        {
+            return Fields().Select(field => field.GetValidationMessages())
+                .Aggregate((a, b) => a.Concat(b));
+        }
 
-        public string GetValidationMessage() => string.Join("\n", GetValidationMessages());
+        public string GetValidationMessage()
+        {
+            return string.Join("\n", GetValidationMessages());
+        }
 
         private IEnumerable<FormElement> Elements()
         {
@@ -71,7 +51,36 @@ namespace Aptacode.Forms
                 .Where(field => field != null);
         }
 
+        #region Events
+
+        private void SubscribeToElementEvents()
+        {
+            foreach (var formField in Elements())
+            {
+                formField.OnFormEvent += FormField_OnFormEvent;
+            }
+        }
+
+        public event EventHandler<FormEventArgs> OnFormEvent;
+
+        private void FormField_OnFormEvent(object sender, FormElementEvent e)
+        {
+            OnFormEvent?.Invoke(this, e);
+        }
+
+        #endregion
+
+        #region Properties
+
+        public string Name { get; set; }
+        public string Title { get; set; }
+
+        public IEnumerable<FormGroup> Groups { get; set; }
+
+        #endregion
+
         #region Results
+
         public IEnumerable<FieldResult> GetResults()
         {
             return Fields().Select(field => field.GetResult());
@@ -83,7 +92,5 @@ namespace Aptacode.Forms
         }
 
         #endregion
-
-
     }
 }

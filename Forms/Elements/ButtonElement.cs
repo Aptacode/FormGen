@@ -15,16 +15,16 @@ namespace Aptacode.Forms.Elements
             Content = content;
         }
 
+        #region Properties
+
+        public string Content { get; set; }
+
+        #endregion
+
 
         public void Clicked()
         {
             TriggerEvent(new ButtonClickedEventArgs(this));
         }
-
-        #region Properties
-        public string Content { get; set; }
-
-        #endregion
-
     }
 }

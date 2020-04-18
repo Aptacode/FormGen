@@ -9,6 +9,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
         <Label Content="{Binding Label}" DockPanel.Dock="Left" Width="200" HorizontalContentAlignment="Right" />
-        <Button Content="{Binding Content}" Command="{Binding ButtonClickedCommand}"/>
+        <Button Content="{Binding Content}" Command="{Binding ButtonClickedCommand}" />
     </DockPanel>
 </UserControl>

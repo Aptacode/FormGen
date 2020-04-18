@@ -26,24 +26,6 @@ namespace Aptacode.Forms.Elements.Fields
             IsChecked = defaultIsChecked;
         }
 
-        #region Properties
-
-        public bool DefaultIsChecked { get; set; }
-        public string Content { get; set; }
-
-        private bool _isChecked;
-        public bool IsChecked
-        {
-            get => _isChecked;
-            set
-            {
-                _isChecked = value;
-                TriggerEvent(new CheckBoxFieldChangedEventArgs(this, _isChecked));
-            }
-        }
-        
-        #endregion
-
 
         public override bool IsValid()
         {
@@ -59,5 +41,24 @@ namespace Aptacode.Forms.Elements.Fields
         {
             return new CheckBoxFieldResult(this, IsChecked);
         }
+
+        #region Properties
+
+        public bool DefaultIsChecked { get; set; }
+        public string Content { get; set; }
+
+        private bool _isChecked;
+
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set
+            {
+                _isChecked = value;
+                TriggerEvent(new CheckBoxFieldChangedEventArgs(this, _isChecked));
+            }
+        }
+
+        #endregion
     }
 }

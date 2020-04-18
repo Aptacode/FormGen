@@ -23,6 +23,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _selectedItem, value);
+                ComboBoxField.SelectedItem = _selectedItem;
                 UpdateValidationMessage();
             }
         }

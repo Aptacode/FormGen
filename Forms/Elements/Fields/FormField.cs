@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
-using Aptacode.Forms.Events;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -32,6 +30,5 @@ namespace Aptacode.Forms.Elements.Fields
         }
 
         public abstract FieldResult GetResult();
-
     }
 }

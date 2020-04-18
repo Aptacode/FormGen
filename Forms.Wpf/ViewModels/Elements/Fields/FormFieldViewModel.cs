@@ -1,8 +1,9 @@
-﻿using Aptacode.Forms.Elements.Fields;
+﻿using System.ComponentModel;
+using Aptacode.Forms.Elements.Fields;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
-    public abstract class FormFieldViewModel : FormElementViewModel
+    public abstract class FormFieldViewModel : FormElementViewModel, IDataErrorInfo
     {
         private bool _isValid;
         private string _validationMessage;
@@ -31,5 +32,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             IsValid = Field.IsValid();
             ValidationMessage = Field.GetValidationMessage();
         }
+
+        public string this[string columnName] => Field.GetValidationMessage();
+
+        public string Error { get; }
     }
 }

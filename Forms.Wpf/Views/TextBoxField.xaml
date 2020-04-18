@@ -9,6 +9,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
         <Label Content="{Binding Label}" DockPanel.Dock="Left" Width="200" HorizontalContentAlignment="Right" />
-        <TextBox Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
     </DockPanel>
 </UserControl>

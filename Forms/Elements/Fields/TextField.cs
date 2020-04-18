@@ -22,22 +22,6 @@ namespace Aptacode.Forms.Elements.Fields
             Content = string.Empty;
         }
 
-        #region Properties
-
-        private string _content;
-        public string Content
-        {
-            get => _content;
-            set
-            {
-                var oldValue = _content;
-                _content = value;
-                TriggerEvent(new TextFieldChangedEventArgs(this, oldValue, value));
-            }
-        }
-
-        #endregion
-
 
         public override bool IsValid()
         {
@@ -53,5 +37,22 @@ namespace Aptacode.Forms.Elements.Fields
         {
             return new TextFieldResult(this, Content);
         }
+
+        #region Properties
+
+        private string _content;
+
+        public string Content
+        {
+            get => _content;
+            set
+            {
+                var oldValue = _content;
+                _content = value;
+                TriggerEvent(new TextFieldChangedEventArgs(this, oldValue, value));
+            }
+        }
+
+        #endregion
     }
 }

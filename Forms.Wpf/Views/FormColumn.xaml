@@ -6,8 +6,6 @@
              xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
              xmlns:elements="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements"
              xmlns:fields="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements.Fields"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>

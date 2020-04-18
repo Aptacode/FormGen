@@ -20,23 +20,38 @@
             var equalTo = (EqualityOperator & EqualityOperator.EqualTo) != EqualityOperator.None;
             var lessThan = (EqualityOperator & EqualityOperator.LessThan) != EqualityOperator.None;
 
-            //True if the EqualityOperator is not included OR the comparison passes
-            var greaterThanCheck = !greaterThan || contentLength > Value;
-            var equalToCheck = !equalTo || contentLength == Value;
-            var lessThanCheck = !lessThan || contentLength < Value;
+            var greaterThanCheck = contentLength > Value;
+            var equalToCheck = contentLength == Value;
+            var lessThanCheck = contentLength < Value;
 
-            //True if all checks pass
-            return greaterThanCheck && equalToCheck && lessThanCheck;
+            if (equalTo && equalToCheck)
+            {
+                return true;
+            }
+
+            if (greaterThan && greaterThanCheck)
+            {
+                return true;
+            }
+
+            if (lessThan && lessThanCheck)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public override string GetMessage(TextField fieldInput)
         {
-            return Passed(fieldInput) ? string.Empty : $"'{fieldInput.Label}' must be {EqualityOperatorToString()} {Value}";
+            return Passed(fieldInput)
+                ? string.Empty
+                : $"'{fieldInput.Label}' must be {EqualityOperatorToString()} {Value}";
         }
 
         private string EqualityOperatorToString()
         {
-            var greaterThan = (EqualityOperator & EqualityOperator.GreaterThan) != EqualityOperator.None; 
+            var greaterThan = (EqualityOperator & EqualityOperator.GreaterThan) != EqualityOperator.None;
             var equalTo = (EqualityOperator & EqualityOperator.EqualTo) != EqualityOperator.None;
             var lessThan = (EqualityOperator & EqualityOperator.LessThan) != EqualityOperator.None;
 

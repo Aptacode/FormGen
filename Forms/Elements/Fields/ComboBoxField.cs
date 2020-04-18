@@ -16,6 +16,12 @@ namespace Aptacode.Forms.Elements.Fields
         }
 
         public ComboBoxField(string name, LabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items) : this(name, labelPosition,
+            label, rules, items, string.Empty)
+        {
+        }
+
+        public ComboBoxField(string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items, string defaultSelectedItem) :
             base(nameof(ComboBoxField), name, labelPosition, label, rules)
         {
@@ -24,26 +30,6 @@ namespace Aptacode.Forms.Elements.Fields
             SelectedItem = defaultSelectedItem;
             Items = items;
         }
-
-
-
-        #region Properties
-
-        public string DefaultSelectedItem { get; set; }
-        public IEnumerable<string> Items { get; set; }
-
-        private string _selectedItem;
-        public string SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                _selectedItem = value;
-                TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
-            }
-        }
-
-        #endregion
 
         public override bool IsValid()
         {
@@ -59,5 +45,24 @@ namespace Aptacode.Forms.Elements.Fields
         {
             return new ComboBoxFieldResult(this, Items, SelectedItem);
         }
+
+        #region Properties
+
+        public string DefaultSelectedItem { get; set; }
+        public IEnumerable<string> Items { get; set; }
+
+        private string _selectedItem;
+
+        public string SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
+            }
+        }
+
+        #endregion
     }
 }

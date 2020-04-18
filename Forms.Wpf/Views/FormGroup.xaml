@@ -4,18 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
-             xmlns:elements="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements"
-             xmlns:fields="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements.Fields"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewmodels="clr-namespace:Aptacode.Forms.Wpf.ViewModels"
-
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <GroupBox Header="{Binding Label}">
         <ItemsControl ItemsSource="{Binding Rows}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:FormRowViewModel}">
-                    <views:FormRow DataContext="{Binding}" />
+                    <views:FormRow DataContext="{Binding}" Margin="16"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
