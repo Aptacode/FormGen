@@ -12,8 +12,7 @@ namespace Aptacode.Forms.Elements.Fields.Results
             FormName = form.Name;
         }
 
-        [JsonIgnore]
-        public Form Form { get; set; }
+        [JsonIgnore] public Form Form { get; set; }
 
         public string FormName { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
@@ -12,9 +13,8 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private FormViewModel _formViewModel;
-
         private readonly Form _myForm;
+        private FormViewModel _formViewModel;
 
         public MainWindowViewModel()
         {
@@ -109,7 +109,7 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
             if (_myForm.IsValid)
             {
                 var formResults = _myForm.GetResult();
-                System.IO.File.WriteAllText("./results.json", JsonConvert.SerializeObject(formResults, Formatting.Indented));
+                File.WriteAllText("./results.json", JsonConvert.SerializeObject(formResults, Formatting.Indented));
 
                 MessageBox.Show("Submitted");
             }

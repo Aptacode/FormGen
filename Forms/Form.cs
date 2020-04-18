@@ -23,8 +23,7 @@ namespace Aptacode.Forms
             SubscribeToElementEvents();
         }
 
-        [JsonIgnore]
-        public bool IsValid => Fields().All(field => field.IsValid());
+        [JsonIgnore] public bool IsValid => Fields().All(field => field.IsValid());
 
         public IEnumerable<string> GetValidationMessages()
         {

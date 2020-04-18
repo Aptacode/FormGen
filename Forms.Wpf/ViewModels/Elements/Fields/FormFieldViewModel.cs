@@ -27,14 +27,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             set => SetProperty(ref _isValid, value);
         }
 
+        public string this[string columnName] => Field.GetValidationMessage();
+
+        public string Error { get; }
+
         public void UpdateValidationMessage()
         {
             IsValid = Field.IsValid();
             ValidationMessage = Field.GetValidationMessage();
         }
-
-        public string this[string columnName] => Field.GetValidationMessage();
-
-        public string Error { get; }
     }
 }

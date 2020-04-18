@@ -11,7 +11,7 @@
         <ItemsControl ItemsSource="{Binding Rows}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:FormRowViewModel}">
-                    <views:FormRow DataContext="{Binding}" Margin="16"/>
+                    <views:FormRow DataContext="{Binding}" Margin="16" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
