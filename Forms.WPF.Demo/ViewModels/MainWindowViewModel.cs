@@ -5,6 +5,7 @@ using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
 using Aptacode.Forms.Wpf.ViewModels;
+using Newtonsoft.Json;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.Demo.ViewModels
@@ -100,7 +101,22 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                 return;
             }
 
-            MessageBox.Show(_myForm.IsValid ? "Submitted" : _myForm.GetValidationMessage());
+            Submit();
+        }
+
+        private void Submit()
+        {
+            if (_myForm.IsValid)
+            {
+                var formResults = _myForm.GetResult();
+                System.IO.File.WriteAllText("./results.json", JsonConvert.SerializeObject(formResults, Formatting.Indented));
+
+                MessageBox.Show("Submitted");
+            }
+            else
+            {
+                MessageBox.Show(_myForm.GetValidationMessage());
+            }
         }
     }
 }

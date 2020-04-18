@@ -5,6 +5,7 @@ using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Events;
+using Newtonsoft.Json;
 
 namespace Aptacode.Forms
 {
@@ -22,7 +23,7 @@ namespace Aptacode.Forms
             SubscribeToElementEvents();
         }
 
-
+        [JsonIgnore]
         public bool IsValid => Fields().All(field => field.IsValid());
 
         public IEnumerable<string> GetValidationMessages()
@@ -81,7 +82,7 @@ namespace Aptacode.Forms
 
         #region Results
 
-        public IEnumerable<FieldResult> GetResults()
+        private IEnumerable<FieldResult> GetResults()
         {
             return Fields().Select(field => field.GetResult());
         }

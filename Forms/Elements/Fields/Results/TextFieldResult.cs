@@ -4,7 +4,7 @@
     {
         public TextFieldResult(TextField textField, string content) : base(textField)
         {
-            content = Content;
+            Content = content;
         }
 
         public string Content { get; set; }
