@@ -2,17 +2,17 @@
 
 namespace Aptacode.Forms.Wpf.ViewModels.Elements
 {
-    public class FormHtmlContentViewModel : FormElementViewModel
+    public class HtmlElementViewModel : FormElementViewModel
     {
         private string _content;
 
-        public FormHtmlContentViewModel(FormHtmlContent htmlContent) : base(htmlContent)
+        public HtmlElementViewModel(HtmlElement htmlContent) : base(htmlContent)
         {
             HtmlContent = htmlContent;
             Content = htmlContent.Content;
         }
 
-        public FormHtmlContent HtmlContent { get; }
+        public HtmlElement HtmlContent { get; }
 
         public string Content
         {

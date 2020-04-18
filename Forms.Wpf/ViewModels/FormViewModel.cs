@@ -11,11 +11,11 @@ namespace Aptacode.Forms.Wpf.ViewModels
         public FormViewModel(Form form)
         {
             Form = form;
-            Rows = new ObservableCollection<FormRowViewModel>();
+            Groups = new ObservableCollection<FormGroupViewModel>();
 
-            foreach (var formRow in form.Rows)
+            foreach (var formRow in form.Groups)
             {
-                Rows.Add(new FormRowViewModel(formRow));
+                Groups.Add(new FormGroupViewModel(formRow));
             }
 
             Title = form.Title;
@@ -29,7 +29,7 @@ namespace Aptacode.Forms.Wpf.ViewModels
             set => SetProperty(ref _title, value);
         }
 
-        public ObservableCollection<FormRowViewModel> Rows { get; set; }
+        public ObservableCollection<FormGroupViewModel> Groups { get; set; }
 
         public bool IsValid => Form.IsValid;
 

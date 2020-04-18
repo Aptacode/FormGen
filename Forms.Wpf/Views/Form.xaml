@@ -25,10 +25,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ItemsControl ItemsSource="{Binding Rows}">
+    <ItemsControl ItemsSource="{Binding Groups}">
         <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:FormRowViewModel}">
-                <views:FormRow DataContext="{Binding}"/>
+            <DataTemplate DataType="{x:Type viewmodels:FormGroupViewModel}">
+                <materialDesign:Card Margin="16">
+                    <views:FormGroup DataContext="{Binding}" />
+                </materialDesign:Card>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

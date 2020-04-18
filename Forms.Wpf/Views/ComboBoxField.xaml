@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <GroupBox Header="{Binding Label}">
-        <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"/>
-    </GroupBox>
+    <DockPanel LastChildFill="True">
+        <Label Content="{Binding Label}" DockPanel.Dock="Left" Width="200" HorizontalContentAlignment="Right" />
+        <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" />
+    </DockPanel>
 </UserControl>

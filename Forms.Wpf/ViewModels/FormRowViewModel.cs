@@ -1,26 +1,29 @@
-﻿using Aptacode.Forms.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Factories;
+﻿using System.Collections.ObjectModel;
+using Aptacode.Forms.Elements;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels
 {
     public class FormRowViewModel : BindableBase
     {
-        private FormElementViewModel _formElementViewModel;
+        private ObservableCollection<FormColumnViewModel> _columns;
 
         public FormRowViewModel(FormRow row)
         {
             Row = row;
-            FormElementViewModel = FormElementViewModelFactory.Create(row.Element);
+            Columns = new ObservableCollection<FormColumnViewModel>();
+            foreach (var column in row.Columns)
+            {
+                Columns.Add(new FormColumnViewModel(column));
+            }
         }
 
         public FormRow Row { get; }
 
-        public FormElementViewModel FormElementViewModel
+        public ObservableCollection<FormColumnViewModel> Columns
         {
-            get => _formElementViewModel;
-            set => SetProperty(ref _formElementViewModel, value);
+            get => _columns;
+            set => SetProperty(ref _columns, value);
         }
     }
 }

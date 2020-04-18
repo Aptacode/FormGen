@@ -12,8 +12,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Factories
             {
                 case FormField field:
                     return FormFieldViewModelFactory.Create(field);
-                case FormHtmlContent htmlContent:
-                    return new FormHtmlContentViewModel(htmlContent);
+                case HtmlElement htmlElement:
+                    return new HtmlElementViewModel(htmlElement);
+                case ButtonElement butonElement:
+                    return new ButtonElementViewModel(butonElement);
             }
 
             return null;

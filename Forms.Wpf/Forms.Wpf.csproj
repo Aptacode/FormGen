@@ -73,14 +73,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mvvm\WebBrowserUtility.cs" />
+    <Compile Include="ViewModels\Elements\ButtonElementViewModel.cs" />
+    <Compile Include="ViewModels\FormGroupViewModel.cs" />
+    <Compile Include="ViewModels\FormColumnViewModel.cs" />
     <Compile Include="Views\CheckBoxField.xaml.cs">
       <DependentUpon>CheckBoxField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ComboBoxField.xaml.cs">
       <DependentUpon>ComboBoxField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormHtmlContent.xaml.cs">
-      <DependentUpon>FormHtmlContent.xaml</DependentUpon>
+    <Compile Include="Views\ButtonElement.xaml.cs">
+      <DependentUpon>ButtonElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormGroup.xaml.cs">
+      <DependentUpon>FormGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormColumn.xaml.cs">
+      <DependentUpon>FormColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HtmlElement.xaml.cs">
+      <DependentUpon>HtmlElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FormRow.xaml.cs">
       <DependentUpon>FormRow.xaml</DependentUpon>
@@ -102,7 +114,7 @@
     </Page>
     <Compile Include="ViewModels\Elements\Fields\CheckBoxFieldViewModel.cs" />
     <Compile Include="ViewModels\Factories\FormFieldViewModelFactory.cs" />
-    <Compile Include="ViewModels\Elements\FormHtmlContentViewModel.cs" />
+    <Compile Include="ViewModels\Elements\HtmlElementViewModel.cs" />
     <Compile Include="ViewModels\Elements\FormElementViewModel.cs" />
     <Compile Include="ViewModels\Elements\Fields\FormFieldViewModel.cs" />
     <Compile Include="ViewModels\Factories\FormElementViewModelFactory.cs" />
@@ -114,7 +126,19 @@
       <DependentUpon>Form.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\FormHtmlContent.xaml">
+    <Page Include="Views\ButtonElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FormGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FormColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HtmlElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

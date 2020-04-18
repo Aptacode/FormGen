@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Forms.Elements
+﻿using System.Collections.Generic;
+
+namespace Aptacode.Forms.Elements
 {
     public class FormRow
     {
@@ -6,11 +8,13 @@
         {
         }
 
-        public FormRow(FormElement element)
+        public FormRow(int span, IEnumerable<FormColumn> columns)
         {
-            Element = element;
+            Span = span;
+            Columns = columns;
         }
 
-        public FormElement Element { get; set; }
+        public IEnumerable<FormColumn> Columns { get; set; }
+        public int Span { get; set; }
     }
 }

@@ -4,12 +4,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
     public class CheckBoxFieldViewModel : FormFieldViewModel
     {
+        private string _content;
         private bool _isChecked;
         public CheckBoxField CheckBoxField;
 
         public CheckBoxFieldViewModel(CheckBoxField checkBoxField) : base(checkBoxField)
         {
             CheckBoxField = checkBoxField;
+            Content = checkBoxField.Content;
             IsChecked = CheckBoxField.DefaultIsChecked;
         }
 
@@ -21,6 +23,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
                 SetProperty(ref _isChecked, value);
                 UpdateValidationMessage();
             }
+        }
+
+        public string Content
+        {
+            get => _content;
+            set => SetProperty(ref _content, value);
         }
     }
 }

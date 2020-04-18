@@ -15,15 +15,18 @@ namespace Aptacode.Forms.Elements.Fields
         }
 
         public CheckBoxField(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<CheckBoxField>> rules, bool defaultIsChecked) : base(nameof(ComboBoxField), name,
+            IEnumerable<ValidationRule<CheckBoxField>> rules, string content, bool defaultIsChecked) : base(
+            nameof(ComboBoxField), name,
             labelPosition, label, rules)
         {
             _rules = rules;
+            Content = content;
             DefaultIsChecked = defaultIsChecked;
             IsChecked = defaultIsChecked;
         }
 
         public bool DefaultIsChecked { get; set; }
+        public string Content { get; set; }
 
         public bool IsChecked { get; set; }
 

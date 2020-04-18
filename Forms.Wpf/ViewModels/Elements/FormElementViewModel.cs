@@ -6,6 +6,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
 {
     public abstract class FormElementViewModel : BindableBase
     {
+        private string _label;
+
+        private LabelPosition _labelPosition;
+
         protected FormElementViewModel(FormElement formElement)
         {
             FormElement = formElement;
@@ -14,9 +18,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
         }
 
         public FormElement FormElement { get; }
-        private string _label;
 
-        private LabelPosition _labelPosition;
         public string Label
         {
             get => _label;

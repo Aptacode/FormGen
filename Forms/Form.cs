@@ -12,23 +12,27 @@ namespace Aptacode.Forms
         {
         }
 
-        public Form(string name, string title, IEnumerable<FormRow> rows)
+        public Form(string name, string title, IEnumerable<FormGroup> groups)
         {
             Name = name;
             Title = title;
-            Rows = rows;
+            Groups = groups;
         }
 
         public string Name { get; set; }
         public string Title { get; set; }
 
-        public IEnumerable<FormRow> Rows { get; set; }
+        public IEnumerable<FormGroup> Groups { get; set; }
 
         public bool IsValid => Fields().All(field => field.IsValid());
 
         private IEnumerable<FormField> Fields()
         {
-            return Rows.Select(row => row.Element as FormField).Where(field => field != null);
+            return Groups
+                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b))
+                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b))
+                .Select(column => column.Element as FormField)
+                .Where(field => field != null);
         }
 
         public IEnumerable<FieldResult> GetResults()
