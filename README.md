@@ -1,4 +1,4 @@
 # Aptacode.Forms
 Create cross platform forms using C# .net
 
-  <img width="1000" height="700" src="https://github.com/Timmoth/Aptacode.Forms/blob/master/Resources/demo.png">
+  <img width="500" height="350" src="https://github.com/Timmoth/Aptacode.Forms/blob/master/Resources/demo.png">
