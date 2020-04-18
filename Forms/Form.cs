@@ -5,6 +5,7 @@ using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Json;
 using Newtonsoft.Json;
 
 namespace Aptacode.Forms
@@ -89,6 +90,24 @@ namespace Aptacode.Forms
         public FormResult GetResult()
         {
             return new FormResult(this, GetResults());
+        }
+
+        #endregion
+
+        #region Json
+
+        public static Form FromJson(string input)
+        {
+            return JsonConvert.DeserializeObject<Form>(input,
+                                    new FieldInputJsonConverter(),
+                                    new FieldInputValidationJsonConverter(),
+                                    new FormRowJsonConverter()
+                    );
+        }
+
+        public static string ToJson(string input)
+        {
+            return JsonConvert.SerializeObject(input, Formatting.Indented);
         }
 
         #endregion
