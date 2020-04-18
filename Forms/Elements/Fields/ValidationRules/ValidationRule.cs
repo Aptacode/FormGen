@@ -12,8 +12,6 @@
         }
 
         public string Type { get; set; }
-        public string PassMessage { get; set; }
-        public string FailMessage { get; set; }
     }
 
     public abstract class ValidationRule<TField> : ValidationRule where TField : FormField
@@ -28,9 +26,6 @@
 
         public abstract bool Passed(TField fieldInput);
 
-        public string GetMessage(TField fieldInput)
-        {
-            return Passed(fieldInput) ? PassMessage : FailMessage;
-        }
+        public abstract string GetMessage(TField fieldInput);
     }
 }

@@ -40,8 +40,11 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                                     })
                             ),
                             new FormColumn(1,
-                                new TextField("lasName", LabelPosition.AboveElement, "Last Name",
-                                    new ValidationRule<TextField>[0])
+                                new TextField("lastName", LabelPosition.AboveElement, "Last Name",
+                                    new ValidationRule<TextField>[]
+                                    {
+                                        new TextFieldLengthValidationRule(EqualityOperator.LessThan | EqualityOperator.EqualTo, 10)
+                                    })
                             )
                         }),
 

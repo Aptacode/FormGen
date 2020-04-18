@@ -7,8 +7,6 @@
         {
             EqualityOperator = equalityOperator;
             Value = value;
-
-            FailMessage = $"Must be ~ {value}";
         }
 
         public EqualityOperator EqualityOperator { get; set; }
@@ -18,16 +16,72 @@
         {
             var contentLength = field.Content.Length;
 
+            var greaterThan = (EqualityOperator & EqualityOperator.GreaterThan) != EqualityOperator.None;
+            var equalTo = (EqualityOperator & EqualityOperator.EqualTo) != EqualityOperator.None;
+            var lessThan = (EqualityOperator & EqualityOperator.LessThan) != EqualityOperator.None;
+
             //True if the EqualityOperator is not included OR the comparison passes
-            var greaterThanCheck = (EqualityOperator & EqualityOperator.GreaterThan) == EqualityOperator.None ||
-                                   Value > contentLength;
-            var equalToCheck = (EqualityOperator & EqualityOperator.EqualTo) == EqualityOperator.None ||
-                               Value == contentLength;
-            var lessThanCheck = (EqualityOperator & EqualityOperator.LessThan) == EqualityOperator.None ||
-                                Value < contentLength;
+            var greaterThanCheck = !greaterThan || contentLength > Value;
+            var equalToCheck = !equalTo || contentLength == Value;
+            var lessThanCheck = !lessThan || contentLength < Value;
 
             //True if all checks pass
             return greaterThanCheck && equalToCheck && lessThanCheck;
+        }
+
+        public override string GetMessage(TextField fieldInput)
+        {
+            return Passed(fieldInput) ? string.Empty : $"'{fieldInput.Label}' must be {EqualityOperatorToString()} {Value}";
+        }
+
+        private string EqualityOperatorToString()
+        {
+            var greaterThan = (EqualityOperator & EqualityOperator.GreaterThan) != EqualityOperator.None; 
+            var equalTo = (EqualityOperator & EqualityOperator.EqualTo) != EqualityOperator.None;
+            var lessThan = (EqualityOperator & EqualityOperator.LessThan) != EqualityOperator.None;
+
+            if (greaterThan && !equalTo && !lessThan)
+            {
+                return "greater than";
+            }
+
+            if (greaterThan && equalTo && !lessThan)
+            {
+                return "greater than or equal to";
+            }
+
+            if (!greaterThan && equalTo && !lessThan)
+            {
+                return "equal to";
+            }
+
+            if (!greaterThan && !equalTo && !lessThan)
+            {
+                return "not equal to";
+            }
+
+            if (greaterThan && !equalTo && lessThan)
+            {
+                return "not equal to";
+            }
+
+            if (!greaterThan && equalTo && lessThan)
+            {
+                return "less than or equal to";
+            }
+
+            if (!greaterThan && !equalTo && lessThan)
+            {
+                return "less than";
+            }
+
+            //Todo - error here cannot be not == && > && <
+            if (greaterThan && equalTo && lessThan)
+            {
+                return "not equal to";
+            }
+
+            return string.Empty;
         }
     }
 }
