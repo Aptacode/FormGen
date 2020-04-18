@@ -1,4 +1,5 @@
 ﻿using Aptacode.Forms.Enums;
+using Aptacode.Forms.Events;
 
 namespace Aptacode.Forms.Elements
 {
@@ -14,6 +15,16 @@ namespace Aptacode.Forms.Elements
             Content = content;
         }
 
+
+        public void Clicked()
+        {
+            TriggerEvent(new ButtonClickedEventArgs(this));
+        }
+
+        #region Properties
         public string Content { get; set; }
+
+        #endregion
+
     }
 }

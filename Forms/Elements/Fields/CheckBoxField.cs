@@ -3,6 +3,7 @@ using System.Linq;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
+using Aptacode.Forms.Events;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -25,10 +26,24 @@ namespace Aptacode.Forms.Elements.Fields
             IsChecked = defaultIsChecked;
         }
 
+        #region Properties
+
         public bool DefaultIsChecked { get; set; }
         public string Content { get; set; }
 
-        public bool IsChecked { get; set; }
+        private bool _isChecked;
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set
+            {
+                _isChecked = value;
+                TriggerEvent(new CheckBoxFieldChangedEventArgs(this, _isChecked));
+            }
+        }
+        
+        #endregion
+
 
         public override bool IsValid()
         {

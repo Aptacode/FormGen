@@ -1,7 +1,9 @@
-﻿using Aptacode.Forms.Elements;
+﻿using System.Windows;
+using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
+using Aptacode.Forms.Events;
 using Aptacode.Forms.Wpf.ViewModels;
 using Prism.Mvvm;
 
@@ -11,9 +13,11 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
     {
         private FormViewModel _formViewModel;
 
+        private Form _myForm;
+
         public MainWindowViewModel()
         {
-            var nameForm = new Form("form1", "Test Form",
+            _myForm = new Form("form1", "Test Form",
                 new[]
                 {
                     new FormGroup("Test Form Group", new[]
@@ -69,7 +73,18 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                     })
                 });
 
-            FormViewModel = new FormViewModel(nameForm);
+            _myForm.OnFormEvent += NameForm_OnFormEvent;
+            FormViewModel = new FormViewModel(_myForm);
+        }
+
+        private void NameForm_OnFormEvent(object sender, Events.FormEventArgs e)
+        {
+            if (!(e is ButtonClickedEventArgs buttonClickedEvent) || buttonClickedEvent.Button.Name != "SubmitButton")
+            {
+                return;
+            }
+
+            MessageBox.Show(_myForm.IsValid ? "Submitted" : _myForm.GetValidationMessage());
         }
 
         public FormViewModel FormViewModel

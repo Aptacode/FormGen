@@ -1,4 +1,6 @@
-﻿using Aptacode.Forms.Enums;
+﻿using System;
+using Aptacode.Forms.Enums;
+using Aptacode.Forms.Events;
 
 namespace Aptacode.Forms.Elements
 {
@@ -20,5 +22,16 @@ namespace Aptacode.Forms.Elements
         public string Type { get; set; }
         public string Label { get; set; }
         public LabelPosition LabelPosition { get; set; }
+
+        #region Events
+
+        public event EventHandler<FormElementEvent> OnFormEvent;
+
+        protected void TriggerEvent(FormElementEvent eventArgs)
+        {
+            OnFormEvent?.Invoke(this, eventArgs);
+        }
+
+        #endregion
     }
 }

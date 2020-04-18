@@ -3,6 +3,7 @@ using System.Linq;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
+using Aptacode.Forms.Events;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -24,9 +25,25 @@ namespace Aptacode.Forms.Elements.Fields
             Items = items;
         }
 
+
+
+        #region Properties
+
         public string DefaultSelectedItem { get; set; }
-        public string SelectedItem { get; set; }
         public IEnumerable<string> Items { get; set; }
+
+        private string _selectedItem;
+        public string SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
+            }
+        }
+
+        #endregion
 
         public override bool IsValid()
         {

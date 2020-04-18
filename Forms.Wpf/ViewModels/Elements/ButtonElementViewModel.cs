@@ -1,4 +1,5 @@
 ﻿using Aptacode.Forms.Elements;
+using Prism.Commands;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Elements
 {
@@ -19,5 +20,17 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
             get => _content;
             set => SetProperty(ref _content, value);
         }
+
+        #region Commands
+
+        private DelegateCommand _buttonClickedCommand;
+
+        public DelegateCommand ButtonClickedCommand =>
+            _buttonClickedCommand ?? (_buttonClickedCommand = new DelegateCommand(() =>
+            {
+                ButtonElement.Clicked();
+            }));
+
+        #endregion
     }
 }
