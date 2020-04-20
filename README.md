@@ -1,4 +1,4 @@
-  <img width="1280" height="640" src="https://github.com/Timmoth/Aptacode.Forms/blob/master/Resources/Banner.png">
+  <img width="256" height="256" src="https://github.com/Timmoth/Aptacode.Forms/blob/master/Resources/BannerSquare.png">
 
 Create cross platform forms using C# .net
 
