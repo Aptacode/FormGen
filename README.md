@@ -26,6 +26,8 @@ These are changes that would require fairly serious changes, but would also add 
 
 ### Questions
 
+ - Why does `TextField` have a public empty constructor? `_rules` has no mechanism to be updated later, leading to nullpointer exceptions when using that constructor and either `GetValidationMessages()` or `IsValid()`.
+ - Should `TextField._rules` maybe clone the `IEnumerable` (`rules`) being assigned to it? By simply assigning a reference to the original, the rules can be updated at any time - this may be useful when testing, but it could lead to hard-to-track bugs if users create rules at unexpected times (see `TextField_IsValid_SingleValidRuleShouldReturnTrue` for an example of this belated-rule-injection).
  - What's the difference between `ValidationRule` and `ValidationRule<TField>` - they seem like they should be used in similar situations... but they have very different non-constructor methods.
    - For example, when and why do you use one vs the other.
    - Am I right in thinking that `ValidationRule` is only used as a parent class for `ValidationRule<TField>`?
