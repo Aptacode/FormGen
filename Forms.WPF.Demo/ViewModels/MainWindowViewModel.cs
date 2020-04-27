@@ -1,13 +1,20 @@
 ﻿using System.IO;
 using System.Windows;
-using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
 using Aptacode.Forms.Wpf.ViewModels;
+using Aptacode.Forms.Wpf.Views;
 using Newtonsoft.Json;
 using Prism.Mvvm;
+using ButtonElement = Aptacode.Forms.Elements.ButtonElement;
+using CheckBoxField = Aptacode.Forms.Elements.Fields.CheckBoxField;
+using ComboBoxField = Aptacode.Forms.Elements.Fields.ComboBoxField;
+using HtmlElement = Aptacode.Forms.Elements.HtmlElement;
+using FormGroup = Aptacode.Forms.Layout.FormGroup;
+using FormRow = Aptacode.Forms.Layout.FormRow;
+using FormColumn = Aptacode.Forms.Layout.FormColumn;
 
 namespace Aptacode.Forms.Wpf.Demo.ViewModels
 {
@@ -15,12 +22,33 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
     {
         private readonly Form _myForm;
         private FormViewModel _formViewModel;
-
+        private readonly string _formFileName = "form.json";
         public MainWindowViewModel()
         {
-            _myForm = new Form("form1", "Test Form",
-                new[]
-                {
+            _myForm = ProgrammaticForm();
+            SaveForm(_formFileName, _myForm);
+            var loadedForm = LoadForm(_formFileName);
+
+            _myForm.OnFormEvent += NameForm_OnFormEvent;
+            FormViewModel = new FormViewModel(_myForm);
+        }
+
+        private void SaveForm(string filename, Form form)
+        {
+            File.WriteAllText(filename, form.ToJson());
+        }
+
+        private Form LoadForm(string filename)
+        {
+            var jsonString = File.ReadAllText(filename);
+            return Form.FromJson(jsonString);
+        }
+
+        private Form ProgrammaticForm()
+        {
+            return new Form("form1", "Test Form",
+    new[]
+    {
                     new FormGroup("Test Form Group", new[]
                     {
                         new FormRow(1, new[]
@@ -82,10 +110,7 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                             )
                         })
                     })
-                });
-
-            _myForm.OnFormEvent += NameForm_OnFormEvent;
-            FormViewModel = new FormViewModel(_myForm);
+    });
         }
 
         public FormViewModel FormViewModel

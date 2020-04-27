@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aptacode.Forms.Elements
+namespace Aptacode.Forms.Layout
 {
     public class FormRow
     {

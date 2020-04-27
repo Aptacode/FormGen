@@ -9,6 +9,7 @@ namespace Aptacode.Forms.Elements.Fields
     {
         protected FormField()
         {
+            ValidationRules = new List<ValidationRule>();
         }
 
         protected FormField(string type, string name, LabelPosition labelPosition, string label,

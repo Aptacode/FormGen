@@ -9,9 +9,7 @@ namespace Aptacode.Forms.Elements.Fields
 {
     public class ComboBoxField : FormField
     {
-        private readonly IEnumerable<ValidationRule<ComboBoxField>> _rules;
-
-        public ComboBoxField()
+        internal ComboBoxField()
         {
         }
 
@@ -25,20 +23,22 @@ namespace Aptacode.Forms.Elements.Fields
             IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items, string defaultSelectedItem) :
             base(nameof(ComboBoxField), name, labelPosition, label, rules)
         {
-            _rules = rules;
             DefaultSelectedItem = defaultSelectedItem;
             SelectedItem = defaultSelectedItem;
             Items = items;
         }
 
+        private IEnumerable<ValidationRule<ComboBoxField>> Rules =>
+            ValidationRules.Select(r => r as ValidationRule<ComboBoxField>);
+
         public override bool IsValid()
         {
-            return _rules.All(rule => rule.Passed(this));
+            return Rules.All(rule => rule.Passed(this));
         }
 
         public override IEnumerable<string> GetValidationMessages()
         {
-            return _rules.Select(rule => rule.GetMessage(this));
+            return Rules.Select(rule => rule.GetMessage(this));
         }
 
         public override FieldResult GetResult()

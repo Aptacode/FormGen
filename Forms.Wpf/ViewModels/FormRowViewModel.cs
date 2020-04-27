@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using Aptacode.Forms.Elements;
 using Prism.Mvvm;
+using FormRow = Aptacode.Forms.Layout.FormRow;
 
 namespace Aptacode.Forms.Wpf.ViewModels
 {

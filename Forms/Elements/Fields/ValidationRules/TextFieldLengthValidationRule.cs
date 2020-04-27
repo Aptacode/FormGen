@@ -2,6 +2,11 @@
 {
     public class TextFieldLengthValidationRule : ValidationRule<TextField>
     {
+        internal TextFieldLengthValidationRule() : base(
+            nameof(TextFieldLengthValidationRule))
+        {
+        }
+
         public TextFieldLengthValidationRule(EqualityOperator equalityOperator, int value) : base(
             nameof(TextFieldLengthValidationRule))
         {

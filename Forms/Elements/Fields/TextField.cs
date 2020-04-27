@@ -9,8 +9,6 @@ namespace Aptacode.Forms.Elements.Fields
 {
     public class TextField : FormField
     {
-        private readonly IEnumerable<ValidationRule<TextField>> _rules;
-
         public TextField()
         {
         }
@@ -18,19 +16,21 @@ namespace Aptacode.Forms.Elements.Fields
         public TextField(string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label, rules)
         {
-            _rules = rules;
             Content = string.Empty;
         }
+
+        private IEnumerable<ValidationRule<TextField>> Rules =>
+            ValidationRules.Select(r => r as ValidationRule<TextField>);
 
 
         public override bool IsValid()
         {
-            return _rules.All(rule => rule.Passed(this));
+            return Rules.All(rule => rule.Passed(this));
         }
 
         public override IEnumerable<string> GetValidationMessages()
         {
-            return _rules.Select(rule => rule.GetMessage(this));
+            return Rules.Select(rule => rule.GetMessage(this));
         }
 
         public override FieldResult GetResult()

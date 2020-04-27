@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Forms.Elements
+﻿using Aptacode.Forms.Elements;
+
+namespace Aptacode.Forms.Layout
 {
     public class FormColumn
     {

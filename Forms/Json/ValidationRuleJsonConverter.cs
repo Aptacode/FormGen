@@ -5,8 +5,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Aptacode.Forms.Json
 {
-    public class FieldInputValidationJsonConverter : JsonConverter
+    public class ValidationRuleJsonConverter : JsonConverter
     {
+        public override bool CanWrite => false;
+
         public override bool CanConvert(Type objectType)
         {
             return typeof(ValidationRule).IsAssignableFrom(objectType);
@@ -21,24 +23,25 @@ namespace Aptacode.Forms.Json
 
             ValidationRule item = null;
 
-            //switch (type)
-            //{
-            //    case nameof(TextInputIsRequiredValidationRule):
-            //        item = new TextInputIsRequiredValidationRule();
-            //        break;
-            //    case nameof(TextInputLengthValidationRule):
-            //        item = new TextInputLengthValidationRule();
-            //        break;
-            //    default:
-            //        return null;
-            //}
+            switch (type)
+            {
+                case nameof(CheckBoxCheckedValidationRule):
+                    item = new CheckBoxCheckedValidationRule();
+                    break;
+                case nameof(ComboBoxSelectionRequiredValidationRule):
+                    item = new ComboBoxSelectionRequiredValidationRule();
+                    break;
+                case nameof(TextFieldLengthValidationRule):
+                    item = new TextFieldLengthValidationRule();
+                    break;
+                default:
+                    return null;
+            }
 
             serializer.Populate(jo.CreateReader(), item);
 
             return item;
         }
-
-        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer,
             object value, JsonSerializer serializer)

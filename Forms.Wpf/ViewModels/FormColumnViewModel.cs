@@ -1,7 +1,7 @@
-﻿using Aptacode.Forms.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Elements;
+﻿using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Factories;
 using Prism.Mvvm;
+using FormColumn = Aptacode.Forms.Layout.FormColumn;
 
 namespace Aptacode.Forms.Wpf.ViewModels
 {

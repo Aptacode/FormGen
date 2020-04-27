@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aptacode.Forms.Layout;
 using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.Results;
@@ -99,15 +100,14 @@ namespace Aptacode.Forms
         public static Form FromJson(string input)
         {
             return JsonConvert.DeserializeObject<Form>(input,
-                                    new FieldInputJsonConverter(),
-                                    new FieldInputValidationJsonConverter(),
-                                    new FormRowJsonConverter()
-                    );
+                new ValidationRuleJsonConverter(),
+                new FormElementJsonConverter()
+            );
         }
 
-        public static string ToJson(string input)
+        public string ToJson()
         {
-            return JsonConvert.SerializeObject(input, Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         #endregion
