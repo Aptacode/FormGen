@@ -4,7 +4,7 @@ namespace Aptacode.Forms.Layout
 {
     public class FormGroup
     {
-        public FormGroup()
+        internal FormGroup()
         {
         }
 

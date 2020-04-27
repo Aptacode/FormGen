@@ -4,7 +4,7 @@ namespace Aptacode.Forms.Layout
 {
     public class FormRow
     {
-        public FormRow()
+        internal FormRow()
         {
         }
 

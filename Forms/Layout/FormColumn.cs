@@ -4,7 +4,7 @@ namespace Aptacode.Forms.Layout
 {
     public class FormColumn
     {
-        public FormColumn()
+        internal FormColumn()
         {
         }
 

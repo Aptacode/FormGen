@@ -9,19 +9,18 @@ namespace Aptacode.Forms.Elements.Fields
 {
     public class TextField : FormField
     {
-        public TextField()
+        internal TextField()
         {
+            Rules = new List<ValidationRule<TextField>>();
         }
 
         public TextField(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label, rules)
+            IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label)
         {
             Content = string.Empty;
+            Rules = rules;
         }
-
-        private IEnumerable<ValidationRule<TextField>> Rules =>
-            ValidationRules.Select(r => r as ValidationRule<TextField>);
-
+        
 
         public override bool IsValid()
         {
@@ -52,6 +51,8 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new TextFieldChangedEventArgs(this, oldValue, value));
             }
         }
+
+        public IEnumerable<ValidationRule<TextField>> Rules { get; set; }
 
         #endregion
     }

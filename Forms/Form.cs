@@ -13,7 +13,7 @@ namespace Aptacode.Forms
 {
     public class Form
     {
-        public Form()
+        internal Form()
         {
         }
 

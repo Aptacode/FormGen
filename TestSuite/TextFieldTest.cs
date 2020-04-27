@@ -8,27 +8,6 @@ using System.Linq;
 namespace Tests
 {
     [TestFixture]
-    public class TextFieldEmptyConstructor
-    {
-        private TextField _textField;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _textField = new TextField();
-        }
-
-        //Currently failing because the empty TextField constructor leaves a field null
-        [Test]
-        public void TextField_IsValid_NoRulesShouldReturnTrue()
-        {
-            var allRulesPass = _textField.IsValid();
-
-            Assert.IsTrue(allRulesPass, "A TextField with no rules should be valid");
-        }
-    }
-
-    [TestFixture]
     public class TextFieldMainConstructor
     {
         private TextField _textField;

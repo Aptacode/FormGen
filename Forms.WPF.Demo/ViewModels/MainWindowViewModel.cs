@@ -25,9 +25,12 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
         private readonly string _formFileName = "form.json";
         public MainWindowViewModel()
         {
-            _myForm = ProgrammaticForm();
-            SaveForm(_formFileName, _myForm);
-            var loadedForm = LoadForm(_formFileName);
+            //Generate the form programmatically
+            var programmaticForm = ProgrammaticForm();
+            //Save the form as a json file
+            SaveForm(_formFileName, programmaticForm);
+            //Generate the form from a json file
+            _myForm = LoadForm(_formFileName);
 
             _myForm.OnFormEvent += NameForm_OnFormEvent;
             FormViewModel = new FormViewModel(_myForm);

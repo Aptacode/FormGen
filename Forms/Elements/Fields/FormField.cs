@@ -9,17 +9,13 @@ namespace Aptacode.Forms.Elements.Fields
     {
         protected FormField()
         {
-            ValidationRules = new List<ValidationRule>();
         }
 
-        protected FormField(string type, string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule> rules) : base(
+        protected FormField(string type, string name, LabelPosition labelPosition, string label) : base(
             type, name, labelPosition, label)
         {
-            ValidationRules = rules;
-        }
 
-        public IEnumerable<ValidationRule> ValidationRules { get; set; }
+        }
 
         public abstract bool IsValid();
 
