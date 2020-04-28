@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Forms.BlazorDemo
+namespace Aptacode.Forms.Blazor.Demo
 {
     public class Program
     {

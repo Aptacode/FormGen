@@ -1,28 +1,26 @@
+using System.Collections.Generic;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Tests
+namespace TestSuite
 {
     [TestFixture]
     public class TextFieldMainConstructor
     {
-        private TextField _textField;
-
-        private List<ValidationRule<TextField>> _testRulesList;
-        private string _testName = "test name";
-        private string _testLabel = "test label";
-
-
         [SetUp]
         public void SetUp()
         {
             _testRulesList = new List<ValidationRule<TextField>>();
             _textField = new TextField(_testName, LabelPosition.AboveElement, _testLabel, _testRulesList);
         }
+
+        private TextField _textField;
+
+        private List<ValidationRule<TextField>> _testRulesList;
+        private readonly string _testName = "test name";
+        private readonly string _testLabel = "test label";
 
         [Test]
         public void TextField_IsValid_NoRulesShouldReturnTrue()

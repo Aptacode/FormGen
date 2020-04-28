@@ -20,7 +20,7 @@ namespace Aptacode.Forms.Elements.Fields
             Content = string.Empty;
             Rules = rules;
         }
-        
+
 
         public override bool IsValid()
         {

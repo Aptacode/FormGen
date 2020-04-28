@@ -1,28 +1,23 @@
 ﻿using System.IO;
 using System.Windows;
+using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels;
-using Aptacode.Forms.Wpf.Views;
 using Newtonsoft.Json;
 using Prism.Mvvm;
-using ButtonElement = Aptacode.Forms.Elements.ButtonElement;
-using CheckBoxField = Aptacode.Forms.Elements.Fields.CheckBoxField;
-using ComboBoxField = Aptacode.Forms.Elements.Fields.ComboBoxField;
-using HtmlElement = Aptacode.Forms.Elements.HtmlElement;
-using FormGroup = Aptacode.Forms.Layout.FormGroup;
-using FormRow = Aptacode.Forms.Layout.FormRow;
-using FormColumn = Aptacode.Forms.Layout.FormColumn;
 
 namespace Aptacode.Forms.Wpf.Demo.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private readonly string _formFileName = "form.json";
         private readonly Form _myForm;
         private FormViewModel _formViewModel;
-        private readonly string _formFileName = "form.json";
+
         public MainWindowViewModel()
         {
             //Generate the form programmatically
@@ -34,6 +29,12 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
 
             _myForm.OnFormEvent += NameForm_OnFormEvent;
             FormViewModel = new FormViewModel(_myForm);
+        }
+
+        public FormViewModel FormViewModel
+        {
+            get => _formViewModel;
+            set => SetProperty(ref _formViewModel, value);
         }
 
         private void SaveForm(string filename, Form form)
@@ -50,8 +51,8 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
         private Form ProgrammaticForm()
         {
             return new Form("form1", "Test Form",
-    new[]
-    {
+                new[]
+                {
                     new FormGroup("Test Form Group", new[]
                     {
                         new FormRow(1, new[]
@@ -113,13 +114,7 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                             )
                         })
                     })
-    });
-        }
-
-        public FormViewModel FormViewModel
-        {
-            get => _formViewModel;
-            set => SetProperty(ref _formViewModel, value);
+                });
         }
 
         private void NameForm_OnFormEvent(object sender, FormEventArgs e)

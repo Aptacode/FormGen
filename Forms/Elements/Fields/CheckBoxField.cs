@@ -56,6 +56,7 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new CheckBoxFieldChangedEventArgs(this, _isChecked));
             }
         }
+
         public IEnumerable<ValidationRule<CheckBoxField>> Rules { get; set; }
 
         #endregion

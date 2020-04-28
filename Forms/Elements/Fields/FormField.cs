@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Aptacode.Forms.Elements.Fields.Results;
-using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 
 namespace Aptacode.Forms.Elements.Fields
@@ -14,7 +13,6 @@ namespace Aptacode.Forms.Elements.Fields
         protected FormField(string type, string name, LabelPosition labelPosition, string label) : base(
             type, name, labelPosition, label)
         {
-
         }
 
         public abstract bool IsValid();

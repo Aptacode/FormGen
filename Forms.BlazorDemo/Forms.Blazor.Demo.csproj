@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Aptacode.Forms.Blazor.Demo</AssemblyName>
+    <RootNamespace>Aptacode.Forms.Blazor.Demo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

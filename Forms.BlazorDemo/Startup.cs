@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Forms.BlazorDemo
+namespace Aptacode.Forms.Blazor.Demo
 {
     public class Startup
     {
