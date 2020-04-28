@@ -7,6 +7,7 @@ using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels;
+using Aptacode.Forms.Wpf.ViewModels.Designer;
 using Newtonsoft.Json;
 using Prism.Mvvm;
 
@@ -16,7 +17,9 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
     {
         private readonly string _formFileName = "form.json";
         private readonly Form _myForm;
+        private FormDesignerViewModel _formDesignerViewModel;
         private FormViewModel _formViewModel;
+
 
         public MainWindowViewModel()
         {
@@ -29,12 +32,21 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
 
             _myForm.OnFormEvent += NameForm_OnFormEvent;
             FormViewModel = new FormViewModel(_myForm);
+
+            FormDesignerViewModel = new FormDesignerViewModel();
+            FormDesignerViewModel.Load(FormViewModel);
         }
 
         public FormViewModel FormViewModel
         {
             get => _formViewModel;
             set => SetProperty(ref _formViewModel, value);
+        }
+
+        public FormDesignerViewModel FormDesignerViewModel
+        {
+            get => _formDesignerViewModel;
+            set => SetProperty(ref _formDesignerViewModel, value);
         }
 
         private void SaveForm(string filename, Form form)

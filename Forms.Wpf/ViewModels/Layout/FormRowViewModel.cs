@@ -6,8 +6,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
 {
     public class FormRowViewModel : BindableBase
     {
-        private ObservableCollection<FormColumnViewModel> _columns;
-
         public FormRowViewModel(FormRow row)
         {
             Row = row;
@@ -20,10 +18,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
 
         public FormRow Row { get; }
 
+        #region Properties
+
+        private ObservableCollection<FormColumnViewModel> _columns;
+
         public ObservableCollection<FormColumnViewModel> Columns
         {
             get => _columns;
             set => SetProperty(ref _columns, value);
         }
+
+        #endregion
     }
 }

@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views;assembly=Aptacode.Forms.Wpf"
+        xmlns:designer="clr-namespace:Aptacode.Forms.Wpf.Views.Designer;assembly=Aptacode.Forms.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
 
-    <views:FormView DataContext="{Binding FormViewModel}" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
+        <designer:FormDesignerView Grid.Column="0" DataContext="{Binding FormDesignerViewModel}" />
+        <views:FormView Grid.Column="1" DataContext="{Binding FormViewModel}" />
+
+    </Grid>
 </Window>

@@ -6,33 +6,69 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
 {
     public class FormGroupViewModel : BindableBase
     {
-        private string _label;
-        private ObservableCollection<FormRowViewModel> _rows;
-
         public FormGroupViewModel(FormGroup group)
         {
-            Group = group;
             Rows = new ObservableCollection<FormRowViewModel>();
-            foreach (var row in group.Rows)
-            {
-                Rows.Add(new FormRowViewModel(row));
-            }
-
+            Group = group;
+            LoadRows();
             Label = group.Label;
         }
 
+        #region Methods
+
+        public void Add(FormRow row)
+        {
+            if (row == null || Group.Rows.Contains(row))
+            {
+                return;
+            }
+
+            Group.Rows.Add(row);
+            LoadRows();
+        }
+
+        public void Remove(FormRow row)
+        {
+            Group.Rows.Remove(row);
+            LoadRows();
+        }
+
+        #endregion
+
+
         public FormGroup Group { get; }
+
+        private void LoadRows()
+        {
+            Rows.Clear();
+            foreach (var row in Group.Rows)
+            {
+                Rows.Add(new FormRowViewModel(row));
+            }
+        }
+
+        #region Properties
+
+        private string _label;
 
         public string Label
         {
             get => _label;
-            set => SetProperty(ref _label, value);
+            set
+            {
+                SetProperty(ref _label, value);
+                Group.Label = _label;
+            }
         }
+
+        private ObservableCollection<FormRowViewModel> _rows;
 
         public ObservableCollection<FormRowViewModel> Rows
         {
             get => _rows;
             set => SetProperty(ref _rows, value);
         }
+
+        #endregion
     }
 }

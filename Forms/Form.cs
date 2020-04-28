@@ -21,7 +21,7 @@ namespace Aptacode.Forms
         {
             Name = name;
             Title = title;
-            Groups = groups;
+            Groups = new List<FormGroup>(groups);
             SubscribeToElementEvents();
         }
 
@@ -41,8 +41,8 @@ namespace Aptacode.Forms
         private IEnumerable<FormElement> Elements()
         {
             return Groups
-                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b))
-                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b))
+                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b).ToList())
+                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b).ToList())
                 .Select(column => column.Element);
         }
 
@@ -77,7 +77,7 @@ namespace Aptacode.Forms
         public string Name { get; set; }
         public string Title { get; set; }
 
-        public IEnumerable<FormGroup> Groups { get; set; }
+        public List<FormGroup> Groups { get; set; }
 
         #endregion
 

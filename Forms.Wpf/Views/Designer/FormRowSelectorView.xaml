@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.Designer.FormRowSelectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border BorderThickness="2" BorderBrush="Black">
+        <ListBox Padding="5" ItemsSource="{Binding FormGroup.Rows}" SelectedItem="{Binding SelectedRow}"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
+                        <Button DockPanel.Dock="Right" Content="Remove"
+                                Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormRowSelectorView}}}" />
+                        <Label Content="Row"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Border>
+</UserControl>

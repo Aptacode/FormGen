@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.Designer.FormDesignerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <local:FormGroupSelectorView Grid.Column="0" DataContext="{Binding FormGroupSelectorViewModel}" />
+        <local:FormRowSelectorView Grid.Column="1" DataContext="{Binding FormRowSelectorViewModel}" />
+        <local:FormElementSelectorView Grid.Column="2" DataContext="{Binding FormElementSelectorViewModel}" />
+
+    </Grid>
+</UserControl>
