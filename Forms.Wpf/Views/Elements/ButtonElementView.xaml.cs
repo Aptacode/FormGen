@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Aptacode.Forms.Wpf.Views
+namespace Aptacode.Forms.Wpf.Views.Elements
 {
     /// <summary>
     ///     Interaction logic for FormHtmlContent.xaml
     /// </summary>
-    public partial class HtmlElement : UserControl
+    public partial class ButtonElementView : UserControl
     {
-        public HtmlElement()
+        public ButtonElementView()
         {
             InitializeComponent();
         }

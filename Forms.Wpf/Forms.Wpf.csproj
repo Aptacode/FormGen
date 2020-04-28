@@ -77,41 +77,41 @@
   <ItemGroup>
     <Compile Include="Mvvm\WebBrowserUtility.cs" />
     <Compile Include="ViewModels\Elements\ButtonElementViewModel.cs" />
-    <Compile Include="ViewModels\FormGroupViewModel.cs" />
-    <Compile Include="ViewModels\FormColumnViewModel.cs" />
-    <Compile Include="Views\CheckBoxField.xaml.cs">
-      <DependentUpon>CheckBoxField.xaml</DependentUpon>
+    <Compile Include="ViewModels\Layout\FormGroupViewModel.cs" />
+    <Compile Include="ViewModels\Layout\FormColumnViewModel.cs" />
+    <Compile Include="Views\Elements\CheckBoxFieldView.xaml.cs">
+      <DependentUpon>CheckBoxFieldView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ComboBoxField.xaml.cs">
-      <DependentUpon>ComboBoxField.xaml</DependentUpon>
+    <Compile Include="Views\Elements\ComboBoxFieldView.xaml.cs">
+      <DependentUpon>ComboBoxFieldView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ButtonElement.xaml.cs">
-      <DependentUpon>ButtonElement.xaml</DependentUpon>
+    <Compile Include="Views\Elements\ButtonElementView.xaml.cs">
+      <DependentUpon>ButtonElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormGroup.xaml.cs">
-      <DependentUpon>FormGroup.xaml</DependentUpon>
+    <Compile Include="Views\Layout\FormGroupView.xaml.cs">
+      <DependentUpon>FormGroupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormColumn.xaml.cs">
-      <DependentUpon>FormColumn.xaml</DependentUpon>
+    <Compile Include="Views\Layout\FormColumnView.xaml.cs">
+      <DependentUpon>FormColumnView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HtmlElement.xaml.cs">
-      <DependentUpon>HtmlElement.xaml</DependentUpon>
+    <Compile Include="Views\Elements\HtmlElementView.xaml.cs">
+      <DependentUpon>HtmlElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormRow.xaml.cs">
-      <DependentUpon>FormRow.xaml</DependentUpon>
+    <Compile Include="Views\Layout\FormRowView.xaml.cs">
+      <DependentUpon>FormRowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TextBoxField.xaml.cs">
-      <DependentUpon>TextBoxField.xaml</DependentUpon>
+    <Compile Include="Views\Elements\TextBoxFieldView.xaml.cs">
+      <DependentUpon>TextBoxFieldView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\CheckBoxField.xaml">
+    <Page Include="Views\Elements\CheckBoxFieldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ComboBoxField.xaml">
+    <Page Include="Views\Elements\ComboBoxFieldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Form.xaml">
+    <Page Include="Views\FormView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -121,35 +121,35 @@
     <Compile Include="ViewModels\Elements\FormElementViewModel.cs" />
     <Compile Include="ViewModels\Elements\Fields\FormFieldViewModel.cs" />
     <Compile Include="ViewModels\Factories\FormElementViewModelFactory.cs" />
-    <Compile Include="ViewModels\FormRowViewModel.cs" />
+    <Compile Include="ViewModels\Layout\FormRowViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
     <Compile Include="ViewModels\Elements\Fields\ComboBoxFieldViewModel.cs" />
     <Compile Include="ViewModels\Elements\Fields\TextFieldViewModel.cs" />
-    <Compile Include="Views\Form.xaml.cs">
-      <DependentUpon>Form.xaml</DependentUpon>
+    <Compile Include="Views\FormView.xaml.cs">
+      <DependentUpon>FormView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ButtonElement.xaml">
+    <Page Include="Views\Elements\ButtonElementView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FormGroup.xaml">
+    <Page Include="Views\Layout\FormGroupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FormColumn.xaml">
+    <Page Include="Views\Layout\FormColumnView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\HtmlElement.xaml">
+    <Page Include="Views\Elements\HtmlElementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FormRow.xaml">
+    <Page Include="Views\Layout\FormRowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TextBoxField.xaml">
+    <Page Include="Views\Elements\TextBoxFieldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,6 +187,7 @@
   <ItemGroup>
     <Resource Include="Logo.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

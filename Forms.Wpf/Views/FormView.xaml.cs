@@ -3,11 +3,11 @@
 namespace Aptacode.Forms.Wpf.Views
 {
     /// <summary>
-    ///     Interaction logic for FormRow.xaml
+    ///     Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class FormRow : UserControl
+    public partial class FormView : UserControl
     {
-        public FormRow()
+        public FormView()
         {
             InitializeComponent();
         }

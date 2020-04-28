@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.FormColumn"
+﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.Layout.FormColumnView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,23 +6,24 @@
              xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
              xmlns:elements="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements"
              xmlns:fields="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements.Fields"
+             xmlns:elements1="clr-namespace:Aptacode.Forms.Wpf.Views.Elements"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type elements:HtmlElementViewModel}">
-            <views:HtmlElement DataContext="{Binding}" />
+            <elements1:HtmlElementView DataContext="{Binding}" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type elements:ButtonElementViewModel}">
-            <views:ButtonElement DataContext="{Binding}" />
+            <elements1:ButtonElementView DataContext="{Binding}" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type fields:ComboBoxFieldViewModel}">
-            <views:ComboBoxField DataContext="{Binding}" />
+            <elements1:ComboBoxFieldView DataContext="{Binding}" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type fields:CheckBoxFieldViewModel}">
-            <views:CheckBoxField DataContext="{Binding}" />
+            <elements1:CheckBoxFieldView DataContext="{Binding}" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type fields:TextFieldViewModel}">
-            <views:TextBoxField DataContext="{Binding}" />
+            <elements1:TextBoxFieldView DataContext="{Binding}" />
         </DataTemplate>
     </UserControl.Resources>
 

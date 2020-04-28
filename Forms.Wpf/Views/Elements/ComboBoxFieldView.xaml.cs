@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Aptacode.Forms.Wpf.Views
+namespace Aptacode.Forms.Wpf.Views.Elements
 {
     /// <summary>
     ///     Interaction logic for ComboBoxField.xaml
     /// </summary>
-    public partial class ComboBoxField : UserControl
+    public partial class ComboBoxFieldView : UserControl
     {
-        public ComboBoxField()
+        public ComboBoxFieldView()
         {
             InitializeComponent();
         }

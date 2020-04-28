@@ -2,7 +2,7 @@
 using Aptacode.Forms.Layout;
 using Prism.Mvvm;
 
-namespace Aptacode.Forms.Wpf.ViewModels
+namespace Aptacode.Forms.Wpf.ViewModels.Layout
 {
     public class FormRowViewModel : BindableBase
     {

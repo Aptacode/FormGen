@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Aptacode.Forms.Wpf.Views
+namespace Aptacode.Forms.Wpf.Views.Elements
 {
     /// <summary>
     ///     Interaction logic for CheckBoxField.xaml
     /// </summary>
-    public partial class CheckBoxField : UserControl
+    public partial class CheckBoxFieldView : UserControl
     {
-        public CheckBoxField()
+        public CheckBoxFieldView()
         {
             InitializeComponent();
         }

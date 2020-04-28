@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Aptacode.Forms.Wpf.Views
+namespace Aptacode.Forms.Wpf.Views.Layout
 {
     /// <summary>
     ///     Interaction logic for FormRow.xaml
     /// </summary>
-    public partial class FormGroup : UserControl
+    public partial class FormColumnView : UserControl
     {
-        public FormGroup()
+        public FormColumnView()
         {
             InitializeComponent();
         }

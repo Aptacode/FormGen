@@ -3,7 +3,7 @@ using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Factories;
 using Prism.Mvvm;
 
-namespace Aptacode.Forms.Wpf.ViewModels
+namespace Aptacode.Forms.Wpf.ViewModels.Layout
 {
     public class FormColumnViewModel : BindableBase
     {
