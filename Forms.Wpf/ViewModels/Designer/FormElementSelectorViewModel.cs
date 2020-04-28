@@ -34,7 +34,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Events
 
-        public EventHandler<FormElementViewModel> OnSelected { get; set; }
+        public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
         public EventHandler<FormElementViewModel> OnRemoved { get; set; }
         public EventHandler<FormElementViewModel> OnCreated { get; set; }
 
@@ -60,7 +60,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _selectedElement, value);
-                OnSelected?.Invoke(this, _selectedElement);
+                OnElementSelected?.Invoke(this, _selectedElement);
             }
         }
 

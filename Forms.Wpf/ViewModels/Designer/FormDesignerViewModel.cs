@@ -1,4 +1,5 @@
-﻿using Aptacode.Forms.Wpf.ViewModels.Layout;
+﻿using Aptacode.Forms.Wpf.ViewModels.Elements;
+using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -10,10 +11,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             FormGroupSelectorViewModel = new FormGroupSelectorViewModel(formViewModel);
             FormRowSelectorViewModel = new FormRowSelectorViewModel();
             FormElementSelectorViewModel = new FormElementSelectorViewModel();
+            FormElementEditorViewModel = new FormElementEditorViewModel();
 
             FormGroupSelectorViewModel.Load();
             FormGroupSelectorViewModel.OnGroupSelected += OnGroupSelected;
             FormRowSelectorViewModel.OnRowSelected += OnRowSelected;
+            FormElementSelectorViewModel.OnElementSelected += OnElementSelected;
         }
 
         #region Event Handlers
@@ -26,6 +29,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private void OnRowSelected(object sender, FormRowViewModel e)
         {
             FormElementSelectorViewModel.Load(e);
+        }
+
+        private void OnElementSelected(object sender, FormElementViewModel e)
+        {
+            FormElementEditorViewModel.Load(e);
         }
 
         #endregion
@@ -56,6 +64,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _formElementSelectorViewModel;
             set => SetProperty(ref _formElementSelectorViewModel, value);
         }
+
+        private FormElementEditorViewModel _formElementEditorViewModel;
+
+        public FormElementEditorViewModel FormElementEditorViewModel
+        {
+            get => _formElementEditorViewModel;
+            set => SetProperty(ref _formElementEditorViewModel, value);
+        }
+        
 
         #endregion
     }

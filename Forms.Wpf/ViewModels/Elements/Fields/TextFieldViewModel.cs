@@ -10,6 +10,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         public TextFieldViewModel(TextField textField) : base(textField)
         {
             TextField = textField;
+            Content = textField.DefaultContent;
         }
 
         public string Content

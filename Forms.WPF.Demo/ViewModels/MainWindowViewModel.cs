@@ -11,7 +11,7 @@ using Aptacode.Forms.Wpf.ViewModels.Designer;
 using Newtonsoft.Json;
 using Prism.Mvvm;
 
-namespace Aptacode.Forms.Wpf.Demo.ViewModels
+namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {

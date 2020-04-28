@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Mvvm\Behaviours\DoubleClickTextBoxBehaviour.cs" />
     <Compile Include="Mvvm\WebBrowserUtility.cs" />
+    <Compile Include="ViewModels\Designer\FormElementEditorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormElementSelectorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormRowSelectorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormGroupSelectorViewModel.cs" />
@@ -84,6 +85,9 @@
     <Compile Include="ViewModels\Designer\FormDesignerViewModel.cs" />
     <Compile Include="ViewModels\Layout\FormGroupViewModel.cs" />
     <Compile Include="ViewModels\Layout\FormColumnViewModel.cs" />
+    <Compile Include="Views\Designer\FormElementEditorView.xaml.cs">
+      <DependentUpon>FormElementEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Designer\FormElementSelectorView.xaml.cs">
       <DependentUpon>FormElementSelectorView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +124,10 @@
     <Compile Include="Views\Elements\TextBoxFieldView.xaml.cs">
       <DependentUpon>TextBoxFieldView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Designer\FormElementEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Designer\FormElementSelectorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

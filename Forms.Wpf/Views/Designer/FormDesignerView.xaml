@@ -7,6 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -49,9 +50,7 @@
             <local:FormElementSelectorView DataContext="{Binding FormElementSelectorViewModel}" />
         </GroupBox>
 
-        <GroupBox Header="Element Editor" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="8">
-
-        </GroupBox>
+        <local:FormElementEditorView Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="8" DataContext="{Binding FormElementEditorViewModel}" />
 
     </Grid>
 </UserControl>

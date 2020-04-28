@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forms", "Forms\Forms.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{7EA13663-9FC7-4E15-9B9D-3AA6BC8FF1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forms.Wpf.Demo", "Forms.WPF.Demo\Forms.Wpf.Demo.csproj", "{D4ECE5BA-0242-42A1-A949-024C259CF6E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forms.Wpf.FormDesigner", "Forms.WPF.Demo\Forms.Wpf.FormDesigner.csproj", "{D4ECE5BA-0242-42A1-A949-024C259CF6E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forms.Wpf", "Forms.Wpf\Forms.Wpf.csproj", "{830D1270-4859-4039-8BC7-A6852CEF29DC}"
 EndProject
