@@ -8,19 +8,16 @@
              xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderThickness="2" BorderBrush="Black">
-        <ListBox Padding="5" ItemsSource="{Binding FormGroup.Rows}" SelectedItem="{Binding SelectedRow}"
-                 HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
-                        <Button DockPanel.Dock="Right" Content="Remove"
-                                Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormRowSelectorView}}}" />
-                        <Label Content="Row"/>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-    </Border>
+    <ListBox Padding="5" ItemsSource="{Binding FormGroup.Rows}" SelectedItem="{Binding SelectedRow}"
+             HorizontalContentAlignment="Stretch">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
+                    <Button DockPanel.Dock="Right" Content="Remove"
+                            Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormRowSelectorView}}}" />
+                    <Label Content="Row"/>
+                </DockPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

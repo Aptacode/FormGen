@@ -6,8 +6,25 @@
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="DeepOrange" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/materialdesigncolor.bluegrey.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepOrange.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -15,9 +32,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <local:FormGroupSelectorView Grid.Column="0" DataContext="{Binding FormGroupSelectorViewModel}" />
-        <local:FormRowSelectorView Grid.Column="1" DataContext="{Binding FormRowSelectorViewModel}" />
-        <local:FormElementSelectorView Grid.Column="2" DataContext="{Binding FormElementSelectorViewModel}" />
+        <GroupBox Header="Groups" Grid.Column="0" Margin="8">
+            <local:FormGroupSelectorView  DataContext="{Binding FormGroupSelectorViewModel}" />
+        </GroupBox>
+
+        <GroupBox Header="Rows" Grid.Column="1" Margin="8">
+            <local:FormRowSelectorView  DataContext="{Binding FormRowSelectorViewModel}" />
+        </GroupBox>
+
+        <GroupBox Header="Elements" Grid.Column="2" Margin="8">
+            <local:FormElementSelectorView  DataContext="{Binding FormElementSelectorViewModel}" />
+        </GroupBox>
+
 
     </Grid>
 </UserControl>

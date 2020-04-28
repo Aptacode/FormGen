@@ -8,30 +8,27 @@
              xmlns:behaviours="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Behaviours"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderThickness="2" BorderBrush="Black">
-        <ListBox Padding="5" ItemsSource="{Binding FormViewModel.Groups}" SelectedItem="{Binding SelectedGroup}"
-                 HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
-                        <Button DockPanel.Dock="Right" Content="Remove"
-                                Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormGroupSelectorView}}}" />
-                        <TextBox Text="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="Transparent" BorderBrush="Transparent">
-                            <i:Interaction.Behaviors>
-                                <behaviours:DoubleClickTextBoxBehaviour />
-                            </i:Interaction.Behaviors>
+    <ListBox Padding="5" ItemsSource="{Binding FormViewModel.Groups}" SelectedItem="{Binding SelectedGroup}"
+             HorizontalContentAlignment="Stretch">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
+                    <Button DockPanel.Dock="Right" Content="Remove"
+                            Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormGroupSelectorView}}}" />
+                    <TextBox Text="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Background="Transparent" BorderBrush="Transparent">
+                        <i:Interaction.Behaviors>
+                            <behaviours:DoubleClickTextBoxBehaviour />
+                        </i:Interaction.Behaviors>
 
-                            <TextBox.InputBindings>
-                                <KeyBinding
-                                    Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormGroupSelectorView}}}"
-                                    Key="Enter" />
-                            </TextBox.InputBindings>
-                        </TextBox>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-    </Border>
+                        <TextBox.InputBindings>
+                            <KeyBinding
+                                Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormGroupSelectorView}}}"
+                                Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </DockPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>
