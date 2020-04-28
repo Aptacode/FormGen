@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
@@ -16,15 +15,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             Elements = new ObservableCollection<FormElementViewModel>();
         }
 
-        #region Events
-
-        public EventHandler<FormElementViewModel> OnSelected { get; set; }
-        public EventHandler<FormElementViewModel> OnRemoved { get; set; }
-        public EventHandler<FormElementViewModel> OnCreated { get; set; }
-
-
-        #endregion
-
         #region Methods
 
         public void Load(FormRowViewModel formRow)
@@ -32,11 +22,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             SelectedElement = null;
             FormRow = formRow;
             Elements.Clear();
-            if(formRow == null)
+            if (formRow == null)
+            {
                 return;
+            }
 
             Elements.AddRange(formRow.Columns.Select(c => c.FormElementViewModel).ToList());
         }
+
+        #endregion
+
+        #region Events
+
+        public EventHandler<FormElementViewModel> OnSelected { get; set; }
+        public EventHandler<FormElementViewModel> OnRemoved { get; set; }
+        public EventHandler<FormElementViewModel> OnCreated { get; set; }
 
         #endregion
 
@@ -71,19 +71,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _removeCommand;
 
         public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
-            {
-
-            }));
+            _removeCommand ?? (_removeCommand = new DelegateCommand(async () => { }));
 
 
         private DelegateCommand _updateCommand;
 
         public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
-            {
-
-            }));
+            _updateCommand ?? (_updateCommand = new DelegateCommand(() => { }));
 
         #endregion
     }

@@ -31,8 +31,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <designer:FormDesignerView Grid.Column="0" DataContext="{Binding FormDesignerViewModel}" />
-        <views:FormView Grid.Column="1" DataContext="{Binding FormViewModel}" />
+        <materialDesign:Card Grid.Column="0" Margin="8">
+            <GroupBox Header="Form Designer">
+                <designer:FormDesignerView DataContext="{Binding FormDesignerViewModel}" />
+            </GroupBox>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="1" Margin="8">
+            <GroupBox Header="Form Preview">
+                <views:FormView DataContext="{Binding FormViewModel}" />
+            </GroupBox>
+        </materialDesign:Card>
+
 
     </Grid>
 </Window>

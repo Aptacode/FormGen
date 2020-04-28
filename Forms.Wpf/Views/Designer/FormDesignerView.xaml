@@ -32,18 +32,26 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
         <GroupBox Header="Groups" Grid.Column="0" Margin="8">
-            <local:FormGroupSelectorView  DataContext="{Binding FormGroupSelectorViewModel}" />
+            <local:FormGroupSelectorView DataContext="{Binding FormGroupSelectorViewModel}" />
         </GroupBox>
 
         <GroupBox Header="Rows" Grid.Column="1" Margin="8">
-            <local:FormRowSelectorView  DataContext="{Binding FormRowSelectorViewModel}" />
+            <local:FormRowSelectorView DataContext="{Binding FormRowSelectorViewModel}" />
         </GroupBox>
 
         <GroupBox Header="Elements" Grid.Column="2" Margin="8">
-            <local:FormElementSelectorView  DataContext="{Binding FormElementSelectorViewModel}" />
+            <local:FormElementSelectorView DataContext="{Binding FormElementSelectorViewModel}" />
         </GroupBox>
 
+        <GroupBox Header="Element Editor" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="8">
+
+        </GroupBox>
 
     </Grid>
 </UserControl>

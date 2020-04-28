@@ -18,14 +18,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Event Handlers
 
-            private void OnGroupSelected(object sender, FormGroupViewModel e)
+        private void OnGroupSelected(object sender, FormGroupViewModel e)
         {
             FormRowSelectorViewModel.Load(e);
         }
-            private void OnRowSelected(object sender, FormRowViewModel e)
-            {
-                FormElementSelectorViewModel.Load(e);
-            }
+
+        private void OnRowSelected(object sender, FormRowViewModel e)
+        {
+            FormElementSelectorViewModel.Load(e);
+        }
 
         #endregion
 
@@ -55,7 +56,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _formElementSelectorViewModel;
             set => SetProperty(ref _formElementSelectorViewModel, value);
         }
-        
+
         #endregion
     }
 }

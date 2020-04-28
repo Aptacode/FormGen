@@ -15,7 +15,7 @@
                 <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
                     <Button DockPanel.Dock="Right" Content="Remove"
                             Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormRowSelectorView}}}" />
-                    <Label Content="Row"/>
+                    <Label Content="Row" />
                 </DockPanel>
             </DataTemplate>
         </ListBox.ItemTemplate>

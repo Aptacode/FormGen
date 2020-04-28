@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -9,20 +7,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormRowSelectorViewModel : BindableBase
     {
-        public FormRowSelectorViewModel()
-        {
-
-        }
-
-        #region Events
-
-        public EventHandler<FormRowViewModel> OnRowSelected { get; set; }
-        public EventHandler<FormRowViewModel> OnRemoved { get; set; }
-        public EventHandler<FormRowViewModel> OnCreated { get; set; }
-
-
-        #endregion
-
         #region Methods
 
         public void Load(FormGroupViewModel formGroup)
@@ -30,6 +14,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             FormGroup = formGroup;
             SelectedRow = null;
         }
+
+        #endregion
+
+        #region Events
+
+        public EventHandler<FormRowViewModel> OnRowSelected { get; set; }
+        public EventHandler<FormRowViewModel> OnRemoved { get; set; }
+        public EventHandler<FormRowViewModel> OnCreated { get; set; }
 
         #endregion
 
@@ -66,7 +58,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (SelectedRow == null)
                 {
-                    return;
                 }
 
                 //FormGroup...RemoveGroup(SelectedRow);
