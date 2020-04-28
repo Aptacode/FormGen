@@ -6,13 +6,14 @@ using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Events;
 using Aptacode.Forms.Json;
+using Aptacode.Forms.Layout;
 using Newtonsoft.Json;
 
 namespace Aptacode.Forms
 {
     public class Form
     {
-        public Form()
+        internal Form()
         {
         }
 
@@ -20,7 +21,7 @@ namespace Aptacode.Forms
         {
             Name = name;
             Title = title;
-            Groups = groups;
+            Groups = new List<FormGroup>(groups);
             SubscribeToElementEvents();
         }
 
@@ -40,8 +41,8 @@ namespace Aptacode.Forms
         private IEnumerable<FormElement> Elements()
         {
             return Groups
-                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b))
-                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b))
+                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b).ToList())
+                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b).ToList())
                 .Select(column => column.Element);
         }
 
@@ -76,7 +77,7 @@ namespace Aptacode.Forms
         public string Name { get; set; }
         public string Title { get; set; }
 
-        public IEnumerable<FormGroup> Groups { get; set; }
+        public List<FormGroup> Groups { get; set; }
 
         #endregion
 
@@ -99,15 +100,14 @@ namespace Aptacode.Forms
         public static Form FromJson(string input)
         {
             return JsonConvert.DeserializeObject<Form>(input,
-                                    new FieldInputJsonConverter(),
-                                    new FieldInputValidationJsonConverter(),
-                                    new FormRowJsonConverter()
-                    );
+                new ValidationRuleJsonConverter(),
+                new FormElementJsonConverter()
+            );
         }
 
-        public static string ToJson(string input)
+        public string ToJson()
         {
-            return JsonConvert.SerializeObject(input, Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         #endregion

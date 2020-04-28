@@ -4,7 +4,7 @@ namespace Aptacode.Forms.Elements
 {
     public class HtmlElement : FormElement
     {
-        public HtmlElement()
+        internal HtmlElement()
         {
         }
 

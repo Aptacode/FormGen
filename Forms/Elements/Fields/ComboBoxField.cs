@@ -9,10 +9,9 @@ namespace Aptacode.Forms.Elements.Fields
 {
     public class ComboBoxField : FormField
     {
-        private readonly IEnumerable<ValidationRule<ComboBoxField>> _rules;
-
-        public ComboBoxField()
+        internal ComboBoxField()
         {
+            Rules = new List<ValidationRule<ComboBoxField>>();
         }
 
         public ComboBoxField(string name, LabelPosition labelPosition, string label,
@@ -23,22 +22,23 @@ namespace Aptacode.Forms.Elements.Fields
 
         public ComboBoxField(string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<ComboBoxField>> rules, IEnumerable<string> items, string defaultSelectedItem) :
-            base(nameof(ComboBoxField), name, labelPosition, label, rules)
+            base(nameof(ComboBoxField), name, labelPosition, label)
         {
-            _rules = rules;
             DefaultSelectedItem = defaultSelectedItem;
             SelectedItem = defaultSelectedItem;
             Items = items;
+            Rules = rules;
         }
+
 
         public override bool IsValid()
         {
-            return _rules.All(rule => rule.Passed(this));
+            return Rules.All(rule => rule.Passed(this));
         }
 
         public override IEnumerable<string> GetValidationMessages()
         {
-            return _rules.Select(rule => rule.GetMessage(this));
+            return Rules.Select(rule => rule.GetMessage(this));
         }
 
         public override FieldResult GetResult()
@@ -62,6 +62,8 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
             }
         }
+
+        public IEnumerable<ValidationRule<ComboBoxField>> Rules { get; set; }
 
         #endregion
     }

@@ -5,7 +5,7 @@ namespace Aptacode.Forms.Elements
 {
     public class ButtonElement : FormElement
     {
-        public ButtonElement()
+        internal ButtonElement()
         {
         }
 

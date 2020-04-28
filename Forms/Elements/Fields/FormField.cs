@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Aptacode.Forms.Elements.Fields.Results;
-using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 
 namespace Aptacode.Forms.Elements.Fields
@@ -11,14 +10,10 @@ namespace Aptacode.Forms.Elements.Fields
         {
         }
 
-        protected FormField(string type, string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule> rules) : base(
+        protected FormField(string type, string name, LabelPosition labelPosition, string label) : base(
             type, name, labelPosition, label)
         {
-            ValidationRules = rules;
         }
-
-        public IEnumerable<ValidationRule> ValidationRules { get; set; }
 
         public abstract bool IsValid();
 

@@ -2,6 +2,11 @@
 {
     public class CheckBoxCheckedValidationRule : ValidationRule<CheckBoxField>
     {
+        internal CheckBoxCheckedValidationRule() : base(
+            nameof(CheckBoxCheckedValidationRule))
+        {
+        }
+
         public CheckBoxCheckedValidationRule(bool requiredValue) : base(
             nameof(CheckBoxCheckedValidationRule))
         {

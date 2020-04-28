@@ -5,7 +5,9 @@ using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels;
+using Aptacode.Forms.Wpf.ViewModels.Designer;
 using Newtonsoft.Json;
 using Prism.Mvvm;
 
@@ -13,12 +15,54 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private readonly string _formFileName = "form.json";
         private readonly Form _myForm;
+        private FormDesignerViewModel _formDesignerViewModel;
         private FormViewModel _formViewModel;
+
 
         public MainWindowViewModel()
         {
-            _myForm = new Form("form1", "Test Form",
+            //Generate the form programmatically
+            var programmaticForm = ProgrammaticForm();
+            //Save the form as a json file
+            SaveForm(_formFileName, programmaticForm);
+            //Generate the form from a json file
+            _myForm = LoadForm(_formFileName);
+
+            _myForm.OnFormEvent += NameForm_OnFormEvent;
+            FormViewModel = new FormViewModel(_myForm);
+
+            FormDesignerViewModel = new FormDesignerViewModel();
+            FormDesignerViewModel.Load(FormViewModel);
+        }
+
+        public FormViewModel FormViewModel
+        {
+            get => _formViewModel;
+            set => SetProperty(ref _formViewModel, value);
+        }
+
+        public FormDesignerViewModel FormDesignerViewModel
+        {
+            get => _formDesignerViewModel;
+            set => SetProperty(ref _formDesignerViewModel, value);
+        }
+
+        private void SaveForm(string filename, Form form)
+        {
+            File.WriteAllText(filename, form.ToJson());
+        }
+
+        private Form LoadForm(string filename)
+        {
+            var jsonString = File.ReadAllText(filename);
+            return Form.FromJson(jsonString);
+        }
+
+        private Form ProgrammaticForm()
+        {
+            return new Form("form1", "Test Form",
                 new[]
                 {
                     new FormGroup("Test Form Group", new[]
@@ -83,15 +127,6 @@ namespace Aptacode.Forms.Wpf.Demo.ViewModels
                         })
                     })
                 });
-
-            _myForm.OnFormEvent += NameForm_OnFormEvent;
-            FormViewModel = new FormViewModel(_myForm);
-        }
-
-        public FormViewModel FormViewModel
-        {
-            get => _formViewModel;
-            set => SetProperty(ref _formViewModel, value);
         }
 
         private void NameForm_OnFormEvent(object sender, FormEventArgs e)
