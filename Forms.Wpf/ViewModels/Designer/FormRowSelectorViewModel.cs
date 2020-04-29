@@ -36,7 +36,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 SetProperty(ref _formGroup, value);
                 Load();
-            } 
+            }
         }
 
         private FormRowViewModel _selectedRow;
@@ -55,10 +55,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
                 if (SelectedRow == null)
                 {
@@ -70,14 +70,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 Load();
             }));
 
-        private DelegateCommand _addButtonCommand;
+        private DelegateCommand _createCommand;
 
-        public DelegateCommand AddButtonCommand =>
-            _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
             {
-                if(FormGroup == null)
+                if (FormGroup == null)
+                {
                     return;
-                
+                }
+
                 var newRow = new FormRow(0, new FormColumn[0]);
                 FormGroup.Add(newRow);
                 Load();

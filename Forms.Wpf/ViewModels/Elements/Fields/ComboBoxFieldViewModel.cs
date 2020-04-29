@@ -5,8 +5,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
     public class ComboBoxFieldViewModel : FormFieldViewModel
     {
-
-
         public ComboBoxFieldViewModel(ComboBoxField comboBoxField) : base(comboBoxField)
         {
             ComboBoxField = comboBoxField;
@@ -16,6 +14,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #region Properties
+
         public ComboBoxField ComboBoxField { get; set; }
 
         public ObservableCollection<string> Items { get; set; }
@@ -31,6 +30,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
                 SelectedItem = _defaultSelectedItem;
             }
         }
+
         private string _selectedItem;
 
         public string SelectedItem
@@ -45,7 +45,5 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #endregion
-
-
     }
 }

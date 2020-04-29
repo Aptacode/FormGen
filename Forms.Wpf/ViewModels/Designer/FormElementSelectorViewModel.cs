@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -27,9 +25,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             Clear();
             if (FormRow == null)
             {
-                return;
             }
-
         }
 
         public void Clear()
@@ -82,10 +78,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
                 if (SelectedColumn == null)
                 {
@@ -108,14 +104,18 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 OnElementSelected?.Invoke(this, SelectedColumn.FormElementViewModel);
             }));
 
-        private DelegateCommand _addButtonCommand;
-        public DelegateCommand AddButtonCommand =>
-            _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
+        private DelegateCommand _createCommand;
+
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
             {
                 if (FormRow == null)
+                {
                     return;
+                }
 
-                var newField = new TextField("Default", LabelPosition.AboveElement, "Default", new ValidationRule<TextField>[0]);
+                var newField = new TextField("Default", LabelPosition.AboveElement, "Default",
+                    new ValidationRule<TextField>[0]);
                 var column = new FormColumn(1, newField);
                 FormRow.Add(column);
                 Load();

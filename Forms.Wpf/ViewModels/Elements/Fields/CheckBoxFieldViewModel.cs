@@ -13,9 +13,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #region Properties
+
         public CheckBoxField CheckBoxField { get; set; }
 
         private bool _isChecked;
+
         public bool IsChecked
         {
             get => _isChecked;
@@ -28,6 +30,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         private bool _defaultIsChecked;
+
         public bool DefaultIsChecked
         {
             get => _defaultIsChecked;
@@ -40,6 +43,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         private string _content;
+
         public string Content
         {
             get => _content;
@@ -47,6 +51,5 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #endregion
-
     }
 }

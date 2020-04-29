@@ -55,11 +55,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             FormElementSelectorViewModel.FormRow = e;
         }
+
         private void OnColumnSelected(object sender, FormColumnViewModel e)
         {
             FormElementEditorViewModel.FormColumn = e;
         }
-
 
         #endregion
 
@@ -117,10 +117,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _newFormCommand;
 
         public DelegateCommand NewFormCommand =>
-            _newFormCommand ?? (_newFormCommand = new DelegateCommand(() =>
-            {
-                OnNewForm?.Invoke(this, FormViewModel);
-            }));
+            _newFormCommand ??
+            (_newFormCommand = new DelegateCommand(() => { OnNewForm?.Invoke(this, FormViewModel); }));
 
         private DelegateCommand _openFormCommand;
 

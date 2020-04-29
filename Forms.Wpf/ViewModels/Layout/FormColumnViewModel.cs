@@ -24,7 +24,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
             {
                 SetProperty(ref _formElementViewModel, value);
                 Column.Element = _formElementViewModel.FormElement;
-            } 
+            }
         }
     }
 }

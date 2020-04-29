@@ -10,17 +10,16 @@ using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
-using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormElementEditorViewModel : BindableBase
     {
-        private FormField _elementConfiguration;
         private readonly TextField _elementLabelTextBox;
         private readonly TextField _elementNameTextBox;
         private readonly ComboBoxField _elementTypeComboBox;
+        private FormField _elementConfiguration;
 
         public FormElementEditorViewModel()
         {
@@ -76,15 +75,17 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 return;
             }
 
-            
+
             switch (eventArgs.NewValue)
             {
                 case "Button":
-                    FormColumn.FormElementViewModel = new ButtonElementViewModel(new ButtonElement(oldElement.Name, string.Empty,
+                    FormColumn.FormElementViewModel = new ButtonElementViewModel(new ButtonElement(oldElement.Name,
+                        string.Empty,
                         LabelPosition.AboveElement, oldElement.Label));
                     break;
                 case "Html":
-                    FormColumn.FormElementViewModel = new HtmlElementViewModel(new HtmlElement(oldElement.Name, string.Empty,
+                    FormColumn.FormElementViewModel = new HtmlElementViewModel(new HtmlElement(oldElement.Name,
+                        string.Empty,
                         LabelPosition.AboveElement, oldElement.Label));
                     break;
                 case "CheckBox":
@@ -93,7 +94,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                         string.Empty, false));
                     break;
                 case "TextBox":
-                    FormColumn.FormElementViewModel = new TextFieldViewModel(new TextField(oldElement.Name, LabelPosition.AboveElement,
+                    FormColumn.FormElementViewModel = new TextFieldViewModel(new TextField(oldElement.Name,
+                        LabelPosition.AboveElement,
                         oldElement.Label, new ValidationRule<TextField>[0]));
                     break;
                 case "ComboBox":
@@ -204,7 +206,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (e is TextFieldChangedEventArgs eventArgs)
                 {
-
                     element.Items.Clear();
                     element.Items.AddRange(eventArgs.NewContent.Split(',').ToList());
                 }
@@ -232,7 +233,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private void AddCheckBoxConfigurationRows(FormGroup group, CheckBoxFieldViewModel element)
         {
-
             var textField = new TextField("defaultItem", LabelPosition.AboveElement, "Default Item",
                 new ValidationRule<TextField>[]
                 {
@@ -365,10 +365,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormElementViewModel FormElement
         {
             get => _formElement;
-            set
-            {
-                SetProperty(ref _formElement, value);
-            }
+            set => SetProperty(ref _formElement, value);
         }
 
         private FormViewModel _formViewModel;

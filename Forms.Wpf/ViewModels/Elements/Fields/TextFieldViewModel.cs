@@ -4,8 +4,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
 {
     public class TextFieldViewModel : FormFieldViewModel
     {
-
-
         public TextFieldViewModel(TextField textField) : base(textField)
         {
             TextField = textField;
@@ -14,9 +12,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #region Properties
+
         public TextField TextField { get; set; }
 
         private string _content;
+
         public string Content
         {
             get => _content;
@@ -29,6 +29,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         private string _defaultContent;
+
         public string DefaultContent
         {
             get => _defaultContent;
@@ -39,7 +40,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
                 Content = _defaultContent;
             }
         }
-        #endregion
 
+        #endregion
     }
 }

@@ -9,27 +9,26 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
-        <Button Content="Add" DockPanel.Dock="Bottom" Command="{Binding AddButtonCommand}"/>
+        <Button Content="Delete" DockPanel.Dock="Bottom" Command="{Binding DeleteCommand}" Margin="8" />
+        <Button Content="Create" DockPanel.Dock="Bottom" Command="{Binding CreateCommand}" Margin="8" />
+
         <ListBox Padding="5" ItemsSource="{Binding FormRow.Columns}" SelectedItem="{Binding SelectedColumn}"
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Background="Transparent">
-                        <Button DockPanel.Dock="Right" Content="Remove"
-                                Command="{Binding Path=DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementSelectorView}}}" />
-                        <TextBox Text="{Binding FormElementViewModel.Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="Transparent" BorderBrush="Transparent">
-                            <i:Interaction.Behaviors>
-                                <behaviours:DoubleClickTextBoxBehaviour />
-                            </i:Interaction.Behaviors>
+                    <TextBox
+                        Text="{Binding FormElementViewModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Background="Transparent" BorderBrush="Transparent">
+                        <i:Interaction.Behaviors>
+                            <behaviours:DoubleClickTextBoxBehaviour />
+                        </i:Interaction.Behaviors>
 
-                            <TextBox.InputBindings>
-                                <KeyBinding
-                                    Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementSelectorView}}}"
-                                    Key="Enter" />
-                            </TextBox.InputBindings>
-                        </TextBox>
-                    </DockPanel>
+                        <TextBox.InputBindings>
+                            <KeyBinding
+                                Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementSelectorView}}}"
+                                Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

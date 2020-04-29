@@ -23,8 +23,10 @@ namespace Aptacode.Forms
             Name = name;
             Title = title;
 
-            if(groups != null)
+            if (groups != null)
+            {
                 Groups.AddRange(groups);
+            }
 
             SubscribeToElementEvents();
         }

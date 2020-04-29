@@ -66,10 +66,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
                 if (SelectedGroup == null)
                 {
@@ -80,22 +80,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 Load();
             }));
 
+        private DelegateCommand _createCommand;
 
-        private DelegateCommand _updateCommand;
-
-        public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
-            {
-
-            }));
-
-        private DelegateCommand _addButtonCommand;
-
-        public DelegateCommand AddButtonCommand =>
-            _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
             {
                 if (FormViewModel == null)
+                {
                     return;
+                }
 
                 var newGroup = FormGroup.EmptyGroup;
 

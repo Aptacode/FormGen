@@ -14,6 +14,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
         }
 
         #region Properties
+
         public FormField Field { get; }
 
         #endregion
