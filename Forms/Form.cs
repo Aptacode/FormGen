@@ -19,9 +19,10 @@ namespace Aptacode.Forms
 
         public Form(string name, string title, IEnumerable<FormGroup> groups)
         {
+            Groups = new List<FormGroup>();
             Name = name;
             Title = title;
-            Groups = new List<FormGroup>(groups);
+            Groups.AddRange(groups);
             SubscribeToElementEvents();
         }
 
@@ -30,7 +31,7 @@ namespace Aptacode.Forms
         public IEnumerable<string> GetValidationMessages()
         {
             return Fields().Select(field => field.GetValidationMessages())
-                .Aggregate((a, b) => a.Concat(b));
+                .SelectMany(list => list);
         }
 
         public string GetValidationMessage()
