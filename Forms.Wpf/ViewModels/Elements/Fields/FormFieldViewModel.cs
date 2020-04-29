@@ -13,7 +13,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements.Fields
             Field = field;
         }
 
+        #region Properties
+
         public FormField Field { get; }
+
+        #endregion
 
         public string ValidationMessage
         {

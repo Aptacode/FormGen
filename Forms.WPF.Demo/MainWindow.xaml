@@ -1,4 +1,4 @@
-﻿<Window x:Class="Aptacode.Forms.Wpf.Demo.MainWindow"
+﻿<Window x:Class="Aptacode.Forms.Wpf.FormDesigner.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:designer="clr-namespace:Aptacode.Forms.Wpf.Views.Designer;assembly=Aptacode.Forms.Wpf"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920">
+        Title="Form Designer" Height="1080" Width="1920">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -31,8 +31,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <designer:FormDesignerView Grid.Column="0" DataContext="{Binding FormDesignerViewModel}" />
-        <views:FormView Grid.Column="1" DataContext="{Binding FormViewModel}" />
+        <materialDesign:Card Grid.Column="0" Margin="8">
+            <GroupBox Header="Form Designer">
+                <designer:FormDesignerView DataContext="{Binding FormDesignerViewModel}" />
+            </GroupBox>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="1" Margin="8">
+            <GroupBox Header="Form Preview">
+                <views:FormView DataContext="{Binding FormViewModel}" />
+            </GroupBox>
+        </materialDesign:Card>
+
 
     </Grid>
 </Window>

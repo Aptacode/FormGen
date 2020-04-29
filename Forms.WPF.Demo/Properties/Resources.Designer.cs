@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Aptacode.Forms.Wpf.Demo.Properties {
+namespace Aptacode.Forms.Wpf.FormDesigner.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Aptacode.Forms.Wpf.Demo.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Aptacode.Forms.Wpf.Demo.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Aptacode.Forms.Wpf.FormDesigner.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

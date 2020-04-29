@@ -30,7 +30,7 @@
     <ItemsControl ItemsSource="{Binding Groups}">
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type layout:FormGroupViewModel}">
-                <materialDesign:Card Margin="16">
+                <materialDesign:Card Margin="0,8">
                     <layout1:FormGroupView DataContext="{Binding}" />
                 </materialDesign:Card>
             </DataTemplate>

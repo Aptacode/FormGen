@@ -25,7 +25,11 @@ namespace Aptacode.Forms.Layout
         public override int GetHashCode()
         {
             var hc = 0;
-            if (Columns != null) hc = Columns.Aggregate(hc, (current, column) => current ^ column.GetHashCode());
+            if (Columns != null)
+            {
+                hc = Columns.Aggregate(hc, (current, column) => current ^ column.GetHashCode());
+            }
+
             return hc;
         }
 

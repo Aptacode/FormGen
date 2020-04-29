@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Aptacode.Forms.Wpf.Demo.Properties {
+namespace Aptacode.Forms.Wpf.FormDesigner.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

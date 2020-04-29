@@ -14,6 +14,18 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
             Label = group.Label;
         }
 
+
+        public FormGroup Group { get; }
+
+        private void LoadRows()
+        {
+            Rows.Clear();
+            foreach (var row in Group.Rows)
+            {
+                Rows.Add(new FormRowViewModel(row));
+            }
+        }
+
         #region Methods
 
         public void Add(FormRow row)
@@ -34,18 +46,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
         }
 
         #endregion
-
-
-        public FormGroup Group { get; }
-
-        private void LoadRows()
-        {
-            Rows.Clear();
-            foreach (var row in Group.Rows)
-            {
-                Rows.Add(new FormRowViewModel(row));
-            }
-        }
 
         #region Properties
 

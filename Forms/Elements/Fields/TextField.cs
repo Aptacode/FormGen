@@ -15,9 +15,16 @@ namespace Aptacode.Forms.Elements.Fields
         }
 
         public TextField(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<TextField>> rules) : base(nameof(TextField), name, labelPosition, label)
+            IEnumerable<ValidationRule<TextField>> rules) : this(name, labelPosition, label, rules, string.Empty)
         {
-            Content = string.Empty;
+        }
+
+        public TextField(string name, LabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule<TextField>> rules, string defaultContent) : base(nameof(TextField), name,
+            labelPosition, label)
+        {
+            DefaultContent = defaultContent;
+            _content = defaultContent;
             Rules = rules;
         }
 
@@ -51,6 +58,8 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new TextFieldChangedEventArgs(this, oldValue, value));
             }
         }
+
+        public string DefaultContent { get; set; }
 
         public IEnumerable<ValidationRule<TextField>> Rules { get; set; }
 

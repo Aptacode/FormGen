@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
@@ -9,27 +8,20 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormRowSelectorViewModel : BindableBase
     {
-        public FormRowSelectorViewModel()
-        {
+        #region Methods
 
+        public void Load()
+        {
+            SelectedRow = null;
         }
+
+        #endregion
 
         #region Events
 
         public EventHandler<FormRowViewModel> OnRowSelected { get; set; }
         public EventHandler<FormRowViewModel> OnRemoved { get; set; }
         public EventHandler<FormRowViewModel> OnCreated { get; set; }
-
-
-        #endregion
-
-        #region Methods
-
-        public void Load(FormGroupViewModel formGroup)
-        {
-            FormGroup = formGroup;
-            SelectedRow = null;
-        }
 
         #endregion
 
@@ -40,7 +32,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormGroupViewModel FormGroup
         {
             get => _formGroup;
-            set => SetProperty(ref _formGroup, value);
+            set
+            {
+                SetProperty(ref _formGroup, value);
+                Load();
+            }
         }
 
         private FormRowViewModel _selectedRow;
@@ -59,32 +55,35 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
                 if (SelectedRow == null)
                 {
                     return;
                 }
 
-                //FormGroup...RemoveGroup(SelectedRow);
-                //Load();
+                FormGroup.Remove(SelectedRow.Row);
+                SelectedRow = null;
+                Load();
             }));
 
+        private DelegateCommand _createCommand;
 
-        private DelegateCommand _updateCommand;
-
-        public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
             {
-                //if (SelectedRow != null && !SelectedRow.Row.Equals(FormRow.EmptyRow))
-                //{
-                //    FormViewModel.Add(SelectedGroup.Group);
-                //}
+                if (FormGroup == null)
+                {
+                    return;
+                }
 
-                //Load();
+                var newRow = new FormRow(0, new FormColumn[0]);
+                FormGroup.Add(newRow);
+                Load();
+                SelectedRow = new FormRowViewModel(newRow);
             }));
 
         #endregion

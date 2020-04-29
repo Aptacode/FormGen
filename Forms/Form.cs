@@ -19,9 +19,15 @@ namespace Aptacode.Forms
 
         public Form(string name, string title, IEnumerable<FormGroup> groups)
         {
+            Groups = new List<FormGroup>();
             Name = name;
             Title = title;
-            Groups = new List<FormGroup>(groups);
+
+            if (groups != null)
+            {
+                Groups.AddRange(groups);
+            }
+
             SubscribeToElementEvents();
         }
 
@@ -30,7 +36,7 @@ namespace Aptacode.Forms
         public IEnumerable<string> GetValidationMessages()
         {
             return Fields().Select(field => field.GetValidationMessages())
-                .Aggregate((a, b) => a.Concat(b));
+                .SelectMany(list => list);
         }
 
         public string GetValidationMessage()
@@ -40,9 +46,14 @@ namespace Aptacode.Forms
 
         private IEnumerable<FormElement> Elements()
         {
+            if (Groups.Count == 0)
+            {
+                return new FormElement[0];
+            }
+
             return Groups
-                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b).ToList())
-                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b).ToList())
+                .Select(group => group.Rows).SelectMany(list => list)
+                .Select(row => row.Columns).SelectMany(list => list)
                 .Select(column => column.Element);
         }
 

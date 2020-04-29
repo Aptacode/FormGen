@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
+using Aptacode.Forms.Elements.Fields;
+using Aptacode.Forms.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Enums;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
@@ -13,30 +15,33 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
     {
         public FormElementSelectorViewModel()
         {
-            Elements = new ObservableCollection<FormElementViewModel>();
+            Columns = new ObservableCollection<FormColumnViewModel>();
         }
-
-        #region Events
-
-        public EventHandler<FormElementViewModel> OnSelected { get; set; }
-        public EventHandler<FormElementViewModel> OnRemoved { get; set; }
-        public EventHandler<FormElementViewModel> OnCreated { get; set; }
-
-
-        #endregion
 
         #region Methods
 
-        public void Load(FormRowViewModel formRow)
+        public void Load()
         {
-            SelectedElement = null;
-            FormRow = formRow;
-            Elements.Clear();
-            if(formRow == null)
-                return;
-
-            Elements.AddRange(formRow.Columns.Select(c => c.FormElementViewModel).ToList());
+            Clear();
+            if (FormRow == null)
+            {
+            }
         }
+
+        public void Clear()
+        {
+            SelectedColumn = null;
+        }
+
+        #endregion
+
+        #region Events
+
+        public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
+        public EventHandler<FormColumnViewModel> OnColumnSelected { get; set; }
+
+        public EventHandler<FormElementViewModel> OnElementRemoved { get; set; }
+        public EventHandler<FormElementViewModel> OnCreated { get; set; }
 
         #endregion
 
@@ -47,20 +52,25 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormRowViewModel FormRow
         {
             get => _formRow;
-            set => SetProperty(ref _formRow, value);
-        }
-
-        public ObservableCollection<FormElementViewModel> Elements { get; set; }
-
-        private FormElementViewModel _selectedElement;
-
-        public FormElementViewModel SelectedElement
-        {
-            get => _selectedElement;
             set
             {
-                SetProperty(ref _selectedElement, value);
-                OnSelected?.Invoke(this, _selectedElement);
+                SetProperty(ref _formRow, value);
+                Load();
+            }
+        }
+
+        public ObservableCollection<FormColumnViewModel> Columns { get; set; }
+
+        private FormColumnViewModel _selectedColumn;
+
+        public FormColumnViewModel SelectedColumn
+        {
+            get => _selectedColumn;
+            set
+            {
+                SetProperty(ref _selectedColumn, value);
+                OnColumnSelected?.Invoke(this, _selectedColumn);
+                OnElementSelected?.Invoke(this, _selectedColumn?.FormElementViewModel);
             }
         }
 
@@ -68,12 +78,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
+                if (SelectedColumn == null)
+                {
+                    return;
+                }
 
+                FormRow.Remove(SelectedColumn.Column);
+
+                OnElementRemoved?.Invoke(this, SelectedColumn.FormElementViewModel);
+                SelectedColumn = null;
+                Load();
             }));
 
 
@@ -82,7 +101,25 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand UpdateCommand =>
             _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
             {
+                OnElementSelected?.Invoke(this, SelectedColumn.FormElementViewModel);
+            }));
 
+        private DelegateCommand _createCommand;
+
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
+            {
+                if (FormRow == null)
+                {
+                    return;
+                }
+
+                var newField = new TextField("Default", LabelPosition.AboveElement, "Default",
+                    new ValidationRule<TextField>[0]);
+                var column = new FormColumn(1, newField);
+                FormRow.Add(column);
+                Load();
+                SelectedColumn = new FormColumnViewModel(column);
             }));
 
         #endregion

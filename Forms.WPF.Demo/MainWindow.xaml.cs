@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Aptacode.Forms.Wpf.Demo.ViewModels;
+using Aptacode.Forms.Wpf.FormDesigner.ViewModels;
 
-namespace Aptacode.Forms.Wpf.Demo
+namespace Aptacode.Forms.Wpf.FormDesigner
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

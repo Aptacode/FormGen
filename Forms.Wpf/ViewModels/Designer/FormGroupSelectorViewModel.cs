@@ -8,12 +8,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormGroupSelectorViewModel : BindableBase
     {
-        public FormGroupSelectorViewModel(FormViewModel formViewModel)
-        {
-            FormViewModel = formViewModel;
-            Load();
-        }
-
         #region Events
 
         public EventHandler<FormGroupViewModel> OnGroupSelected { get; set; }
@@ -24,8 +18,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         public void Load()
         {
+            if (FormViewModel == null)
+            {
+                return;
+            }
+
             FormViewModel.Load();
-            FormViewModel.Groups.Add(new FormGroupViewModel(FormGroup.EmptyGroup));
             SelectedGroup = null;
         }
 
@@ -38,7 +36,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormViewModel FormViewModel
         {
             get => _formViewModel;
-            set => SetProperty(ref _formViewModel, value);
+            set
+            {
+                SetProperty(ref _formViewModel, value);
+                Load();
+            }
         }
 
         private FormGroupViewModel _selectedGroup;
@@ -64,10 +66,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand _removeCommand;
+        private DelegateCommand _deleteCommand;
 
-        public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+        public DelegateCommand DeleteCommand =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
             {
                 if (SelectedGroup == null)
                 {
@@ -78,18 +80,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 Load();
             }));
 
+        private DelegateCommand _createCommand;
 
-        private DelegateCommand _updateCommand;
-
-        public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
+        public DelegateCommand CreateCommand =>
+            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
             {
-                if (SelectedGroup != null && !SelectedGroup.Group.Equals(FormGroup.EmptyGroup))
+                if (FormViewModel == null)
                 {
-                    FormViewModel.Add(SelectedGroup.Group);
+                    return;
                 }
 
+                var newGroup = FormGroup.EmptyGroup;
+
+                FormViewModel.Add(newGroup);
                 Load();
+                SelectedGroup = new FormGroupViewModel(newGroup);
             }));
 
         #endregion

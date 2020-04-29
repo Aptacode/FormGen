@@ -20,7 +20,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
         public FormElementViewModel FormElementViewModel
         {
             get => _formElementViewModel;
-            set => SetProperty(ref _formElementViewModel, value);
+            set
+            {
+                SetProperty(ref _formElementViewModel, value);
+                Column.Element = _formElementViewModel.FormElement;
+            }
         }
     }
 }

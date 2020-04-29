@@ -12,24 +12,27 @@ namespace Aptacode.Forms.Wpf.ViewModels
         {
             Groups = new ObservableCollection<FormGroupViewModel>();
             Form = form;
+            Load();
         }
 
         public bool IsValid => Form.IsValid;
 
         public void Load()
         {
-            Clear();
             if (Form == null)
             {
-                return;
+                Clear();
             }
 
+            Name = Form.Name;
             Title = Form.Title;
             LoadGroups();
         }
 
-        private void Clear()
+        public void Clear()
         {
+            Form = null;
+            Name = string.Empty;
             Title = string.Empty;
             Groups.Clear();
         }
@@ -37,6 +40,11 @@ namespace Aptacode.Forms.Wpf.ViewModels
         private void LoadGroups()
         {
             Groups.Clear();
+            if (Form == null)
+            {
+                return;
+            }
+
             foreach (var formRow in Form.Groups)
             {
                 Groups.Add(new FormGroupViewModel(formRow));
@@ -52,7 +60,7 @@ namespace Aptacode.Forms.Wpf.ViewModels
 
         public void Add(FormGroup group)
         {
-            if (group == null || group.Equals(FormGroup.EmptyGroup) || Form.Groups.Contains(group))
+            if (group == null || Form.Groups.Contains(group))
             {
                 return;
             }
@@ -83,6 +91,21 @@ namespace Aptacode.Forms.Wpf.ViewModels
             }
         }
 
+        private string _name;
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                SetProperty(ref _name, value);
+                if (Form != null)
+                {
+                    Form.Name = _name;
+                }
+            }
+        }
+
         private string _title;
 
         public string Title
@@ -91,7 +114,10 @@ namespace Aptacode.Forms.Wpf.ViewModels
             set
             {
                 SetProperty(ref _title, value);
-                Form.Title = _title;
+                if (Form != null)
+                {
+                    Form.Title = _title;
+                }
             }
         }
 
