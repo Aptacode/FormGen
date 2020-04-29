@@ -1,9 +1,5 @@
 ﻿using System;
-using System.IO;
-using Aptacode.Forms.Layout;
-using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
-using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -26,6 +22,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         #region Events
 
         public EventHandler<FormViewModel> OnFormSelected { get; set; }
+        public EventHandler<FormViewModel> OnNewForm { get; set; }
+        public EventHandler<FormViewModel> OnOpenForm { get; set; }
+        public EventHandler<FormViewModel> OnSaveForm { get; set; }
 
         #endregion
 
@@ -120,7 +119,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand NewFormCommand =>
             _newFormCommand ?? (_newFormCommand = new DelegateCommand(() =>
             {
-                Load(new Form("New Form", "Form Title", new FormGroup[0]));
+                OnNewForm?.Invoke(this, FormViewModel);
             }));
 
         private DelegateCommand _openFormCommand;
@@ -128,17 +127,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand OpenFormCommand =>
             _openFormCommand ?? (_openFormCommand = new DelegateCommand(() =>
             {
-                var openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Json files (*.json)|*.json|All files (*.*)|*.*";
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    var jsonString = File.ReadAllText(openFileDialog.FileName);
-                    Load(Form.FromJson(jsonString));
-                }
-                else
-                {
-                    Clear();
-                }
+                OnOpenForm?.Invoke(this, FormViewModel);
             }));
 
         private DelegateCommand _saveFormCommand;
@@ -146,7 +135,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand SaveFormCommand =>
             _saveFormCommand ?? (_saveFormCommand = new DelegateCommand(() =>
             {
-                File.WriteAllText($"{FormViewModel.Form.Name}.json", FormViewModel.Form.ToJson());
+                OnSaveForm?.Invoke(this, FormViewModel);
             }));
 
         #endregion
