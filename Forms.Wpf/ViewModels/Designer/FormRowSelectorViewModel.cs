@@ -75,6 +75,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand AddButtonCommand =>
             _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
             {
+                if(FormGroup == null)
+                    return;
+                
                 var newRow = new FormRow(0, new FormColumn[0]);
                 FormGroup.Add(newRow);
                 Load();

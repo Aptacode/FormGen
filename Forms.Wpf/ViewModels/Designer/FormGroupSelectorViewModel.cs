@@ -94,6 +94,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand AddButtonCommand =>
             _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
             {
+                if (FormViewModel == null)
+                    return;
+
                 var newGroup = FormGroup.EmptyGroup;
 
                 FormViewModel.Add(newGroup);

@@ -1,0 +1,163 @@
+{
+  "Name": "DemoForm",
+  "Title": "DemoForm",
+  "Groups": [
+    {
+      "Label": "Demo Form Group",
+      "Rows": [
+        {
+          "Columns": [
+            {
+              "Element": {
+                "Content": "<h1><em>Test HTML Content</em></h1>\r\n<p>Test</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">TEST od&nbsp;&nbsp; </span></p>",
+                "Name": "Paragraph",
+                "Type": "HtmlElement",
+                "Label": "Sample HTML Content",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 1
+        },
+        {
+          "Columns": [
+            {
+              "Element": {
+                "Content": "",
+                "DefaultContent": "",
+                "Rules": [
+                  {
+                    "EqualityOperator": 1,
+                    "Value": 2,
+                    "Type": "TextFieldLengthValidationRule"
+                  }
+                ],
+                "Name": "firstName",
+                "Type": "TextField",
+                "Label": "First Name",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            },
+            {
+              "Element": {
+                "Content": "",
+                "DefaultContent": "",
+                "Rules": [
+                  {
+                    "EqualityOperator": 6,
+                    "Value": 10,
+                    "Type": "TextFieldLengthValidationRule"
+                  }
+                ],
+                "Name": "lastName",
+                "Type": "TextField",
+                "Label": "Last Name",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 1
+        },
+        {
+          "Columns": [
+            {
+              "Element": {
+                "DefaultIsChecked": true,
+                "Content": "I Agree",
+                "IsChecked": true,
+                "Rules": [
+                  {
+                    "RequiredValue": true,
+                    "Type": "CheckBoxCheckedValidationRule"
+                  }
+                ],
+                "Name": "receiveEmail",
+                "Type": "CheckBoxField",
+                "Label": "Do you accept the terms and conditions",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 1
+        },
+        {
+          "Columns": [
+            {
+              "Element": {
+                "DefaultSelectedItem": "",
+                "Items": [
+                  "0-1",
+                  "1-5",
+                  "5+"
+                ],
+                "SelectedItem": "",
+                "Rules": [
+                  {
+                    "Type": "ComboBoxSelectionRequiredValidationRule"
+                  }
+                ],
+                "Name": "yearsOfExperience",
+                "Type": "ComboBoxField",
+                "Label": "Years of Experience",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 1
+        },
+        {
+          "Columns": [
+            {
+              "Element": {
+                "Content": "Submit",
+                "Name": "SubmitButton",
+                "Type": "ButtonElement",
+                "Label": "",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 1
+        }
+      ]
+    },
+    {
+      "Label": "Upload",
+      "Rows": [
+        {
+          "Columns": [
+            {
+              "Element": {
+                "Content": "test.jpg",
+                "DefaultContent": "test.jpg",
+                "Rules": [],
+                "Name": "Default",
+                "Type": "TextField",
+                "Label": "Default",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            },
+            {
+              "Element": {
+                "Content": "",
+                "Name": "Default",
+                "Type": "ButtonElement",
+                "Label": "Default",
+                "LabelPosition": 0
+              },
+              "Span": 1
+            }
+          ],
+          "Span": 0
+        }
+      ]
+    }
+  ]
+}

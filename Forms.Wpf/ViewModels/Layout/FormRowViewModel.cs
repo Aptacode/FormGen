@@ -41,14 +41,29 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
                 return;
             }
 
-            Row.Columns.Add(new FormColumn(1, element));
+            Add(new FormColumn(1, element));
+        }
+
+        public void Add(FormColumn column)
+        {
+            if (column == null)
+            {
+                return;
+            }
+
+            Row.Columns.Add(column);
             Load();
         }
 
         public void Remove(FormElement element)
         {
             var column = Row?.Columns.FirstOrDefault(c => c.Element.Equals(element));
-            if (column == null)
+            Remove(column);
+        }
+
+        public void Remove(FormColumn column)
+        {
+            if (!Row.Columns.Contains(column))
             {
                 return;
             }

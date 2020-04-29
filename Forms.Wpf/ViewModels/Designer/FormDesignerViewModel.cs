@@ -20,7 +20,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             FormGroupSelectorViewModel.OnGroupSelected += OnGroupSelected;
             FormRowSelectorViewModel.OnRowSelected += OnRowSelected;
-            FormElementSelectorViewModel.OnElementSelected += OnElementSelected;
+            FormElementSelectorViewModel.OnColumnSelected += OnColumnSelected;
         }
 
         #region Events
@@ -56,11 +56,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             FormElementSelectorViewModel.FormRow = e;
         }
-
-        private void OnElementSelected(object sender, FormElementViewModel e)
+        private void OnColumnSelected(object sender, FormColumnViewModel e)
         {
-            FormElementEditorViewModel.FormElement = e;
+            FormElementEditorViewModel.FormColumn = e;
         }
+
 
         #endregion
 
