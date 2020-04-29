@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Aptacode.Forms.Elements.Fields;
+using Aptacode.Forms.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Enums;
+using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
+using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -17,17 +22,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Methods
 
-        public void Load(FormRowViewModel formRow)
+        public void Load()
         {
-            SelectedElement = null;
-            FormRow = formRow;
-            Elements.Clear();
-            if (formRow == null)
+            Clear();
+            if (FormRow == null)
             {
                 return;
             }
 
-            Elements.AddRange(formRow.Columns.Select(c => c.FormElementViewModel).ToList());
+            Elements.AddRange(FormRow.Columns.Select(c => c.FormElementViewModel).ToList());
+        }
+
+        public void Clear()
+        {
+            SelectedElement = null;
+            Elements.Clear();
         }
 
         #endregion
@@ -35,7 +44,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         #region Events
 
         public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
-        public EventHandler<FormElementViewModel> OnRemoved { get; set; }
+        public EventHandler<FormElementViewModel> OnElementRemoved { get; set; }
         public EventHandler<FormElementViewModel> OnCreated { get; set; }
 
         #endregion
@@ -47,7 +56,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormRowViewModel FormRow
         {
             get => _formRow;
-            set => SetProperty(ref _formRow, value);
+            set
+            {
+                SetProperty(ref _formRow, value);
+                Load();
+            }
         }
 
         public ObservableCollection<FormElementViewModel> Elements { get; set; }
@@ -71,13 +84,38 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _removeCommand;
 
         public DelegateCommand RemoveCommand =>
-            _removeCommand ?? (_removeCommand = new DelegateCommand(async () => { }));
+            _removeCommand ?? (_removeCommand = new DelegateCommand(async () =>
+            {
+                if (SelectedElement == null)
+                {
+                    return;
+                }
+
+                FormRow.Remove(SelectedElement.FormElement);
+
+                OnElementRemoved?.Invoke(this, SelectedElement);
+                SelectedElement = null;
+                Load();
+            }));
 
 
         private DelegateCommand _updateCommand;
 
         public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() => { }));
+            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
+            {
+                OnElementSelected?.Invoke(this, _selectedElement);
+            }));
+
+        private DelegateCommand _addButtonCommand;
+        public DelegateCommand AddButtonCommand =>
+            _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
+            {
+                var newField = new TextField("Default", LabelPosition.AboveElement, "Default", new ValidationRule<TextField>[0]);
+                FormRow.Add(newField);
+                Load();
+                SelectedElement = new TextFieldViewModel(newField);
+            }));
 
         #endregion
     }

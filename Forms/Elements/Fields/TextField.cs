@@ -17,11 +17,11 @@ namespace Aptacode.Forms.Elements.Fields
         public TextField(string name, LabelPosition labelPosition, string label,
             IEnumerable<ValidationRule<TextField>> rules) : this(name, labelPosition, label, rules, string.Empty)
         {
-
         }
 
         public TextField(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<TextField>> rules, string defaultContent) : base(nameof(TextField), name, labelPosition, label)
+            IEnumerable<ValidationRule<TextField>> rules, string defaultContent) : base(nameof(TextField), name,
+            labelPosition, label)
         {
             DefaultContent = defaultContent;
             _content = defaultContent;

@@ -26,31 +26,49 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="{Binding NewFormCommand}" Content="New" />
+                <Button Command="{Binding OpenFormCommand}" Content="Open" />
+                <Button Command="{Binding SaveFormCommand}" Content="Save" />
+                <Separator />
+                <Label Content="Name" VerticalAlignment="Center" />
+                <TextBox Text="{Binding FormViewModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Width="200" />
+                <Label Content="Title" VerticalAlignment="Center" />
+                <TextBox Text="{Binding FormViewModel.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Width="200" />
+            </ToolBar>
+        </ToolBarTray>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Groups" Grid.Column="0" Margin="8">
-            <local:FormGroupSelectorView DataContext="{Binding FormGroupSelectorViewModel}" />
-        </GroupBox>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <GroupBox Header="Rows" Grid.Column="1" Margin="8">
-            <local:FormRowSelectorView DataContext="{Binding FormRowSelectorViewModel}" />
-        </GroupBox>
+            <GroupBox Header="Groups" Grid.Column="0" Margin="8">
+                <local:FormGroupSelectorView DataContext="{Binding FormGroupSelectorViewModel}" />
+            </GroupBox>
 
-        <GroupBox Header="Elements" Grid.Column="2" Margin="8">
-            <local:FormElementSelectorView DataContext="{Binding FormElementSelectorViewModel}" />
-        </GroupBox>
+            <GroupBox Header="Rows" Grid.Column="1" Margin="8">
+                <local:FormRowSelectorView DataContext="{Binding FormRowSelectorViewModel}" />
+            </GroupBox>
 
-        <local:FormElementEditorView Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="8" DataContext="{Binding FormElementEditorViewModel}" />
+            <GroupBox Header="Elements" Grid.Column="2" Margin="8">
+                <local:FormElementSelectorView DataContext="{Binding FormElementSelectorViewModel}" />
+            </GroupBox>
 
-    </Grid>
+            <local:FormElementEditorView Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="8"
+                                         DataContext="{Binding FormElementEditorViewModel}" />
+
+        </Grid>
+    </DockPanel>
 </UserControl>

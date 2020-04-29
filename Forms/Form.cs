@@ -40,6 +40,11 @@ namespace Aptacode.Forms
 
         private IEnumerable<FormElement> Elements()
         {
+            if (Groups.Count == 0)
+            {
+                return new FormElement[0];
+            }
+
             return Groups
                 .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b).ToList())
                 .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b).ToList())

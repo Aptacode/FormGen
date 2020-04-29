@@ -8,12 +8,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormGroupSelectorViewModel : BindableBase
     {
-        public FormGroupSelectorViewModel(FormViewModel formViewModel)
-        {
-            FormViewModel = formViewModel;
-            Load();
-        }
-
         #region Events
 
         public EventHandler<FormGroupViewModel> OnGroupSelected { get; set; }
@@ -24,8 +18,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         public void Load()
         {
+            if (FormViewModel == null)
+            {
+                return;
+            }
+
             FormViewModel.Load();
-            FormViewModel.Groups.Add(new FormGroupViewModel(FormGroup.EmptyGroup));
             SelectedGroup = null;
         }
 
@@ -38,7 +36,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormViewModel FormViewModel
         {
             get => _formViewModel;
-            set => SetProperty(ref _formViewModel, value);
+            set
+            {
+                SetProperty(ref _formViewModel, value);
+                Load();
+            }
         }
 
         private FormGroupViewModel _selectedGroup;
@@ -84,12 +86,19 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand UpdateCommand =>
             _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
             {
-                if (SelectedGroup != null && !SelectedGroup.Group.Equals(FormGroup.EmptyGroup))
-                {
-                    FormViewModel.Add(SelectedGroup.Group);
-                }
 
+            }));
+
+        private DelegateCommand _addButtonCommand;
+
+        public DelegateCommand AddButtonCommand =>
+            _addButtonCommand ?? (_addButtonCommand = new DelegateCommand(async () =>
+            {
+                var newGroup = FormGroup.EmptyGroup;
+
+                FormViewModel.Add(newGroup);
                 Load();
+                SelectedGroup = new FormGroupViewModel(newGroup);
             }));
 
         #endregion
