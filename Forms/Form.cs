@@ -22,7 +22,10 @@ namespace Aptacode.Forms
             Groups = new List<FormGroup>();
             Name = name;
             Title = title;
-            Groups.AddRange(groups);
+
+            if(groups != null)
+                Groups.AddRange(groups);
+
             SubscribeToElementEvents();
         }
 
