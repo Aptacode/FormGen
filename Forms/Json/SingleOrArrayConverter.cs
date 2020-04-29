@@ -23,7 +23,7 @@ namespace Aptacode.Forms.Json
             {
                 return token.ToObject<List<T>>(serializer);
             }
-            return new List<T> { token.ToObject<T>() };
+            return new List<T> { token.ToObject<T>(serializer) };
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
