@@ -147,7 +147,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.Rows.Add(new FormRow(1, new[]
+            group.Rows.Add(new FormRow(1, "Default", new[]
             {
                 new FormColumn(1, textField)
             }));
@@ -168,7 +168,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.Rows.Add(new FormRow(1, new[]
+            group.Rows.Add(new FormRow(1, "Default", new[]
             {
                 new FormColumn(1, textField)
             }));
@@ -189,7 +189,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.Rows.Add(new FormRow(1, new[]
+            group.Rows.Add(new FormRow(1, "Default", new[]
             {
                 new FormColumn(1, textField)
             }));
@@ -224,7 +224,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.Rows.Add(new FormRow(1, new[]
+            group.Rows.Add(new FormRow(1, "Default", new[]
             {
                 new FormColumn(1, optionsField),
                 new FormColumn(1, textField)
@@ -259,7 +259,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.Rows.Add(new FormRow(1, new[]
+            group.Rows.Add(new FormRow(1, "Default", new[]
             {
                 new FormColumn(1, textField),
                 new FormColumn(1, checkedField)
@@ -309,17 +309,17 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             var group = new FormGroup("Element Editor", new[]
             {
-                new FormRow(1, new[]
+                new FormRow(1, "Default",new[]
                 {
                     new FormColumn(1, _elementNameTextBox)
                 }),
 
-                new FormRow(1, new[]
+                new FormRow(1, "Default",new[]
                 {
                     new FormColumn(1, _elementLabelTextBox)
                 }),
 
-                new FormRow(1, new[]
+                new FormRow(1, "Default",new[]
                 {
                     new FormColumn(1, _elementTypeComboBox)
                 })

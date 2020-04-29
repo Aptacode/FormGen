@@ -22,16 +22,24 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
 
         public void Load()
         {
-            Columns.Clear();
+            Clear();
+
             if (Row == null)
             {
                 return;
             }
 
+            Name = Row.Name;
             foreach (var column in Row.Columns)
             {
                 Columns.Add(new FormColumnViewModel(column));
             }
+        }
+
+        public void Clear()
+        {
+            Columns.Clear();
+            Name = string.Empty;
         }
 
         public void Add(FormElement element)
@@ -57,7 +65,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
 
         public void Remove(FormElement element)
         {
-            var column = Row?.Columns.FirstOrDefault(c => c.Element.Equals(element));
+            var column = Row?.Columns.Find(c => c.Element.Equals(element));
             Remove(column);
         }
 
@@ -69,12 +77,24 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
             }
 
             Row.Columns.Remove(column);
+            Load();
         }
 
         #endregion
 
 
         #region Properties
+
+        private string _name;
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                SetProperty(ref _name, value);
+            }
+        }
 
         private FormRow _row;
 

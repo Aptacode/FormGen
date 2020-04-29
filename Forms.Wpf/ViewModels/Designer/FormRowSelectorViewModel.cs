@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
@@ -80,7 +81,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     return;
                 }
 
-                var newRow = new FormRow(0, new FormColumn[0]);
+                var rowPosition = FormGroup.Rows.Count + 1;
+
+                var newRow = FormRow.EmptyRow;
+                newRow.Name = $"{FormRow.DefaultName} {rowPosition.ToString()}";
                 FormGroup.Add(newRow);
                 Load();
                 SelectedRow = new FormRowViewModel(newRow);

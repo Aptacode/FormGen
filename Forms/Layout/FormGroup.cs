@@ -6,7 +6,7 @@ namespace Aptacode.Forms.Layout
 {
     public class FormGroup : IEquatable<FormGroup>
     {
-        private const string DefaultGroupName = "Default";
+        public static readonly string DefaultName = "Default";
 
         internal FormGroup()
         {
@@ -20,7 +20,7 @@ namespace Aptacode.Forms.Layout
 
         public string Label { get; set; }
         public List<FormRow> Rows { get; set; }
-        public static FormGroup EmptyGroup => new FormGroup(DefaultGroupName, new FormRow[0]);
+        public static FormGroup EmptyGroup => new FormGroup(DefaultName, new FormRow[0]);
 
         #region Equality
 

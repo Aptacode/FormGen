@@ -16,7 +16,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 {
                     new FormGroup("Test Form Group", new[]
                     {
-                        new FormRow(1, new[]
+                        new FormRow(1, "Default", new[]
                         {
                             new FormColumn(1,
                                 new HtmlElement("Paragraph",
@@ -24,7 +24,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                                     LabelPosition.AboveElement, "Sample HTML Content"))
                         }),
 
-                        new FormRow(1, new[]
+                        new FormRow(1,"Default",  new[]
                         {
                             new FormColumn(1,
                                 new TextField("firstName", LabelPosition.AboveElement, "First Name",
@@ -43,7 +43,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                             )
                         }),
 
-                        new FormRow(1, new[]
+                        new FormRow(1, "Default", new[]
                         {
                             new FormColumn(1,
                                 new CheckBoxField("receiveEmail", LabelPosition.AboveElement,
@@ -55,7 +55,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                             )
                         }),
 
-                        new FormRow(1, new[]
+                        new FormRow(1, "Default", new[]
                         {
                             new FormColumn(1,
                                 new ComboBoxField("yearsOfExperience", LabelPosition.AboveElement,
@@ -67,7 +67,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                             )
                         }),
 
-                        new FormRow(1, new[]
+                        new FormRow(1,"Default",  new[]
                         {
                             new FormColumn(1,
                                 new ButtonElement("SubmitButton",

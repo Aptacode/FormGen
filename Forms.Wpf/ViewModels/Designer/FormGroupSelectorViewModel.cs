@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
@@ -52,12 +53,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 SetProperty(ref _selectedGroup, value);
 
-                if (_selectedGroup == null || _selectedGroup.Group.Equals(FormGroup.EmptyGroup))
-                {
-                    OnGroupSelected?.Invoke(this, null);
-                    return;
-                }
-
                 OnGroupSelected?.Invoke(this, SelectedGroup);
             }
         }
@@ -90,7 +85,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     return;
                 }
 
+                var groupPosition = FormViewModel.Groups.Count + 1;
                 var newGroup = FormGroup.EmptyGroup;
+                newGroup.Label = $"{FormGroup.DefaultName} {groupPosition.ToString()}";
 
                 FormViewModel.Add(newGroup);
                 Load();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
@@ -13,28 +14,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormElementSelectorViewModel : BindableBase
     {
-        public FormElementSelectorViewModel()
-        {
-            Columns = new ObservableCollection<FormColumnViewModel>();
-        }
-
-        #region Methods
-
-        public void Load()
-        {
-            Clear();
-            if (FormRow == null)
-            {
-            }
-        }
-
-        public void Clear()
-        {
-            SelectedColumn = null;
-        }
-
-        #endregion
-
         #region Events
 
         public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
@@ -55,11 +34,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _formRow, value);
-                Load();
             }
         }
-
-        public ObservableCollection<FormColumnViewModel> Columns { get; set; }
 
         private FormColumnViewModel _selectedColumn;
 
@@ -92,7 +68,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
                 OnElementRemoved?.Invoke(this, SelectedColumn.FormElementViewModel);
                 SelectedColumn = null;
-                Load();
             }));
 
 
@@ -114,11 +89,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     return;
                 }
 
-                var newField = new TextField("Default", LabelPosition.AboveElement, "Default",
+                var columnPosition = FormRow.Columns.Count + 1;
+                var newField = new TextField($"Column {columnPosition.ToString()}", LabelPosition.AboveElement, "Label",
                     new ValidationRule<TextField>[0]);
+
                 var column = new FormColumn(1, newField);
                 FormRow.Add(column);
-                Load();
                 SelectedColumn = new FormColumnViewModel(column);
             }));
 
