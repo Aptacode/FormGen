@@ -1,5 +1,7 @@
 ﻿using System;
 using Aptacode.Forms.Elements;
+using Aptacode.Forms.Json;
+using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Layout
 {
@@ -15,7 +17,9 @@ namespace Aptacode.Forms.Layout
             Span = span;
         }
 
+        [JsonConverter(typeof(FormElementJsonConverter))]
         public FormElement Element { get; set; }
+
         public int Span { get; set; }
 
         #region Equality

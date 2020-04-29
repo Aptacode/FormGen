@@ -110,10 +110,7 @@ namespace Aptacode.Forms
 
         public static Form FromJson(string input)
         {
-            return JsonConvert.DeserializeObject<Form>(input,
-                new ValidationRuleJsonConverter(),
-                new FormElementJsonConverter()
-            );
+            return JsonConvert.DeserializeObject<Form>(input);
         }
 
         public string ToJson()

@@ -4,6 +4,8 @@ using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Json;
+using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -62,7 +64,7 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
             }
         }
-
+        [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<ComboBoxField>>))]
         public IEnumerable<ValidationRule<ComboBoxField>> Rules { get; set; }
 
         #endregion

@@ -4,6 +4,8 @@ using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Json;
+using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -57,6 +59,7 @@ namespace Aptacode.Forms.Elements.Fields
             }
         }
 
+        [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<CheckBoxField>>))]
         public IEnumerable<ValidationRule<CheckBoxField>> Rules { get; set; }
 
         #endregion

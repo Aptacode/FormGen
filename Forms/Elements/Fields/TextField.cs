@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
 using Aptacode.Forms.Events;
+using Aptacode.Forms.Json;
+using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Elements.Fields
 {
@@ -61,6 +64,7 @@ namespace Aptacode.Forms.Elements.Fields
 
         public string DefaultContent { get; set; }
 
+        [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<TextField>>))]
         public IEnumerable<ValidationRule<TextField>> Rules { get; set; }
 
         #endregion
