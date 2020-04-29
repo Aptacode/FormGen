@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
-        <Label Content="{Binding Label}" DockPanel.Dock="Left" Width="200" HorizontalContentAlignment="Right" />
+        <TextBlock Text="{Binding Label}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow" TextAlignment="Right" VerticalAlignment="Center" Margin="8"/>
         <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, ValidatesOnDataErrors=True}" Content="{Binding Content}" />
     </DockPanel>
 </UserControl>
