@@ -12,8 +12,6 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private Form _form;
-        private FormViewModel _formViewModel;
 
         public MainWindowViewModel()
         {
@@ -26,7 +24,13 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         }
 
         #region Event Handlers
+        private void OnFormSelected(object sender, FormViewModel e)
+        {
+            FormViewModel = e;
 
+            _form = e.Form;
+            _form.OnFormEvent += NameForm_OnFormEvent;
+        }
         private void OnNewForm(object sender, FormViewModel e)
         {
             FormDesignerViewModel.Load(new Form("New Form", "Form Title", new FormGroup[0]));
@@ -54,6 +58,10 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
         #endregion
 
+        #region Properties
+        private Form _form;
+
+        private FormViewModel _formViewModel;
         public FormViewModel FormViewModel
         {
             get => _formViewModel;
@@ -62,13 +70,8 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
         public FormDesignerViewModel FormDesignerViewModel { get; set; }
 
-        private void OnFormSelected(object sender, FormViewModel e)
-        {
-            FormViewModel = e;
+        #endregion
 
-            _form = e.Form;
-            _form.OnFormEvent += NameForm_OnFormEvent;
-        }
 
         private void NameForm_OnFormEvent(object sender, FormEventArgs e)
         {

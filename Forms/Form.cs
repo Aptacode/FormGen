@@ -46,8 +46,8 @@ namespace Aptacode.Forms
             }
 
             return Groups
-                .Select(group => group.Rows).Aggregate((a, b) => a.Concat(b).ToList())
-                .Select(row => row.Columns).Aggregate((a, b) => a.Concat(b).ToList())
+                .Select(group => group.Rows).SelectMany(list => list)
+                .Select(row => row.Columns).SelectMany(list => list)
                 .Select(column => column.Element);
         }
 
