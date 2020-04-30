@@ -28,11 +28,6 @@ namespace Aptacode.Forms.Json
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            List<T> list = (List<T>)value;
-            if (list.Count == 1)
-            {
-                value = list[0];
-            }
             serializer.Serialize(writer, value);
         }
 

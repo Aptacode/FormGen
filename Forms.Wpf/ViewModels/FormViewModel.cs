@@ -11,7 +11,7 @@ namespace Aptacode.Forms.Wpf.ViewModels
         public FormViewModel(Form form)
         {
             Groups = new ObservableCollection<FormGroupViewModel>();
-            Form = form;
+            Form = form ?? Form.EmptyForm;
             Load();
         }
 
@@ -22,6 +22,7 @@ namespace Aptacode.Forms.Wpf.ViewModels
             if (Form == null)
             {
                 Clear();
+                return;
             }
 
             Name = Form.Name;
@@ -31,7 +32,7 @@ namespace Aptacode.Forms.Wpf.ViewModels
 
         public void Clear()
         {
-            Form = null;
+            _form = null;
             Name = string.Empty;
             Title = string.Empty;
             Groups.Clear();

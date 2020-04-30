@@ -89,7 +89,9 @@ namespace Aptacode.Forms
         public string Title { get; set; }
 
         public List<FormGroup> Groups { get; set; }
-
+        public static readonly string DefaultName = "Default";
+        public static readonly string DefaultTitle = "Default";
+        public static Form EmptyForm => new Form( DefaultName, DefaultTitle, new FormGroup[0]);
         #endregion
 
         #region Results

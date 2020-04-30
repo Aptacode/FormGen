@@ -25,7 +25,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set
+            {
+                SetProperty(ref _name, value);
+                FormElement.Name = _name;
+            } 
         }
 
         private string _label;
@@ -33,13 +37,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
         public string Label
         {
             get => _label;
-            set => SetProperty(ref _label, value);
+            set
+            {
+                SetProperty(ref _label, value);
+                FormElement.Label = _label;
+            }
         }
 
         public LabelPosition LabelPosition
         {
             get => _labelPosition;
-            set => SetProperty(ref _labelPosition, value);
+            set
+            {
+                SetProperty(ref _labelPosition, value);
+                FormElement.LabelPosition = _labelPosition;
+            }
         }
 
         #endregion
