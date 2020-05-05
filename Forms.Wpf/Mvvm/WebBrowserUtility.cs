@@ -24,7 +24,8 @@ namespace Aptacode.Forms.Wpf.Mvvm
             DependencyPropertyChangedEventArgs e)
         {
             var webBrowser = (WebBrowser) o;
-            webBrowser.NavigateToString((string) e.NewValue);
+            var content = e.NewValue.ToString() == string.Empty ? " " : e.NewValue.ToString();
+            webBrowser.NavigateToString(content);
         }
     }
 }
