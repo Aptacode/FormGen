@@ -75,7 +75,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mvvm\Behaviours\DoubleClickTextBoxBehaviour.cs" />
     <Compile Include="Mvvm\WebBrowserUtility.cs" />
     <Compile Include="ViewModels\Designer\FormElementEditorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormElementSelectorViewModel.cs" />
@@ -224,6 +223,10 @@
     <ProjectReference Include="..\Forms\Forms.csproj">
       <Project>{fb7ec7f7-3015-4a11-a4b3-1b1790118333}</Project>
       <Name>Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Apatacode.Wpf.Utilities\Apatacode.Wpf.Utilities.csproj">
+      <Project>{87656e1c-4fbc-4ba6-8ba2-c1742c7a8280}</Project>
+      <Name>Apatacode.Wpf.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
