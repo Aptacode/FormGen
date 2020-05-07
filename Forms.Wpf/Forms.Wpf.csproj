@@ -37,9 +37,6 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.3.1244, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -73,13 +70,33 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfRichText, Version=1.0.16.0, Culture=neutral, PublicKeyToken=75ccead1e6af2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfRichText2.1.0.17\lib\net45\WpfRichText.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mvvm\Converters\HtmlToXamlConverter.cs" />
     <Compile Include="Mvvm\WebBrowserUtility.cs" />
     <Compile Include="ViewModels\Designer\FormElementEditorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormElementSelectorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormRowSelectorViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormGroupSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Designer\HtmlEditorDialogViewModel.cs" />
     <Compile Include="ViewModels\Elements\ButtonElementViewModel.cs" />
     <Compile Include="ViewModels\Designer\FormDesignerViewModel.cs" />
     <Compile Include="ViewModels\Layout\FormGroupViewModel.cs" />
@@ -95,6 +112,9 @@
     </Compile>
     <Compile Include="Views\Designer\FormGroupSelectorView.xaml.cs">
       <DependentUpon>FormGroupSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Designer\HtmlEditorDialog.xaml.cs">
+      <DependentUpon>HtmlEditorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Elements\CheckBoxFieldView.xaml.cs">
       <DependentUpon>CheckBoxFieldView.xaml</DependentUpon>
@@ -136,6 +156,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Designer\FormGroupSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Designer\HtmlEditorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,9 +248,9 @@
       <Project>{fb7ec7f7-3015-4a11-a4b3-1b1790118333}</Project>
       <Name>Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Apatacode.Wpf.Utilities\Apatacode.Wpf.Utilities.csproj">
+    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities.csproj">
       <Project>{87656e1c-4fbc-4ba6-8ba2-c1742c7a8280}</Project>
-      <Name>Apatacode.Wpf.Utilities</Name>
+      <Name>Aptacode.Wpf.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mvvm="clr-namespace:Aptacode.Forms.Wpf.Mvvm"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:HtmlToXamlValueConverter x:Key="HtmlToXamlValueConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <TextBlock Text="{Binding Label}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow" TextAlignment="Right" VerticalAlignment="Center" Margin="8"/>
-        <WebBrowser mvvm:WebBrowserUtility.BindableSource="{Binding Content}" />
+
+
+        <xctk:RichTextBox BorderThickness="0" Background="Transparent"
+                          Text="{Binding Content, Converter={StaticResource HtmlToXamlValueConverter}}" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          IsHitTestVisible="False"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          VerticalContentAlignment="Center" 
+                          HorizontalContentAlignment="Center">
+            <xctk:RichTextBox.TextFormatter>
+                <xctk:XamlFormatter/>
+            </xctk:RichTextBox.TextFormatter>
+        </xctk:RichTextBox>
     </DockPanel>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
@@ -10,6 +11,7 @@ using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Elements;
 using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
+using Aptacode.Forms.Wpf.Views.Designer;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -155,22 +157,22 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private void AddHtmlConfigurationRows(FormGroup group, HtmlElementViewModel element)
         {
-            var textField = new TextField("htmlContent", LabelPosition.AboveElement, "Html",
-                new ValidationRule<TextField>[]
-                {
-                }, element.Content);
-
-            textField.OnFormEvent += (s, e) =>
+            var buttonField = new ButtonElement("editHtml", "Edit", LabelPosition.AboveElement, "");
+            buttonField.OnFormEvent += (s, e) =>
             {
-                if (e is TextFieldChangedEventArgs eventArgs)
+                if (e is ButtonClickedEventArgs eventArgs)
                 {
-                    element.Content = eventArgs.NewContent;
+                    var htmlEditor = new HtmlEditorDialog(element.Content);
+                    htmlEditor.ShowDialog();
+
+                    element.Content = htmlEditor.ViewModel.Content;
+                    Load();
                 }
             };
 
             group.Rows.Add(new FormRow(1, "Default", new[]
             {
-                new FormColumn(1, textField)
+                new FormColumn(1, buttonField)
             }));
         }
 

@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{72BB28B3-9CF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{7A39F946-BFAE-4C60-8303-6413160D3AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apatacode.Wpf.Utilities", "Libraries\Aptacode.Wpf.Utilities\Apatacode.Wpf.Utilities\Apatacode.Wpf.Utilities.csproj", "{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Wpf.Utilities", "Libraries\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities.csproj", "{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

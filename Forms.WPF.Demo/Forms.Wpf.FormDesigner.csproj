@@ -79,6 +79,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfRichText, Version=1.0.16.0, Culture=neutral, PublicKeyToken=75ccead1e6af2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfRichText2.1.0.17\lib\net45\WpfRichText.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -139,9 +157,9 @@
       <Project>{fb7ec7f7-3015-4a11-a4b3-1b1790118333}</Project>
       <Name>Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Apatacode.Wpf.Utilities\Apatacode.Wpf.Utilities.csproj">
+    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities.csproj">
       <Project>{87656e1c-4fbc-4ba6-8ba2-c1742c7a8280}</Project>
-      <Name>Apatacode.Wpf.Utilities</Name>
+      <Name>Aptacode.Wpf.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
