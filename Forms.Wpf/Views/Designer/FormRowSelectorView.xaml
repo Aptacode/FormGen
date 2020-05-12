@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:behaviours="clr-namespace:Aptacode.Wpf.Utilities.Behaviours;assembly=Aptacode.Wpf.Utilities"
+             xmlns:behaviors="clr-namespace:Aptacode.Wpf.Utilities.Behaviors;assembly=Aptacode.Wpf.Utilities"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
@@ -18,7 +18,7 @@
                     <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Background="Transparent" BorderBrush="Transparent">
                         <i:Interaction.Behaviors>
-                            <behaviours:DoubleClickTextBoxBehaviour />
+                            <behaviors:DoubleClickTextBoxBehaviour />
                         </i:Interaction.Behaviors>
                     </TextBox>
                 </DataTemplate>
