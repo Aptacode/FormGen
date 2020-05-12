@@ -17,10 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSuite", "TestSuite\Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{72BB28B3-9CF2-417B-B8D5-BF46069F4310}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{7A39F946-BFAE-4C60-8303-6413160D3AD3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Wpf.Utilities", "Libraries\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities.csproj", "{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +43,6 @@ Global
 		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,7 +51,6 @@ Global
 		{D4ECE5BA-0242-42A1-A949-024C259CF6E4} = {72BB28B3-9CF2-417B-B8D5-BF46069F4310}
 		{830D1270-4859-4039-8BC7-A6852CEF29DC} = {72BB28B3-9CF2-417B-B8D5-BF46069F4310}
 		{7EEEE090-A97D-45D0-8375-6AE5A8C12653} = {7EA13663-9FC7-4E15-9B9D-3AA6BC8FF1B5}
-		{87656E1C-4FBC-4BA6-8BA2-C1742C7A8280} = {7A39F946-BFAE-4C60-8303-6413160D3AD3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72E1C5A4-7CC4-47DD-A098-963DBB80172A}

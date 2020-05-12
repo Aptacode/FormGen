@@ -40,6 +40,12 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aptacode.CSharp.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aptacode.CSharp.Utilities.1.0.0\lib\net472\Aptacode.CSharp.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Aptacode.Wpf.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aptacode.Wpf.Utilities.1.0.0\lib\net472\Aptacode.Wpf.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -156,10 +162,6 @@
     <ProjectReference Include="..\Forms\Forms.csproj">
       <Project>{fb7ec7f7-3015-4a11-a4b3-1b1790118333}</Project>
       <Name>Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Libraries\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities\Aptacode.Wpf.Utilities.csproj">
-      <Project>{87656e1c-4fbc-4ba6-8ba2-c1742c7a8280}</Project>
-      <Name>Aptacode.Wpf.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
