@@ -22,7 +22,7 @@ namespace Aptacode.Forms.Json
 
             var type = jo["Type"]?.Value<string>();
 
-            FormElement item = null;
+            FormElement item;
 
             switch (type)
             {

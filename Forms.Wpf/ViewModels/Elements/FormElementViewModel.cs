@@ -29,7 +29,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Elements
             {
                 SetProperty(ref _name, value);
                 FormElement.Name = _name;
-            } 
+            }
         }
 
         private string _label;

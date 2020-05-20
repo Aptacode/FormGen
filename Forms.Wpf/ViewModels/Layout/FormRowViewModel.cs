@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using Aptacode.Forms.Elements;
 using Aptacode.Forms.Layout;
 using Prism.Mvvm;
@@ -90,10 +89,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Layout
         public string Name
         {
             get => _name;
-            set
-            {
-                SetProperty(ref _name, value);
-            }
+            set => SetProperty(ref _name, value);
         }
 
         private FormRow _row;

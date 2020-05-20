@@ -5,7 +5,6 @@ using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.Results;
 using Aptacode.Forms.Events;
-using Aptacode.Forms.Json;
 using Aptacode.Forms.Layout;
 using Newtonsoft.Json;
 
@@ -91,7 +90,8 @@ namespace Aptacode.Forms
         public List<FormGroup> Groups { get; set; }
         public static readonly string DefaultName = "Default";
         public static readonly string DefaultTitle = "Default";
-        public static Form EmptyForm => new Form( DefaultName, DefaultTitle, new FormGroup[0]);
+        public static Form EmptyForm => new Form(DefaultName, DefaultTitle, new FormGroup[0]);
+
         #endregion
 
         #region Results

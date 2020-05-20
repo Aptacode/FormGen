@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Forms.Wpf\Forms.Wpf.csproj">
-      <Project>{830d1270-4859-4039-8bc7-a6852cef29dc}</Project>
+      <Project>{f4d21bc5-e2a6-42ec-a2a6-7a5c0cf87bbb}</Project>
       <Name>Forms.Wpf</Name>
     </ProjectReference>
     <ProjectReference Include="..\Forms\Forms.csproj">

@@ -21,7 +21,7 @@ namespace Aptacode.Forms.Json
 
             var type = jo["Type"]?.Value<string>();
 
-            ValidationRule item = null;
+            ValidationRule item;
 
             switch (type)
             {

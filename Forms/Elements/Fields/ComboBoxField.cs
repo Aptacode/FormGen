@@ -64,6 +64,7 @@ namespace Aptacode.Forms.Elements.Fields
                 TriggerEvent(new ComboBoxFieldChangedEventArgs(this, _selectedItem));
             }
         }
+
         [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<ComboBoxField>>))]
         public IEnumerable<ValidationRule<ComboBoxField>> Rules { get; set; }
 

@@ -6,7 +6,6 @@ namespace Aptacode.Forms.Layout
 {
     public class FormRow : IEquatable<FormRow>
     {
-
         internal FormRow()
         {
             Span = 0;
@@ -22,6 +21,7 @@ namespace Aptacode.Forms.Layout
         }
 
         #region Properties
+
         public string Name { get; set; }
         public List<FormColumn> Columns { get; set; }
         public int Span { get; set; }

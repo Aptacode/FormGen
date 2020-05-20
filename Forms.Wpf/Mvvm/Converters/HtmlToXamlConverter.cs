@@ -13,11 +13,12 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
             {
                 if (!string.IsNullOrEmpty(value.ToString()))
                 {
-                    return HtmlToXamlConverter.ConvertHtmlToXaml((string)value, false);
+                    return HtmlToXamlConverter.ConvertHtmlToXaml((string) value, false);
                 }
             }
-            catch (Exception ex)
+            catch
             {
+                // ignored
             }
 
             return null;

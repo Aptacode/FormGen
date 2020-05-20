@@ -16,10 +16,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public string Content
         {
             get => _content;
-            set
-            {
-                SetProperty(ref _content, value);
-            }
+            set => SetProperty(ref _content, value);
         }
 
         #endregion

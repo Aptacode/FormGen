@@ -24,7 +24,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                                     LabelPosition.AboveElement, "Sample HTML Content"))
                         }),
 
-                        new FormRow(1,"Default",  new[]
+                        new FormRow(1, "Default", new[]
                         {
                             new FormColumn(1,
                                 new TextField("firstName", LabelPosition.AboveElement, "First Name",
@@ -67,7 +67,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                             )
                         }),
 
-                        new FormRow(1,"Default",  new[]
+                        new FormRow(1, "Default", new[]
                         {
                             new FormColumn(1,
                                 new ButtonElement("SubmitButton",

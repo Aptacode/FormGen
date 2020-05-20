@@ -14,19 +14,20 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <TextBlock Text="{Binding Label}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow" TextAlignment="Right" VerticalAlignment="Center" Margin="8"/>
+        <TextBlock Text="{Binding Label}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
+                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
 
 
         <xctk:RichTextBox BorderThickness="0" Background="Transparent"
-                          Text="{Binding Content, Converter={StaticResource HtmlToXamlValueConverter}}" 
+                          Text="{Binding Content, Converter={StaticResource HtmlToXamlValueConverter}}"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           IsHitTestVisible="False"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center"
-                          VerticalContentAlignment="Center" 
+                          VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Center">
             <xctk:RichTextBox.TextFormatter>
-                <xctk:XamlFormatter/>
+                <xctk:XamlFormatter />
             </xctk:RichTextBox.TextFormatter>
         </xctk:RichTextBox>
     </DockPanel>

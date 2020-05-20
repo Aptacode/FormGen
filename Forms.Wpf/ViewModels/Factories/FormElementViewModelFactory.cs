@@ -4,7 +4,7 @@ using Aptacode.Forms.Wpf.ViewModels.Elements;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Factories
 {
-    public class FormElementViewModelFactory
+    public static class FormElementViewModelFactory
     {
         public static FormElementViewModel Create(FormElement formElement)
         {

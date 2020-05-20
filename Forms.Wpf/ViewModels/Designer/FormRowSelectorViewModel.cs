@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Aptacode.Forms.Layout;
 using Aptacode.Forms.Wpf.ViewModels.Layout;
 using Prism.Commands;
@@ -59,7 +58,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _deleteCommand;
 
         public DelegateCommand DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(() =>
             {
                 if (SelectedRow == null)
                 {
@@ -74,7 +73,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
+            _createCommand ?? (_createCommand = new DelegateCommand(() =>
             {
                 if (FormGroup == null)
                 {

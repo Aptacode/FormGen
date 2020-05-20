@@ -3,7 +3,7 @@ using Aptacode.Forms.Wpf.ViewModels.Elements.Fields;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Factories
 {
-    public class FormFieldViewModelFactory
+    public static class FormFieldViewModelFactory
     {
         public static FormFieldViewModel Create(FormField formField)
         {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using Aptacode.Forms.Elements;
 using Aptacode.Forms.Elements.Fields;
 using Aptacode.Forms.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Enums;
@@ -31,10 +29,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormRowViewModel FormRow
         {
             get => _formRow;
-            set
-            {
-                SetProperty(ref _formRow, value);
-            }
+            set => SetProperty(ref _formRow, value);
         }
 
         private FormColumnViewModel _selectedColumn;
@@ -57,7 +52,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _deleteCommand;
 
         public DelegateCommand DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand(async () =>
+            _deleteCommand ?? (_deleteCommand = new DelegateCommand(() =>
             {
                 if (SelectedColumn == null)
                 {
@@ -82,7 +77,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ?? (_createCommand = new DelegateCommand(async () =>
+            _createCommand ?? (_createCommand = new DelegateCommand(() =>
             {
                 if (FormRow == null)
                 {

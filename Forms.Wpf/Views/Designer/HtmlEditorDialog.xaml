@@ -6,13 +6,12 @@
         xmlns:wpfRichText="clr-namespace:WpfRichText;assembly=WpfRichText"
         mc:Ignorable="d"
         Title="HtmlEditorDialog" Height="450" Width="800">
-    <wpfRichText:RichTextEditor 
-        Text="{Binding Content, Mode=TwoWay}" 
-        IsContextMenuEnabled="True" 
-        IsToolBarVisible="True" 
-        IsReadOnly="False"								
+    <wpfRichText:RichTextEditor
+        Text="{Binding Content, Mode=TwoWay}"
+        IsContextMenuEnabled="True"
+        IsToolBarVisible="True"
+        IsReadOnly="False"
         Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
         Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-        BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}"
-    />
+        BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" />
 </Window>
