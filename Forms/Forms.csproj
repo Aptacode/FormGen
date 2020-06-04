@@ -8,7 +8,7 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2</Version>
     <Description>Create cross platform forms using C# .net</Description>
     <Product>Forms</Product>
     <Company>Aptacode</Company>
