@@ -3,3 +3,5 @@
 Create cross platform forms using C# .net
 
   <img width="714" height="400" src="https://github.com/Timmoth/Aptacode.Forms/blob/master/Resources/demo.png">
+
+ [![NuGet](https://img.shields.io/nuget/v/Aptacode.Forms.svg?style=flat)](https://www.nuget.org/packages/Aptacode.Forms/)
