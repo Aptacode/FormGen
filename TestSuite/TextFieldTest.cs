@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Aptacode.Forms.Elements.Fields;
-using Aptacode.Forms.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Enums;
+using Aptacode.Forms.Shared.Elements.Fields;
+using Aptacode.Forms.Shared.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Shared.Enums;
 using NUnit.Framework;
 
 namespace TestSuite

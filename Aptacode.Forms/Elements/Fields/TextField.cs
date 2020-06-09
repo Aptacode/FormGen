@@ -1,0 +1,71 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Aptacode.Forms.Shared.Elements.Fields.Results;
+using Aptacode.Forms.Shared.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Shared.Enums;
+using Aptacode.Forms.Shared.Events;
+using Aptacode.Forms.Shared.Json;
+using Newtonsoft.Json;
+
+namespace Aptacode.Forms.Shared.Elements.Fields
+{
+    public class TextField : FormField
+    {
+        internal TextField()
+        {
+            Rules = new List<ValidationRule<TextField>>();
+        }
+
+        public TextField(string name, LabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule<TextField>> rules) : this(name, labelPosition, label, rules, string.Empty)
+        {
+        }
+
+        public TextField(string name, LabelPosition labelPosition, string label,
+            IEnumerable<ValidationRule<TextField>> rules, string defaultContent) : base(nameof(TextField), name,
+            labelPosition, label)
+        {
+            DefaultContent = defaultContent;
+            _content = defaultContent;
+            Rules = rules;
+        }
+
+
+        public override bool IsValid()
+        {
+            return Rules.All(rule => rule.Passed(this));
+        }
+
+        public override IEnumerable<string> GetValidationMessages()
+        {
+            return Rules.Select(rule => rule.GetMessage(this));
+        }
+
+        public override FieldResult GetResult()
+        {
+            return new TextFieldResult(this, Content);
+        }
+
+        #region Properties
+
+        private string _content;
+
+        public string Content
+        {
+            get => _content;
+            set
+            {
+                var oldValue = _content;
+                _content = value;
+                TriggerEvent(new TextFieldChangedEventArgs(this, oldValue, value));
+            }
+        }
+
+        public string DefaultContent { get; set; }
+
+        [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<TextField>>))]
+        public IEnumerable<ValidationRule<TextField>> Rules { get; set; }
+
+        #endregion
+    }
+}
