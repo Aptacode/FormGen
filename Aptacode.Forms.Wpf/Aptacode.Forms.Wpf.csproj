@@ -17,6 +17,13 @@
     <Description>Wpf implementation of Aptacode.Forms</Description>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>../bin/debug</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>../bin/release</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Aptacode.Wpf.Utilities" Version="1.0.0.5" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
@@ -126,5 +133,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)../$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />
+  </Target>
 </Project>
