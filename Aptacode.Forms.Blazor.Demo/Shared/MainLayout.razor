@@ -1,15 +1,25 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
-
-    <div class="content px-4">
+<Layout>
+    <LayoutHeader Fixed="true">
+        <Bar Style="height: 64px;" Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+            <BarBrand>
+                <BarItem>
+                    <BarLink To="https://github.com/Timmoth/Aptacode.Forms/">Aptacode.Forms.Blazor.Demo</BarLink>
+                </BarItem>
+            </BarBrand>
+            <BarToggler>
+            </BarToggler>
+            <BarMenu>
+                <BarStart>
+                    <BarItem>
+                        <BarLink To="/">Home</BarLink>
+                    </BarItem>
+                </BarStart>
+            </BarMenu>
+        </Bar>
+    </LayoutHeader>
+    <LayoutContent Padding="Padding.Is4.OnX">
         @Body
-    </div>
-</div>
+    </LayoutContent>
+</Layout>
