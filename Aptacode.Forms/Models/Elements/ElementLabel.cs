@@ -3,7 +3,7 @@
     public struct ElementLabel
     {
         /// <summary>
-        /// The position of a FormElement's Label relative to its content
+        ///     The position of a FormElement's Label relative to its content
         /// </summary>
         public enum LabelPosition
         {
@@ -29,6 +29,5 @@
         public static ElementLabel Below(string text) => new ElementLabel(LabelPosition.Below, text);
         public static ElementLabel Left(string text) => new ElementLabel(LabelPosition.Left, text);
         public static ElementLabel Right(string text) => new ElementLabel(LabelPosition.Right, text);
-
     }
 }

@@ -1,5 +1,5 @@
-﻿using Aptacode.Forms.Shared.Models.Elements;
-using System;
+﻿using System;
+using Aptacode.Forms.Shared.Models.Elements;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {

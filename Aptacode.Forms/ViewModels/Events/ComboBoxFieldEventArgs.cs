@@ -1,12 +1,13 @@
-﻿using Aptacode.Forms.Shared.Models.Elements.Fields;
+﻿using System;
+using Aptacode.Forms.Shared.Models.Elements.Fields;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using System;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
     public abstract class ComboBoxFieldEventArgs : FieldEventArgs
     {
-        protected ComboBoxFieldEventArgs(DateTime time, IComboBoxFieldViewModel sender, ComboBoxFieldModel model) : base(time, sender, model)
+        protected ComboBoxFieldEventArgs(DateTime time, IComboBoxFieldViewModel sender, ComboBoxFieldModel model) :
+            base(time, sender, model)
         {
             ComboBoxField = model;
             Sender = sender;
@@ -19,7 +20,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Events
 
     public class ComboBoxFieldChangedEventArgs : ComboBoxFieldEventArgs
     {
-        public ComboBoxFieldChangedEventArgs(DateTime time, IComboBoxFieldViewModel field, ComboBoxFieldModel model, string newValue) :
+        public ComboBoxFieldChangedEventArgs(DateTime time, IComboBoxFieldViewModel field, ComboBoxFieldModel model,
+            string newValue) :
             base(time, field,
                 model)
         {
@@ -29,6 +31,5 @@ namespace Aptacode.Forms.Shared.ViewModels.Events
         public string NewValue { get; set; }
 
         public override string ToString() => $"ComboBox Selection Changed: {ComboBoxField.Name} = {NewValue}";
-
     }
 }

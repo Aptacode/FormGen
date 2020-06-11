@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Shared", "Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{7EA13663-9FC7-4E15-9B9D-3AA6BC8FF1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Forms.Wpf.FormDesigner", "Aptacode.Forms.WPF.Demo\Aptacode.Forms.Wpf.FormDesigner.csproj", "{D4ECE5BA-0242-42A1-A949-024C259CF6E4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSuite", "TestSuite\TestSuite.csproj", "{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Forms.Wpf.FormDesigner", "Aptacode.Forms.Wpf.Demo\Aptacode.Forms.Wpf.FormDesigner.csproj", "{D4ECE5BA-0242-42A1-A949-024C259CF6E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{72BB28B3-9CF2-417B-B8D5-BF46069F4310}"
 EndProject
@@ -18,6 +16,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Blazor", "Aptacode.Forms.Blazor\Aptacode.Forms.Blazor.csproj", "{9E15ACEB-78DA-49BA-BD11-FB35B21DC07D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Blazor.Demo", "Aptacode.Forms.Blazor.Demo\Aptacode.Forms.Blazor.Demo.csproj", "{26398EAB-F146-4916-B227-4AAF999DF767}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FF473DC5-48C4-483B-BD41-3542B23EFF2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Forms.Shared.Tests", "Aptacode.Forms.Shared.Tests\Aptacode.Forms.Shared.Tests.csproj", "{539300B1-07DD-4282-B035-C1F2038B56B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{D4ECE5BA-0242-42A1-A949-024C259CF6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4ECE5BA-0242-42A1-A949-024C259CF6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4ECE5BA-0242-42A1-A949-024C259CF6E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F964CD0-2F84-4CA3-82AA-529C4BF9A488}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4D21BC5-E2A6-42EC-A2A6-7A5C0CF87BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4D21BC5-E2A6-42EC-A2A6-7A5C0CF87BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4D21BC5-E2A6-42EC-A2A6-7A5C0CF87BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +47,10 @@ Global
 		{26398EAB-F146-4916-B227-4AAF999DF767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26398EAB-F146-4916-B227-4AAF999DF767}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26398EAB-F146-4916-B227-4AAF999DF767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539300B1-07DD-4282-B035-C1F2038B56B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539300B1-07DD-4282-B035-C1F2038B56B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539300B1-07DD-4282-B035-C1F2038B56B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539300B1-07DD-4282-B035-C1F2038B56B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +60,7 @@ Global
 		{F4D21BC5-E2A6-42EC-A2A6-7A5C0CF87BBB} = {72BB28B3-9CF2-417B-B8D5-BF46069F4310}
 		{9E15ACEB-78DA-49BA-BD11-FB35B21DC07D} = {7EA13663-9FC7-4E15-9B9D-3AA6BC8FF1B5}
 		{26398EAB-F146-4916-B227-4AAF999DF767} = {7EA13663-9FC7-4E15-9B9D-3AA6BC8FF1B5}
+		{539300B1-07DD-4282-B035-C1F2038B56B4} = {FF473DC5-48C4-483B-BD41-3542B23EFF2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72E1C5A4-7CC4-47DD-A098-963DBB80172A}

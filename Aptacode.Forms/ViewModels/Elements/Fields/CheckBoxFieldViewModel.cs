@@ -14,7 +14,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
     {
         public CheckBoxFieldViewModel(string name, ElementLabel label, string content,
             bool defaultIsChecked, params ValidationRule<ICheckBoxFieldViewModel>[] rules) : this(
-            new CheckBoxFieldModel(name, label, content, defaultIsChecked, rules?.ToList() ?? new List<ValidationRule<ICheckBoxFieldViewModel>>())) { }
+            new CheckBoxFieldModel(name, label, content, defaultIsChecked,
+                rules?.ToList() ?? new List<ValidationRule<ICheckBoxFieldViewModel>>())) { }
 
         public CheckBoxFieldViewModel(CheckBoxFieldModel model) : base(model)
         {
@@ -58,12 +59,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _isChecked, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     TriggerEvent(new CheckBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
                     UpdateValidationMessage();
                 }
-
             }
         }
 
@@ -75,7 +75,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _defaultIsChecked, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     Model.DefaultIsChecked = _defaultIsChecked;
                 }
@@ -90,7 +90,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _content, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     _model.Content = _content;
                 }

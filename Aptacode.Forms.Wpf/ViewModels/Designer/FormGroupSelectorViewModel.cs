@@ -74,7 +74,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
 
                 var groupPosition = FormViewModel.Groups.Count + 1;
-                string newGroupName = $"New Group {groupPosition}";
+                var newGroupName = $"New Group {groupPosition}";
                 var newGroup = new FormGroupViewModel(newGroupName, newGroupName);
                 FormViewModel.Groups.Add(newGroup);
                 SelectedGroup = newGroup;

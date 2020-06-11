@@ -62,7 +62,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _defaultContent, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     Model.DefaultContent = _defaultContent;
                 }

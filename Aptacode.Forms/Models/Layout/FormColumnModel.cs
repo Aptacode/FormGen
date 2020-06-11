@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 namespace Aptacode.Forms.Shared.Models.Layout
 {
     /// <summary>
-    /// Form Column Model
-    /// Each Column contains one form element
+    ///     Form Column Model
+    ///     Each Column contains one form element
     /// </summary>
     public class FormColumnModel
     {

@@ -12,9 +12,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
 {
     public class ComboBoxFieldViewModel : FormFieldViewModel, IComboBoxFieldViewModel
     {
-        public ComboBoxFieldViewModel(string name, ElementLabel label, IEnumerable<string> items, string defaultSelectedItem,
-            params ValidationRule<IComboBoxFieldViewModel>[] rules) : this(new ComboBoxFieldModel(name, label, items, defaultSelectedItem,
-             rules?.ToList() ?? new List<ValidationRule<IComboBoxFieldViewModel>>())) { }
+        public ComboBoxFieldViewModel(string name, ElementLabel label, IEnumerable<string> items,
+            string defaultSelectedItem,
+            params ValidationRule<IComboBoxFieldViewModel>[] rules) : this(new ComboBoxFieldModel(name, label, items,
+            defaultSelectedItem,
+            rules?.ToList() ?? new List<ValidationRule<IComboBoxFieldViewModel>>())) { }
 
         public ComboBoxFieldViewModel(ComboBoxFieldModel model) : base(model)
         {
@@ -46,7 +48,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
                 FieldModel = _model;
 
                 Items.Clear();
-                if(Model != null)
+                if (Model != null)
                 {
                     Items.AddRange(_model.Items);
                 }
@@ -66,7 +68,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _defaultSelectedItem, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     Model.DefaultSelectedItem = _defaultSelectedItem;
                 }
@@ -81,7 +83,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _selectedItem, value);
-                if(Model != null)
+                if (Model != null)
                 {
                     TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
                     UpdateValidationMessage();

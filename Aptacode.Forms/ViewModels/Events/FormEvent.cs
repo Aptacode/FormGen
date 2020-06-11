@@ -4,21 +4,20 @@ using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
-    public abstract class FormEventArgs : EventArgs {
-
+    public abstract class FormEventArgs : EventArgs
+    {
         protected FormEventArgs(DateTime time)
         {
             Time = time;
         }
-        public abstract override string ToString();
+
         public DateTime Time { get; internal set; }
+        public abstract override string ToString();
     }
 
     public abstract class FormElementEvent : FormEventArgs
     {
-        protected FormElementEvent(DateTime time) : base(time)
-        {
-        }
+        protected FormElementEvent(DateTime time) : base(time) { }
     }
 
     public abstract class FieldEventArgs : FormElementEvent

@@ -4,8 +4,8 @@ using System.Linq;
 namespace Aptacode.Forms.Shared.Models.Layout
 {
     /// <summary>
-    /// Models a Form Row
-    /// Contains a collection of Form Columns
+    ///     Models a Form Row
+    ///     Contains a collection of Form Columns
     /// </summary>
     public class FormRowModel
     {
@@ -25,6 +25,5 @@ namespace Aptacode.Forms.Shared.Models.Layout
         public IEnumerable<FormColumnModel> Columns { get; internal set; }
 
         #endregion
-
     }
 }

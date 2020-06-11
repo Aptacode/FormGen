@@ -7,7 +7,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
     public abstract class FormElementViewModel : BindableBase
     {
-
         protected FormElementViewModel(FormElementModel elementModel)
         {
             ElementModel = elementModel;
@@ -16,6 +15,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         #region Properties
 
         private FormElementModel _elementModel;
+
         public FormElementModel ElementModel
         {
             get => _elementModel;

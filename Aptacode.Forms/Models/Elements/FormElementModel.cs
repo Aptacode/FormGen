@@ -1,8 +1,7 @@
 ﻿namespace Aptacode.Forms.Shared.Models.Elements
 {
-
     /// <summary>
-    /// Abstract Form Element Model
+    ///     Abstract Form Element Model
     /// </summary>
     public abstract class FormElementModel
     {

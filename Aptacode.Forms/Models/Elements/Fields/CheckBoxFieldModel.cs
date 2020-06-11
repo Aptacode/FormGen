@@ -12,16 +12,17 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields
     {
         internal CheckBoxFieldModel() { }
 
-        public CheckBoxFieldModel(string name, ElementLabel label, string content, bool defaultIsChecked, IEnumerable<ValidationRule<ICheckBoxFieldViewModel>> rules) : base(nameof(ComboBoxFieldModel), name, label, rules)
+        public CheckBoxFieldModel(string name, ElementLabel label, string content, bool defaultIsChecked,
+            IEnumerable<ValidationRule<ICheckBoxFieldViewModel>> rules) : base(nameof(ComboBoxFieldModel), name, label,
+            rules)
         {
             Content = content;
             DefaultIsChecked = defaultIsChecked;
         }
 
-        public CheckBoxFieldModel(string name, ElementLabel label, string content, bool defaultIsChecked, params ValidationRule<ICheckBoxFieldViewModel>[] rules) : this(name, label, content, defaultIsChecked, rules?.ToList())
-        {
-
-        }
+        public CheckBoxFieldModel(string name, ElementLabel label, string content, bool defaultIsChecked,
+            params ValidationRule<ICheckBoxFieldViewModel>[] rules) : this(name, label, content, defaultIsChecked,
+            rules?.ToList()) { }
 
         #region Properties
 

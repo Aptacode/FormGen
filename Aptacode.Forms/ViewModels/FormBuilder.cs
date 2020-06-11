@@ -13,14 +13,16 @@ namespace Aptacode.Forms.Shared.ViewModels
         public static FormViewModel CreateForm(string name, string title, params FormGroupModel[] groups) =>
             new FormViewModel(new FormModel(name, title, groups.ToList()));
 
-        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title, params FormRowModel[] rows)
+        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title,
+            params FormRowModel[] rows)
         {
             var newGroup = new FormGroupViewModel(name, title, rows);
             form.Groups.Add(newGroup);
             return newGroup;
         }
 
-        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title, FormRowViewModel firstRow,
+        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title,
+            FormRowViewModel firstRow,
             params FormRowViewModel[] rows)
         {
             var newGroup = new FormGroupViewModel(name, title);
@@ -63,17 +65,20 @@ namespace Aptacode.Forms.Shared.ViewModels
             return newRow;
         }
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span) => AddColumn(form, name, span,
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span) => AddColumn(
+            form, name, span,
             new ButtonElementModel("default", ElementLabel.None, "default"));
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span, FormElementModel element)
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span,
+            FormElementModel element)
         {
             var newColumn = new FormColumnViewModel(new FormColumnModel(name, span, element));
             form.Columns.Add(newColumn);
             return newColumn;
         }
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span, FormElementViewModel element)
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span,
+            FormElementViewModel element)
         {
             var newColumn = new FormColumnViewModel(new FormColumnModel(name, span, element.ElementModel))
             {

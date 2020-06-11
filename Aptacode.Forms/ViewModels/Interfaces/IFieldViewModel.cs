@@ -6,6 +6,5 @@ namespace Aptacode.Forms.Shared.ViewModels.Interfaces
     {
         string Name { get; set; }
         ElementLabel Label { get; set; }
-
     }
 }

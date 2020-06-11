@@ -4,8 +4,8 @@ using System.Linq;
 namespace Aptacode.Forms.Shared.Models.Layout
 {
     /// <summary>
-    /// Form Group Model
-    /// Contains a collection of form rows
+    ///     Form Group Model
+    ///     Contains a collection of form rows
     /// </summary>
     public class FormGroupModel
     {

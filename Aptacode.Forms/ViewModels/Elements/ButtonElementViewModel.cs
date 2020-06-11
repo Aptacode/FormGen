@@ -1,12 +1,12 @@
-﻿using Aptacode.Forms.Shared.Models.Elements;
+﻿using System;
+using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Mvvm;
 using Aptacode.Forms.Shared.ViewModels.Events;
-using System;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
     /// <summary>
-    /// Button Element View Model
+    ///     Button Element View Model
     /// </summary>
     public class ButtonElementViewModel : FormElementViewModel
     {
@@ -21,6 +21,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         #region Properties
 
         private ButtonElementModel _model;
+
         public ButtonElementModel Model
         {
             get => _model;
@@ -33,6 +34,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         }
 
         private string _content;
+
         public string Content
         {
             get => _content;
@@ -45,6 +47,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
                 }
             }
         }
+
         #endregion
 
         #region Commands

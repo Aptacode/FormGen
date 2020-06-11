@@ -16,6 +16,7 @@
     <AssemblyName>Aptacode.Forms.Wpf</AssemblyName>
     <RootNamespace>Aptacode.Forms.Wpf</RootNamespace>
     <Description>Wpf implementation of Aptacode.Forms</Description>
+    <PackageIcon>Logo.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -132,6 +133,13 @@
     <Page Update="Views\Layout\FormRowView.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)../$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />

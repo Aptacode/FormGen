@@ -5,8 +5,8 @@ using Aptacode.Forms.Shared.Models.Layout;
 namespace Aptacode.Forms.Shared.Models
 {
     /// <summary>
-    /// Models a Form
-    /// Contains a collection of Form Groups
+    ///     Models a Form
+    ///     Contains a collection of Form Groups
     /// </summary>
     public class FormModel
     {
@@ -21,8 +21,19 @@ namespace Aptacode.Forms.Shared.Models
 
         #region Properties
 
+        /// <summary>
+        ///     The Forms name
+        /// </summary>
         public string Name { get; internal set; }
+
+        /// <summary>
+        ///     The Forms Title
+        /// </summary>
         public string Title { get; internal set; }
+
+        /// <summary>
+        ///     The collection of groups that make up the form
+        /// </summary>
         public IEnumerable<FormGroupModel> Groups { get; internal set; }
 
         #endregion
