@@ -2,14 +2,19 @@
 using System.Linq;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
 using Aptacode.Forms.Shared.Models.Layout;
 using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
 using Aptacode.Forms.Shared.ViewModels.Layout;
 
 namespace Aptacode.Forms.Shared.ViewModels
 {
     public static class FormBuilder
     {
+        #region Layout
+
         public static FormViewModel CreateForm(string name, string title, params FormGroupModel[] groups) =>
             new FormViewModel(new FormModel(name, title, groups.ToList()));
 
@@ -123,5 +128,30 @@ namespace Aptacode.Forms.Shared.ViewModels
             {
                 FormElementViewModel = element
             };
+
+        #endregion
+
+
+        #region Elements
+
+        public static ButtonElementViewModel CreateButton(string name, ElementLabel label, string content) =>
+            new ButtonElementViewModel(name, label, content);
+
+        public static HtmlElementViewModel CreateHtml(string name, ElementLabel label, string content) =>
+            new HtmlElementViewModel(name, label, content);
+
+        public static TextFieldViewModel CreateText(string name, ElementLabel label, string defaultContent,
+            params ValidationRule<ITextFieldViewModel>[] rules) =>
+            new TextFieldViewModel(name, label, defaultContent, rules);
+
+        public static CheckBoxFieldViewModel CreateCheckBox(string name, ElementLabel label, string content,
+            bool defaultValue, params ValidationRule<ICheckBoxFieldViewModel>[] rules) =>
+            new CheckBoxFieldViewModel(name, label, content, defaultValue, rules);
+
+        public static ComboBoxFieldViewModel CreateComboBox(string name, ElementLabel label, IEnumerable<string> items,
+            string defaultValue, params ValidationRule<IComboBoxFieldViewModel>[] rules) =>
+            new ComboBoxFieldViewModel(name, label, items, defaultValue, rules);
+
+        #endregion
     }
 }

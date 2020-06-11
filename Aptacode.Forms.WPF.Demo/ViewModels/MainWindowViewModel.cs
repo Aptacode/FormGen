@@ -56,7 +56,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
         private void OnNewForm(object sender, FormViewModel e)
         {
-            FormDesignerViewModel.Load(FormBuilder.CreateForm("New Form", "Form Title").Model);
+            FormDesignerViewModel.Load(FormIO.CreateForm().Model);
         }
 
         private void OnOpenForm(object sender, FormViewModel e)

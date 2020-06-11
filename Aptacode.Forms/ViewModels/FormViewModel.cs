@@ -61,10 +61,16 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         #region Events
 
+        public void Setup()
+        {
+            SubscribeToElementEvents();
+        }
+
         private void SubscribeToElementEvents()
         {
             foreach (var formField in Elements())
             {
+                formField.OnFormEvent -= FormField_OnFormEvent;
                 formField.OnFormEvent += FormField_OnFormEvent;
             }
         }
@@ -107,6 +113,7 @@ namespace Aptacode.Forms.Shared.ViewModels
                 Title = _model?.Title;
 
                 Groups.Clear();
+
                 if (_model != null)
                 {
                     foreach (var group in _model?.Groups.Select(g => new FormGroupViewModel(g)))
