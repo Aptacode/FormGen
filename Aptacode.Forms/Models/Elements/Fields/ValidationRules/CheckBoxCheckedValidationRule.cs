@@ -26,6 +26,5 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
         private string RequiredValueString => RequiredValue ? "checked" : "unchecked";
 
         #endregion
-
     }
 }

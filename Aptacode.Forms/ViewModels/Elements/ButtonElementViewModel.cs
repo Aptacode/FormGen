@@ -55,7 +55,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         private DelegateCommand _buttonClickedCommand;
 
         public DelegateCommand ButtonClickedCommand => _buttonClickedCommand ??=
-            new DelegateCommand((_) => TriggerEvent(new ButtonClickedEventArgs(DateTime.Now, Model)));
+            new DelegateCommand(_ => TriggerEvent(new ButtonClickedEventArgs(DateTime.Now)));
 
         #endregion
     }

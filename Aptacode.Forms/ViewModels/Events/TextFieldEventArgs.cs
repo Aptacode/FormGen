@@ -1,26 +1,17 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Models.Elements.Fields;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
-    public abstract class TextFieldEventArgs : FieldEventArgs
+    public abstract class TextFieldEventArgs : FormFieldEventArgs
     {
-        protected TextFieldEventArgs(DateTime time, ITextFieldViewModel sender, TextFieldModel model) : base(time,
-            sender, model)
-        {
-            TextField = sender;
-        }
-
-        public ITextFieldViewModel TextField { get; set; }
+        protected TextFieldEventArgs(DateTime time) : base(time) { }
     }
 
     public class TextFieldChangedEventArgs : TextFieldEventArgs
     {
-        public TextFieldChangedEventArgs(DateTime time, ITextFieldViewModel field, TextFieldModel model,
-            string oldContent,
+        public TextFieldChangedEventArgs(DateTime time, string oldContent,
             string newContent) :
-            base(time, field, model)
+            base(time)
         {
             OldContent = oldContent;
             NewContent = newContent;
@@ -29,6 +20,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Events
         public string OldContent { get; set; }
         public string NewContent { get; set; }
 
-        public override string ToString() => $"TextField Changed: {TextField.Name} = {NewContent}";
+        public override string ToString() => $"TextField Changed: {OldContent} => {NewContent}";
     }
 }

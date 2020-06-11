@@ -51,7 +51,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
                     return;
                 }
 
-                TriggerEvent(new TextFieldChangedEventArgs(DateTime.Now, this, Model, oldValue, value));
+                TriggerEvent(new TextFieldChangedEventArgs(DateTime.Now, oldValue, value));
                 UpdateValidationMessage();
             }
         }

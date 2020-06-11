@@ -1,22 +1,16 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Models.Elements;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
-    public abstract class ButtonEventArgs : FormElementEvent
+    public abstract class ButtonEventArgs : FormElementEventArgs
     {
-        protected ButtonEventArgs(DateTime time, ButtonElementModel button) : base(time)
-        {
-            Button = button;
-        }
-
-        public ButtonElementModel Button { get; set; }
+        protected ButtonEventArgs(DateTime time) : base(time) { }
     }
 
     public class ButtonClickedEventArgs : ButtonEventArgs
     {
-        public ButtonClickedEventArgs(DateTime time, ButtonElementModel button) : base(time, button) { }
+        public ButtonClickedEventArgs(DateTime time) : base(time) { }
 
-        public override string ToString() => $"Button Clicked: {Button.Name}";
+        public override string ToString() => "Button Clicked";
     }
 }

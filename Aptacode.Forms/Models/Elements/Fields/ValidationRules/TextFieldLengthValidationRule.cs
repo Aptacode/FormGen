@@ -23,9 +23,10 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
             var message = passed ? string.Empty : $"'{input.Name}' must be {EqualityOperatorToString()} {Value}";
             return new ValidationResult(this, passed, message);
         }
+
         private bool Passed(ITextFieldViewModel field)
         {
-            var contentLength = field.Content.Length;
+            var contentLength = field?.Content?.Length ?? 0;
 
             var greaterThan = (EqualityOperator & EqualityOperator.GreaterThan) != EqualityOperator.None;
             var equalTo = (EqualityOperator & EqualityOperator.EqualTo) != EqualityOperator.None;

@@ -21,10 +21,12 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
         {
             Model = model;
         }
+
         public override IEnumerable<ValidationResult> Validate()
         {
             return Model.Rules.Select(rule => rule.Validate(this));
         }
+
         public override FieldResult GetResult() => new CheckBoxFieldResult(this, Model);
 
         #region Properties
@@ -57,7 +59,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
                     return;
                 }
 
-                TriggerEvent(new CheckBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
+                TriggerEvent(new CheckBoxFieldChangedEventArgs(DateTime.Now, value));
                 UpdateValidationMessage();
             }
         }

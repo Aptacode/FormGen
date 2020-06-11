@@ -34,7 +34,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementLabelTextBox.OnFormEvent += ElementLabelTextBoxOnOnFormEvent;
         }
 
-        private void ElementLabelTextBoxOnOnFormEvent(object sender, FormElementEvent e)
+        private void ElementLabelTextBoxOnOnFormEvent(object sender, FormElementEventArgs e)
         {
             if (e is TextFieldChangedEventArgs eventArgs)
             {
@@ -42,7 +42,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             }
         }
 
-        private void ElementNameTextBoxOnOnFormEvent(object sender, FormElementEvent e)
+        private void ElementNameTextBoxOnOnFormEvent(object sender, FormElementEventArgs e)
         {
             if (e is TextFieldChangedEventArgs eventArgs)
             {
@@ -50,7 +50,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             }
         }
 
-        private void ElementTypeComboBoxOnOnFormEvent(object sender, FormElementEvent e)
+        private void ElementTypeComboBoxOnOnFormEvent(object sender, FormElementEventArgs e)
         {
             var oldElement = FormElement;
 

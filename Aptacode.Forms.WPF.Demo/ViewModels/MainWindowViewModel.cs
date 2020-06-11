@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Events;
 using Aptacode.Forms.Wpf.ViewModels.Designer;
 using Microsoft.Win32;
@@ -20,10 +21,9 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             FormDesignerViewModel.OnOpenForm += OnOpenForm;
         }
 
-
         private void NameForm_OnFormEvent(object sender, FormEventArgs e)
         {
-            if (!(e is ButtonClickedEventArgs buttonClickedEvent) || buttonClickedEvent.Button.Name != "SubmitButton")
+            if (e is ButtonClickedEventArgs buttonClickedEvent && sender is ButtonElementViewModel button)
             {
                 return;
             }

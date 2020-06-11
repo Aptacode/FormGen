@@ -71,7 +71,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public event EventHandler<FormEventArgs> OnFormEvent;
 
-        private void FormField_OnFormEvent(object sender, FormElementEvent e)
+        private void FormField_OnFormEvent(object sender, FormElementEventArgs e)
         {
             OnFormEvent?.Invoke(this, e);
         }

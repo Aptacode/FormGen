@@ -36,7 +36,5 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
             Assert.Equal(endString, textChangedNewString);
             Assert.Equal(endString, sut.Content);
         }
-
-
     }
 }

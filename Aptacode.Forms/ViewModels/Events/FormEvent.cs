@@ -1,6 +1,7 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Models.Elements.Fields;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
@@ -15,20 +16,27 @@ namespace Aptacode.Forms.Shared.ViewModels.Events
         public abstract override string ToString();
     }
 
-    public abstract class FormElementEvent : FormEventArgs
+    public abstract class FormElementEventArgs : FormEventArgs
     {
-        protected FormElementEvent(DateTime time) : base(time) { }
+        protected FormElementEventArgs(DateTime time) : base(time) { }
     }
 
-    public abstract class FieldEventArgs : FormElementEvent
+    public abstract class FormFieldEventArgs : FormElementEventArgs
     {
-        protected FieldEventArgs(DateTime time, IFieldViewModel sender, FormFieldModel field) : base(time)
+        protected FormFieldEventArgs(DateTime time) : base(time) { }
+    }
+
+    public class ValidationChangedEventArgs : FormFieldEventArgs
+    {
+        public ValidationChangedEventArgs(DateTime time, IEnumerable<ValidationResult> results) :
+            base(time)
         {
-            Field = field;
-            Sender = sender;
+            Results = results;
         }
 
-        public IFieldViewModel Sender { get; set; }
-        public FormFieldModel Field { get; set; }
+        public IEnumerable<ValidationResult> Results { get; set; }
+
+        public override string ToString() =>
+            $"Validation Result Changed: {string.Join("\n", Results.Select(r => r.Message))}";
     }
 }

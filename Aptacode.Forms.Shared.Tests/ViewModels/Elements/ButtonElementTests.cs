@@ -12,7 +12,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements
             //Arrange
             var sut = new ButtonElementViewModel("submit button", ElementLabel.None, "submit");
             var buttonClicked = false;
-            sut.OnFormEvent += (s, e) => { buttonClicked = true; };
+            sut.OnFormEvent += (s, e) => buttonClicked = true;
 
             //Act
             sut.ButtonClickedCommand.Execute(null);

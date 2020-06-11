@@ -22,10 +22,12 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
         {
             Model = model;
         }
+
         public override IEnumerable<ValidationResult> Validate()
         {
             return Model.Rules.Select(rule => rule.Validate(this));
         }
+
         public override FieldResult GetResult() => new ComboBoxFieldResult(this, Model);
 
         #region Properties
@@ -81,7 +83,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
                     return;
                 }
 
-                TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
+                TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, value));
                 UpdateValidationMessage();
             }
         }

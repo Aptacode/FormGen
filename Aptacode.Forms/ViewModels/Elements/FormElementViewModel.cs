@@ -62,9 +62,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
 
         #region Events
 
-        public event EventHandler<FormElementEvent> OnFormEvent;
+        public event EventHandler<FormElementEventArgs> OnFormEvent;
 
-        protected void TriggerEvent(FormElementEvent eventArgs) => OnFormEvent?.Invoke(this, eventArgs);
+        protected void TriggerEvent(FormElementEventArgs eventArgs) => OnFormEvent?.Invoke(this, eventArgs);
 
         #endregion
     }
