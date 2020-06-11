@@ -20,8 +20,6 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
 
         protected ValidationRule(string type) : base(type) { }
 
-        public abstract bool Passed(TField fieldInput);
-
-        public abstract string GetMessage(TField fieldInput);
+        public abstract ValidationResult Validate(TField input);
     }
 }

@@ -17,7 +17,13 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
         public EqualityOperator EqualityOperator { get; internal set; }
         public int Value { get; internal set; }
 
-        public override bool Passed(ITextFieldViewModel field)
+        public override ValidationResult Validate(ITextFieldViewModel input)
+        {
+            var passed = Passed(input);
+            var message = passed ? string.Empty : $"'{input.Name}' must be {EqualityOperatorToString()} {Value}";
+            return new ValidationResult(this, passed, message);
+        }
+        private bool Passed(ITextFieldViewModel field)
         {
             var contentLength = field.Content.Length;
 
@@ -41,11 +47,6 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
 
             return lessThan && lessThanCheck;
         }
-
-        public override string GetMessage(ITextFieldViewModel fieldInput) =>
-            Passed(fieldInput)
-                ? string.Empty
-                : $"'{fieldInput.Name}' must be {EqualityOperatorToString()} {Value}";
 
         private string EqualityOperatorToString()
         {

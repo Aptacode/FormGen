@@ -46,11 +46,13 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             {
                 var oldValue = _content;
                 SetProperty(ref _content, value);
-                if (Model != null)
+                if (Model == null)
                 {
-                    TriggerEvent(new TextFieldChangedEventArgs(DateTime.Now, this, Model, oldValue, value));
-                    UpdateValidationMessage();
+                    return;
                 }
+
+                TriggerEvent(new TextFieldChangedEventArgs(DateTime.Now, this, Model, oldValue, value));
+                UpdateValidationMessage();
             }
         }
 
@@ -69,14 +71,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             }
         }
 
-        public override bool CheckIsValid()
+        public override IEnumerable<ValidationResult> Validate()
         {
-            return Model.Rules.All(rule => rule.Passed(this));
-        }
-
-        public override IEnumerable<string> GetValidationMessages()
-        {
-            return Model.Rules.Select(rule => rule.GetMessage(this));
+            return Model.Rules.Select(rule => rule.Validate(this));
         }
 
         public override FieldResult GetResult() => new TextFieldResult(this, Model);

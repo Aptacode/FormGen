@@ -8,7 +8,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
     public class TextFieldViewModelTests
     {
         [Fact]
-        public void ButtonClickEvent_Fires()
+        public void ContentChangeFiresTextFieldChangedEvent()
         {
             //Arrange
             const string startString = "Start";
@@ -36,5 +36,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
             Assert.Equal(endString, textChangedNewString);
             Assert.Equal(endString, sut.Content);
         }
+
+
     }
 }

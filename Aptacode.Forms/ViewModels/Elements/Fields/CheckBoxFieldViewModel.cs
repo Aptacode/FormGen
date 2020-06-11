@@ -21,17 +21,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
         {
             Model = model;
         }
-
-        public override bool CheckIsValid()
+        public override IEnumerable<ValidationResult> Validate()
         {
-            return Model.Rules.All(rule => rule.Passed(this));
+            return Model.Rules.Select(rule => rule.Validate(this));
         }
-
-        public override IEnumerable<string> GetValidationMessages()
-        {
-            return Model.Rules.Select(rule => rule.GetMessage(this));
-        }
-
         public override FieldResult GetResult() => new CheckBoxFieldResult(this, Model);
 
         #region Properties

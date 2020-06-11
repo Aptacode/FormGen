@@ -13,12 +13,12 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
             RequiredValue = requiredValue;
         }
 
-        public override bool Passed(ICheckBoxFieldViewModel fieldViewModel) =>
-            fieldViewModel.IsChecked == RequiredValue;
-
-        public override string GetMessage(ICheckBoxFieldViewModel fieldViewModelInput) => Passed(fieldViewModelInput)
-            ? string.Empty
-            : $"'{fieldViewModelInput.Label}' must be {RequiredValueString}";
+        public override ValidationResult Validate(ICheckBoxFieldViewModel input)
+        {
+            var passed = input.IsChecked == RequiredValue;
+            var message = passed ? string.Empty : $"'{input.Label}' must be {RequiredValueString}";
+            return new ValidationResult(this, passed, message);
+        }
 
         #region Properties
 
@@ -26,5 +26,6 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
         private string RequiredValueString => RequiredValue ? "checked" : "unchecked";
 
         #endregion
+
     }
 }

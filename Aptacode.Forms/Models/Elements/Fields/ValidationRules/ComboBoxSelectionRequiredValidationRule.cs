@@ -7,9 +7,11 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
         public ComboBoxSelectionRequiredValidationRule() : base(
             nameof(ComboBoxSelectionRequiredValidationRule)) { }
 
-        public override bool Passed(IComboBoxFieldViewModel field) => field.Items.Contains(field.SelectedItem);
-
-        public override string GetMessage(IComboBoxFieldViewModel fieldInput) =>
-            Passed(fieldInput) ? string.Empty : $"'{fieldInput.Label}' must select an option";
+        public override ValidationResult Validate(IComboBoxFieldViewModel input)
+        {
+            var passed = input.Items.Contains(input.SelectedItem);
+            var message = passed ? string.Empty : $"'{input.Label}' must select an option";
+            return new ValidationResult(this, passed, message);
+        }
     }
 }
