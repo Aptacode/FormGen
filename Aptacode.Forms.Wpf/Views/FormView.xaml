@@ -3,15 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
-             xmlns:viewmodels="clr-namespace:Aptacode.Forms.Wpf.ViewModels"
-             xmlns:layout="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Layout"
+             xmlns:viewModels="clr-namespace:Aptacode.Forms.Shared.ViewModels.Layout;assembly=Aptacode.Forms.Shared"
              xmlns:layout1="clr-namespace:Aptacode.Forms.Wpf.Views.Layout"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <ItemsControl ItemsSource="{Binding Groups}">
         <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="{x:Type layout:FormGroupViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:FormGroupViewModel}">
                 <GroupBox Margin="0,8">
                     <layout1:FormGroupView DataContext="{Binding}" />
                 </GroupBox>

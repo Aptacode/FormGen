@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Wpf", "Aptac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Blazor", "Aptacode.Forms.Blazor\Aptacode.Forms.Blazor.csproj", "{9E15ACEB-78DA-49BA-BD11-FB35B21DC07D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aptacode.Forms.Blazor.Demo", "Aptacode.Forms.Blazor.Demo\Aptacode.Forms.Blazor.Demo.csproj", "{26398EAB-F146-4916-B227-4AAF999DF767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aptacode.Forms.Blazor.Demo", "Aptacode.Forms.Blazor.Demo\Aptacode.Forms.Blazor.Demo.csproj", "{26398EAB-F146-4916-B227-4AAF999DF767}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

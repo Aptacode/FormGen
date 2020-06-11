@@ -1,6 +1,8 @@
 ﻿@inherits FormBase
-<h3>Form</h3>
 
-@code {
+<h3>@ViewModel.Name</h3>
 
+@foreach (var group in ViewModel.Groups)
+{
+    <FormGroup ViewModel="@group"/>
 }

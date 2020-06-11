@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aptacode.Forms\Aptacode.Forms.Shared.csproj" />
-    <ProjectReference Include="..\Forms\Aptacode.Forms.Shared.csproj" />
   </ItemGroup>
 
 </Project>

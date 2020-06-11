@@ -10,10 +10,7 @@ namespace Aptacode.Forms.Wpf.Mvvm
                 typeof(WebBrowserUtility), new UIPropertyMetadata(null,
                     BindableSourcePropertyChanged));
 
-        public static string GetBindableSource(DependencyObject obj)
-        {
-            return (string) obj.GetValue(BindableSourceProperty);
-        }
+        public static string GetBindableSource(DependencyObject obj) => (string) obj.GetValue(BindableSourceProperty);
 
         public static void SetBindableSource(DependencyObject obj, string value)
         {
@@ -24,7 +21,7 @@ namespace Aptacode.Forms.Wpf.Mvvm
             DependencyPropertyChangedEventArgs e)
         {
             var webBrowser = (WebBrowser) o;
-            var content = e.NewValue.ToString() == string.Empty ? " " : e.NewValue.ToString();
+            var content = string.IsNullOrEmpty(e.NewValue.ToString()) ? " " : e.NewValue.ToString();
             webBrowser.NavigateToString(content);
         }
     }

@@ -1,10 +1,8 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Elements.Fields;
-using Aptacode.Forms.Shared.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Enums;
-using Aptacode.Forms.Shared.Layout;
-using Aptacode.Forms.Wpf.ViewModels.Elements;
-using Aptacode.Forms.Wpf.ViewModels.Layout;
+using Aptacode.Forms.Shared.Models.Enums;
+using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
+using Aptacode.Forms.Shared.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -52,32 +50,30 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _deleteCommand;
 
         public DelegateCommand DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand(() =>
+            _deleteCommand ??= new DelegateCommand(() =>
             {
                 if (SelectedColumn == null)
                 {
                     return;
                 }
 
-                FormRow.Remove(SelectedColumn.Column);
+                FormRow.Columns.Remove(SelectedColumn);
 
                 OnElementRemoved?.Invoke(this, SelectedColumn.FormElementViewModel);
                 SelectedColumn = null;
-            }));
+            });
 
 
         private DelegateCommand _updateCommand;
 
         public DelegateCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new DelegateCommand(() =>
-            {
-                OnElementSelected?.Invoke(this, SelectedColumn.FormElementViewModel);
-            }));
+            _updateCommand ??=
+                new DelegateCommand(() => OnElementSelected?.Invoke(this, SelectedColumn.FormElementViewModel));
 
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ?? (_createCommand = new DelegateCommand(() =>
+            _createCommand ??= new DelegateCommand(() =>
             {
                 if (FormRow == null)
                 {
@@ -85,13 +81,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
 
                 var columnPosition = FormRow.Columns.Count + 1;
-                var newField = new TextField($"Column {columnPosition.ToString()}", LabelPosition.AboveElement, "Label",
-                    new ValidationRule<TextField>[0]);
 
-                var column = new FormColumn(1, newField);
-                FormRow.Add(column);
-                SelectedColumn = new FormColumnViewModel(column);
-            }));
+                var newField = new TextFieldViewModel($"Column {columnPosition}", LabelPosition.AboveElement, "Label",
+                    null);
+                var newColumnViewModel = new FormColumnViewModel(1, newField);
+
+                FormRow.Columns.Add(newColumnViewModel);
+                SelectedColumn = newColumnViewModel;
+            });
 
         #endregion
     }

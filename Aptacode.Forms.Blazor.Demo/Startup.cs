@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blazorise;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
 
 namespace Aptacode.Forms.Blazor.Demo
 {
@@ -30,8 +25,8 @@ namespace Aptacode.Forms.Blazor.Demo
             services
                 .AddBlazorise(options =>
                 {
-                options.ChangeTextOnKeyPress = true; // optional
-                       })
+                    options.ChangeTextOnKeyPress = true; // optional
+                })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
 

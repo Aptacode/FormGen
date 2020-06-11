@@ -1,6 +1,7 @@
 ﻿using System;
-using Aptacode.Forms.Shared;
-using Aptacode.Forms.Wpf.ViewModels.Layout;
+using Aptacode.Forms.Shared.Models;
+using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -31,7 +32,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Methods
 
-        public void Load(Form form)
+        public void Load(FormModel form)
         {
             FormViewModel = new FormViewModel(form);
             FormGroupSelectorViewModel.FormViewModel = FormViewModel;
@@ -118,24 +119,17 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _newFormCommand;
 
         public DelegateCommand NewFormCommand =>
-            _newFormCommand ??
-            (_newFormCommand = new DelegateCommand(() => { OnNewForm?.Invoke(this, FormViewModel); }));
+            _newFormCommand ??= new DelegateCommand(() => OnNewForm?.Invoke(this, FormViewModel));
 
         private DelegateCommand _openFormCommand;
 
         public DelegateCommand OpenFormCommand =>
-            _openFormCommand ?? (_openFormCommand = new DelegateCommand(() =>
-            {
-                OnOpenForm?.Invoke(this, FormViewModel);
-            }));
+            _openFormCommand ??= new DelegateCommand(() => OnOpenForm?.Invoke(this, FormViewModel));
 
         private DelegateCommand _saveFormCommand;
 
         public DelegateCommand SaveFormCommand =>
-            _saveFormCommand ?? (_saveFormCommand = new DelegateCommand(() =>
-            {
-                OnSaveForm?.Invoke(this, FormViewModel);
-            }));
+            _saveFormCommand ??= new DelegateCommand(() => OnSaveForm?.Invoke(this, FormViewModel));
 
         #endregion
     }

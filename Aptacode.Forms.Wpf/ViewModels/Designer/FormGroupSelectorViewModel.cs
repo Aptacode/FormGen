@@ -1,6 +1,6 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Layout;
-using Aptacode.Forms.Wpf.ViewModels.Layout;
+using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -16,17 +16,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Methods
 
-        public void Load()
-        {
-            if (FormViewModel == null)
-            {
-                return;
-            }
-
-            FormViewModel.Load();
-            SelectedGroup = null;
-        }
-
         #endregion
 
         #region Properties
@@ -39,7 +28,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _formViewModel, value);
-                Load();
+                SelectedGroup = null;
             }
         }
 
@@ -63,21 +52,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _deleteCommand;
 
         public DelegateCommand DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand(() =>
+            _deleteCommand ??= new DelegateCommand(() =>
             {
                 if (SelectedGroup == null)
                 {
                     return;
                 }
 
-                FormViewModel.Remove(SelectedGroup.Group);
-                Load();
-            }));
+                FormViewModel.Groups.Remove(SelectedGroup);
+                SelectedGroup = null;
+            });
 
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ?? (_createCommand = new DelegateCommand(() =>
+            _createCommand ??= new DelegateCommand(() =>
             {
                 if (FormViewModel == null)
                 {
@@ -85,13 +74,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
 
                 var groupPosition = FormViewModel.Groups.Count + 1;
-                var newGroup = FormGroup.EmptyGroup;
-                newGroup.Label = $"{FormGroup.DefaultName} {groupPosition.ToString()}";
-
-                FormViewModel.Add(newGroup);
-                Load();
-                SelectedGroup = new FormGroupViewModel(newGroup);
-            }));
+                var newGroup = new FormGroupViewModel($"Default {groupPosition}");
+                FormViewModel.Groups.Add(newGroup);
+                SelectedGroup = newGroup;
+            });
 
         #endregion
     }

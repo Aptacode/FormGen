@@ -1,0 +1,14 @@
+﻿@inherits ComboBoxFieldBase
+
+<Field>
+    <FieldLabel>@ViewModel.Label</FieldLabel>
+
+    <FieldBody>
+        <Select TValue="int">
+            @foreach (var item in ViewModel.Items)
+            {
+                <SelectItem Value="@item">@item</SelectItem>
+            }
+        </Select>
+    </FieldBody>
+</Field>

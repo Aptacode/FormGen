@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:elements="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements"
-             xmlns:fields="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Elements.Fields"
+             xmlns:elements="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements;assembly=Aptacode.Forms.Shared"
+             xmlns:fields="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Fields;assembly=Aptacode.Forms.Shared"
+
              xmlns:elements1="clr-namespace:Aptacode.Forms.Wpf.Views.Elements"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">

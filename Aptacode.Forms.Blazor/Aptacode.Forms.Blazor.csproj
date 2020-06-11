@@ -18,5 +18,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aptacode.Forms\Aptacode.Forms.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
 

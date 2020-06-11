@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net4.7.2</TargetFramework>
+    <LangVersion>8</LangVersion>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -34,7 +35,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aptacode.Forms\Aptacode.Forms.Shared.csproj" />
-    <ProjectReference Include="..\Forms\Aptacode.Forms.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

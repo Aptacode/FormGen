@@ -1,42 +1,41 @@
-﻿using System.IO;
-using Aptacode.Forms.Shared;
-using Aptacode.Forms.Shared.Elements;
-using Aptacode.Forms.Shared.Elements.Fields;
-using Aptacode.Forms.Shared.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Enums;
-using Aptacode.Forms.Shared.Layout;
+﻿using Aptacode.Forms.Shared.Models;
+using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.Models.Elements.Fields;
+using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
+using Aptacode.Forms.Shared.Models.Enums;
+using Aptacode.Forms.Shared.Models.Layout;
 
 namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 {
-    public class FormIO
+    public static class FormIO
     {
-        public static Form ProgrammaticForm()
+        public static FormModel ProgrammaticForm()
         {
-            return new Form("form1", "Test Form",
+            return new FormModel("form1", "Test Form",
                 new[]
                 {
-                    new FormGroup("Test Form Group", new[]
+                    new FormGroupModel("Test Form Group", new[]
                     {
-                        new FormRow(1, "Default", new[]
+                        new FormRowModel("Default", 1, new[]
                         {
-                            new FormColumn(1,
-                                new HtmlElement("Paragraph",
+                            new FormColumnModel(1,
+                                new HtmlElementModel("Paragraph",
                                     "<h1><em>Test HTML Content</em></h1>\r\n<p>Test</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">TEST od&nbsp;&nbsp; </span></p>",
                                     LabelPosition.AboveElement, "Sample HTML Content"))
                         }),
 
-                        new FormRow(1, "Default", new[]
+                        new FormRowModel("Default", 1, new[]
                         {
-                            new FormColumn(1,
-                                new TextField("firstName", LabelPosition.AboveElement, "First Name",
-                                    new ValidationRule<TextField>[]
+                            new FormColumnModel(1,
+                                new TextFieldModel("firstName", LabelPosition.AboveElement, "First Name",
+                                    new[]
                                     {
                                         new TextFieldLengthValidationRule(EqualityOperator.GreaterThan, 2)
                                     })
                             ),
-                            new FormColumn(1,
-                                new TextField("lastName", LabelPosition.AboveElement, "Last Name",
-                                    new ValidationRule<TextField>[]
+                            new FormColumnModel(1,
+                                new TextFieldModel("lastName", LabelPosition.AboveElement, "Last Name",
+                                    new[]
                                     {
                                         new TextFieldLengthValidationRule(
                                             EqualityOperator.LessThan | EqualityOperator.EqualTo, 10)
@@ -44,34 +43,34 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                             )
                         }),
 
-                        new FormRow(1, "Default", new[]
+                        new FormRowModel("Default", 1, new[]
                         {
-                            new FormColumn(1,
-                                new CheckBoxField("receiveEmail", LabelPosition.AboveElement,
+                            new FormColumnModel(1,
+                                new CheckBoxFieldModel("receiveEmail", LabelPosition.AboveElement,
                                     "Do you accept the terms and conditions",
-                                    new ValidationRule<CheckBoxField>[]
+                                    new[]
                                     {
                                         new CheckBoxCheckedValidationRule(true)
                                     }, "I Agree", false)
                             )
                         }),
 
-                        new FormRow(1, "Default", new[]
+                        new FormRowModel("Default", 1, new[]
                         {
-                            new FormColumn(1,
-                                new ComboBoxField("yearsOfExperience", LabelPosition.AboveElement,
+                            new FormColumnModel(1,
+                                new ComboBoxFieldModel("yearsOfExperience", LabelPosition.AboveElement,
                                     "Years of Experience",
-                                    new ValidationRule<ComboBoxField>[]
+                                    new[]
                                     {
                                         new ComboBoxSelectionRequiredValidationRule()
                                     }, new[] {"0-1", "1-5", "5+"})
                             )
                         }),
 
-                        new FormRow(1, "Default", new[]
+                        new FormRowModel("Default", 1, new[]
                         {
-                            new FormColumn(1,
-                                new ButtonElement("SubmitButton",
+                            new FormColumnModel(1,
+                                new ButtonElementModel("SubmitButton",
                                     "Submit", LabelPosition.AboveElement, "")
                             )
                         })
@@ -79,15 +78,15 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 });
         }
 
-        public static void SaveForm(string filename, Form form)
-        {
-            File.WriteAllText(filename, form.ToJson());
-        }
+        //public static void SaveForm(string filename, FormModel form)
+        //{
+        //   // File.WriteAllText(filename, form.ToJson());
+        //}
 
-        public static Form LoadForm(string filename)
-        {
-            var jsonString = File.ReadAllText(filename);
-            return Form.FromJson(jsonString);
-        }
+        //public static FormModel LoadForm(string filename)
+        //{
+        //    var jsonString = File.ReadAllText(filename);
+        //    return FormModel.FromJson(jsonString);
+        //}
     }
 }

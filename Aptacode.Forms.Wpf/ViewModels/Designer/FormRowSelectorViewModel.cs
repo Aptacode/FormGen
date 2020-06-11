@@ -1,6 +1,5 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Layout;
-using Aptacode.Forms.Wpf.ViewModels.Layout;
+using Aptacode.Forms.Shared.ViewModels.Layout;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -8,15 +7,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormRowSelectorViewModel : BindableBase
     {
-        #region Methods
-
-        public void Load()
-        {
-            SelectedRow = null;
-        }
-
-        #endregion
-
         #region Events
 
         public EventHandler<FormRowViewModel> OnRowSelected { get; set; }
@@ -35,7 +25,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _formGroup, value);
-                Load();
+                SelectedRow = null;
             }
         }
 
@@ -58,22 +48,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _deleteCommand;
 
         public DelegateCommand DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand(() =>
+            _deleteCommand ??= new DelegateCommand(() =>
             {
                 if (SelectedRow == null)
                 {
                     return;
                 }
 
-                FormGroup.Remove(SelectedRow.Row);
+                FormGroup.Rows.Remove(SelectedRow);
                 SelectedRow = null;
-                Load();
-            }));
+            });
 
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ?? (_createCommand = new DelegateCommand(() =>
+            _createCommand ??= new DelegateCommand(() =>
             {
                 if (FormGroup == null)
                 {
@@ -82,12 +71,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
                 var rowPosition = FormGroup.Rows.Count + 1;
 
-                var newRow = FormRow.EmptyRow;
-                newRow.Name = $"{FormRow.DefaultName} {rowPosition.ToString()}";
-                FormGroup.Add(newRow);
-                Load();
-                SelectedRow = new FormRowViewModel(newRow);
-            }));
+                var newRow = new FormRowViewModel($"Default {rowPosition}", 1);
+                FormGroup.Rows.Add(newRow);
+                SelectedRow = newRow;
+            });
 
         #endregion
     }

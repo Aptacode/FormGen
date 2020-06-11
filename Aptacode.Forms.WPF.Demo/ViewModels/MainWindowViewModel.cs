@@ -1,9 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
-using Aptacode.Forms.Shared;
-using Aptacode.Forms.Shared.Events;
-using Aptacode.Forms.Shared.Layout;
-using Aptacode.Forms.Wpf.ViewModels;
+using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Events;
 using Aptacode.Forms.Wpf.ViewModels.Designer;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -35,16 +33,16 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
         private void Submit()
         {
-            if (_form.IsValid)
+            if (_formViewModel.IsValid)
             {
-                var formResults = _form.GetResult();
+                var formResults = _formViewModel.GetResult();
                 File.WriteAllText("./results.json", JsonConvert.SerializeObject(formResults, Formatting.Indented));
 
                 MessageBox.Show("Submitted");
             }
             else
             {
-                MessageBox.Show(_form.GetValidationMessage());
+                MessageBox.Show(_formViewModel.GetValidationMessage());
             }
         }
 
@@ -53,14 +51,12 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         private void OnFormSelected(object sender, FormViewModel e)
         {
             FormViewModel = e;
-
-            _form = e.Form;
-            _form.OnFormEvent += NameForm_OnFormEvent;
+            FormViewModel.OnFormEvent += NameForm_OnFormEvent;
         }
 
         private void OnNewForm(object sender, FormViewModel e)
         {
-            FormDesignerViewModel.Load(new Form("New Form", "Form Title", new FormGroup[0]));
+            FormDesignerViewModel.Load(FormBuilder.CreateForm("New Form", "Form Title").Model);
         }
 
         private void OnOpenForm(object sender, FormViewModel e)
@@ -70,7 +66,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             if (openFileDialog.ShowDialog() == true)
             {
                 var jsonString = File.ReadAllText(openFileDialog.FileName);
-                FormDesignerViewModel.Load(Form.FromJson(jsonString));
+                //    FormDesignerViewModel.Load(FormModel.FromJson(jsonString));
             }
             else
             {
@@ -80,14 +76,12 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
         private void OnSaveForm(object sender, FormViewModel e)
         {
-            File.WriteAllText($"{FormViewModel.Form.Name}.json", FormViewModel.Form.ToJson());
+            //    File.WriteAllText($"{FormViewModel.Form.Name}.json", FormViewModel.Form.ToJson());
         }
 
         #endregion
 
         #region Properties
-
-        private Form _form;
 
         private FormViewModel _formViewModel;
 
