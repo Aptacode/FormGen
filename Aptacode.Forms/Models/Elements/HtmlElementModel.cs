@@ -1,13 +1,11 @@
-﻿using Aptacode.Forms.Shared.Models.Enums;
-
-namespace Aptacode.Forms.Shared.Models.Elements
+﻿namespace Aptacode.Forms.Shared.Models.Elements
 {
     public class HtmlElementModel : FormElementModel
     {
         internal HtmlElementModel() { }
 
-        public HtmlElementModel(string name, string content, LabelPosition labelPosition, string label) : base(
-            nameof(HtmlElementModel), name, labelPosition, label)
+        public HtmlElementModel(string name, ElementLabel label, string content) : base(
+            nameof(HtmlElementModel), name, label)
         {
             Content = content;
         }

@@ -8,11 +8,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Layout
 {
     public class FormColumnViewModel : BindableBase
     {
-        public FormColumnViewModel(int span) : this(new FormColumnModel(span, null)) { }
+        public FormColumnViewModel(string name, int span) : this(new FormColumnModel(name, span, null)) { }
 
-        public FormColumnViewModel(int span, FormElementViewModel viewModel)
+        public FormColumnViewModel(string name, int span, FormElementViewModel viewModel)
         {
-            _model = new FormColumnModel(span, viewModel.ElementModel);
+            _model = new FormColumnModel(name, span, viewModel.ElementModel);
             FormElementViewModel = viewModel ?? throw new ArgumentNullException(nameof(FormElementViewModel));
         }
 

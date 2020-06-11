@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
-        <TextBlock Text="{Binding Label}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
+        <TextBlock Text="{Binding Label.Text}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
                    TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
         <ComboBox ItemsSource="{Binding Items}"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay, ValidatesOnDataErrors=True}" />

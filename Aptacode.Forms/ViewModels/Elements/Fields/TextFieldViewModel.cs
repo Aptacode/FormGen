@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Fields.Results;
 using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.ViewModels.Events;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
@@ -11,8 +12,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
 {
     public class TextFieldViewModel : FormFieldViewModel, ITextFieldViewModel
     {
-        public TextFieldViewModel(string name, LabelPosition labelPosition, string label,
-            params ValidationRule<ITextFieldViewModel>[] rules) : this(new TextFieldModel(name, labelPosition, label,
+        public TextFieldViewModel(string name, ElementLabel label, string defaultContent,
+            params ValidationRule<ITextFieldViewModel>[] rules) : this(new TextFieldModel(name, label, defaultContent,
             rules?.ToList() ?? new List<ValidationRule<ITextFieldViewModel>>())) { }
 
         public TextFieldViewModel(TextFieldModel model) : base(model)
@@ -32,7 +33,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
                 SetProperty(ref _model, value);
                 FieldModel = _model;
                 DefaultContent = _model?.DefaultContent;
-                Content = _model?.DefaultContent;
+                Content = string.Empty;
             }
         }
 
@@ -45,8 +46,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             {
                 var oldValue = _content;
                 SetProperty(ref _content, value);
-                TriggerEvent(new TextFieldChangedEventArgs(this, Model, oldValue, value));
-                UpdateValidationMessage();
+                if (Model != null)
+                {
+                    TriggerEvent(new TextFieldChangedEventArgs(DateTime.Now, this, Model, oldValue, value));
+                    UpdateValidationMessage();
+                }
             }
         }
 
@@ -58,7 +62,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _defaultContent, value);
-                Model.DefaultContent = _defaultContent;
+                if(Model != null)
+                {
+                    Model.DefaultContent = _defaultContent;
+                }
             }
         }
 

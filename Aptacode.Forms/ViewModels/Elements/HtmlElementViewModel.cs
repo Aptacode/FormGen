@@ -1,12 +1,11 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Models.Enums;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
     public class HtmlElementViewModel : FormElementViewModel
     {
-        public HtmlElementViewModel(string name, string content, LabelPosition labelPosition, string label) : this(
-            new HtmlElementModel(name, content, labelPosition, label)) { }
+        public HtmlElementViewModel(string name, ElementLabel label, string content) : this(
+            new HtmlElementModel(name, label, content)) { }
 
         public HtmlElementViewModel(HtmlElementModel model) : base(model)
         {
@@ -23,8 +22,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _model, value);
-                Content = _model?.Content;
-                ElementModel = _model;
+                if(Model != null)
+                {
+                    Content = _model?.Content;
+                    ElementModel = _model;
+                }
             }
         }
 
@@ -36,7 +38,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _content, value);
-                Model.Content = _content;
+                if(Model != null)
+                {
+                    Model.Content = _content;
+                }
             }
         }
 

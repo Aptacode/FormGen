@@ -1,39 +1,33 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.Models.Json;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
 using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Shared.Models.Elements.Fields
 {
-    public class ComboBoxFieldModel : FormFieldModel
+
+    [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<IComboBoxFieldViewModel>>))]
+    public class ComboBoxFieldModel : FormFieldModel<IComboBoxFieldViewModel>
     {
         internal ComboBoxFieldModel() { }
 
-        public ComboBoxFieldModel(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<IComboBoxFieldViewModel>> rules, IEnumerable<string> items) : this(name,
-            labelPosition,
-            label, rules, items, string.Empty) { }
-
-        public ComboBoxFieldModel(string name, LabelPosition labelPosition, string label,
-            IEnumerable<ValidationRule<IComboBoxFieldViewModel>> rules, IEnumerable<string> items,
-            string defaultSelectedItem) :
-            base(nameof(ComboBoxFieldModel), name, labelPosition, label)
+        public ComboBoxFieldModel(string name, ElementLabel label, IEnumerable<string> items, string defaultSelectedItem, IEnumerable<ValidationRule<IComboBoxFieldViewModel>> rules) : base(nameof(ComboBoxFieldModel), name, label, rules)
         {
             DefaultSelectedItem = defaultSelectedItem;
             Items = items;
-            Rules = rules;
+        }
+
+        public ComboBoxFieldModel(string name, ElementLabel label, IEnumerable<string> items, string defaultSelectedItem, params ValidationRule<IComboBoxFieldViewModel>[] rules) : this(name, label, items, defaultSelectedItem, rules?.ToList())
+        {
+
         }
 
         #region Properties
 
         public string DefaultSelectedItem { get; internal set; }
         public IEnumerable<string> Items { get; internal set; }
-
-
-        [JsonConverter(typeof(SingleOrArrayConverter<ValidationRule<IComboBoxFieldViewModel>>))]
-        public IEnumerable<ValidationRule<IComboBoxFieldViewModel>> Rules { get; }
 
         #endregion
     }

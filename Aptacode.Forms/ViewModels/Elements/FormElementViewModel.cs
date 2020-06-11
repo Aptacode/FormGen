@@ -1,6 +1,5 @@
 ﻿using System;
 using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.Mvvm;
 using Aptacode.Forms.Shared.ViewModels.Events;
 
@@ -8,7 +7,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
     public abstract class FormElementViewModel : BindableBase
     {
-        private LabelPosition _labelPosition;
 
         protected FormElementViewModel(FormElementModel elementModel)
         {
@@ -18,7 +16,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         #region Properties
 
         private FormElementModel _elementModel;
-
         public FormElementModel ElementModel
         {
             get => _elementModel;
@@ -27,8 +24,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
                 SetProperty(ref _elementModel, value);
 
                 Name = _elementModel?.Name;
-                Label = _elementModel?.Label;
-                LabelPosition = _elementModel?.LabelPosition ?? LabelPosition.AboveElement;
+                Label = _elementModel?.Label ?? default;
             }
         }
 
@@ -47,9 +43,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             }
         }
 
-        private string _label;
+        private ElementLabel _label;
 
-        public string Label
+        public ElementLabel Label
         {
             get => _label;
             set
@@ -58,19 +54,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
                 if (ElementModel != null)
                 {
                     ElementModel.Label = _label;
-                }
-            }
-        }
-
-        public LabelPosition LabelPosition
-        {
-            get => _labelPosition;
-            set
-            {
-                SetProperty(ref _labelPosition, value);
-                if (ElementModel != null)
-                {
-                    ElementModel.LabelPosition = _labelPosition;
                 }
             }
         }

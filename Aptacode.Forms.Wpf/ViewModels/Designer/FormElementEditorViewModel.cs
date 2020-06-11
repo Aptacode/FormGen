@@ -4,7 +4,6 @@ using System.Linq;
 using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
@@ -24,19 +23,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         public FormElementEditorViewModel()
         {
-            _elementNameTextBox = new TextFieldViewModel(new TextFieldModel("elementNameTextBox",
-                LabelPosition.AboveElement, "Name", new List<ValidationRule<ITextFieldViewModel>>()));
+            _elementNameTextBox = new TextFieldViewModel("elementNameTextBox",
+                ElementLabel.Above("Name"), "Name");
 
-            _elementLabelTextBox = new TextFieldViewModel(new TextFieldModel("elementLabelTextBox",
-                LabelPosition.AboveElement, "Label", new List<ValidationRule<ITextFieldViewModel>>()));
+            _elementLabelTextBox = new TextFieldViewModel("elementLabelTextBox", ElementLabel.Above("Label"), "Label");
 
-            _elementTypeComboBox = new ComboBoxFieldViewModel(new ComboBoxFieldModel("elementTypeComboBox",
-                LabelPosition.AboveElement,
-                "Type",
-                new[]
-                {
-                    new ComboBoxSelectionRequiredValidationRule()
-                }, new[] {"Button", "Html", "CheckBox", "ComboBox", "TextBox"}));
+            _elementTypeComboBox = new ComboBoxFieldViewModel("elementTypeComboBox",ElementLabel.Above("Type"), new List<string> {"Button", "Html", "CheckBox", "ComboBox", "TextBox"}, "TextBox");
 
             _elementTypeComboBox.OnFormEvent += ElementTypeComboBoxOnOnFormEvent;
             _elementNameTextBox.OnFormEvent += ElementNameTextBoxOnOnFormEvent;
@@ -47,7 +39,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             if (e is TextFieldChangedEventArgs eventArgs)
             {
-                FormElement.Label = eventArgs.NewContent;
+                FormElement.Label = new ElementLabel(FormElement.Label.Position, eventArgs.NewContent);
             }
         }
 
@@ -68,7 +60,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 return;
             }
 
-            if (ElementTypeToFriendlyName(FormElement?.ElementModel?.Type) == eventArgs.NewValue)
+            if (ElementTypeToFriendlyName(FormElement?.ElementModel?.ElementType) == eventArgs.NewValue)
             {
                 return;
             }
@@ -77,29 +69,19 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             switch (eventArgs.NewValue)
             {
                 case "Button":
-                    FormColumn.FormElementViewModel = new ButtonElementViewModel(new ButtonElementModel(oldElement.Name,
-                        string.Empty,
-                        LabelPosition.AboveElement, oldElement.Label));
+                    FormColumn.FormElementViewModel = new ButtonElementViewModel(oldElement.Name, oldElement.Label, "");
                     break;
                 case "Html":
-                    FormColumn.FormElementViewModel = new HtmlElementViewModel(new HtmlElementModel(oldElement.Name,
-                        string.Empty,
-                        LabelPosition.AboveElement, oldElement.Label));
+                    FormColumn.FormElementViewModel = new HtmlElementViewModel(oldElement.Name, oldElement.Label, string.Empty);
                     break;
                 case "CheckBox":
-                    FormColumn.FormElementViewModel = new CheckBoxFieldViewModel(new CheckBoxFieldModel(oldElement.Name,
-                        LabelPosition.AboveElement, oldElement.Label, new ValidationRule<ICheckBoxFieldViewModel>[0],
-                        string.Empty, false));
+                    FormColumn.FormElementViewModel = new CheckBoxFieldViewModel(oldElement.Name, oldElement.Label, string.Empty, false);
                     break;
                 case "TextBox":
-                    FormColumn.FormElementViewModel = new TextFieldViewModel(new TextFieldModel(oldElement.Name,
-                        LabelPosition.AboveElement,
-                        oldElement.Label, new ValidationRule<ITextFieldViewModel>[0]));
+                    FormColumn.FormElementViewModel = new TextFieldViewModel(oldElement.Name, oldElement.Label, "");
                     break;
                 case "ComboBox":
-                    FormColumn.FormElementViewModel = new ComboBoxFieldViewModel(new ComboBoxFieldModel(oldElement.Name,
-                        LabelPosition.AboveElement, oldElement.Label, new ValidationRule<IComboBoxFieldViewModel>[0],
-                        new string[0], string.Empty));
+                    FormColumn.FormElementViewModel = new ComboBoxFieldViewModel(oldElement.Name, oldElement.Label, new string[0], string.Empty);
                     break;
                 default:
                     FormColumn.FormElementViewModel = null;
@@ -132,9 +114,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private void AddButtonConfigurationRows(FormGroupViewModel group, ButtonElementViewModel button)
         {
-            var textField = new TextFieldViewModel(new TextFieldModel("buttonContentTextBox",
-                LabelPosition.AboveElement, "Content", new List<ValidationRule<ITextFieldViewModel>>(),
-                button.Content));
+            var textField = new TextFieldViewModel("buttonContentTextBox", ElementLabel.Above("Content"), button.Content);
 
             textField.OnFormEvent += (s, e) =>
             {
@@ -144,13 +124,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.AddRow("Default", 1).AddColumn(1, textField);
+            group.AddRow("Default", 1).AddColumn("buttonContentTextBox", 1, textField);
         }
 
         private void AddHtmlConfigurationRows(FormGroupViewModel group, HtmlElementViewModel element)
         {
             var buttonField =
-                new ButtonElementViewModel(new ButtonElementModel("editHtml", "Edit", LabelPosition.AboveElement, ""));
+                new ButtonElementViewModel("editHtml", ElementLabel.Above("Edit"), "Edit");
 
             buttonField.OnFormEvent += (s, e) =>
             {
@@ -164,13 +144,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.AddRow("Default", 1).AddColumn(1, buttonField);
+            group.AddRow("Default", 1).AddColumn("editHtml", 1, buttonField);
         }
 
         private void AddTextConfigurationRows(FormGroupViewModel group, TextFieldViewModel element)
         {
-            var textField = new TextFieldViewModel(new TextFieldModel("htmlContent", LabelPosition.AboveElement,
-                "Content", new List<ValidationRule<ITextFieldViewModel>>(), element.DefaultContent));
+            var textField =
+                new TextFieldViewModel("htmlContent", ElementLabel.Above("Content"), element.DefaultContent);
 
             textField.OnFormEvent += (s, e) =>
             {
@@ -180,13 +160,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            group.AddRow("Default", 1).AddColumn(1, textField);
+            group.AddRow("Default", 1).AddColumn("htmlContent", 1, textField);
         }
 
         private void AddComboBoxConfigurationRows(FormGroupViewModel group, ComboBoxFieldViewModel element)
         {
-            var optionsField = new TextFieldViewModel(new TextFieldModel("options", LabelPosition.AboveElement,
-                "Options", new List<ValidationRule<ITextFieldViewModel>>(), string.Join(",", element.Items)));
+            var optionsField = new TextFieldViewModel("options", ElementLabel.Above("Options"),
+                string.Join(",", element.Items));
 
             optionsField.OnFormEvent += (s, e) =>
             {
@@ -197,8 +177,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            var textField = new TextFieldViewModel(new TextFieldModel("defaultItem", LabelPosition.AboveElement,
-                "Default Item", new List<ValidationRule<ITextFieldViewModel>>(), element.DefaultSelectedItem));
+            var textField = new TextFieldViewModel("defaultItem", ElementLabel.Above("Default Item"), element.DefaultSelectedItem);
 
             textField.OnFormEvent += (s, e) =>
             {
@@ -210,18 +189,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             var newRow = group.AddRow("Default", 1);
 
-            newRow.AddColumn(1, optionsField);
-            newRow.AddColumn(1, textField);
+            newRow.AddColumn("options", 1, optionsField);
+            newRow.AddColumn("selectedOption", 1, textField);
         }
 
         private void AddCheckBoxConfigurationRows(FormGroupViewModel group, CheckBoxFieldViewModel element)
         {
-            var textField = new TextFieldViewModel(new TextFieldModel("defaultItem", LabelPosition.AboveElement,
-                "Default Item", new List<ValidationRule<ITextFieldViewModel>>(), element.Content));
+            var textField = new TextFieldViewModel("defaultItem", ElementLabel.Above("Default Item"), element.Content);
 
-            var checkedField = new CheckBoxFieldViewModel(new CheckBoxFieldModel("checkbox", LabelPosition.AboveElement,
-                "Default Value", new List<ValidationRule<ICheckBoxFieldViewModel>>(), element.Content,
-                element.DefaultIsChecked));
+            var checkedField = new CheckBoxFieldViewModel("checkbox", ElementLabel.Above("Default Value"),element.Content, element.DefaultIsChecked);
 
             textField.OnFormEvent += (s, e) =>
             {
@@ -242,8 +218,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             var newRow = group.AddRow("Default", 1);
 
-            newRow.AddColumn(1, textField);
-            newRow.AddColumn(1, checkedField);
+            newRow.AddColumn("defaultItem", 1, textField);
+            newRow.AddColumn("checkbox", 1, checkedField);
         }
 
         private void AddElementConfigurationRows(FormGroupViewModel group, FormElementViewModel formElement)
@@ -285,15 +261,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             }
 
             _elementNameTextBox.DefaultContent = FormElement.Name;
-            _elementLabelTextBox.DefaultContent = FormElement.Label;
-            _elementTypeComboBox.DefaultSelectedItem = ElementTypeToFriendlyName(FormElement?.ElementModel?.Type);
+            _elementLabelTextBox.DefaultContent = FormElement.Label.Text;
+            _elementTypeComboBox.DefaultSelectedItem = ElementTypeToFriendlyName(FormElement?.ElementModel?.ElementType);
 
-            var form = FormBuilder.CreateForm("elementEditorForm", "Element Editor");
-            var group = form.AddGroup("Element Editor");
+            var form = FormBuilder.CreateForm("Element Editor Form", "Element Editor Form");
+            var group = form.AddGroup("Element Editor", "Element Editor");
 
-            group.AddRow("Default", 1).AddColumn(1, _elementNameTextBox);
-            group.AddRow("Default", 1).AddColumn(1, _elementLabelTextBox);
-            group.AddRow("Default", 1).AddColumn(1, _elementTypeComboBox);
+            group.AddRow("Default", 1).AddColumn("Element Name", 1, _elementNameTextBox);
+            group.AddRow("Default", 1).AddColumn("Element Label", 1, _elementLabelTextBox);
+            group.AddRow("Default", 1).AddColumn("Element Type", 1, _elementTypeComboBox);
 
             AddElementConfigurationRows(group, FormElement);
 

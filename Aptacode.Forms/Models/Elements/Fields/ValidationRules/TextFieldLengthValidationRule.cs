@@ -45,7 +45,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules
         public override string GetMessage(ITextFieldViewModel fieldInput) =>
             Passed(fieldInput)
                 ? string.Empty
-                : $"'{fieldInput.Label}' must be {EqualityOperatorToString()} {Value}";
+                : $"'{fieldInput.Name}' must be {EqualityOperatorToString()} {Value}";
 
         private string EqualityOperatorToString()
         {

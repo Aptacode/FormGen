@@ -1,9 +1,3 @@
 ﻿@inherits TextFieldBase
 
-<Field>
-    <FieldLabel>@ViewModel.Label</FieldLabel>
-
-    <FieldBody>
-        <TextEdit Placeholder="@ViewModel.DefaultContent" Text="@ViewModel.Content"/>
-    </FieldBody>
-</Field>
+<TextEdit Placeholder="@ViewModel.DefaultContent" @bind-Text="@ViewModel.Content" />

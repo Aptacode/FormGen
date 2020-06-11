@@ -2,7 +2,6 @@
 using System.Linq;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.Models.Layout;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Layout;
@@ -14,17 +13,17 @@ namespace Aptacode.Forms.Shared.ViewModels
         public static FormViewModel CreateForm(string name, string title, params FormGroupModel[] groups) =>
             new FormViewModel(new FormModel(name, title, groups.ToList()));
 
-        public static FormGroupViewModel AddGroup(this FormViewModel form, string label, params FormRowModel[] rows)
+        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title, params FormRowModel[] rows)
         {
-            var newGroup = new FormGroupViewModel(label, rows);
+            var newGroup = new FormGroupViewModel(name, title, rows);
             form.Groups.Add(newGroup);
             return newGroup;
         }
 
-        public static FormGroupViewModel AddGroup(this FormViewModel form, string label, FormRowViewModel firstRow,
+        public static FormGroupViewModel AddGroup(this FormViewModel form, string name, string title, FormRowViewModel firstRow,
             params FormRowViewModel[] rows)
         {
-            var newGroup = new FormGroupViewModel(label);
+            var newGroup = new FormGroupViewModel(name, title);
 
             newGroup.Rows.Add(firstRow);
             if (rows != null)
@@ -64,19 +63,19 @@ namespace Aptacode.Forms.Shared.ViewModels
             return newRow;
         }
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, int span) => AddColumn(form, span,
-            new ButtonElementModel("default", "default", LabelPosition.AboveElement, "default"));
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span) => AddColumn(form, name, span,
+            new ButtonElementModel("default", ElementLabel.None, "default"));
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, int span, FormElementModel element)
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span, FormElementModel element)
         {
-            var newColumn = new FormColumnViewModel(new FormColumnModel(span, element));
+            var newColumn = new FormColumnViewModel(new FormColumnModel(name, span, element));
             form.Columns.Add(newColumn);
             return newColumn;
         }
 
-        public static FormColumnViewModel AddColumn(this FormRowViewModel form, int span, FormElementViewModel element)
+        public static FormColumnViewModel AddColumn(this FormRowViewModel form, string name, int span, FormElementViewModel element)
         {
-            var newColumn = new FormColumnViewModel(new FormColumnModel(span, element.ElementModel))
+            var newColumn = new FormColumnViewModel(new FormColumnModel(name, span, element.ElementModel))
             {
                 FormElementViewModel = element
             };
@@ -86,12 +85,12 @@ namespace Aptacode.Forms.Shared.ViewModels
         }
 
 
-        public static FormGroupViewModel NewGroup(string label, params FormRowModel[] rows) =>
-            new FormGroupViewModel(new FormGroupModel(label, rows));
+        public static FormGroupViewModel NewGroup(string name, string title, params FormRowModel[] rows) =>
+            new FormGroupViewModel(new FormGroupModel(name, title, rows));
 
-        public static FormGroupViewModel NewGroup(string label, params FormRowViewModel[] rows)
+        public static FormGroupViewModel NewGroup(string name, string title, params FormRowViewModel[] rows)
         {
-            var newGroup = new FormGroupViewModel(new FormGroupModel(label, new List<FormRowModel>()));
+            var newGroup = new FormGroupViewModel(new FormGroupModel(name, title, new List<FormRowModel>()));
             foreach (var row in rows)
             {
                 newGroup.Rows.Add(row);
@@ -114,8 +113,8 @@ namespace Aptacode.Forms.Shared.ViewModels
             return newRow;
         }
 
-        public static FormColumnViewModel NewColumn(int span, FormElementViewModel element) =>
-            new FormColumnViewModel(new FormColumnModel(span, element.ElementModel))
+        public static FormColumnViewModel NewColumn(string name, int span, FormElementViewModel element) =>
+            new FormColumnViewModel(new FormColumnModel(name, span, element.ElementModel))
             {
                 FormElementViewModel = element
             };

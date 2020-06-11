@@ -1,8 +1,3 @@
 ﻿@inherits ButtonElementBase
 
-<Field>
-    <FieldLabel>@ViewModel.Label</FieldLabel>
-    <FieldBody>
-        <Button Color="Color.Primary" Block="true">@ViewModel.Content</Button>
-    </FieldBody>
-</Field>
+<Button Color="Color.Primary" Block="true" @onclick="@(e => ViewModel.ButtonClickedCommand.Execute(null))">@ViewModel.Content</Button>

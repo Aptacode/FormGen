@@ -1,27 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Aptacode.Forms.Shared.Models.Layout
 {
-    public class FormGroupModel : IEquatable<FormGroupModel>
+    /// <summary>
+    /// Form Group Model
+    /// Contains a collection of form rows
+    /// </summary>
+    public class FormGroupModel
     {
         internal FormGroupModel() { }
 
-        public FormGroupModel(string label, IEnumerable<FormRowModel> rows)
+        public FormGroupModel(string name, string title, IEnumerable<FormRowModel> rows)
         {
-            Label = label;
-            Rows = new List<FormRowModel>(rows);
+            Name = name;
+            Title = title;
+            Rows = rows?.ToList() ?? new List<FormRowModel>();
         }
 
-        public string Label { get; internal set; }
+        #region Properties
+
+        public string Name { get; internal set; }
+        public string Title { get; internal set; }
         public IEnumerable<FormRowModel> Rows { get; internal set; }
 
-        #region Equality
-
-        public override int GetHashCode() => Label.GetHashCode();
-        public override bool Equals(object obj) => obj is FormGroupModel other && Equals(other);
-        public bool Equals(FormGroupModel other) => other != null && Label.Equals(other.Label);
-
-        #endregion Equality
+        #endregion
     }
 }

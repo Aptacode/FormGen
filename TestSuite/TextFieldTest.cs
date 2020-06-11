@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
 using NUnit.Framework;
@@ -14,7 +14,7 @@ namespace TestSuite
         public void SetUp()
         {
             _testRulesList = new List<ValidationRule<ITextFieldViewModel>>();
-            _textField = new TextFieldViewModel(_testName, LabelPosition.AboveElement, _testLabel,
+            _textField = new TextFieldViewModel(_testName, ElementLabel.None, _testLabel,
                 _testRulesList.ToArray());
         }
 
@@ -42,7 +42,7 @@ namespace TestSuite
             var _newRule = new TextFieldLengthValidationRule(EqualityOperator.EqualTo, test_content.Length);
             _testRulesList.Add(_newRule);
 
-            _textField = new TextFieldViewModel(_testName, LabelPosition.AboveElement, _testLabel,
+            _textField = new TextFieldViewModel(_testName, ElementLabel.None, _testLabel,
                 _testRulesList.ToArray());
             _textField.Content = test_content;
 

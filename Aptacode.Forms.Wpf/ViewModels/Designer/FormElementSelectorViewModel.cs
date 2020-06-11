@@ -1,5 +1,5 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Models.Enums;
+using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
 using Aptacode.Forms.Shared.ViewModels.Layout;
@@ -82,9 +82,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
                 var columnPosition = FormRow.Columns.Count + 1;
 
-                var newField = new TextFieldViewModel($"Column {columnPosition}", LabelPosition.AboveElement, "Label",
-                    null);
-                var newColumnViewModel = new FormColumnViewModel(1, newField);
+                var newField = new TextFieldViewModel($"New Text Field {columnPosition}", ElementLabel.Above("Label"),
+                    "");
+                var newColumnViewModel = new FormColumnViewModel("New Column", 1, newField);
 
                 FormRow.Columns.Add(newColumnViewModel);
                 SelectedColumn = newColumnViewModel;

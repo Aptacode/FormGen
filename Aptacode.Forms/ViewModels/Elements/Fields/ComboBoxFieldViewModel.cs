@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Fields.Results;
 using Aptacode.Forms.Shared.Models.Elements.Fields.ValidationRules;
-using Aptacode.Forms.Shared.Models.Enums;
 using Aptacode.Forms.Shared.ViewModels.Events;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
@@ -11,9 +12,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
 {
     public class ComboBoxFieldViewModel : FormFieldViewModel, IComboBoxFieldViewModel
     {
-        public ComboBoxFieldViewModel(string name, LabelPosition labelPosition, string label, IEnumerable<string> items,
-            params ValidationRule<IComboBoxFieldViewModel>[] rules) : this(new ComboBoxFieldModel(name, labelPosition,
-            label, rules?.ToList() ?? new List<ValidationRule<IComboBoxFieldViewModel>>(), items)) { }
+        public ComboBoxFieldViewModel(string name, ElementLabel label, IEnumerable<string> items, string defaultSelectedItem,
+            params ValidationRule<IComboBoxFieldViewModel>[] rules) : this(new ComboBoxFieldModel(name, label, items, defaultSelectedItem,
+             rules?.ToList() ?? new List<ValidationRule<IComboBoxFieldViewModel>>())) { }
 
         public ComboBoxFieldViewModel(ComboBoxFieldModel model) : base(model)
         {
@@ -43,11 +44,15 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             {
                 SetProperty(ref _model, value);
                 FieldModel = _model;
-                Items.Clear();
 
-                Items.AddRange(_model.Items);
-                SelectedItem = _model.DefaultSelectedItem;
-                DefaultSelectedItem = _model.DefaultSelectedItem;
+                Items.Clear();
+                if(Model != null)
+                {
+                    Items.AddRange(_model.Items);
+                }
+
+                SelectedItem = _model?.DefaultSelectedItem;
+                DefaultSelectedItem = _model?.DefaultSelectedItem;
             }
         }
 
@@ -61,7 +66,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _defaultSelectedItem, value);
-                Model.DefaultSelectedItem = _defaultSelectedItem;
+                if(Model != null)
+                {
+                    Model.DefaultSelectedItem = _defaultSelectedItem;
+                }
             }
         }
 
@@ -73,8 +81,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _selectedItem, value);
-                TriggerEvent(new ComboBoxFieldChangedEventArgs(this, Model, value));
-                UpdateValidationMessage();
+                if(Model != null)
+                {
+                    TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
+                    UpdateValidationMessage();
+                }
             }
         }
 

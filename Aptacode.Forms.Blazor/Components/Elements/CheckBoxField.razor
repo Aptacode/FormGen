@@ -1,9 +1,3 @@
 ﻿@inherits CheckBoxFieldBase
 
-<Field>
-    <FieldLabel>@ViewModel.Label</FieldLabel>
-
-    <FieldBody>
-        <Check TValue="bool">@ViewModel.Content</Check>
-    </FieldBody>
-</Field>
+<Check TValue="bool" @bind-Checked="@ViewModel.IsChecked">@ViewModel.Content</Check>

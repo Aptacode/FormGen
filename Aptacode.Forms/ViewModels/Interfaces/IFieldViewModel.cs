@@ -1,7 +1,11 @@
-﻿namespace Aptacode.Forms.Shared.ViewModels.Interfaces
+﻿using Aptacode.Forms.Shared.Models.Elements;
+
+namespace Aptacode.Forms.Shared.ViewModels.Interfaces
 {
     public interface IFieldViewModel
     {
-        string Label { get; set; }
+        string Name { get; set; }
+        ElementLabel Label { get; set; }
+
     }
 }

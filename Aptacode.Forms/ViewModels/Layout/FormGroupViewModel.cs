@@ -10,8 +10,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Layout
 {
     public class FormGroupViewModel : BindableBase
     {
-        public FormGroupViewModel(string label, params FormRowModel[] rows) : this(
-            new FormGroupModel(label, rows?.ToList() ?? new List<FormRowModel>())) { }
+        public FormGroupViewModel(string name, string title, params FormRowModel[] rows) : this(
+            new FormGroupModel(name, title, rows?.ToList() ?? new List<FormRowModel>())) { }
 
         public FormGroupViewModel(FormGroupModel model)
         {
@@ -41,7 +41,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Layout
                 _swappingModel = true;
                 SetProperty(ref _model, value);
 
-                Label = Model?.Label;
+                Title = Model?.Title;
 
                 Rows.Clear();
                 if (_model != null)
@@ -56,17 +56,32 @@ namespace Aptacode.Forms.Shared.ViewModels.Layout
             }
         }
 
-        private string _label;
+        private string _name;
 
-        public string Label
+        public string Name
         {
-            get => _label;
+            get => _name;
             set
             {
-                SetProperty(ref _label, value);
+                SetProperty(ref _name, value);
                 if (Model != null)
                 {
-                    Model.Label = _label;
+                    Model.Name = _name;
+                }
+            }
+        }
+
+        private string _title;
+
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                SetProperty(ref _title, value);
+                if (Model != null)
+                {
+                    Model.Title = _title;
                 }
             }
         }

@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Aptacode.Forms.Shared.Models.Layout;
 
 namespace Aptacode.Forms.Shared.Models
 {
+    /// <summary>
+    /// Models a Form
+    /// Contains a collection of Form Groups
+    /// </summary>
     public class FormModel
     {
         internal FormModel() { }
@@ -11,7 +16,7 @@ namespace Aptacode.Forms.Shared.Models
         {
             Name = name;
             Title = title;
-            Groups = new List<FormGroupModel>(groups);
+            Groups = groups?.ToList() ?? new List<FormGroupModel>();
         }
 
         #region Properties

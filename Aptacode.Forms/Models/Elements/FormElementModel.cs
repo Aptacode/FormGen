@@ -1,22 +1,26 @@
-﻿using Aptacode.Forms.Shared.Models.Enums;
-
-namespace Aptacode.Forms.Shared.Models.Elements
+﻿namespace Aptacode.Forms.Shared.Models.Elements
 {
+
+    /// <summary>
+    /// Abstract Form Element Model
+    /// </summary>
     public abstract class FormElementModel
     {
         internal FormElementModel() { }
 
-        protected FormElementModel(string type, string name, LabelPosition labelPosition, string label)
+        protected FormElementModel(string elementType, string name, ElementLabel label)
         {
             Name = name;
-            Type = type;
-            LabelPosition = labelPosition;
+            ElementType = elementType;
             Label = label;
         }
 
+        #region Properties
+
         public string Name { get; internal set; }
-        public string Type { get; internal set; }
-        public string Label { get; internal set; }
-        public LabelPosition LabelPosition { get; internal set; }
+        public string ElementType { get; internal set; }
+        public ElementLabel Label { get; internal set; }
+
+        #endregion
     }
 }

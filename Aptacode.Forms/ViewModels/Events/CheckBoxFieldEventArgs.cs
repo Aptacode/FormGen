@@ -1,11 +1,12 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements.Fields;
 using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using System;
 
 namespace Aptacode.Forms.Shared.ViewModels.Events
 {
     public abstract class CheckBoxFieldEventArgs : FieldEventArgs
     {
-        protected CheckBoxFieldEventArgs(ICheckBoxFieldViewModel sender, CheckBoxFieldModel field) : base(sender, field)
+        protected CheckBoxFieldEventArgs(DateTime time, ICheckBoxFieldViewModel sender, CheckBoxFieldModel field) : base(time, sender, field)
         {
             CheckBoxField = field;
         }
@@ -15,13 +16,16 @@ namespace Aptacode.Forms.Shared.ViewModels.Events
 
     public class CheckBoxFieldChangedEventArgs : CheckBoxFieldEventArgs
     {
-        public CheckBoxFieldChangedEventArgs(ICheckBoxFieldViewModel sender, CheckBoxFieldModel field, bool newValue) :
-            base(sender,
+        public CheckBoxFieldChangedEventArgs(DateTime time, ICheckBoxFieldViewModel sender, CheckBoxFieldModel field, bool newValue) :
+            base(time, sender,
                 field)
         {
             NewValue = newValue;
         }
 
         public bool NewValue { get; set; }
+
+        public override string ToString() => $"Checkbox Check Changed: {CheckBoxField.Name}";
+
     }
 }

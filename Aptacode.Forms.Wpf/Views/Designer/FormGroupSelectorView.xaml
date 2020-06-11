@@ -15,7 +15,7 @@
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBox Text="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Background="Transparent" BorderBrush="Transparent">
                         <i:Interaction.Behaviors>
                             <behaviors:DoubleClickTextBoxBehaviour />

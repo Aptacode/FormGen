@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Aptacode.Forms.Shared.Models.Layout
 {
-    public class FormRowModel : IEquatable<FormRowModel>
+    /// <summary>
+    /// Models a Form Row
+    /// Contains a collection of Form Columns
+    /// </summary>
+    public class FormRowModel
     {
         internal FormRowModel() { }
 
@@ -12,7 +15,7 @@ namespace Aptacode.Forms.Shared.Models.Layout
         {
             Span = span;
             Name = name;
-            Columns = columns.ToList();
+            Columns = columns?.ToList() ?? new List<FormColumnModel>();
         }
 
         #region Properties
@@ -23,24 +26,5 @@ namespace Aptacode.Forms.Shared.Models.Layout
 
         #endregion
 
-        #region Equality
-
-        public override int GetHashCode()
-        {
-            var hc = 0;
-            if (Columns != null)
-            {
-                hc = Columns.Aggregate(hc, (current, column) => current ^ column.GetHashCode());
-            }
-
-            return hc ^ Name.GetHashCode();
-        }
-
-        public override bool Equals(object obj) => obj is FormRowModel other && Equals(other);
-
-        public bool Equals(FormRowModel other) =>
-            other != null && Name == other.Name && Columns.SequenceEqual(other.Columns);
-
-        #endregion Equality
     }
 }
