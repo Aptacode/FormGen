@@ -2,7 +2,7 @@ using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Xunit;
 
-namespace Aptacode.Forms.Shared.Tests.ViewModels
+namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements
 {
     public class ButtonElementTests
     {
@@ -20,6 +20,5 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels
             //Assert
             Assert.True(buttonClicked);
         }
-
     }
 }
