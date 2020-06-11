@@ -1,6 +1,6 @@
 ﻿using System;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Models.Layout;
-using Aptacode.Forms.Shared.Mvvm;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Factories;
 

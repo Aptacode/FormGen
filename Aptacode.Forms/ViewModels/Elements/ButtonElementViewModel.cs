@@ -1,6 +1,6 @@
 ﻿using System;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Mvvm;
 using Aptacode.Forms.Shared.ViewModels.Events;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements
@@ -55,7 +55,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         private DelegateCommand _buttonClickedCommand;
 
         public DelegateCommand ButtonClickedCommand => _buttonClickedCommand ??=
-            new DelegateCommand(() => TriggerEvent(new ButtonClickedEventArgs(DateTime.Now, Model)));
+            new DelegateCommand((_) => TriggerEvent(new ButtonClickedEventArgs(DateTime.Now, Model)));
 
         #endregion
     }

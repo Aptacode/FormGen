@@ -83,11 +83,13 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _selectedItem, value);
-                if (Model != null)
+                if (Model == null)
                 {
-                    TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
-                    UpdateValidationMessage();
+                    return;
                 }
+
+                TriggerEvent(new ComboBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
+                UpdateValidationMessage();
             }
         }
 

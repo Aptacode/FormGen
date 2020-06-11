@@ -40,8 +40,11 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aptacode.CSharp.Common.Persistence, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aptacode.CSharp.Common.Persistence.1.0.0\lib\net461\Aptacode.CSharp.Common.Persistence.dll</HintPath>
+    <Reference Include="Aptacode.CSharp.Common.Persistence, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aptacode.CSharp.Common.Persistence.1.0.0.14\lib\net461\Aptacode.CSharp.Common.Persistence.dll</HintPath>
+    </Reference>
+    <Reference Include="Aptacode.CSharp.Common.Utilities, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aptacode.CSharp.Common.Utilities.1.0.0.14\lib\net461\Aptacode.CSharp.Common.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Aptacode.Wpf.Utilities, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Aptacode.Wpf.Utilities.1.0.0.5\lib\net472\Aptacode.Wpf.Utilities.dll</HintPath>

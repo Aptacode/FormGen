@@ -1,6 +1,6 @@
 ﻿using System;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Mvvm;
 using Aptacode.Forms.Shared.ViewModels.Events;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements

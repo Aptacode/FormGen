@@ -22,11 +22,13 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _model, value);
-                if (Model != null)
+                if (Model == null)
                 {
-                    Content = _model?.Content;
-                    ElementModel = _model;
+                    return;
                 }
+
+                Content = _model?.Content;
+                ElementModel = _model;
             }
         }
 

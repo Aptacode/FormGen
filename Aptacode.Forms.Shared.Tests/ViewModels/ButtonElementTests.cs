@@ -7,7 +7,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels
     public class ButtonElementTests
     {
         [Fact]
-        public void ButonClickEventFires()
+        public void ButtonClickEvent_Fires()
         {
             //Arrange
             var sut = new ButtonElementViewModel("submit button", ElementLabel.None, "submit");
@@ -20,5 +20,6 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels
             //Assert
             Assert.True(buttonClicked);
         }
+
     }
 }

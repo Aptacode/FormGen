@@ -59,11 +59,13 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Fields
             set
             {
                 SetProperty(ref _isChecked, value);
-                if (Model != null)
+                if (Model == null)
                 {
-                    TriggerEvent(new CheckBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
-                    UpdateValidationMessage();
+                    return;
                 }
+
+                TriggerEvent(new CheckBoxFieldChangedEventArgs(DateTime.Now, this, Model, value));
+                UpdateValidationMessage();
             }
         }
 

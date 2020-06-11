@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Models.Layout;
-using Aptacode.Forms.Shared.Mvvm;
 
 namespace Aptacode.Forms.Shared.ViewModels.Layout
 {
