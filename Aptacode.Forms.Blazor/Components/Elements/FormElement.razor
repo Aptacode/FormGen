@@ -9,23 +9,23 @@
 
     <FieldBody>
 
-            @switch (ViewModel)
-            {
-                case ButtonElementViewModel buttonViewModel:
-                    <ButtonElement ViewModel="@buttonViewModel" />
-                    break;
-                case TextFieldViewModel textEditViewModel:
-                    <TextField ViewModel="@textEditViewModel" />
-                    break;
-                case ComboBoxFieldViewModel comboBoxFieldViewModel:
-                    <ComboBoxField ViewModel="@comboBoxFieldViewModel" />
-                    break;
-                case CheckBoxFieldViewModel checkBoxFieldViewModel:
-                    <CheckBoxField ViewModel="@checkBoxFieldViewModel" />
-                    break;
-                case HtmlElementViewModel htmlElementViewModel:
-                    <HtmlElement ViewModel="@htmlElementViewModel" />
-                    break;
-            }
+        @switch (ViewModel)
+        {
+            case ButtonElementViewModel buttonViewModel:
+                <ButtonElement ViewModel="@buttonViewModel"/>
+                break;
+            case TextFieldViewModel textEditViewModel:
+                <TextField ViewModel="@textEditViewModel"/>
+                break;
+            case ComboBoxFieldViewModel comboBoxFieldViewModel:
+                <ComboBoxField ViewModel="@comboBoxFieldViewModel"/>
+                break;
+            case CheckBoxFieldViewModel checkBoxFieldViewModel:
+                <CheckBoxField ViewModel="@checkBoxFieldViewModel"/>
+                break;
+            case HtmlElementViewModel htmlElementViewModel:
+                <HtmlElement ViewModel="@htmlElementViewModel"/>
+                break;
+        }
     </FieldBody>
 </Field>

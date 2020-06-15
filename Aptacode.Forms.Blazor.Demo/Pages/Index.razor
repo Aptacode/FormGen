@@ -7,11 +7,11 @@
 <h1>
     Aptacode.Forms.Blazor.Demo
 </h1>
-<Divider Type="DividerType.Dashed" />
+<Divider Type="DividerType.Dashed"/>
 
-<Aptacode.Forms.Blazor.Components.Form ViewModel="@FormModel" />
+<Aptacode.Forms.Blazor.Components.Form ViewModel="@FormModel"/>
 
-<Divider Type="DividerType.Dashed" />
+<Divider Type="DividerType.Dashed"/>
 
 <Table>
     <TableHeader>
@@ -34,7 +34,7 @@
     </TableBody>
 </Table>
 
-<Divider Type="DividerType.Dashed" />
+<Divider Type="DividerType.Dashed"/>
 
 
 @code{
@@ -76,8 +76,9 @@
 
         testGroup1.AddRow("CheckBox", 1).AddColumn("CheckBox", 1, FormBuilder.CreateCheckBox("CheckBox", ElementLabel.Above("Do you accept the terms and conditions"), "I Agree", false));
 
-        testGroup1.AddRow("comboBox", 1).AddColumn("comboBox", 1, FormBuilder.CreateComboBox("comboBox", ElementLabel.Above("How many years experiance have you got?"), new[] { "0-1", "1-5", "5+" }, "0-1"));
+        testGroup1.AddRow("comboBox", 1).AddColumn("comboBox", 1, FormBuilder.CreateComboBox("comboBox", ElementLabel.Above("How many years experiance have you got?"), new[] {"0-1", "1-5", "5+"}, "0-1"));
         testGroup1.AddRow("submit", 1).AddColumn("submit", 1, FormBuilder.CreateButton("submit", ElementLabel.None, "Submit"));
         return newForm;
     }
+
 }
