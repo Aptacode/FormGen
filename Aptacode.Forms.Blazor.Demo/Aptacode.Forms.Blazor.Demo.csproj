@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazorise" Version="0.9.0.3" />
     <PackageReference Include="Blazorise.Bootstrap" Version="0.9.0.3" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.0.3" />
   </ItemGroup>

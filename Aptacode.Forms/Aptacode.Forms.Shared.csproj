@@ -9,7 +9,7 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
     <Description>Create cross platform forms using C# .net</Description>
     <Product>Aptacode.Forms</Product>
     <Company>Aptacode</Company>
@@ -19,6 +19,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Timmoth/Aptacode.Forms</PackageProjectUrl>
     <PackageId>Aptacode.Forms.Shared</PackageId>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

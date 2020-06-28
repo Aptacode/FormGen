@@ -79,7 +79,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         private void FormField_OnFormEvent(object sender, FormElementEventArgs e)
         {
-            OnFormEvent?.Invoke(this, e);
+            OnFormEvent?.Invoke(sender, e);
         }
 
         #endregion
