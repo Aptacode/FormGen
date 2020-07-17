@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.4</Version>
+    <Version>1.0.0.16</Version>
     <Company>Aptacode</Company>
     <Authors>Aptacode</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,7 +17,8 @@
     <RootNamespace>Aptacode.Forms.Wpf</RootNamespace>
     <Description>Wpf implementation of Aptacode.Forms</Description>
     <PackageIcon>Logo.png</PackageIcon>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <AssemblyVersion>1.0.0.16</AssemblyVersion>
+    <FileVersion>1.0.0.16</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,14 +29,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aptacode.Wpf.Utilities" Version="1.0.0.5" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
+    <PackageReference Include="Aptacode.Wpf.Utilities" Version="1.0.0.7" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
     <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
     <PackageReference Include="WpfRichText2" Version="1.0.17" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aptacode.Forms.Shared\Aptacode.Forms.Shared.csproj" />
     <ProjectReference Include="..\Aptacode.Forms\Aptacode.Forms.Shared.csproj" />
   </ItemGroup>
 
@@ -43,48 +45,39 @@
     <Compile Update="Views\Designer\FormDesignerView.xaml.cs">
       <DependentUpon>FormDesignerView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Designer\FormElementEditorView.xaml.cs">
-      <DependentUpon>FormElementEditorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Designer\FormElementSelectorView.xaml.cs">
-      <DependentUpon>FormElementSelectorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Designer\FormGroupSelectorView.xaml.cs">
-      <DependentUpon>FormGroupSelectorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Designer\FormRowSelectorView.xaml.cs">
-      <DependentUpon>FormRowSelectorView.xaml</DependentUpon>
+    <Compile Update="Views\Designer\ElementBrowserView.xaml.cs">
+      <DependentUpon>ElementBrowserView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Designer\HtmlEditorDialog.xaml.cs">
       <DependentUpon>HtmlEditorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\ButtonElementView.xaml.cs">
+    <Compile Update="Views\Elements\Controls\ButtonElementView.xaml.cs">
       <DependentUpon>ButtonElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\CheckBoxFieldView.xaml.cs">
-      <DependentUpon>CheckBoxFieldView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Controls\Fields\CheckElementView.xaml.cs">
+      <DependentUpon>CheckElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\ComboBoxFieldView.xaml.cs">
-      <DependentUpon>ComboBoxFieldView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Controls\Fields\SelectElementView.xaml.cs">
+      <DependentUpon>SelectElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\HtmlElementView.xaml.cs">
+    <Compile Update="Views\Elements\Controls\HtmlElementView.xaml.cs">
       <DependentUpon>HtmlElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\TextBoxFieldView.xaml.cs">
-      <DependentUpon>TextBoxFieldView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Controls\Fields\TextElementView.xaml.cs">
+      <DependentUpon>TextElementView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\FormView.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>FormView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Layout\FormColumnView.xaml.cs">
-      <DependentUpon>FormColumnView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Layouts\ColumnElementView.xaml.cs">
+      <DependentUpon>ColumnElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Layout\FormGroupView.xaml.cs">
-      <DependentUpon>FormGroupView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Layouts\GroupElementView.xaml.cs">
+      <DependentUpon>GroupElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Layout\FormRowView.xaml.cs">
-      <DependentUpon>FormRowView.xaml</DependentUpon>
+    <Compile Update="Views\Elements\Layouts\RowElementView.xaml.cs">
+      <DependentUpon>RowElementView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -92,46 +85,37 @@
     <Page Update="Views\Designer\FormDesignerView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Designer\FormElementEditorView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Designer\FormElementSelectorView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Designer\FormGroupSelectorView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Designer\FormRowSelectorView.xaml">
+    <Page Update="Views\Designer\ElementBrowserView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Designer\HtmlEditorDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\ButtonElementView.xaml">
+    <Page Update="Views\Elements\Controls\ButtonElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\CheckBoxFieldView.xaml">
+    <Page Update="Views\Elements\Controls\Fields\CheckElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\ComboBoxFieldView.xaml">
+    <Page Update="Views\Elements\Controls\Fields\SelectElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\HtmlElementView.xaml">
+    <Page Update="Views\Elements\Controls\HtmlElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\TextBoxFieldView.xaml">
+    <Page Update="Views\Elements\Controls\Fields\TextElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\FormView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Layout\FormColumnView.xaml">
+    <Page Update="Views\Elements\Layouts\ColumnElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Layout\FormGroupView.xaml">
+    <Page Update="Views\Elements\Layouts\GroupElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Layout\FormRowView.xaml">
+    <Page Update="Views\Elements\Layouts\RowElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -141,6 +125,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
   </ItemGroup>
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)../$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />

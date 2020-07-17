@@ -1,6 +1,6 @@
 ﻿using System;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Layout;
+using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -10,7 +10,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
     {
         #region Events
 
-        public EventHandler<FormGroupViewModel> OnGroupSelected { get; set; }
+        public EventHandler<GroupElementViewModel> OnGroupSelected { get; set; }
 
         #endregion
 
@@ -28,20 +28,20 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _formViewModel, value);
-                SelectedGroup = null;
+                Selected = null;
             }
         }
 
-        private FormGroupViewModel _selectedGroup;
+        private GroupElementViewModel _selected;
 
-        public FormGroupViewModel SelectedGroup
+        public GroupElementViewModel Selected
         {
-            get => _selectedGroup;
+            get => _selected;
             set
             {
-                SetProperty(ref _selectedGroup, value);
+                SetProperty(ref _selected, value);
 
-                OnGroupSelected?.Invoke(this, SelectedGroup);
+                OnGroupSelected?.Invoke(this, Selected);
             }
         }
 
@@ -54,13 +54,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand DeleteCommand =>
             _deleteCommand ??= new DelegateCommand(() =>
             {
-                if (SelectedGroup == null)
+                if (Selected == null)
                 {
                     return;
                 }
 
-                FormViewModel.Groups.Remove(SelectedGroup);
-                SelectedGroup = null;
+                //  FormViewModel.Groups.Remove(Selected);
+                Selected = null;
             });
 
         private DelegateCommand _createCommand;
@@ -68,16 +68,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand CreateCommand =>
             _createCommand ??= new DelegateCommand(() =>
             {
-                if (FormViewModel == null)
-                {
-                    return;
-                }
+                if (FormViewModel == null) { }
 
-                var groupPosition = FormViewModel.Groups.Count + 1;
-                var newGroupName = $"New Group {groupPosition}";
-                var newGroup = new FormGroupViewModel(newGroupName, newGroupName);
-                FormViewModel.Groups.Add(newGroup);
-                SelectedGroup = newGroup;
+                //var groupPosition = FormViewModel.Groups.Count + 1;
+                //var newGroupName = $"New Group {groupPosition}";
+                //var newGroup = new GroupElementViewModel(newGroupName, newGroupName);
+                //FormViewModel.Groups.Add(newGroup);
+                //Selected = newGroup;
             });
 
         #endregion

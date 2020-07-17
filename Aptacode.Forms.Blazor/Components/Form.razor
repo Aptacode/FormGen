@@ -2,7 +2,4 @@
 
 <h1>@ViewModel.Name</h1>
 
-@foreach (var group in ViewModel.Groups)
-{
-    <FormGroup ViewModel="@group"/>
-}
+<CompositeElement ViewModel="@ViewModel.RootElement"/>

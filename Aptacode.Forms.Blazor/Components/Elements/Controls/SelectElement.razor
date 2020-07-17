@@ -1,0 +1,8 @@
+﻿@inherits SelectElementBase
+
+<Select TValue="string" @bind-SelectedValue="@ViewModel.SelectedItem">
+    @foreach (var item in ViewModel.Items)
+    {
+        <SelectItem Value="@item">@item</SelectItem>
+    }
+</Select>

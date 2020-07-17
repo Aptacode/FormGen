@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using System.Windows.Data;
 using WpfRichText;
 
@@ -11,9 +12,10 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
         {
             try
             {
-                if (!string.IsNullOrEmpty(value.ToString()))
+                if (!string.IsNullOrEmpty(value?.ToString()))
                 {
-                    return HtmlToXamlConverter.ConvertHtmlToXaml((string) value, false);
+                    var bytes = Encoding.Default.GetBytes(value.ToString());
+                    return HtmlToXamlConverter.ConvertHtmlToXaml(Encoding.UTF8.GetString(bytes), false);
                 }
             }
             catch

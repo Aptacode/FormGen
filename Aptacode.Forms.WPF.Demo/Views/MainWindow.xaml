@@ -6,7 +6,6 @@
         xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views;assembly=Aptacode.Forms.Wpf"
         xmlns:designer="clr-namespace:Aptacode.Forms.Wpf.Views.Designer;assembly=Aptacode.Forms.Wpf"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:designer1="clr-namespace:Aptacode.Forms.Wpf.Views.Designer;assembly=Forms.Wpf"
         mc:Ignorable="d"
         Title="Form Designer" Height="1080" Width="1920">
 
@@ -26,24 +25,36 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="New" Command="{Binding NewCommand}" Margin="8" />
+                <Button Content="Load" Command="{Binding LoadCommand}" Margin="8" />
+                <Button Content="Save" Command="{Binding SaveCommand}" Margin="8" />
+            </ToolBar>
+        </ToolBarTray>
 
-        <materialDesign:Card Grid.Column="0" Margin="8">
-            <GroupBox Header="Form Designer">
-                <designer:FormDesignerView DataContext="{Binding FormDesignerViewModel}" />
-            </GroupBox>
-        </materialDesign:Card>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <materialDesign:Card Grid.Column="1" Margin="8">
-            <GroupBox Header="Form Preview">
-                <views:FormView DataContext="{Binding FormViewModel}" />
-            </GroupBox>
-        </materialDesign:Card>
+            <materialDesign:Card Grid.Column="0" Margin="8">
+                <GroupBox Header="Form Designer">
+                    <designer:FormDesignerView DataContext="{Binding FormDesignerViewModel}" />
+                </GroupBox>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Column="1" Margin="8">
+                <GroupBox Header="Form Preview">
+                    <views:FormView DataContext="{Binding FormViewModel}" />
+                </GroupBox>
+            </materialDesign:Card>
 
 
-    </Grid>
+        </Grid>
+    </DockPanel>
+
+   
 </Window>

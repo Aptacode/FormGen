@@ -1,6 +1,7 @@
-using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
-using Aptacode.Forms.Shared.ViewModels.Events;
+
+using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
 using Xunit;
 
 namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
@@ -16,10 +17,10 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
             var textChangedOldString = string.Empty;
             var textChangedNewString = string.Empty;
 
-            var sut = new TextFieldViewModel("Test Text Field", ElementLabel.None, "Test") {Content = startString};
+            var sut = new TextElementViewModel("Test Text Field", ElementLabel.None, "Test") {Content = startString};
             sut.OnFormEvent += (s, e) =>
             {
-                if (!(e is TextFieldChangedEventArgs textChangedEvent))
+                if (!(e is TextElementChangedEvent textChangedEvent))
                 {
                     return;
                 }

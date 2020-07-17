@@ -1,8 +1,10 @@
 ﻿using System;
-using Aptacode.Forms.Shared.Models.Elements;
+using System.Linq;
+using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
-using Aptacode.Forms.Shared.ViewModels.Elements.Fields;
-using Aptacode.Forms.Shared.ViewModels.Layout;
+using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
+using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -13,7 +15,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         #region Events
 
         public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
-        public EventHandler<FormColumnViewModel> OnColumnSelected { get; set; }
+        public EventHandler<ColumnElementViewModel> OnColumnSelected { get; set; }
 
         public EventHandler<FormElementViewModel> OnElementRemoved { get; set; }
         public EventHandler<FormElementViewModel> OnCreated { get; set; }
@@ -22,24 +24,24 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Properties
 
-        private FormRowViewModel _formRow;
+        private RowElementViewModel _rowElement;
 
-        public FormRowViewModel FormRow
+        public RowElementViewModel RowElement
         {
-            get => _formRow;
-            set => SetProperty(ref _formRow, value);
+            get => _rowElement;
+            set => SetProperty(ref _rowElement, value);
         }
 
-        private FormColumnViewModel _selectedColumn;
+        private ColumnElementViewModel _selectedColumnLayout;
 
-        public FormColumnViewModel SelectedColumn
+        public ColumnElementViewModel SelectedColumnLayout
         {
-            get => _selectedColumn;
+            get => _selectedColumnLayout;
             set
             {
-                SetProperty(ref _selectedColumn, value);
-                OnColumnSelected?.Invoke(this, _selectedColumn);
-                OnElementSelected?.Invoke(this, _selectedColumn?.FormElementViewModel);
+                SetProperty(ref _selectedColumnLayout, value);
+                OnColumnSelected?.Invoke(this, _selectedColumnLayout);
+                OnElementSelected?.Invoke(this, _selectedColumnLayout?.Children.FirstOrDefault());
             }
         }
 
@@ -52,15 +54,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public DelegateCommand DeleteCommand =>
             _deleteCommand ??= new DelegateCommand(() =>
             {
-                if (SelectedColumn == null)
+                if (SelectedColumnLayout == null)
                 {
                     return;
                 }
 
-                FormRow.Columns.Remove(SelectedColumn);
+                RowElement.Children.Remove(SelectedColumnLayout);
 
-                OnElementRemoved?.Invoke(this, SelectedColumn.FormElementViewModel);
-                SelectedColumn = null;
+                OnElementRemoved?.Invoke(this, SelectedColumnLayout.Children.FirstOrDefault());
+                SelectedColumnLayout = null;
             });
 
 
@@ -68,26 +70,27 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         public DelegateCommand UpdateCommand =>
             _updateCommand ??=
-                new DelegateCommand(() => OnElementSelected?.Invoke(this, SelectedColumn.FormElementViewModel));
+                new DelegateCommand(() =>
+                    OnElementSelected?.Invoke(this, SelectedColumnLayout.Children.FirstOrDefault()));
 
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
             _createCommand ??= new DelegateCommand(() =>
             {
-                if (FormRow == null)
+                if (RowElement == null)
                 {
                     return;
                 }
 
-                var columnPosition = FormRow.Columns.Count + 1;
+                var columnPosition = RowElement.Children.Count + 1;
 
-                var newField = new TextFieldViewModel($"New Text Field {columnPosition}", ElementLabel.Above("Label"),
+                var newField = new TextElementViewModel($"New Text Field {columnPosition}", ElementLabel.Above("Label"),
                     "");
-                var newColumnViewModel = new FormColumnViewModel("New Column", 1, newField);
+                var newColumnViewModel = FormBuilder.NewColumn("New Column", 1, newField);
 
-                FormRow.Columns.Add(newColumnViewModel);
-                SelectedColumn = newColumnViewModel;
+                RowElement.Children.Add(newColumnViewModel);
+                SelectedColumnLayout = newColumnViewModel;
             });
 
         #endregion

@@ -1,5 +1,6 @@
-using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Xunit;
 
 namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements

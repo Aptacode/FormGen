@@ -1,8 +1,6 @@
-﻿using System;
-using Aptacode.Forms.Shared.Models;
-using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Layout;
-using Prism.Commands;
+﻿using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -11,60 +9,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
     {
         public FormDesignerViewModel()
         {
-            FormGroupSelectorViewModel = new FormGroupSelectorViewModel();
-            FormRowSelectorViewModel = new FormRowSelectorViewModel();
-            FormElementSelectorViewModel = new FormElementSelectorViewModel();
+            ElementBrowserViewModel = new ElementBrowserViewModel();
             FormElementEditorViewModel = new FormElementEditorViewModel();
-
-            FormGroupSelectorViewModel.OnGroupSelected += OnGroupSelected;
-            FormRowSelectorViewModel.OnRowSelected += OnRowSelected;
-            FormElementSelectorViewModel.OnColumnSelected += OnColumnSelected;
+            ElementBrowserViewModel.OnEditElement += OnEditElement;
         }
 
-        #region Events
-
-        public EventHandler<FormViewModel> OnFormSelected { get; set; }
-        public EventHandler<FormViewModel> OnNewForm { get; set; }
-        public EventHandler<FormViewModel> OnOpenForm { get; set; }
-        public EventHandler<FormViewModel> OnSaveForm { get; set; }
-
-        #endregion
-
-        #region Methods
-
-        public void Load(FormModel form)
+        private void OnEditElement(object sender, FormElementViewModel e)
         {
-            FormViewModel = new FormViewModel(form);
-            FormGroupSelectorViewModel.FormViewModel = FormViewModel;
+            FormElementEditorViewModel.FormElement = e as ControlElementViewModel;
         }
-
-        public void Clear()
-        {
-            FormViewModel = null;
-            FormGroupSelectorViewModel.FormViewModel = FormViewModel;
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void OnGroupSelected(object sender, FormGroupViewModel e)
-        {
-            FormRowSelectorViewModel.FormGroup = e;
-        }
-
-        private void OnRowSelected(object sender, FormRowViewModel e)
-        {
-            FormElementSelectorViewModel.FormRow = e;
-        }
-
-        private void OnColumnSelected(object sender, FormColumnViewModel e)
-        {
-            FormElementEditorViewModel.FormColumn = e;
-        }
-
-        #endregion
-
 
         #region Properties
 
@@ -76,32 +29,18 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _formViewModel, value);
-                OnFormSelected?.Invoke(this, FormViewModel);
+
+                ElementBrowserViewModel.FormViewModel = FormViewModel;
+                FormElementEditorViewModel.FormViewModel = FormViewModel;
             }
         }
 
-        private FormGroupSelectorViewModel _formGroupSelectorViewModel;
+        private ElementBrowserViewModel _elementBrowserViewModel;
 
-        public FormGroupSelectorViewModel FormGroupSelectorViewModel
+        public ElementBrowserViewModel ElementBrowserViewModel
         {
-            get => _formGroupSelectorViewModel;
-            set => SetProperty(ref _formGroupSelectorViewModel, value);
-        }
-
-        private FormRowSelectorViewModel _formRowSelectorViewModel;
-
-        public FormRowSelectorViewModel FormRowSelectorViewModel
-        {
-            get => _formRowSelectorViewModel;
-            set => SetProperty(ref _formRowSelectorViewModel, value);
-        }
-
-        private FormElementSelectorViewModel _formElementSelectorViewModel;
-
-        public FormElementSelectorViewModel FormElementSelectorViewModel
-        {
-            get => _formElementSelectorViewModel;
-            set => SetProperty(ref _formElementSelectorViewModel, value);
+            get => _elementBrowserViewModel;
+            set => SetProperty(ref _elementBrowserViewModel, value);
         }
 
         private FormElementEditorViewModel _formElementEditorViewModel;
@@ -112,25 +51,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _formElementEditorViewModel, value);
         }
 
-        #endregion
-
-        #region Commands
-
-        private DelegateCommand _newFormCommand;
-
-        public DelegateCommand NewFormCommand =>
-            _newFormCommand ??= new DelegateCommand(() => OnNewForm?.Invoke(this, FormViewModel));
-
-        private DelegateCommand _openFormCommand;
-
-        public DelegateCommand OpenFormCommand =>
-            _openFormCommand ??= new DelegateCommand(() => OnOpenForm?.Invoke(this, FormViewModel));
-
-        private DelegateCommand _saveFormCommand;
-
-        public DelegateCommand SaveFormCommand =>
-            _saveFormCommand ??= new DelegateCommand(() => OnSaveForm?.Invoke(this, FormViewModel));
-
+        
         #endregion
     }
 }

@@ -1,0 +1,9 @@
+﻿@inherits ColumnElementBase
+
+@foreach (var child in ViewModel.Children)
+{
+    <Column>
+
+        <FormElement ViewModel="@child" />
+    </Column>
+}
