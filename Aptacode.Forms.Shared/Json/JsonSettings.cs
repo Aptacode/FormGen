@@ -88,5 +88,24 @@ namespace Aptacode.Forms.Shared.Json
 
             return settings;
         }
+
+        public static JsonSerializerSettings AddEventConverter(this JsonSerializerSettings settings)
+        {
+            settings.Converters.Add(JsonSubtypesConverterBuilder
+                .Of(typeof(FormElementEvent), "Type") // type property is only defined here
+                .RegisterSubtype(typeof(ButtonElementEvent), nameof(ButtonElementEvent))
+                .RegisterSubtype(typeof(ButtonElementClickedEvent), nameof(ButtonElementClickedEvent))
+                .RegisterSubtype(typeof(CheckElementEvent), nameof(CheckElementEvent))
+                .RegisterSubtype(typeof(CheckElementChangedEvent), nameof(CheckElementChangedEvent))
+                .RegisterSubtype(typeof(SelectElementEvent), nameof(SelectElementEvent))
+                .RegisterSubtype(typeof(SelectElementChangedEvent), nameof(SelectElementChangedEvent))
+                .RegisterSubtype(typeof(TextElementEvent), nameof(TextElementEvent))
+                .RegisterSubtype(typeof(TextElementChangedEvent), nameof(TextElementChangedEvent))
+
+                .SerializeDiscriminatorProperty() // ask to serialize the type property
+                .Build());
+
+            return settings;
+        }
     }
 }

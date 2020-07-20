@@ -4,7 +4,7 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 {
     public abstract class TextElementEvent : FormFieldEvent
     {
-        protected TextElementEvent(string eventType, DateTime time, string elementName) : base(eventType, time,
+        protected TextElementEvent(DateTime time, string elementName) : base(time,
             elementName) { }
     }
 
@@ -12,7 +12,7 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
     {
         public TextElementChangedEvent(DateTime time, string elementName, string oldContent,
             string newContent) :
-            base(nameof(TextElementChangedEvent), time, elementName)
+            base(time, elementName)
         {
             OldContent = oldContent;
             NewContent = newContent;

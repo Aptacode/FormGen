@@ -15,19 +15,6 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.Event
         public string EventType { get; set; }
 
         public override Expression<Func<FormElementEvent, bool>> ToExpression() =>
-            formEvent => formEvent.EventType == EventType;
-    }
-
-    public sealed class EventElementNameSpecification : Specification<FormElementEvent>
-    {
-        public EventElementNameSpecification(string elementName)
-        {
-            ElementName = elementName;
-        }
-
-        public string ElementName { get; set; }
-
-        public override Expression<Func<FormElementEvent, bool>> ToExpression() =>
-            formEvent => formEvent.ElementName == ElementName;
+            formEvent => formEvent.GetType().Name == EventType;
     }
 }

@@ -69,7 +69,8 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 .AddElementConverter()
                 .AddEventSpecificationConverter()
                 .AddFormSpecificationConverter()
-                .AddValidatorConverter();
+                .AddValidatorConverter()
+                .AddEventConverter();
 
         #endregion
 
