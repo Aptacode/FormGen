@@ -19,28 +19,37 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             FieldModel = fieldModel;
         }
 
-        public bool IsValid => Validate().All(result => result.IsValid);
-
         public ObservableCollection<ValidationResult> ValidationResults { get; set; } =
             new ObservableCollection<ValidationResult>();
 
-        public string this[string columnName] => GetValidationMessage();
+
+        public abstract FieldElementResult GetResult();
+
+        #region IDataErrorInfo
+
+        public bool IsValid => Validate().All(result => result.IsValid);
+
+        public string this[string columnName] => string.Join("\n", ValidationMessages);
 
         public string Error { get; }
 
         public void UpdateValidationMessage()
         {
+            var newValidationResults = Validate();
+            if (ValidationResults.SequenceEqual(newValidationResults))
+            {
+                return;
+            }
+
             ValidationResults.Clear();
-            ValidationResults.AddRange(Validate());
-            TriggerEvent(new ValidationChangedEvent(DateTime.Now, Name, GetValidationErrors()));
+            ValidationResults.AddRange(newValidationResults);
+            TriggerEvent(new ValidationChangedEvent(DateTime.Now, Name, ValidationMessages));
         }
 
         public abstract IEnumerable<ValidationResult> Validate();
+        public IEnumerable<string> ValidationMessages => ValidationResults.SelectMany(r => r.Messages);
 
-        public IEnumerable<string> GetValidationErrors() => ValidationResults.SelectMany(r => r.ErrorMessages);
-        public string GetValidationMessage() => string.Join("\n", GetValidationErrors());
-
-        public abstract FieldElementResult GetResult();
+        #endregion
 
         #region Properties
 

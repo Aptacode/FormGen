@@ -46,7 +46,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             {
                 var oldValue = _content;
                 SetProperty(ref _content, value);
-                if (Model == null)
+
+                if (oldValue == value)
                 {
                     return;
                 }

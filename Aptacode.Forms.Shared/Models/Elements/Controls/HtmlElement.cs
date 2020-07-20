@@ -2,10 +2,8 @@
 {
     public class HtmlElement : ControlElement
     {
-        internal HtmlElement() { }
-
         public HtmlElement(string name, ElementLabel label, string content) : base(
-            nameof(HtmlElement), name, label)
+            name, label)
         {
             Content = content;
         }

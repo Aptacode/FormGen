@@ -1,4 +1,8 @@
-﻿using Aptacode.Forms.Shared.Models;
+﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.EventListeners;
+using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
+using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
@@ -22,12 +26,12 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             var nameRow = testGroup1.AddRows("nameRow", 1);
 
             nameRow.AddColumns("firstNameColumn", 1,
-                FormBuilder.CreateText("firstName", ElementLabel.Left("First Name: "), "First Name",
+                FormBuilder.CreateText("First Name", ElementLabel.Left("First Name: "), "First Name",
                     new TextElement_MaximunLength_Validator(10),
                     new TextElement_MinimunLength_Validator(2)));
 
             nameRow.AddColumns("lastNameColumn", 1,
-                FormBuilder.CreateText("lastName", ElementLabel.Left("Last Name: "), "Last Name",
+                FormBuilder.CreateText("Last Name", ElementLabel.Left("Last Name: "), "Last Name",
                     new TextElement_MaximunLength_Validator(10),
                     new TextElement_MinimunLength_Validator(2)));
 
@@ -36,12 +40,19 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                     "I Agree", false));
 
             testGroup1.AddRows("comboBox", 1).AddColumns("comboBox", 1,
-                FormBuilder.CreateComboBox("experienceSelection", ElementLabel.Above("How many years experience have you got?"),
+                FormBuilder.CreateComboBox("experienceSelection",
+                    ElementLabel.Above("How many years experience have you got?"),
                     new[] {"0-1", "1-5", "5+"}, "0-1"));
             testGroup1.AddRows("submit", 1)
                 .AddColumns("submit", 1, FormBuilder.CreateButton("submit", ElementLabel.None, "Submit"));
 
             newForm.RootElement = testGroup1;
+
+            newForm.EventListeners.Add(new EventListener("submit",
+                new EventElementNameSpecification("submit").And(
+                    new EventTypeSpecification(nameof(ButtonElementClickedEvent))),
+                new IdentitySpecification<FormViewModel>()));
+
             return newForm;
         }
 
@@ -70,16 +81,5 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             )));
             return new Form("form1", "Test Form", rootGroup.Model);
         }
-
-        //public static void SaveForm(string filename, FormModel form)
-        //{
-        //   // File.WriteAllText(filename, form.ToJson());
-        //}
-
-        //public static FormModel LoadForm(string filename)
-        //{
-        //    var jsonString = File.ReadAllText(filename);
-        //    return FormModel.FromJson(jsonString);
-        //}
     }
 }

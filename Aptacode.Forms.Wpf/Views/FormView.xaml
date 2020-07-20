@@ -40,6 +40,6 @@
 
     </UserControl.Resources>
 
-    <ContentPresenter Content="{Binding RootElement}"></ContentPresenter>
+    <ContentPresenter Content="{Binding RootElement}" />
 
 </UserControl>

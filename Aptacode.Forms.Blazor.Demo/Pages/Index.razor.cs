@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
@@ -22,8 +25,15 @@ namespace Aptacode.Forms.Blazor.Demo.Pages
         {
             FormEventLog = new List<FormElementEvent>();
             FormModel = CreateForm();
-
+            FormModel.EventListeners.Add(new EventListener("validationTrigger", new EventTypeSpecification(nameof(ValidationChangedEvent)),new IdentitySpecification<FormViewModel>()));
+            FormModel.OnTriggered += FormModelOnOnTriggered;
             return Task.CompletedTask;
+        }
+
+        private void FormModelOnOnTriggered(object? sender, (EventListener, FormElementEvent) e)
+        {
+            FormEventLog.Add(e.Item2);
+            InvokeAsync(StateHasChanged);
         }
 
         public FormViewModel CreateForm()

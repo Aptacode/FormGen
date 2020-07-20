@@ -2,10 +2,7 @@
 {
     public class ButtonElement : ControlElement
     {
-        internal ButtonElement() { }
-
-        public ButtonElement(string name, ElementLabel label, string content) : base(
-            nameof(ButtonElement), name, label)
+        public ButtonElement(string name, ElementLabel label, string content) : base(name, label)
         {
             Content = content;
         }

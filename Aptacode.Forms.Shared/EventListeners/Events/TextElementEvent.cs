@@ -4,7 +4,8 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 {
     public abstract class TextElementEvent : FormFieldEvent
     {
-        protected TextElementEvent(string eventType, DateTime time, string elementName) : base(eventType, time, elementName) { }
+        protected TextElementEvent(string eventType, DateTime time, string elementName) : base(eventType, time,
+            elementName) { }
     }
 
     public class TextElementChangedEvent : TextElementEvent

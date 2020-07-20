@@ -2,6 +2,6 @@
 {
     public sealed class NullElement : FormElement
     {
-        public NullElement() : base(nameof(NullElement), string.Empty) { }
+        public NullElement() : base(string.Empty) { }
     }
 }

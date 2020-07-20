@@ -21,7 +21,8 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 
     public abstract class FormFieldEvent : FormElementEvent
     {
-        protected FormFieldEvent(string eventType, DateTime time, string elementName) : base(eventType, time, elementName) { }
+        protected FormFieldEvent(string eventType, DateTime time, string elementName) : base(eventType, time,
+            elementName) { }
     }
 
     public class ValidationChangedEvent : FormFieldEvent

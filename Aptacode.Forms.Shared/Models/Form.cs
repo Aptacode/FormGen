@@ -2,8 +2,6 @@
 using System.Linq;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
-using Aptacode.Forms.Shared.Models.Json;
-using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Shared.Models
 {
@@ -21,7 +19,6 @@ namespace Aptacode.Forms.Shared.Models
             Title = title;
             RootElement = rootElement;
             EventListeners = eventListeners?.ToList() ?? new List<EventListener>();
-
         }
 
         #region Properties
@@ -39,15 +36,10 @@ namespace Aptacode.Forms.Shared.Models
         /// <summary>
         ///     The collection of groups that make up the form
         /// </summary>
-        
-        [JsonConverter(typeof(FormElementJsonConverter))]
         public CompositeElement RootElement { get; set; }
 
-
-        [JsonConverter(typeof(SingleOrArrayConverter<EventListener>))]
         public IEnumerable<EventListener> EventListeners { get; set; }
 
         #endregion
-
     }
 }

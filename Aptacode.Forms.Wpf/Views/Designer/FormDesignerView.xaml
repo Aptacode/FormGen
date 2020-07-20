@@ -34,7 +34,7 @@
             <GroupBox Header="Elements" Grid.Row="1" Margin="8">
                 <views:FormView DataContext="{Binding FormElementEditorViewModel.ElementEditorFormViewModel}" />
             </GroupBox>
-            
+
 
         </Grid>
     </DockPanel>

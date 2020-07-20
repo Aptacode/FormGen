@@ -6,9 +6,7 @@
     /// </summary>
     public sealed class RowElement : CompositeElement
     {
-        internal RowElement() { }
-
-        public RowElement(string name, int span, params FormElement[] children) : base(nameof(RowElement), name,
+        public RowElement(string name, int span, params FormElement[] children) : base(name,
             children)
         {
             Span = span;

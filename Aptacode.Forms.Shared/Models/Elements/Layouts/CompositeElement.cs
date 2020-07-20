@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aptacode.Forms.Shared.Models.Json;
-using Newtonsoft.Json;
 
 namespace Aptacode.Forms.Shared.Models.Elements.Layouts
 {
@@ -11,17 +9,13 @@ namespace Aptacode.Forms.Shared.Models.Elements.Layouts
     /// </summary>
     public abstract class CompositeElement : FormElement
     {
-        internal CompositeElement() { }
-
-        protected CompositeElement(string elementType, string name, IEnumerable<FormElement> children) : base(
-            elementType, name)
+        protected CompositeElement(string name, IEnumerable<FormElement> children) : base(name)
         {
             Children = children?.ToList() ?? new List<FormElement>();
         }
 
         #region Properties
 
-        [JsonConverter(typeof(SingleOrArrayConverter<FormElement>))]
         public IEnumerable<FormElement> Children { get; set; }
 
         #endregion

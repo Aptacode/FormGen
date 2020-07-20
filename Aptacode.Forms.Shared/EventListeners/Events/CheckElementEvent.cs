@@ -4,7 +4,8 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 {
     public abstract class CheckElementEvent : FormFieldEvent
     {
-        protected CheckElementEvent(string eventType, DateTime time, string elementName) : base(eventType, time, elementName) { }
+        protected CheckElementEvent(string eventType, DateTime time, string elementName) : base(eventType, time,
+            elementName) { }
     }
 
     public class CheckElementChangedEvent : CheckElementEvent

@@ -9,6 +9,6 @@
         <TextBlock Text="{Binding Label.Text}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
                    TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
         <TextBox Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                 AcceptsReturn="True" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                 AcceptsReturn="True" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     </DockPanel>
 </UserControl>

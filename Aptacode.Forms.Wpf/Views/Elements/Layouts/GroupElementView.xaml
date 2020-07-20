@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    
+
     <GroupBox Header="{Binding Title}">
         <ItemsControl ItemsSource="{Binding Children}">
             <ItemsControl.ItemsPanel>

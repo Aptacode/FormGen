@@ -19,15 +19,58 @@ namespace Aptacode.Forms.Shared.ViewModels
 {
     public class FormViewModel : BindableBase
     {
-        public ObservableCollection<FormElementEvent> EventLog = new ObservableCollection<FormElementEvent>();
         public ObservableCollection<EventListener> EventListeners = new ObservableCollection<EventListener>();
-
-        public event EventHandler<(EventListener, FormElementEvent)> OnTriggered;
+        public ObservableCollection<FormElementEvent> EventLog = new ObservableCollection<FormElementEvent>();
 
         public FormViewModel(Form model)
         {
             Model = model;
             EventListeners.CollectionChanged += EventListenersOnCollectionChanged;
+        }
+
+        public event EventHandler<(EventListener, FormElementEvent)> OnTriggered;
+
+        #region Elements
+        public IEnumerable<FormElementViewModel> Elements { get; private set; }
+        private IEnumerable<FieldElementViewModel> Fields => Elements.OfType<FieldElementViewModel>();
+
+        public TFieldViewModel GetElement<TFieldViewModel>(string elementName)
+            where TFieldViewModel : FormElementViewModel =>
+            this[elementName] as TFieldViewModel;
+
+        public FormElementViewModel this[string elementName] => Elements.FirstOrDefault(e => e.Name == elementName);
+
+        #endregion
+
+        #region Validation
+
+        public bool IsValid => Fields.All(field => field.IsValid);
+
+        public IEnumerable<(FieldElementViewModel, IEnumerable<ValidationResult>)> ValidationResults =>
+            Fields.Select(field => (field, field.Validate())).Where(v => v.Item2.Any(validationResult =>
+                validationResult.Messages.Any(message => !string.IsNullOrEmpty(message))));
+
+        public string ValidationMessage =>
+            string.Join("\n",
+                ValidationResults.Select(m =>
+                    $"{m.Item1.Name} \n {string.Join("\n", m.Item2.SelectMany(r => r.Messages))}"));
+
+        #endregion
+
+        #region Events
+
+        private void SubscribeToFormEvents()
+        {
+            foreach (var element in Elements)
+            {
+                element.OnFormEvent -= OnFormEvent;
+                element.OnFormEvent += OnFormEvent;
+            }
+        }
+
+        private void OnFormEvent(object sender, FormElementEvent e)
+        {
+            Handle(e);
         }
 
         private void EventListenersOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -37,7 +80,6 @@ namespace Aptacode.Forms.Shared.ViewModels
                 _model.EventListeners = EventListeners.ToList();
             }
         }
-
 
         public void Handle(FormElementEvent formEvent)
         {
@@ -51,64 +93,13 @@ namespace Aptacode.Forms.Shared.ViewModels
             }
         }
 
-
-        public bool IsValid => Fields().All(field => field.IsValid);
-
-        public IEnumerable<ValidationResult> GetValidationResults()
-        {
-            return Fields().Select(field => field.Validate())
-                .SelectMany(list => list);
-        }
-
-        public IEnumerable<FormElementViewModel> GetDescendants(FormElementViewModel element)
-        {
-            var elements = new List<FormElementViewModel> {element};
-
-            if (element is CompositeElementViewModel compositeElement)
-            {
-                elements.AddRange(compositeElement.Children.SelectMany(GetDescendants));
-            }
-
-            return elements;
-        }
-
-        public IEnumerable<FormElementViewModel> Elements() => GetDescendants(RootElement);
-
-        private IEnumerable<FieldElementViewModel> Fields()
-        {
-            return Elements()
-                .Select(element => element as FieldElementViewModel)
-                .Where(field => field != null);
-        }
-
-        public string GetValidationMessage() => string.Join("\n", GetValidationResults());
-
-        #region Events
-
-        private void SubscribeToFormEvents()
-        {
-            foreach (var element in Elements())
-            {
-                element.OnFormEvent -= OnFormEvent;
-                element.OnFormEvent += OnFormEvent;
-            }
-        }
-
-        private void OnFormEvent(object sender, FormElementEvent e)
-        {
-            Handle(e);
-        }
-
         #endregion
 
         #region Results
 
-        private IEnumerable<FieldElementResult> GetResults()
-        {
-            return Fields().Select(field => field.GetResult());
-        }
+        private IEnumerable<FieldElementResult> FieldResults => Fields.Select(field => field.GetResult());
 
-        public FormResult GetResult() => new FormResult(Model, GetResults());
+        public FormResult Results => new FormResult(FieldResults);
 
         #endregion
 
@@ -133,17 +124,6 @@ namespace Aptacode.Forms.Shared.ViewModels
                     RootElement = FormElementViewModelFactory.CreateComposite(_model.RootElement);
                 }
             }
-        }
-
-        public TFieldViewModel GetElement<TFieldViewModel>(string elementName)
-            where TFieldViewModel : FormElementViewModel
-        {
-            return Elements().FirstOrDefault(e => e.Name.Equals(elementName)) as TFieldViewModel;
-        }
-
-        public FormElementViewModel GetElement(string elementName)
-        {
-            return Elements().FirstOrDefault(e => e.Name.Equals(elementName));
         }
 
         private string _name;
@@ -184,6 +164,7 @@ namespace Aptacode.Forms.Shared.ViewModels
             set
             {
                 SetProperty(ref _rootElement, value);
+                Elements = RootElement.GetDescendants();
                 SubscribeToFormEvents();
 
                 if (_model != null)

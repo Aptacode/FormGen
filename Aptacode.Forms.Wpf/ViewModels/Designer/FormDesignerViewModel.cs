@@ -51,7 +51,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _formElementEditorViewModel, value);
         }
 
-        
         #endregion
     }
 }

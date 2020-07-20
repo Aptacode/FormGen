@@ -7,11 +7,9 @@ using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.Conditions
 {
-    public abstract class FormCondition : Specification<FormViewModel> { }
-
     public abstract class ElementSpecification : Specification<FormElementViewModel> { }
 
-    public class SelectElementSelectionCondition : FormCondition
+    public class SelectElementSelectionCondition : Specification<FormViewModel>
     {
         public SelectElementSelectionCondition(string elementName, string selectedValue)
         {

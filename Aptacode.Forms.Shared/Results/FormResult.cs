@@ -1,20 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aptacode.Forms.Shared.Models;
 
 namespace Aptacode.Forms.Shared.Results
 {
     public class FormResult
     {
-        internal FormResult() { }
-
-        public FormResult(Form form, IEnumerable<FieldElementResult> fieldResults)
+        public FormResult(IEnumerable<FieldElementResult> fieldResults)
         {
-            Form = form;
             FieldResults = fieldResults;
         }
-
-        public Form Form { get; set; }
 
         public IEnumerable<FieldElementResult> FieldResults { get; set; }
 

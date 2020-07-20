@@ -61,7 +61,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 return;
             }
 
-            if (ElementTypeToFriendlyName(FormElement?.ElementModel?.ElementType) == eventArgs.NewValue)
+            if (ElementTypeToFriendlyName(FormElement?.ElementModel.GetType()) == eventArgs.NewValue)
             {
                 return;
             }
@@ -97,9 +97,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Methods
 
-        private string ElementTypeToFriendlyName(string elementType)
+        private string ElementTypeToFriendlyName(Type elementType)
         {
-            switch (elementType)
+            switch (elementType.GetType().Name)
             {
                 case nameof(ButtonElement):
                     return "Button";
@@ -288,14 +288,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         public void Refresh()
         {
-
             if (FormElement == null)
             {
                 ParentElement = null;
                 return;
             }
 
-            ParentElement = FormViewModel.Elements().OfType<CompositeElementViewModel>().FirstOrDefault(e => e.Children.Contains(FormElement));
+            ParentElement = FormViewModel.Elements.OfType<CompositeElementViewModel>()
+                .FirstOrDefault(e => e.Children.Contains(FormElement));
 
             var form = FormBuilder.CreateForm("Element Editor Form", "Element Editor Form");
             var group = FormBuilder.NewGroup("Element Editor", "Element Editor");
@@ -306,7 +306,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             _elementNameTextBox.Content = FormElement.Name;
             _elementLabelTextBox.Content = FormElement.Label.Text;
-            _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.ElementModel?.ElementType);
+            _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.ElementModel?.GetType());
 
 
             AddElementConfigurationRows(group, FormElement);
@@ -332,10 +332,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public CompositeElementViewModel ParentElement
         {
             get => _parentElement;
-            set
-            {
-                SetProperty(ref _parentElement, value);
-            }
+            set => SetProperty(ref _parentElement, value);
         }
 
 
@@ -348,7 +345,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 SetProperty(ref _formElement, value);
                 Refresh();
-            } 
+            }
         }
 
         private FormViewModel _elementEditorFormViewModel;

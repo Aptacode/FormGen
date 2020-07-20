@@ -6,6 +6,6 @@
     /// </summary>
     public sealed class NullCompositeElement : CompositeElement
     {
-        public NullCompositeElement() : base(nameof(NullCompositeElement), string.Empty, new FormElement[] { }) { }
+        public NullCompositeElement() : base(string.Empty, new FormElement[] { }) { }
     }
 }

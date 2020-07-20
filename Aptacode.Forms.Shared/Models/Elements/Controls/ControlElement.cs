@@ -5,9 +5,7 @@
     /// </summary>
     public abstract class ControlElement : FormElement
     {
-        internal ControlElement() { }
-
-        protected ControlElement(string elementType, string name, ElementLabel label) : base(elementType, name)
+        protected ControlElement(string name, ElementLabel label) : base(name)
         {
             Label = label;
         }

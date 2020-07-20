@@ -1,17 +1,18 @@
-﻿using System.Security.AccessControl;
-using Aptacode.Forms.Shared.Models.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.Models.Elements.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
     public class GroupElementViewModel : CompositeElementViewModel
     {
+        private GroupElement _model;
+
+        private string _title;
+
         public GroupElementViewModel(GroupElement model) : base(model)
         {
             Model = model;
             Title = model.Title;
         }
-
-        private GroupElement _model;
 
         public new GroupElement Model
         {
@@ -22,8 +23,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
                 Title = _model?.Title;
             }
         }
-
-        private string _title;
 
         public string Title
         {
@@ -37,6 +36,5 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
                 }
             }
         }
-
     }
 }

@@ -3,7 +3,6 @@ using System.Linq;
 using Aptacode.CSharp.Common.Utilities.Extensions;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
@@ -14,9 +13,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class ElementBrowserViewModel : BindableBase
     {
-        public ElementBrowserViewModel()
-        {
-        }
         #region Events
 
         public EventHandler<FormElementViewModel> OnEditElement { get; set; }
@@ -24,7 +20,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         #endregion
 
         #region Methods
-
 
         #endregion
 
@@ -47,21 +42,18 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public CompositeElementViewModel SelectedCompositeElement
         {
             get => _selectedCompositeElement;
-            set
-            {
-                SetProperty(ref _selectedCompositeElement, value);
-            } 
+            set => SetProperty(ref _selectedCompositeElement, value);
         }
 
         private string _selectedCompositeElementType;
 
         public string SelectedCompositeElementType
         {
-            get { return _selectedCompositeElementType; }
+            get => _selectedCompositeElementType;
             set
             {
                 SetProperty(ref _selectedCompositeElementType, value);
-                
+
                 var oldElement = SelectedCompositeElement;
                 switch (value)
                 {
@@ -80,7 +72,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                         break;
                 }
 
-                var parentElement = FormViewModel.Elements().OfType<CompositeElementViewModel>().FirstOrDefault(e => e.Children.Contains(oldElement));
+                var parentElement = FormViewModel.Elements.OfType<CompositeElementViewModel>()
+                    .FirstOrDefault(e => e.Children.Contains(oldElement));
                 if (parentElement != null)
                 {
                     parentElement.Children.Remove(oldElement);
@@ -93,7 +86,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             }
         }
 
-
         #endregion
 
         #region Commands
@@ -101,29 +93,34 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand<ControlElementViewModel> _editCommand;
 
         public DelegateCommand<ControlElementViewModel> EditCommand =>
-            _editCommand ??= new DelegateCommand<ControlElementViewModel>((selectedElement) =>
+            _editCommand ??= new DelegateCommand<ControlElementViewModel>(selectedElement =>
             {
                 OnEditElement?.Invoke(this, selectedElement);
             });
 
 
         private DelegateCommand<CompositeElementViewModel> _browseCommand;
+
         public DelegateCommand<CompositeElementViewModel> BrowseCommand =>
-            _browseCommand ??= new DelegateCommand<CompositeElementViewModel>((selectedElement) =>
-                {
-                    SelectedCompositeElement = selectedElement;
-                });
-        private DelegateCommand<CompositeElementViewModel> _backCommand;
-        public DelegateCommand<CompositeElementViewModel> BackCommand =>
-            _backCommand ??= new DelegateCommand<CompositeElementViewModel>((selectedElement) =>
+            _browseCommand ??= new DelegateCommand<CompositeElementViewModel>(selectedElement =>
             {
-                var parentElement = FormViewModel.Elements().OfType<CompositeElementViewModel>().FirstOrDefault(e => e.Children.Contains(selectedElement));
+                SelectedCompositeElement = selectedElement;
+            });
+
+        private DelegateCommand<CompositeElementViewModel> _backCommand;
+
+        public DelegateCommand<CompositeElementViewModel> BackCommand =>
+            _backCommand ??= new DelegateCommand<CompositeElementViewModel>(selectedElement =>
+            {
+                var parentElement = FormViewModel.Elements.OfType<CompositeElementViewModel>()
+                    .FirstOrDefault(e => e.Children.Contains(selectedElement));
                 SelectedCompositeElement = parentElement ?? FormViewModel?.RootElement;
             });
 
         private DelegateCommand _createGroupCommand;
+
         public DelegateCommand CreateGroupCommand =>
-            _createGroupCommand ??= new DelegateCommand((_) =>
+            _createGroupCommand ??= new DelegateCommand(_ =>
             {
                 var groupName = Interaction.InputBox("Enter a group name", "Group Name");
                 var groupTitle = Interaction.InputBox("Enter a group title", "Group Title");
@@ -133,24 +130,27 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
 
         private DelegateCommand _createControlCommand;
+
         public DelegateCommand CreateControlCommand =>
-            _createControlCommand ??= new DelegateCommand((_) =>
+            _createControlCommand ??= new DelegateCommand(_ =>
             {
                 var name = Interaction.InputBox("Enter a control name", "Control Name");
                 var label = Interaction.InputBox("Enter a control label", "Control Label");
 
-                SelectedCompositeElement.Children.Add(FormBuilder.CreateButton(name, ElementLabel.Left(label), "New Button"));
+                SelectedCompositeElement.Children.Add(FormBuilder.CreateButton(name, ElementLabel.Left(label),
+                    "New Button"));
             });
 
-        
 
         private DelegateCommand<FormElementViewModel> _deleteCommand;
+
         public DelegateCommand<FormElementViewModel> DeleteCommand =>
-            _deleteCommand ??= new DelegateCommand<FormElementViewModel>((selectedElement) =>
+            _deleteCommand ??= new DelegateCommand<FormElementViewModel>(selectedElement =>
             {
                 if (selectedElement == SelectedCompositeElement)
                 {
-                    var parentElement = FormViewModel.Elements().OfType<CompositeElementViewModel>().FirstOrDefault(e => e.Children.Contains(selectedElement));
+                    var parentElement = FormViewModel.Elements.OfType<CompositeElementViewModel>()
+                        .FirstOrDefault(e => e.Children.Contains(selectedElement));
                     if (parentElement == null)
                     {
                         return;
@@ -164,7 +164,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     SelectedCompositeElement.Children.Remove(selectedElement);
                 }
             });
-
 
         #endregion
     }
