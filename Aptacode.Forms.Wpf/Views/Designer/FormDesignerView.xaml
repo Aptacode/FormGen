@@ -38,22 +38,29 @@
             </ToolBar>
         </ToolBarTray>
 
-        <Grid>
+        <TabControl>
+        <TabItem Header="Elements">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+                <GroupBox Header="Element Browser" Grid.Column="0" Margin="8">
+                    <local:FormElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
+                </GroupBox>
 
-            <GroupBox Header="Element Browser" Grid.Column="0" Margin="8">
-                <local:FormElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
-            </GroupBox>
+                <GroupBox Header="Element Editor" Grid.Column="1" Margin="8">
+                    <ContentPresenter Content="{Binding ElementEditorViewModel}"></ContentPresenter>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Listeners">
 
-            <GroupBox Header="Element Editor" Grid.Column="1" Margin="8">
-                <ContentPresenter Content="{Binding ElementEditorViewModel}"></ContentPresenter>
-            </GroupBox>
+        </TabItem>
+
+        </TabControl>
 
 
-        </Grid>
     </DockPanel>
 </UserControl>

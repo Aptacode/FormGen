@@ -1,7 +1,7 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Conditions;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
+using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
+using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
@@ -67,8 +67,8 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormElementEvent>), nameof(NotSpecification<FormElementEvent>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormElementEvent>),
                     nameof(IdentitySpecification<FormElementEvent>))
-                .RegisterSubtype(typeof(EventElementNameSpecification), nameof(EventElementNameSpecification))
-                .RegisterSubtype(typeof(EventTypeSpecification), nameof(EventTypeSpecification))
+                .RegisterSubtype(typeof(ElementNameEventSpecification), nameof(ElementNameEventSpecification))
+                .RegisterSubtype(typeof(TypeNameEventSpecification), nameof(TypeNameEventSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
             return settings;
@@ -83,7 +83,7 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormViewModel>), nameof(NotSpecification<FormViewModel>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormViewModel>),
                     nameof(IdentitySpecification<FormViewModel>))
-                .RegisterSubtype(typeof(SelectElementSelectionCondition), nameof(SelectElementSelectionCondition))
+                .RegisterSubtype(typeof(ElementPropertyValueFormSpecification), nameof(ElementPropertyValueFormSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
 

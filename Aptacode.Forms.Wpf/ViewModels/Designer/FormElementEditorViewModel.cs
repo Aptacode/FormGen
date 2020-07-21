@@ -40,7 +40,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             if (e is TextElementChangedEvent eventArgs)
             {
-                FormElement.Label = new ElementLabel(FormElement.Label.Position, eventArgs.NewContent);
+                FormElement.Label = new ElementLabel(FormElement.Label.Position, eventArgs.NewValue);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             if (e is TextElementChangedEvent eventArgs)
             {
-                FormElement.Name = eventArgs.NewContent;
+                FormElement.Name = eventArgs.NewValue;
             }
         }
 
@@ -125,7 +125,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (e is TextElementChangedEvent eventArgs)
                 {
-                    button.Content = eventArgs.NewContent;
+                    button.Content = eventArgs.NewValue;
                 }
             };
 
@@ -161,8 +161,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (e is TextElementChangedEvent eventArgs)
                 {
-                    element.DefaultContent = eventArgs.NewContent;
-                    element.Content = eventArgs.NewContent;
+                    element.DefaultContent = eventArgs.NewValue;
+                    element.Content = eventArgs.NewValue;
                 }
             };
 
@@ -184,10 +184,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 if (e is TextElementChangedEvent eventArgs)
                 {
                     var newModel = element.Model;
-                    newModel.Items = eventArgs.NewContent.Split(',').ToList();
+                    newModel.Items = eventArgs.NewValue.Split(',').ToList();
 
                     defaultSelectedItem.Items.Clear();
-                    defaultSelectedItem.Items.AddRange(eventArgs.NewContent.Split(',').ToList());
+                    defaultSelectedItem.Items.AddRange(eventArgs.NewValue.Split(',').ToList());
                     if (!defaultSelectedItem.Items.Contains(element.DefaultSelectedItem))
                     {
                         defaultSelectedItem.DefaultSelectedItem = string.Empty;
@@ -211,12 +211,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             defaultSelectedText.OnFormEvent += (s, e) =>
             {
-                if (e is TextElementChangedEvent eventArgs && element.SelectedItem != eventArgs.NewContent)
+                if (e is TextElementChangedEvent eventArgs && element.SelectedItem != eventArgs.NewValue)
                 {
-                    element.DefaultSelectedItem = eventArgs.NewContent;
+                    element.DefaultSelectedItem = eventArgs.NewValue;
                     element.SelectedItem = string.Empty;
                     defaultSelectedItem.SelectedItem = string.Empty;
-                    defaultSelectedItem.DefaultSelectedItem = eventArgs.NewContent;
+                    defaultSelectedItem.DefaultSelectedItem = eventArgs.NewValue;
                 }
             };
 
@@ -239,7 +239,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (e is TextElementChangedEvent eventArgs)
                 {
-                    element.Content = eventArgs.NewContent;
+                    element.Content = eventArgs.NewValue;
                 }
             };
 

@@ -24,8 +24,8 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
                     return;
                 }
 
-                textChangedOldString = textChangedEvent.OldContent;
-                textChangedNewString = textChangedEvent.NewContent;
+                textChangedOldString = textChangedEvent.OldValue;
+                textChangedNewString = textChangedEvent.NewValue;
             };
 
             //Act

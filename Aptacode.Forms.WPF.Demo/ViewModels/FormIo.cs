@@ -1,7 +1,7 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
+using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
@@ -37,11 +37,11 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))));
 
             testGroup1.AddRows("CheckBox", 1).AddColumns("CheckBox", 1,
-                FormBuilder.CreateCheckBox("CheckBox", ElementLabel.Above("Do you accept the terms and conditions"),
+                FormBuilder.CreateCheck("CheckBox", ElementLabel.Above("Do you accept the terms and conditions"),
                     "I Agree", false));
 
             testGroup1.AddRows("comboBox", 1).AddColumns("comboBox", 1,
-                FormBuilder.CreateComboBox("experienceSelection",
+                FormBuilder.CreateSelect("experienceSelection",
                     ElementLabel.Above("How many years experience have you got?"),
                     new[] {"0-1", "1-5", "5+"}, "0-1"));
             testGroup1.AddRows("submit", 1)
@@ -50,8 +50,8 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             newForm.RootElement = testGroup1;
 
             newForm.EventListeners.Add(new EventListener("submit",
-                new EventElementNameSpecification("submit").And(
-                    new EventTypeSpecification(nameof(ButtonElementClickedEvent))),
+                new ElementNameEventSpecification("submit").And(
+                    new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
                 new IdentitySpecification<FormViewModel>()));
 
             return newForm;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
@@ -21,6 +22,12 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public static FormViewModel CreateForm(string name, string title) =>
             new FormViewModel(new Form(name, title, new NullCompositeElement()));
+
+        public static CompositeElementViewModel SetRoot(this FormViewModel form, CompositeElementViewModel compositeElement)
+        {
+            form.RootElement = compositeElement;
+            return compositeElement;
+        }
 
         public static GroupElementViewModel AddGroup(this CompositeElementViewModel compositeElement, string name,
             string title,
@@ -178,13 +185,50 @@ namespace Aptacode.Forms.Shared.ViewModels
             params ValidationRule<ITextElementViewModel>[] rules) =>
             new TextElementViewModel(name, label, defaultContent, rules);
 
-        public static CheckElementViewModel CreateCheckBox(string name, ElementLabel label, string content,
+        public static CheckElementViewModel CreateCheck(string name, ElementLabel label, string content,
             bool defaultValue, params ValidationRule<ICheckElementViewModel>[] rules) =>
             new CheckElementViewModel(name, label, content, defaultValue, rules);
 
-        public static SelectElementViewModel CreateComboBox(string name, ElementLabel label, IEnumerable<string> items,
+        public static SelectElementViewModel CreateSelect(string name, ElementLabel label, IEnumerable<string> items,
             string defaultValue, params ValidationRule<ISelectElementViewModel>[] rules) =>
             new SelectElementViewModel(name, label, items, defaultValue, rules);
+
+
+
+        public static CompositeElementViewModel AddButton(this CompositeElementViewModel parent, string name,
+            ElementLabel label, string content)
+        {
+            parent.Children.Add(CreateButton(name, label, content));
+            return parent;
+        }
+
+        public static CompositeElementViewModel AddHtml(this CompositeElementViewModel parent, string name,
+            ElementLabel label, string content)
+        {
+            parent.Children.Add(CreateHtml(name, label, content));
+            return parent;
+        }
+
+        public static CompositeElementViewModel AddText(this CompositeElementViewModel parent, string name, ElementLabel label, string defaultContent,
+            params ValidationRule<ITextElementViewModel>[] rules)
+        {
+            parent.Children.Add(CreateText(name, label, defaultContent, rules));
+            return parent;
+        }
+
+        public static CompositeElementViewModel AddCheck(this CompositeElementViewModel parent, string name, ElementLabel label, string content,
+            bool defaultValue, params ValidationRule<ICheckElementViewModel>[] rules)
+        {
+            parent.Children.Add(CreateCheck(name, label, content, defaultValue, rules));
+            return parent;
+        }
+
+        public static CompositeElementViewModel AddSelect(this CompositeElementViewModel parent, string name, ElementLabel label, IEnumerable<string> items,
+            string defaultValue, params ValidationRule<ISelectElementViewModel>[] rules)
+        {
+            parent.Children.Add(CreateSelect(name, label, items, defaultValue, rules));
+            return parent;
+        }
 
         #endregion
     }

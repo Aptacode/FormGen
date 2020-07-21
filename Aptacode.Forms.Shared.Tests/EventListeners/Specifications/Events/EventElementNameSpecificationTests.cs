@@ -1,6 +1,6 @@
 ﻿using System;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
+using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Xunit;
 
 namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.Events
@@ -14,7 +14,7 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.Events
         public void IsSatisfiedBy(string elementName, string eventElementName, bool expectedResult)
         {
             //Arrange
-            var sut = new EventElementNameSpecification(elementName);
+            var sut = new ElementNameEventSpecification(elementName);
             var elementEvent = new ButtonElementClickedEvent(DateTime.Now, eventElementName);
 
             //Act
