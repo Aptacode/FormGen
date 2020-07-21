@@ -15,7 +15,7 @@ namespace Aptacode.Forms.Shared.ValidationRules
             FailMessage = failMessage;
             Specification = specification;
         }
-        public static ValidationRule<TField> Create<TField>(Specification<TField> specification, string successMessage = "", string failMessage = "") where TField : IFieldViewModel
+        public static ValidationRule<TField> Create(Specification<TField> specification, string successMessage = "", string failMessage = "")
         {
             return new ValidationRule<TField>(specification, successMessage, failMessage);
         }

@@ -51,8 +51,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public string ValidationMessage =>
             string.Join("\n",
-                ValidationResults.Select(m =>
-                    $"{m.Item1.Name} \n {string.Join("\n", m.Item2.Where(result => result.HasMessage).Select(result => result.Message))}"));
+                 Fields.SelectMany(field => field.Validate()).Where(result => result.HasMessage).Select(result => result.Message));
 
         #endregion
 
