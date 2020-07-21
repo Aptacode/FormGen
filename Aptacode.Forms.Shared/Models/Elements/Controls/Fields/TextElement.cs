@@ -8,11 +8,11 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
     public class TextElement : FieldElement
     {
         public TextElement(string name, ElementLabel label, string defaultContent,
-            params FluentValidator<ITextElementViewModel>[] rules) :
+            params ValidationRule<ITextElementViewModel>[] rules) :
             this(name, label, defaultContent, rules?.ToList()) { }
 
         public TextElement(string name, ElementLabel label, string defaultContent,
-            IEnumerable<FluentValidator<ITextElementViewModel>> rules) : base(name, label)
+            IEnumerable<ValidationRule<ITextElementViewModel>> rules) : base(name, label)
         {
             DefaultContent = defaultContent;
 
@@ -23,8 +23,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
 
         public string DefaultContent { get; set; }
 
-        public IEnumerable<FluentValidator<ITextElementViewModel>> Rules { get; set; } =
-            new List<FluentValidator<ITextElementViewModel>>();
+        public IEnumerable<ValidationRule<ITextElementViewModel>> Rules { get; set; } =
+            new List<ValidationRule<ITextElementViewModel>>();
 
         #endregion
     }

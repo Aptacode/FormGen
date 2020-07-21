@@ -13,9 +13,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
     public class CheckElementViewModel : FieldElementViewModel, ICheckElementViewModel
     {
         public CheckElementViewModel(string name, ElementLabel label, string content,
-            bool defaultIsChecked, params FluentValidator<ICheckElementViewModel>[] rules) : this(
+            bool defaultIsChecked, params ValidationRule<ICheckElementViewModel>[] rules) : this(
             new CheckElement(name, label, content, defaultIsChecked,
-                rules?.ToList() ?? new List<FluentValidator<ICheckElementViewModel>>())) { }
+                rules?.ToList() ?? new List<ValidationRule<ICheckElementViewModel>>())) { }
 
         public CheckElementViewModel(CheckElement model) : base(model)
         {

@@ -10,6 +10,7 @@ using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
+using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using Microsoft.AspNetCore.Components;
 
 namespace Aptacode.Forms.Blazor.Demo.Pages
@@ -50,13 +51,13 @@ namespace Aptacode.Forms.Blazor.Demo.Pages
 
             nameRow.AddColumns("firstNameColumn", 1,
                 FormBuilder.CreateText("firstName", ElementLabel.Left("First Name: "), "First Name",
-                    new TextElement_MaximunLength_Validator(10),
-                    new TextElement_MinimunLength_Validator(2)));
+                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximunLength_Validator(10)),
+                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))));
 
             nameRow.AddColumns("lastNameColumn", 1,
                 FormBuilder.CreateText("lastName", ElementLabel.Left("Last Name: "), "Last Name",
-                    new TextElement_MaximunLength_Validator(10),
-                    new TextElement_MinimunLength_Validator(2)));
+                      ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximunLength_Validator(10)),
+                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))));
 
             testGroup1.AddRows("CheckBox", 1).AddColumns("CheckBox", 1,
                 FormBuilder.CreateCheckBox("CheckBox", ElementLabel.Above("Do you accept the terms and conditions"),

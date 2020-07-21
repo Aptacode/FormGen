@@ -13,8 +13,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
     public class TextElementViewModel : FieldElementViewModel, ITextElementViewModel
     {
         public TextElementViewModel(string name, ElementLabel label, string defaultContent,
-            params FluentValidator<ITextElementViewModel>[] rules) : this(new TextElement(name, label, defaultContent,
-            rules?.ToList() ?? new List<FluentValidator<ITextElementViewModel>>())) { }
+            params ValidationRule<ITextElementViewModel>[] rules) : this(new TextElement(name, label, defaultContent,
+            rules?.ToList() ?? new List<ValidationRule<ITextElementViewModel>>())) { }
 
         public TextElementViewModel(TextElement model) : base(model)
         {

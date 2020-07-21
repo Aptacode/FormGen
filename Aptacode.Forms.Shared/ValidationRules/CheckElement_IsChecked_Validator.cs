@@ -1,13 +1,13 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using FluentValidation;
+using System;
+using System.Linq.Expressions;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class CheckElement_IsChecked_Validator : FluentValidator<ICheckElementViewModel>
+    public class CheckElement_IsChecked_Validator : Specification<ICheckElementViewModel>
     {
-        public CheckElement_IsChecked_Validator(string message = "") : base(message)
-        {
-            validator.RuleFor(viewModel => viewModel.IsChecked).Equal(true).WithMessage(Message);
-        }
+        public override Expression<Func<ICheckElementViewModel, bool>> ToExpression() => element => element.IsChecked;
     }
 }

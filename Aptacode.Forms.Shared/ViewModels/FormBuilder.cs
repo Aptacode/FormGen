@@ -175,15 +175,15 @@ namespace Aptacode.Forms.Shared.ViewModels
             new HtmlElementViewModel(name, label, content);
 
         public static TextElementViewModel CreateText(string name, ElementLabel label, string defaultContent,
-            params FluentValidator<ITextElementViewModel>[] rules) =>
+            params ValidationRule<ITextElementViewModel>[] rules) =>
             new TextElementViewModel(name, label, defaultContent, rules);
 
         public static CheckElementViewModel CreateCheckBox(string name, ElementLabel label, string content,
-            bool defaultValue, params FluentValidator<ICheckElementViewModel>[] rules) =>
+            bool defaultValue, params ValidationRule<ICheckElementViewModel>[] rules) =>
             new CheckElementViewModel(name, label, content, defaultValue, rules);
 
         public static SelectElementViewModel CreateComboBox(string name, ElementLabel label, IEnumerable<string> items,
-            string defaultValue, params FluentValidator<ISelectElementViewModel>[] rules) =>
+            string defaultValue, params ValidationRule<ISelectElementViewModel>[] rules) =>
             new SelectElementViewModel(name, label, items, defaultValue, rules);
 
         #endregion

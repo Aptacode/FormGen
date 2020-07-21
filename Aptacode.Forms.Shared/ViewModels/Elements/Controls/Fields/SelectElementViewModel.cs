@@ -14,9 +14,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
     {
         public SelectElementViewModel(string name, ElementLabel label, IEnumerable<string> items,
             string defaultSelectedItem,
-            params FluentValidator<ISelectElementViewModel>[] rules) : this(new SelectElement(name, label, items,
+            params ValidationRule<ISelectElementViewModel>[] rules) : this(new SelectElement(name, label, items,
             defaultSelectedItem,
-            rules?.ToList() ?? new List<FluentValidator<ISelectElementViewModel>>())) { }
+            rules?.ToList() ?? new List<ValidationRule<ISelectElementViewModel>>())) { }
 
         public SelectElementViewModel(SelectElement model) : base(model)
         {

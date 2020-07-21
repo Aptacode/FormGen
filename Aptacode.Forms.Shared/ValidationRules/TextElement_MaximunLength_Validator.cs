@@ -1,22 +1,18 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using FluentValidation;
+using System;
+using System.Linq.Expressions;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class TextElement_MaximunLength_Validator : FluentValidator<ITextElementViewModel>
+    public class TextElement_MaximunLength_Validator : Specification<ITextElementViewModel>
     {
-        public TextElement_MaximunLength_Validator(int maxLength = int.MaxValue) : this(maxLength,
-            $"Must be less then {maxLength} characters long") { }
-
-        public TextElement_MaximunLength_Validator(int maxLength, string message) : base(message)
+        public int MaxLength { get; set; }
+        public TextElement_MaximunLength_Validator(int maxLength)
         {
             MaxLength = maxLength;
-            validator
-                .RuleFor(viewModel => viewModel.Content)
-                .Must(content => content.Length <= MaxLength)
-                .WithMessage(_ => Message);
         }
-
-        public int MaxLength { get; set; }
+        public override Expression<Func<ITextElementViewModel, bool>> ToExpression() => textElement => textElement.Content.Length <= MaxLength;
     }
 }

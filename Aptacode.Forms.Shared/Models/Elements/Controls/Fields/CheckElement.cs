@@ -8,7 +8,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
     public class CheckElement : FieldElement
     {
         public CheckElement(string name, ElementLabel label, string content, bool defaultIsChecked,
-            IEnumerable<FluentValidator<ICheckElementViewModel>> rules) : base(name, label)
+            IEnumerable<ValidationRule<ICheckElementViewModel>> rules) : base(name, label)
         {
             Content = content;
             DefaultIsChecked = defaultIsChecked;
@@ -16,7 +16,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
         }
 
         public CheckElement(string name, ElementLabel label, string content, bool defaultIsChecked,
-            params FluentValidator<ICheckElementViewModel>[] rules) : this(name, label, content, defaultIsChecked,
+            params ValidationRule<ICheckElementViewModel>[] rules) : this(name, label, content, defaultIsChecked,
             rules?.ToList()) { }
 
         #region Properties
@@ -24,8 +24,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
         public bool DefaultIsChecked { get; set; }
         public string Content { get; set; }
 
-        public IEnumerable<FluentValidator<ICheckElementViewModel>> Rules { get; set; } =
-            new List<FluentValidator<ICheckElementViewModel>>();
+        public IEnumerable<ValidationRule<ICheckElementViewModel>> Rules { get; set; } =
+            new List<ValidationRule<ICheckElementViewModel>>();
 
         #endregion
     }

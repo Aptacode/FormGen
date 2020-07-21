@@ -8,6 +8,7 @@ using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using JsonSubTypes;
 using Newtonsoft.Json;
 
@@ -41,7 +42,7 @@ namespace Aptacode.Forms.Shared.Json
         public static JsonSerializerSettings AddValidatorConverter(this JsonSerializerSettings settings)
         {
             settings.Converters.Add(JsonSubtypesConverterBuilder
-                .Of(typeof(IValidationRule), "Type") // type property is only defined here
+                .Of(typeof(Specification<IFieldViewModel>), "Type") // type property is only defined here
                 .RegisterSubtype(typeof(CheckElement_IsChecked_Validator), nameof(CheckElement_IsChecked_Validator))
                 .RegisterSubtype(typeof(CheckElement_IsNotChecked_Validator),
                     nameof(CheckElement_IsNotChecked_Validator))

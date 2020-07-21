@@ -47,7 +47,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
         }
 
         public abstract IEnumerable<ValidationResult> Validate();
-        public IEnumerable<string> ValidationMessages => ValidationResults.SelectMany(r => r.Messages);
+        public IEnumerable<string> ValidationMessages => ValidationResults.Where(r => r.HasMessage).Select(r => r.Message);
 
         #endregion
 

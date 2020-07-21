@@ -47,13 +47,12 @@ namespace Aptacode.Forms.Shared.ViewModels
         public bool IsValid => Fields.All(field => field.IsValid);
 
         public IEnumerable<(FieldElementViewModel, IEnumerable<ValidationResult>)> ValidationResults =>
-            Fields.Select(field => (field, field.Validate())).Where(v => v.Item2.Any(validationResult =>
-                validationResult.Messages.Any(message => !string.IsNullOrEmpty(message))));
+            Fields.Select(field => (field, field.Validate()));
 
         public string ValidationMessage =>
             string.Join("\n",
                 ValidationResults.Select(m =>
-                    $"{m.Item1.Name} \n {string.Join("\n", m.Item2.SelectMany(r => r.Messages))}"));
+                    $"{m.Item1.Name} \n {string.Join("\n", m.Item2.Where(result => result.HasMessage).Select(result => result.Message))}"));
 
         #endregion
 

@@ -1,22 +1,17 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
-using FluentValidation;
+﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using System;
+using System.Linq.Expressions;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class TextElement_MinimunLength_Validator : FluentValidator<ITextElementViewModel>
+    public class TextElement_MinimunLength_Validator : Specification<ITextElementViewModel>
     {
-        public TextElement_MinimunLength_Validator(int minLength = 0) : this(minLength,
-            $"Must be greater then {minLength} characters long") { }
-
-        public TextElement_MinimunLength_Validator(int minLength, string message) : base(message)
+        public int MinimunLength { get; set; }
+        public TextElement_MinimunLength_Validator(int minimunLength)
         {
-            MinLength = minLength;
-            validator
-                .RuleFor(viewModel => viewModel.Content)
-                .Must(content => content.Length >= MinLength)
-                .WithMessage(_ => Message);
+            MinimunLength = minimunLength;
         }
-
-        public int MinLength { get; set; }
+        public override Expression<Func<ITextElementViewModel, bool>> ToExpression() => textElement => textElement.Content.Length >= MinimunLength;
     }
 }

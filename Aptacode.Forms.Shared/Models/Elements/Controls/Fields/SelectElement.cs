@@ -8,7 +8,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
     public class SelectElement : FieldElement
     {
         public SelectElement(string name, ElementLabel label, IEnumerable<string> items,
-            string defaultSelectedItem, IEnumerable<FluentValidator<ISelectElementViewModel>> rules) : base(name, label)
+            string defaultSelectedItem, IEnumerable<ValidationRule<ISelectElementViewModel>> rules) : base(name, label)
         {
             DefaultSelectedItem = defaultSelectedItem;
             Items = items ?? Items;
@@ -16,7 +16,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
         }
 
         public SelectElement(string name, ElementLabel label, IEnumerable<string> items,
-            string defaultSelectedItem, params FluentValidator<ISelectElementViewModel>[] rules) : this(name, label,
+            string defaultSelectedItem, params ValidationRule<ISelectElementViewModel>[] rules) : this(name, label,
             items, defaultSelectedItem, rules?.ToList()) { }
 
         #region Properties
@@ -24,8 +24,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
         public string DefaultSelectedItem { get; set; }
         public IEnumerable<string> Items { get; set; } = new List<string>();
 
-        public IEnumerable<FluentValidator<ISelectElementViewModel>> Rules { get; set; } =
-            new List<FluentValidator<ISelectElementViewModel>>();
+        public IEnumerable<ValidationRule<ISelectElementViewModel>> Rules { get; set; } =
+            new List<ValidationRule<ISelectElementViewModel>>();
 
         #endregion
     }

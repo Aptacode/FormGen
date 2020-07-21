@@ -9,18 +9,4 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.Conditions
 {
     public abstract class ElementSpecification : Specification<FormElementViewModel> { }
 
-    public class SelectElementSelectionCondition : Specification<FormViewModel>
-    {
-        public SelectElementSelectionCondition(string elementName, string selectedValue)
-        {
-            ElementName = elementName;
-            SelectedValue = selectedValue;
-        }
-
-        public string ElementName { get; set; }
-        public string SelectedValue { get; set; }
-
-        public override Expression<Func<FormViewModel, bool>> ToExpression() => vm =>
-            vm.GetElement<SelectElementViewModel>(ElementName).SelectedItem == SelectedValue;
-    }
 }
