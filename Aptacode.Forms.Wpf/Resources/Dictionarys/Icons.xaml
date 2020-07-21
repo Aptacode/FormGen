@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="ButtonImageSource" UriSource="../Icons/Button.png" />
+    <BitmapImage x:Key="CheckImageSource" UriSource="../Icons/Check.png" />
+    <BitmapImage x:Key="ColumnsImageSource" UriSource="../Icons/Columns.png" />
+    <BitmapImage x:Key="GroupImageSource" UriSource="../Icons/Group.png" />
+    <BitmapImage x:Key="HtmlImageSource" UriSource="../Icons/Html.png" />
+    <BitmapImage x:Key="RowsImageSource" UriSource="../Icons/Rows.png" />
+    <BitmapImage x:Key="SelectImageSource" UriSource="../Icons/Select.png" />
+    <BitmapImage x:Key="TextImageSource" UriSource="../Icons/Text.png" />
+
+</ResourceDictionary>

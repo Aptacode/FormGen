@@ -1,6 +1,7 @@
 ﻿using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
+using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -9,14 +10,25 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
     {
         public FormDesignerViewModel()
         {
-            ElementBrowserViewModel = new ElementBrowserViewModel();
+            ElementBrowserViewModel = new FormElementBrowserViewModel();
             FormElementEditorViewModel = new FormElementEditorViewModel();
-            ElementBrowserViewModel.OnEditElement += OnEditElement;
+            CompositeElementEditorViewModel = new CompositeElementEditorViewModel();
+
+            ElementBrowserViewModel.OnElementSelected += OnEditElement;
         }
 
         private void OnEditElement(object sender, FormElementViewModel e)
         {
-            FormElementEditorViewModel.FormElement = e as ControlElementViewModel;
+
+            if(e is ControlElementViewModel controlElementViewModel)
+            {
+                FormElementEditorViewModel.FormElement = controlElementViewModel;
+                ElementEditorViewModel = FormElementEditorViewModel;
+            }else if (e is CompositeElementViewModel compositeElementViewModel)
+            {
+                CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
+                ElementEditorViewModel = CompositeElementEditorViewModel;
+            }
         }
 
         #region Properties
@@ -32,12 +44,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
                 ElementBrowserViewModel.FormViewModel = FormViewModel;
                 FormElementEditorViewModel.FormViewModel = FormViewModel;
+                CompositeElementEditorViewModel.FormViewModel = FormViewModel;
             }
         }
 
-        private ElementBrowserViewModel _elementBrowserViewModel;
+        private FormElementBrowserViewModel _elementBrowserViewModel;
 
-        public ElementBrowserViewModel ElementBrowserViewModel
+        public FormElementBrowserViewModel ElementBrowserViewModel
         {
             get => _elementBrowserViewModel;
             set => SetProperty(ref _elementBrowserViewModel, value);
@@ -50,6 +63,25 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _formElementEditorViewModel;
             set => SetProperty(ref _formElementEditorViewModel, value);
         }
+
+        private CompositeElementEditorViewModel _compositeElementEditorViewModel;
+
+        public CompositeElementEditorViewModel CompositeElementEditorViewModel
+        {
+            get => _compositeElementEditorViewModel;
+            set => SetProperty(ref _compositeElementEditorViewModel, value);
+        }
+
+
+        private BindableBase _elementEditorViewModel;
+
+        public BindableBase ElementEditorViewModel
+        {
+            get => _elementEditorViewModel;
+            set => SetProperty(ref _elementEditorViewModel, value);
+        }
+
+        
 
         #endregion
     }

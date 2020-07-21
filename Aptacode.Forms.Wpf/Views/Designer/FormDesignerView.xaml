@@ -5,8 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
              xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views"
+             xmlns:designer="clr-namespace:Aptacode.Forms.Wpf.ViewModels.Designer"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type designer:FormElementEditorViewModel}">
+                        <views:FormView DataContext="{Binding ElementEditorFormViewModel}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type designer:CompositeElementEditorViewModel}">
+                        <local:CompositeElementEditorView DataContext="{Binding }" />
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
 
     <DockPanel LastChildFill="True">
         <ToolBarTray DockPanel.Dock="Top">
@@ -22,17 +40,17 @@
 
         <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-            <GroupBox Header="Elements" Grid.Row="0" Margin="8">
-                <local:ElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
+            <GroupBox Header="Element Browser" Grid.Column="0" Margin="8">
+                <local:FormElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
             </GroupBox>
 
-            <GroupBox Header="Elements" Grid.Row="1" Margin="8">
-                <views:FormView DataContext="{Binding FormElementEditorViewModel.ElementEditorFormViewModel}" />
+            <GroupBox Header="Element Editor" Grid.Column="1" Margin="8">
+                <ContentPresenter Content="{Binding ElementEditorViewModel}"></ContentPresenter>
             </GroupBox>
 
 

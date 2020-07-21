@@ -40,6 +40,12 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public FormElementViewModel this[string elementName] => Elements.FirstOrDefault(e => e.Name == elementName);
 
+        public CompositeElementViewModel GetParent(FormElementViewModel element)
+        {
+            return RootElement.GetDescendants().OfType<CompositeElementViewModel>()
+                .FirstOrDefault(compositeElement => compositeElement.Children.Contains(element));
+        }
+
         #endregion
 
         #region Validation

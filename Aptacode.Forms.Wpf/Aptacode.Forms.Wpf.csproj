@@ -27,6 +27,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>../bin/release</OutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Icons\ButtonElement.png" />
+    <None Remove="Resources\Icons\CheckElement.png" />
+    <None Remove="Resources\Icons\ColumnElement.png" />
+    <None Remove="Resources\Icons\GroupElement.png" />
+    <None Remove="Resources\Icons\HtmlElement.png" />
+    <None Remove="Resources\Icons\RowElement.png" />
+    <None Remove="Resources\Icons\SelectElement.png" />
+    <None Remove="Resources\Icons\TextElement.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Aptacode.Wpf.Utilities" Version="1.0.0.7" />
@@ -43,9 +53,6 @@
   <ItemGroup>
     <Compile Update="Views\Designer\FormDesignerView.xaml.cs">
       <DependentUpon>FormDesignerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Designer\ElementBrowserView.xaml.cs">
-      <DependentUpon>ElementBrowserView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Designer\HtmlEditorDialog.xaml.cs">
       <DependentUpon>HtmlEditorDialog.xaml</DependentUpon>
@@ -82,9 +89,6 @@
 
   <ItemGroup>
     <Page Update="Views\Designer\FormDesignerView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Designer\ElementBrowserView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Designer\HtmlEditorDialog.xaml">
@@ -128,6 +132,17 @@
 
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\ButtonElement.png" />
+    <Resource Include="Resources\Icons\CheckElement.png" />
+    <Resource Include="Resources\Icons\ColumnElement.png" />
+    <Resource Include="Resources\Icons\GroupElement.png" />
+    <Resource Include="Resources\Icons\HtmlElement.png" />
+    <Resource Include="Resources\Icons\RowElement.png" />
+    <Resource Include="Resources\Icons\SelectElement.png" />
+    <Resource Include="Resources\Icons\TextElement.png" />
   </ItemGroup>
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)../$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />
