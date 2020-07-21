@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.FormView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controlElements="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Controls;assembly=Aptacode.Forms.Shared"
+             xmlns:controls="clr-namespace:Aptacode.Forms.Wpf.Views.Elements.Controls"
+             xmlns:fieldElements="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;assembly=Aptacode.Forms.Shared"
+             xmlns:fields="clr-namespace:Aptacode.Forms.Wpf.Views.Elements.Controls.Fields"
+             xmlns:layoutElements="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Layouts;assembly=Aptacode.Forms.Shared"
+             xmlns:layouts="clr-namespace:Aptacode.Forms.Wpf.Views.Elements.Layouts"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type controlElements:ButtonElementViewModel}">
+            <controls:ButtonElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controlElements:HtmlElementViewModel}">
+            <controls:HtmlElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type fieldElements:CheckElementViewModel}">
+            <fields:CheckElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type fieldElements:SelectElementViewModel}">
+            <fields:SelectElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type fieldElements:TextElementViewModel}">
+            <fields:TextBoxFieldView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type layoutElements:ColumnElementViewModel}">
+            <layouts:ColumnElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type layoutElements:GroupElementViewModel}">
+            <layouts:GroupElementView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type layoutElements:RowElementViewModel}">
+            <layouts:RowElementView DataContext="{Binding}" />
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <ContentPresenter Content="{Binding RootElement}" />
+
+</UserControl>

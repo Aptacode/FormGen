@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<Layout>
+    <LayoutHeader Fixed="true">
+        <Bar Style="height: 64px;" Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+            <BarBrand>
+                <BarItem>
+                    <BarLink To="https://github.com/Timmoth/Aptacode.Forms/">Aptacode.Forms.Blazor.Demo</BarLink>
+                </BarItem>
+            </BarBrand>
+            <BarToggler>
+            </BarToggler>
+            <BarMenu>
+                <BarStart>
+                    <BarItem>
+                        <BarLink To="/">Home</BarLink>
+                    </BarItem>
+                </BarStart>
+            </BarMenu>
+        </Bar>
+    </LayoutHeader>
+    <LayoutContent Padding="Padding.Is4.OnX">
+        @Body
+    </LayoutContent>
+</Layout>

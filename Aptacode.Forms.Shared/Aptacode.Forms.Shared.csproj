@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net4.7.2;netcoreapp3.1</TargetFrameworks>
+    <LangVersion>8</LangVersion>
+    <AssemblyName>Aptacode.Forms.Shared</AssemblyName>
+    <RootNamespace>Aptacode.Forms.Shared</RootNamespace>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageIconUrl />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.16</Version>
+    <Description>Create cross platform forms using C# .net</Description>
+    <Product>Aptacode.Forms</Product>
+    <Company>Aptacode</Company>
+    <Authors>Aptacode</Authors>
+    <RepositoryUrl>https://github.com/Timmoth/Aptacode.Forms</RepositoryUrl>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Timmoth/Aptacode.Forms</PackageProjectUrl>
+    <PackageId>Aptacode.Forms.Shared</PackageId>
+    <AssemblyVersion>1.0.0.16</AssemblyVersion>
+    <FileVersion>1.0.0.16</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aptacode.CSharp.Common.Patterns" Version="1.0.0.33" />
+    <PackageReference Include="Aptacode.CSharp.Common.Utilities" Version="1.0.0.30" />
+    <PackageReference Include="FluentValidation" Version="9.0.1" />
+    <PackageReference Include="JsonSubTypes" Version="1.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

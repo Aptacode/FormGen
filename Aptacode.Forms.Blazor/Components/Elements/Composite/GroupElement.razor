@@ -1,0 +1,20 @@
+﻿@inherits GroupElementBase
+
+<Card>
+    <CardHeader>
+        <h1>@ViewModel.Title</h1>
+    </CardHeader>
+    <CardBody>
+        <Table>
+            <Container>
+                @foreach (var child in ViewModel.Children)
+                {
+                    <Row>
+
+                        <FormElement ViewModel="@child" />
+                    </Row>
+                }
+            </Container>
+        </Table>
+    </CardBody>
+</Card>

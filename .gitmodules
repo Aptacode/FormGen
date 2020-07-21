@@ -1,0 +1,3 @@
+[submodule "Libraries/Aptacode.Wpf.Utilities"]
+	path = Libraries/Aptacode.Wpf.Utilities
+	url = https://github.com/Timmoth/Aptacode.Wpf.Utilities.git

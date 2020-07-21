@@ -1,0 +1,60 @@
+﻿<Window x:Class="Aptacode.Forms.Wpf.FormDesigner.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Aptacode.Forms.Wpf.Views;assembly=Aptacode.Forms.Wpf"
+        xmlns:designer="clr-namespace:Aptacode.Forms.Wpf.Views.Designer;assembly=Aptacode.Forms.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Form Designer" Height="1080" Width="1920">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="DeepOrange" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/materialdesigncolor.bluegrey.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepOrange.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="New" Command="{Binding NewCommand}" Margin="8" />
+                <Button Content="Load" Command="{Binding LoadCommand}" Margin="8" />
+                <Button Content="Save" Command="{Binding SaveCommand}" Margin="8" />
+            </ToolBar>
+        </ToolBarTray>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Card Grid.Column="0" Margin="8">
+                <GroupBox Header="Form Designer">
+                    <designer:FormDesignerView DataContext="{Binding FormDesignerViewModel}" />
+                </GroupBox>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Column="1" Margin="8">
+                <GroupBox Header="Form Preview">
+                    <views:FormView DataContext="{Binding FormViewModel}" />
+                </GroupBox>
+            </materialDesign:Card>
+
+
+        </Grid>
+    </DockPanel>
+
+
+</Window>

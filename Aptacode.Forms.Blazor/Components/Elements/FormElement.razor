@@ -1,0 +1,15 @@
+﻿@using Aptacode.Forms.Shared.Models.Elements.Layouts
+@using Aptacode.Forms.Shared.ViewModels.Elements.Controls
+@using Aptacode.Forms.Shared.ViewModels.Elements.Layouts
+@inherits FormElementBase
+
+
+@switch (ViewModel)
+{
+    case CompositeElementViewModel compositeElement:
+        <CompositeElement ViewModel="@compositeElement"/>
+        break;
+    case ControlElementViewModel controlElement:
+        <ControlElement ViewModel="@controlElement"/>
+        break;
+}

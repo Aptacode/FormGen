@@ -1,0 +1,150 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>net4.7.2</TargetFramework>
+    <LangVersion>8</LangVersion>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.16</Version>
+    <Company>Aptacode</Company>
+    <Authors>Aptacode</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/Timmoth/Aptacode.Forms</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Timmoth/Aptacode.Forms</RepositoryUrl>
+    <AssemblyName>Aptacode.Forms.Wpf</AssemblyName>
+    <RootNamespace>Aptacode.Forms.Wpf</RootNamespace>
+    <Description>Wpf implementation of Aptacode.Forms</Description>
+    <PackageIcon>Logo.png</PackageIcon>
+    <AssemblyVersion>1.0.0.16</AssemblyVersion>
+    <FileVersion>1.0.0.16</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>../bin/debug</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>../bin/release</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Icons\ButtonElement.png" />
+    <None Remove="Resources\Icons\CheckElement.png" />
+    <None Remove="Resources\Icons\ColumnElement.png" />
+    <None Remove="Resources\Icons\GroupElement.png" />
+    <None Remove="Resources\Icons\HtmlElement.png" />
+    <None Remove="Resources\Icons\RowElement.png" />
+    <None Remove="Resources\Icons\SelectElement.png" />
+    <None Remove="Resources\Icons\TextElement.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aptacode.Wpf.Utilities" Version="1.0.0.7" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
+    <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+    <PackageReference Include="WpfRichText2" Version="1.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aptacode.Forms.Shared\Aptacode.Forms.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Designer\FormDesignerView.xaml.cs">
+      <DependentUpon>FormDesignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Designer\HtmlEditorDialog.xaml.cs">
+      <DependentUpon>HtmlEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Controls\ButtonElementView.xaml.cs">
+      <DependentUpon>ButtonElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Controls\Fields\CheckElementView.xaml.cs">
+      <DependentUpon>CheckElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Controls\Fields\SelectElementView.xaml.cs">
+      <DependentUpon>SelectElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Controls\HtmlElementView.xaml.cs">
+      <DependentUpon>HtmlElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Controls\Fields\TextElementView.xaml.cs">
+      <DependentUpon>TextElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\FormView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>FormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Layouts\ColumnElementView.xaml.cs">
+      <DependentUpon>ColumnElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Layouts\GroupElementView.xaml.cs">
+      <DependentUpon>GroupElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Elements\Layouts\RowElementView.xaml.cs">
+      <DependentUpon>RowElementView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Designer\FormDesignerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Designer\HtmlEditorDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Controls\ButtonElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Controls\Fields\CheckElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Controls\Fields\SelectElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Controls\HtmlElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Controls\Fields\TextElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FormView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Layouts\ColumnElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Layouts\GroupElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Elements\Layouts\RowElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\ButtonElement.png" />
+    <Resource Include="Resources\Icons\CheckElement.png" />
+    <Resource Include="Resources\Icons\ColumnElement.png" />
+    <Resource Include="Resources\Icons\GroupElement.png" />
+    <Resource Include="Resources\Icons\HtmlElement.png" />
+    <Resource Include="Resources\Icons\RowElement.png" />
+    <Resource Include="Resources\Icons\SelectElement.png" />
+    <Resource Include="Resources\Icons\TextElement.png" />
+  </ItemGroup>
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)../$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />
+  </Target>
+</Project>

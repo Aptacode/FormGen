@@ -1,0 +1,36 @@
+﻿@page "/"
+
+@inherits IndexBase
+
+
+<h1>
+        Aptacode.Forms.Blazor.Demo
+    </h1>
+    <Divider Type="DividerType.Dashed"/>
+
+    <Aptacode.Forms.Blazor.Components.Form ViewModel="@FormModel"/>
+
+    <Divider Type="DividerType.Dashed"/>
+
+    <Table>
+        <TableHeader>
+            <Alert Color="Color.Primary" Visible="true">
+                Event Log
+            </Alert>
+            <TableRow>
+                <TableHeaderCell>Time</TableHeaderCell>
+                <TableHeaderCell>Event</TableHeaderCell>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            @foreach (var formEvent in GetRecentEvents())
+            {
+                <TableRow>
+                    <TableRowHeader>@formEvent.Time.ToString("HH:mm:ss")</TableRowHeader>
+                    <TableRowCell>@formEvent.ToString()</TableRowCell>
+                </TableRow>
+            }
+        </TableBody>
+    </Table>
+
+    <Divider Type="DividerType.Dashed"/>

@@ -1,0 +1,3 @@
+﻿@inherits ButtonElementBase
+
+<Button Color="Color.Primary" Block="true" @onclick="@(e => ViewModel.ButtonClickedCommand.Execute(null))">@ViewModel.Content</Button>
