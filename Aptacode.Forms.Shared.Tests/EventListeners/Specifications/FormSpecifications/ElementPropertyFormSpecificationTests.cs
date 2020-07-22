@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
+﻿using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels;
 using Xunit;
 
-namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.Conditions
+namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.FormSpecifications
 {
     public class ElementPropertyFormSpecificationTests
     {
-
         private const string TextElementName = "Test Text Element";
         private const string TextElementValue = "Test Text Value";
 
@@ -30,11 +24,11 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.Conditions
 
         public void IsSatisfiedBy(string elementName, string propertyName, object propertyValue, bool expectedResult)
         {
-
             //Arrange
             var sut = new ElementPropertyFormSpecification(elementName, propertyName, propertyValue);
             var testForm = FormBuilder.CreateForm("Test Form Name", "Test Form Title");
-            var rootElement = FormBuilder.NewGroup("Test Group", "Test Group Title")
+            var rootElement = 
+                FormBuilder.NewGroup("Test Group", "Test Group Title")
                 .AddText(TextElementName, ElementLabel.None, TextElementValue)
                 .AddCheck(CheckElementName, ElementLabel.None, "Test Check Content", CheckElementValue);
 

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aptacode.CSharp.Common.Patterns.Specification;
-using Aptacode.Forms.Shared.EventListeners.Events;
+﻿using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications {
-    public sealed class PropertyValueEventSpecification : Specification<FormElementEvent>
+
+    public class PropertyValueEventSpecification : PropertyValueSpecification<FormElementEvent>
     {
-        public PropertyValueEventSpecification(string propertyName, object propertyValue)
+        internal PropertyValueEventSpecification() { }
+
+        public PropertyValueEventSpecification(string propertyName, object propertyValue) : base(propertyName, propertyValue)
         {
-            PropertyName = propertyName;
-            PropertyValue = propertyValue;
+
         }
-
-        public string PropertyName { get; set; }
-        public object PropertyValue { get; set; }
-
-        public override Expression<Func<FormElementEvent, bool>> ToExpression() =>
-            formEvent => formEvent.GetType().GetProperty(PropertyName).GetValue(formEvent) == PropertyValue;
     }
+
 }

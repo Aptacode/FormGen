@@ -5,6 +5,8 @@
     /// </summary>
     public abstract class FormElement
     {
+        internal FormElement() { }
+
         protected FormElement(string name)
         {
             Name = name;

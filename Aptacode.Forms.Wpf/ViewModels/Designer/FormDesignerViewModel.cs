@@ -1,7 +1,13 @@
-﻿using Aptacode.Forms.Shared.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
+using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+using Aptacode.Forms.Wpf.ViewModels.Designer.Specification;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -15,12 +21,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             CompositeElementEditorViewModel = new CompositeElementEditorViewModel();
 
             ElementBrowserViewModel.OnElementSelected += OnEditElement;
+
+
         }
 
         private void OnEditElement(object sender, FormElementViewModel e)
         {
-
-            if(e is ControlElementViewModel controlElementViewModel)
+            if (e is ControlElementViewModel controlElementViewModel)
             {
                 FormElementEditorViewModel.FormElement = controlElementViewModel;
                 ElementEditorViewModel = FormElementEditorViewModel;
@@ -45,6 +52,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 ElementBrowserViewModel.FormViewModel = FormViewModel;
                 FormElementEditorViewModel.FormViewModel = FormViewModel;
                 CompositeElementEditorViewModel.FormViewModel = FormViewModel;
+                EventListenerEditorViewModel = new EventListenerEditorViewModel
+                {
+                    FormViewModel = FormViewModel
+                };
             }
         }
 
@@ -81,7 +92,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _elementEditorViewModel, value);
         }
 
+        private EventListenerEditorViewModel _eventListenerEditorViewModel;
+
+        public EventListenerEditorViewModel EventListenerEditorViewModel
+        {
+            get => _eventListenerEditorViewModel;
+            set => SetProperty(ref _eventListenerEditorViewModel, value);
+        }
+
         
+
 
         #endregion
     }

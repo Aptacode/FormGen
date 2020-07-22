@@ -9,6 +9,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Layouts
     /// </summary>
     public abstract class CompositeElement : FormElement
     {
+        internal CompositeElement() { }
+
         protected CompositeElement(string name, IEnumerable<FormElement> children) : base(name)
         {
             Children = children?.ToList() ?? new List<FormElement>();

@@ -7,6 +7,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
 {
     public class TextElement : FieldElement
     {
+        internal TextElement() { }
+
         public TextElement(string name, ElementLabel label, string defaultContent,
             params ValidationRule<ITextElementViewModel>[] rules) :
             this(name, label, defaultContent, rules?.ToList()) { }

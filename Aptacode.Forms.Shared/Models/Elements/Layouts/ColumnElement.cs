@@ -6,6 +6,8 @@
     /// </summary>
     public sealed class ColumnElement : CompositeElement
     {
+        internal ColumnElement() { }
+
         public ColumnElement(string name, int span, params FormElement[] children) : base(name,
             children)
         {

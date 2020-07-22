@@ -6,19 +6,25 @@ namespace Aptacode.Forms.Shared.EventListeners
 {
     public sealed class EventListener
     {
-        public EventListener(string name, Specification<FormElementEvent> specification,
-            Specification<FormViewModel> condition)
+        public EventListener(
+            string name,
+            Specification<FormElementEvent> eventTrigger,
+            Specification<FormViewModel> formCondition)
         {
             Name = name;
-            Specification = specification;
-            Condition = condition;
+            EventTrigger = eventTrigger;
+            FormCondition = formCondition;
         }
 
-        public string Name { get; }
-        public Specification<FormElementEvent> Specification { get; set; }
-        public Specification<FormViewModel> Condition { get; set; }
+        #region Properties
+
+        public string Name { get; set; }
+        public Specification<FormElementEvent> EventTrigger { get; set; }
+        public Specification<FormViewModel> FormCondition { get; set; }
+
+        #endregion
 
         public bool IsSatisfiedBy(FormViewModel formViewModel, FormElementEvent formEvent) =>
-            Specification.IsSatisfiedBy(formEvent) && (Condition == null || Condition.IsSatisfiedBy(formViewModel));
+            EventTrigger.IsSatisfiedBy(formEvent) && (FormCondition == null || FormCondition.IsSatisfiedBy(formViewModel));
     }
 }

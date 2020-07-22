@@ -6,6 +6,7 @@ using Aptacode.Forms.Shared.EventListeners.Events;
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications {
     public sealed class ElementNameEventSpecification : Specification<FormElementEvent>
     {
+        internal ElementNameEventSpecification() { }
         public ElementNameEventSpecification(string elementName)
         {
             ElementName = elementName;

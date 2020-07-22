@@ -2,6 +2,8 @@
 {
     public class HtmlElement : ControlElement
     {
+        internal HtmlElement() { }
+
         public HtmlElement(string name, ElementLabel label, string content) : base(
             name, label)
         {

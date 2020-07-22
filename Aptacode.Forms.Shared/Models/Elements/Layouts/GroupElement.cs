@@ -6,6 +6,8 @@
     /// </summary>
     public class GroupElement : CompositeElement
     {
+        internal GroupElement() { }
+
         public GroupElement(string name, string title, params FormElement[] children) : base(name, children)
         {
             Title = title;

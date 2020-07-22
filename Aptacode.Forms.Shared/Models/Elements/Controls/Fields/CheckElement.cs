@@ -7,6 +7,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
 {
     public class CheckElement : FieldElement
     {
+        internal CheckElement() { }
+
         public CheckElement(string name, ElementLabel label, string content, bool defaultIsChecked,
             IEnumerable<ValidationRule<ICheckElementViewModel>> rules) : base(name, label)
         {

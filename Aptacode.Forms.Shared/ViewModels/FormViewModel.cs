@@ -19,7 +19,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 {
     public class FormViewModel : BindableBase
     {
-        public ObservableCollection<EventListener> EventListeners = new ObservableCollection<EventListener>();
+        public ObservableCollection<EventListener> EventListeners { get; set; } = new ObservableCollection<EventListener>();
         public ObservableCollection<FormElementEvent> EventLog = new ObservableCollection<FormElementEvent>();
 
         public FormViewModel(Form model)

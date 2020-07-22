@@ -28,12 +28,12 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 
             nameRow.AddColumns("firstNameColumn", 1,
                 FormBuilder.CreateText("First Name", ElementLabel.Left("First Name: "), "First Name",
-                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximunLength_Validator(10)).WithFailMessage("First Name must be less then 10 characters"),
+                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)).WithFailMessage("First Name must be less then 10 characters"),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2)).WithFailMessage("First Name must be greater then 2 characters")));
 
             nameRow.AddColumns("lastNameColumn", 1,
                 FormBuilder.CreateText("Last Name", ElementLabel.Left("Last Name: "), "Last Name",
-                         ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximunLength_Validator(10)),
+                         ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))));
 
             testGroup1.AddRows("CheckBox", 1).AddColumns("CheckBox", 1,
@@ -65,7 +65,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                         "<h1><em>Test HTML Content</em></h1>\r\n<p>Test</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">TEST od&nbsp;&nbsp; </span></p>"
                     ))), new RowElement("Default", 1, new ColumnElement("Default", 1,
                 new TextElement("firstName", ElementLabel.Left("First Name"), "First Name",
-                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximunLength_Validator(10)),
+                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2)))
             ), new ColumnElement("", 1,
                 new TextElement("lastName", ElementLabel.Left("Last Name"), "Last Name")

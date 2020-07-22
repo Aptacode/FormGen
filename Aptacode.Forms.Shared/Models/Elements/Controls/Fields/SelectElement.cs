@@ -7,6 +7,8 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
 {
     public class SelectElement : FieldElement
     {
+        internal SelectElement() { }
+
         public SelectElement(string name, ElementLabel label, IEnumerable<string> items,
             string defaultSelectedItem, IEnumerable<ValidationRule<ISelectElementViewModel>> rules) : base(name, label)
         {

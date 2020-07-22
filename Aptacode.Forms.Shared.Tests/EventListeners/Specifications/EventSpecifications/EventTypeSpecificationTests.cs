@@ -3,7 +3,7 @@ using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Xunit;
 
-namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.Events
+namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.EventSpecifications
 {
     public class EventTypeSpecificationTests
     {

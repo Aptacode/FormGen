@@ -6,10 +6,10 @@ using System.Linq.Expressions;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class TextElement_MaximunLength_Validator : Specification<ITextElementViewModel>
+    public class TextElement_MaximumLength_Validator : Specification<ITextElementViewModel>
     {
         public int MaxLength { get; set; }
-        public TextElement_MaximunLength_Validator(int maxLength)
+        public TextElement_MaximumLength_Validator(int maxLength)
         {
             MaxLength = maxLength;
         }

@@ -7,9 +7,15 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
 {
     public sealed class TypeNameEventSpecification : Specification<FormElementEvent>
     {
+        internal TypeNameEventSpecification() { }
+
         public TypeNameEventSpecification(string eventType)
         {
             EventType = eventType;
+        }
+        public TypeNameEventSpecification(Type eventType)
+        {
+            EventType = eventType.Name;
         }
 
         public string EventType { get; set; }

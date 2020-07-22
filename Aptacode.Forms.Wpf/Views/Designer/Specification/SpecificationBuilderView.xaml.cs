@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Aptacode.Forms.Wpf.Views.Designer
+namespace Aptacode.Forms.Wpf.Views.Designer.Specification
 {
     /// <summary>
-    /// Interaction logic for EventSpecificationBuilder.xaml
+    /// Interaction logic for SpecificationBuilderView.xaml
     /// </summary>
-    public partial class EventSpecificationBuilder : Window
+    public partial class SpecificationBuilderView : UserControl
     {
-        public EventSpecificationBuilder()
+        public SpecificationBuilderView()
         {
             InitializeComponent();
         }
