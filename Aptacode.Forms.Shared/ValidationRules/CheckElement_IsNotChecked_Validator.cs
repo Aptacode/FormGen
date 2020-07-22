@@ -1,6 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
-using FluentValidation;
 using System;
 using System.Linq.Expressions;
 
