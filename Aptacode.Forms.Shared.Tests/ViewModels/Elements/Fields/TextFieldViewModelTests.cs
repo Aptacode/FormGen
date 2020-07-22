@@ -16,7 +16,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
             var textChangedOldString = string.Empty;
             var textChangedNewString = string.Empty;
 
-            var sut = new TextElementViewModel("Test Text Field", ElementLabel.None, "Test") {Content = startString};
+            var sut = new TextElementViewModel("Test Text Field", ElementLabel.None, ControlElement.VerticalAlignment.Center, "Test") {Content = startString};
             sut.OnFormEvent += (s, e) =>
             {
                 if (!(e is TextElementChangedEvent textChangedEvent))

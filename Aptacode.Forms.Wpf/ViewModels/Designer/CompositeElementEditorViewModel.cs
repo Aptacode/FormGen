@@ -136,19 +136,19 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                             break;
 
                         case nameof(CheckElement):
-                            newChildElement = new CheckElement(elementName, ElementLabel.None, "", false);
+                            newChildElement = new CheckElement(elementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "", false);
                             break;
                         case nameof(SelectElement):
-                            newChildElement = new SelectElement(elementName, ElementLabel.None, new List<string>(), "");
+                            newChildElement = new SelectElement(elementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, new List<string>(), "");
                             break;
                         case nameof(TextElement):
-                            newChildElement = new TextElement(elementName, ElementLabel.None, "");
+                            newChildElement = new TextElement(elementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "");
                             break;
                         case nameof(ButtonElement):
-                            newChildElement = new ButtonElement(elementName, ElementLabel.None, "");
+                            newChildElement = new ButtonElement(elementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "");
                             break;
                         case nameof(HtmlElement):
-                            newChildElement = new HtmlElement(elementName, ElementLabel.None, "");
+                            newChildElement = new HtmlElement(elementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "");
                             break;
                     }
 
@@ -158,15 +158,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             });
 
-        private DelegateCommand _removeElementCommand;
+        private DelegateCommand<CompositeElementViewModel> _removeElementCommand;
 
-        public DelegateCommand RemoveElementCommand =>
-            _removeElementCommand ??= new DelegateCommand((_) =>
+        public DelegateCommand<CompositeElementViewModel> RemoveElementCommand =>
+            _removeElementCommand ??= new DelegateCommand<CompositeElementViewModel>((parameter) =>
             {
-
-                if (SelectedChildElement != null)
+                if (parameter != null)
                 {
-                    SelectedElement.Children.Remove(SelectedChildElement);
+                    SelectedElement.Children.Remove(parameter);
                 }
 
             });

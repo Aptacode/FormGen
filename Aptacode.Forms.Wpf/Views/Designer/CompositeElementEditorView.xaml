@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:Aptacode.Wpf.Utilities.Behaviors;assembly=Aptacode.Wpf.Utilities"
              x:Class="Aptacode.Forms.Wpf.Views.Designer.CompositeElementEditorView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -28,8 +30,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Name: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedElement.Name, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8"/>
@@ -45,19 +47,7 @@
         <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedElement.Title, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8"/>
 
         <Label Grid.Column="0" Grid.Row="3" Content="Children: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top"/>
-        <ListBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding SelectedElement.Children}" SelectedItem="{Binding SelectedChildElement}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}"></Image>
-                        <Label Content="{Binding Name}"></Label>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <StackPanel  Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-            <Button Content="Add" Margin="8" Command="{Binding AddElementCommand}"></Button>
+        <StackPanel  Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
             <ComboBox SelectedItem="{Binding NewElementType}" Width="200" Margin="8">
                 <System:String>GroupElement</System:String>
                 <System:String>RowElement</System:String>
@@ -68,8 +58,30 @@
                 <System:String>CheckElement</System:String>
                 <System:String>HtmlElement</System:String>
             </ComboBox>
-            <Button Content="Remove" Margin="8" Command="{Binding RemoveElementCommand}"></Button>
+            <Button Content="Add" Margin="8" Command="{Binding AddElementCommand}"></Button>
         </StackPanel>
+
+        <ListView Grid.Column="1" Grid.Row="4" ItemsSource="{Binding SelectedElement.Children}" SelectedItem="{Binding SelectedChildElement}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid Rows="1" HorizontalAlignment="Stretch">
+                        <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}"></Image>
+                        <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                 Background="Transparent" BorderBrush="Transparent">
+                            <i:Interaction.Behaviors>
+                                <behaviors:DoubleClickTextBoxBehaviour />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
+                        <Button Content="Remove" Command="{Binding DataContext.RemoveElementCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CompositeElementEditorView}}}" CommandParameter="{Binding}"/>
+                    </UniformGrid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </UserControl>

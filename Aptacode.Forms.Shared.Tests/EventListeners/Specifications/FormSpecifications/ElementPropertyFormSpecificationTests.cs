@@ -29,8 +29,8 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.FormSpecific
             var testForm = FormBuilder.CreateForm("Test Form Name", "Test Form Title");
             var rootElement = 
                 FormBuilder.NewGroup("Test Group", "Test Group Title")
-                .AddText(TextElementName, ElementLabel.None, TextElementValue)
-                .AddCheck(CheckElementName, ElementLabel.None, "Test Check Content", CheckElementValue);
+                .AddText(TextElementName, ElementLabel.None,  ControlElement.VerticalAlignment.Center, TextElementValue)
+                .AddCheck(CheckElementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "Test Check Content", CheckElementValue);
 
             testForm.SetRoot(rootElement);
 

@@ -175,58 +175,58 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         #region Elements
 
-        public static ButtonElementViewModel CreateButton(string name, ElementLabel label, string content) =>
-            new ButtonElementViewModel(name, label, content);
+        public static ButtonElementViewModel CreateButton(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content) =>
+            new ButtonElementViewModel(name, label, alignment, content);
 
-        public static HtmlElementViewModel CreateHtml(string name, ElementLabel label, string content) =>
-            new HtmlElementViewModel(name, label, content);
+        public static HtmlElementViewModel CreateHtml(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content) =>
+            new HtmlElementViewModel(name, label, alignment, content);
 
-        public static TextElementViewModel CreateText(string name, ElementLabel label, string defaultContent,
+        public static TextElementViewModel CreateText(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string defaultContent,
             params ValidationRule<ITextElementViewModel>[] rules) =>
-            new TextElementViewModel(name, label, defaultContent, rules);
+            new TextElementViewModel(name, label, alignment, defaultContent, rules);
 
-        public static CheckElementViewModel CreateCheck(string name, ElementLabel label, string content,
+        public static CheckElementViewModel CreateCheck(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content,
             bool defaultValue, params ValidationRule<ICheckElementViewModel>[] rules) =>
-            new CheckElementViewModel(name, label, content, defaultValue, rules);
+            new CheckElementViewModel(name, label, alignment, content, defaultValue, rules);
 
-        public static SelectElementViewModel CreateSelect(string name, ElementLabel label, IEnumerable<string> items,
+        public static SelectElementViewModel CreateSelect(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, IEnumerable<string> items,
             string defaultValue, params ValidationRule<ISelectElementViewModel>[] rules) =>
-            new SelectElementViewModel(name, label, items, defaultValue, rules);
+            new SelectElementViewModel(name, label, alignment, items, defaultValue, rules);
 
 
 
         public static CompositeElementViewModel AddButton(this CompositeElementViewModel parent, string name,
-            ElementLabel label, string content)
+            ElementLabel label, ControlElement.VerticalAlignment alignment, string content)
         {
-            parent.Children.Add(CreateButton(name, label, content));
+            parent.Children.Add(CreateButton(name, label, alignment, content));
             return parent;
         }
 
         public static CompositeElementViewModel AddHtml(this CompositeElementViewModel parent, string name,
-            ElementLabel label, string content)
+            ElementLabel label, ControlElement.VerticalAlignment alignment, string content)
         {
-            parent.Children.Add(CreateHtml(name, label, content));
+            parent.Children.Add(CreateHtml(name, label, alignment, content));
             return parent;
         }
 
-        public static CompositeElementViewModel AddText(this CompositeElementViewModel parent, string name, ElementLabel label, string defaultContent,
+        public static CompositeElementViewModel AddText(this CompositeElementViewModel parent, string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string defaultContent,
             params ValidationRule<ITextElementViewModel>[] rules)
         {
-            parent.Children.Add(CreateText(name, label, defaultContent, rules));
+            parent.Children.Add(CreateText(name, label, alignment, defaultContent, rules));
             return parent;
         }
 
-        public static CompositeElementViewModel AddCheck(this CompositeElementViewModel parent, string name, ElementLabel label, string content,
+        public static CompositeElementViewModel AddCheck(this CompositeElementViewModel parent, string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content,
             bool defaultValue, params ValidationRule<ICheckElementViewModel>[] rules)
         {
-            parent.Children.Add(CreateCheck(name, label, content, defaultValue, rules));
+            parent.Children.Add(CreateCheck(name, label, alignment, content, defaultValue, rules));
             return parent;
         }
 
-        public static CompositeElementViewModel AddSelect(this CompositeElementViewModel parent, string name, ElementLabel label, IEnumerable<string> items,
+        public static CompositeElementViewModel AddSelect(this CompositeElementViewModel parent, string name, ElementLabel label, ControlElement.VerticalAlignment alignment, IEnumerable<string> items,
             string defaultValue, params ValidationRule<ISelectElementViewModel>[] rules)
         {
-            parent.Children.Add(CreateSelect(name, label, items, defaultValue, rules));
+            parent.Children.Add(CreateSelect(name, label, alignment, items, defaultValue, rules));
             return parent;
         }
 

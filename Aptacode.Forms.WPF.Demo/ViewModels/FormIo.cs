@@ -21,31 +21,31 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             var testGroup1 = FormBuilder.NewGroup("Test Group 1", "Test Group 1 Title");
 
             testGroup1.AddRows("htmlRow", 1).AddColumns("htmlColumn", 1,
-                FormBuilder.CreateHtml("htmlContent", ElementLabel.Above("HtmlContent"),
+                FormBuilder.CreateHtml("htmlContent", ElementLabel.Left("HtmlContent"), ControlElement.VerticalAlignment.Center,
                     "<h1><em>Test HTML Content</em></h1>\r\n<p>Test</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">TEST od&nbsp;&nbsp; </span></p>"));
 
             var nameRow = testGroup1.AddRows("nameRow", 1);
 
             nameRow.AddColumns("firstNameColumn", 1,
-                FormBuilder.CreateText("First Name", ElementLabel.Left("First Name: "), "First Name",
+                FormBuilder.CreateText("First Name", ElementLabel.Left("First Name: "), ControlElement.VerticalAlignment.Center, "First Name",
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)).WithFailMessage("First Name must be less then 10 characters"),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2)).WithFailMessage("First Name must be greater then 2 characters")));
 
             nameRow.AddColumns("lastNameColumn", 1,
-                FormBuilder.CreateText("Last Name", ElementLabel.Left("Last Name: "), "Last Name",
+                FormBuilder.CreateText("Last Name", ElementLabel.Left("Last Name: "), ControlElement.VerticalAlignment.Center, "Last Name",
                          ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))));
 
             testGroup1.AddRows("CheckBox", 1).AddColumns("CheckBox", 1,
-                FormBuilder.CreateCheck("CheckBox", ElementLabel.Above("Do you accept the terms and conditions"),
+                FormBuilder.CreateCheck("CheckBox", ElementLabel.Left("Do you accept the terms and conditions"), ControlElement.VerticalAlignment.Center,
                     "I Agree", false));
 
             testGroup1.AddRows("comboBox", 1).AddColumns("comboBox", 1,
                 FormBuilder.CreateSelect("experienceSelection",
-                    ElementLabel.Above("How many years experience have you got?"),
+                    ElementLabel.Left("How many years experience have you got?"), ControlElement.VerticalAlignment.Center,
                     new[] {"0-1", "1-5", "5+"}, "0-1"));
             testGroup1.AddRows("submit", 1)
-                .AddColumns("submit", 1, FormBuilder.CreateButton("submit", ElementLabel.None, "Submit"));
+                .AddColumns("submit", 1, FormBuilder.CreateButton("submit", ElementLabel.None, ControlElement.VerticalAlignment.Center, "Submit"));
 
             newForm.RootElement = testGroup1;
 
@@ -61,24 +61,24 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         {
             var rootGroup = FormBuilder.NewGroup("Test Form Group", "Label", new RowElement("Default", 1,
                 new ColumnElement("Column1", 1,
-                    new HtmlElement("Paragraph", ElementLabel.Above("Some HTML Content"),
+                    new HtmlElement("Paragraph", ElementLabel.Above("Some HTML Content"), ControlElement.VerticalAlignment.Center,
                         "<h1><em>Test HTML Content</em></h1>\r\n<p>Test</p>\r\n<p><strong><span style=\"background-color: #0000ff;\">Woop</span> woop</strong></p>\r\n<p><span style=\"text-decoration: underline; color: #003366;\">TEST od&nbsp;&nbsp; </span></p>"
                     ))), new RowElement("Default", 1, new ColumnElement("Default", 1,
-                new TextElement("firstName", ElementLabel.Left("First Name"), "First Name",
+                new TextElement("firstName", ElementLabel.Left("First Name"), ControlElement.VerticalAlignment.Center, "First Name",
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10)),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2)))
             ), new ColumnElement("", 1,
-                new TextElement("lastName", ElementLabel.Left("Last Name"), "Last Name")
+                new TextElement("lastName", ElementLabel.Left("Last Name"), ControlElement.VerticalAlignment.Center, "Last Name")
             )), new RowElement("Default", 1, new ColumnElement("", 1,
                 new CheckElement("receiveEmail",
-                    ElementLabel.Above("Do you accept the terms and conditions"),
+                    ElementLabel.Above("Do you accept the terms and conditions"), ControlElement.VerticalAlignment.Center,
                     "I Agree", false)
             )), new RowElement("Default", 1, new ColumnElement("Default", 1,
                 new SelectElement("yearsOfExperience",
-                    ElementLabel.Above("How many years experiance have you got?"),
+                    ElementLabel.Above("How many years experience have you got?"), ControlElement.VerticalAlignment.Center,
                     new[] {"0-1", "1-5", "5+"}, "0-1")
             )), new RowElement("Default", 1, new ColumnElement("Default", 1,
-                new ButtonElement("SubmitButton", ElementLabel.None,
+                new ButtonElement("SubmitButton", ElementLabel.None, ControlElement.VerticalAlignment.Center,
                     "Submit")
             )));
             return new Form("form1", "Test Form", rootGroup.Model);

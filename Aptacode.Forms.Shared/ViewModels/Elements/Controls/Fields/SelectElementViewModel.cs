@@ -12,9 +12,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class SelectElementViewModel : FieldElementViewModel, ISelectElementViewModel
     {
-        public SelectElementViewModel(string name, ElementLabel label, IEnumerable<string> items,
+        public SelectElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, IEnumerable<string> items,
             string defaultSelectedItem,
-            params ValidationRule<ISelectElementViewModel>[] rules) : this(new SelectElement(name, label, items,
+            params ValidationRule<ISelectElementViewModel>[] rules) : this(new SelectElement(name, label, alignment, items,
             defaultSelectedItem,
             rules?.ToList() ?? new List<ValidationRule<ISelectElementViewModel>>())) { }
 

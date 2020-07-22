@@ -12,9 +12,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class CheckElementViewModel : FieldElementViewModel, ICheckElementViewModel
     {
-        public CheckElementViewModel(string name, ElementLabel label, string content,
+        public CheckElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content,
             bool defaultIsChecked, params ValidationRule<ICheckElementViewModel>[] rules) : this(
-            new CheckElement(name, label, content, defaultIsChecked,
+            new CheckElement(name, label, alignment, content, defaultIsChecked,
                 rules?.ToList() ?? new List<ValidationRule<ICheckElementViewModel>>())) { }
 
         public CheckElementViewModel(CheckElement model) : base(model)

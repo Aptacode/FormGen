@@ -4,7 +4,7 @@
     {
         internal ButtonElement() { }
 
-        public ButtonElement(string name, ElementLabel label, string content) : base(name, label)
+        public ButtonElement(string name, ElementLabel label, VerticalAlignment alignment, string content) : base(name, label, alignment)
         {
             Content = content;
         }

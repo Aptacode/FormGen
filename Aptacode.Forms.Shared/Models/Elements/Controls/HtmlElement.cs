@@ -4,8 +4,8 @@
     {
         internal HtmlElement() { }
 
-        public HtmlElement(string name, ElementLabel label, string content) : base(
-            name, label)
+        public HtmlElement(string name, ElementLabel label, VerticalAlignment alignment, string content) : base(
+            name, label, alignment)
         {
             Content = content;
         }

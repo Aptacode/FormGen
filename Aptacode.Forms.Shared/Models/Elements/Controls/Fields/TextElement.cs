@@ -9,12 +9,12 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
     {
         internal TextElement() { }
 
-        public TextElement(string name, ElementLabel label, string defaultContent,
+        public TextElement(string name, ElementLabel label, VerticalAlignment verticalAlignment, string defaultContent,
             params ValidationRule<ITextElementViewModel>[] rules) :
-            this(name, label, defaultContent, rules?.ToList()) { }
+            this(name, label, verticalAlignment, defaultContent, rules?.ToList()) { }
 
-        public TextElement(string name, ElementLabel label, string defaultContent,
-            IEnumerable<ValidationRule<ITextElementViewModel>> rules) : base(name, label)
+        public TextElement(string name, ElementLabel label, VerticalAlignment alignment, string defaultContent,
+            IEnumerable<ValidationRule<ITextElementViewModel>> rules) : base(name, label, alignment)
         {
             DefaultContent = defaultContent;
 

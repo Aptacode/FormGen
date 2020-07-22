@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Forms.Shared.Models.Elements.Controls
 {
-    public struct ElementLabel
+    public class ElementLabel
     {
         /// <summary>
         ///     The position of a FormElement's Label relative to its content

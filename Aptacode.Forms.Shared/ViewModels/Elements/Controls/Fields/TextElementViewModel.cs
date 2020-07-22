@@ -12,8 +12,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class TextElementViewModel : FieldElementViewModel, ITextElementViewModel
     {
-        public TextElementViewModel(string name, ElementLabel label, string defaultContent,
-            params ValidationRule<ITextElementViewModel>[] rules) : this(new TextElement(name, label, defaultContent,
+        public TextElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment verticalAlignment, string defaultContent,
+            params ValidationRule<ITextElementViewModel>[] rules) : this(new TextElement(name, label, verticalAlignment, defaultContent,
             rules?.ToList() ?? new List<ValidationRule<ITextElementViewModel>>())) { }
 
         public TextElementViewModel(TextElement model) : base(model)

@@ -10,7 +10,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements
         public void ButtonClickEvent_Fires()
         {
             //Arrange
-            var sut = new ButtonElementViewModel("submit button", ElementLabel.None, "submit");
+            var sut = new ButtonElementViewModel("submit button", ElementLabel.None, ControlElement.VerticalAlignment.Center, "submit");
             var buttonClicked = false;
             sut.OnFormEvent += (s, e) => buttonClicked = true;
 

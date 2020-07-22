@@ -36,7 +36,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <UniformGrid Rows="1" HorizontalAlignment="Stretch">
-                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                                      Background="Transparent" BorderBrush="Transparent">
                                 <i:Interaction.Behaviors>
                                     <behaviors:DoubleClickTextBoxBehaviour />

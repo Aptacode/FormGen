@@ -31,7 +31,16 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
             {
                 pathInApplication = pathInApplication.Substring(1);
             }
-            return new BitmapImage(new Uri(@"pack://application:,,,/" + assembly.GetName().Name + ";component/" + pathInApplication, UriKind.Absolute));
+
+            try
+            {
+                return new BitmapImage(new Uri(
+                    @"pack://application:,,,/Aptacode.Forms.Wpf;component/" + pathInApplication, UriKind.Absolute));
+            }
+            catch
+            {
+            }
+            return null;
         }
     }
 }

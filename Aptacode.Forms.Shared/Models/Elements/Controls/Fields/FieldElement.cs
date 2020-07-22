@@ -4,6 +4,6 @@
     {
         internal FieldElement() { }
 
-        protected FieldElement(string name, ElementLabel label) : base(name, label) { }
+        protected FieldElement(string name, ElementLabel label, VerticalAlignment alignment) : base(name, label, alignment) { }
     }
 }

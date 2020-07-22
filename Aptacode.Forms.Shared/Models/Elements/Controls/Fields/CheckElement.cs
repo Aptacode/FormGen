@@ -9,16 +9,16 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
     {
         internal CheckElement() { }
 
-        public CheckElement(string name, ElementLabel label, string content, bool defaultIsChecked,
-            IEnumerable<ValidationRule<ICheckElementViewModel>> rules) : base(name, label)
+        public CheckElement(string name, ElementLabel label, VerticalAlignment alignment, string content, bool defaultIsChecked,
+            IEnumerable<ValidationRule<ICheckElementViewModel>> rules) : base(name, label, alignment)
         {
             Content = content;
             DefaultIsChecked = defaultIsChecked;
             Rules = rules ?? Rules;
         }
 
-        public CheckElement(string name, ElementLabel label, string content, bool defaultIsChecked,
-            params ValidationRule<ICheckElementViewModel>[] rules) : this(name, label, content, defaultIsChecked,
+        public CheckElement(string name, ElementLabel label, VerticalAlignment alignment, string content, bool defaultIsChecked,
+            params ValidationRule<ICheckElementViewModel>[] rules) : this(name, label, alignment, content, defaultIsChecked,
             rules?.ToList()) { }
 
         #region Properties
