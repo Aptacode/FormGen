@@ -22,7 +22,12 @@
     <AssemblyVersion>1.0.0.20</AssemblyVersion>
     <FileVersion>1.0.0.20</FileVersion>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>../bin/debug</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>../bin/release</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Aptacode.CSharp.Common.Patterns" Version="1.0.0.33" />
     <PackageReference Include="Aptacode.CSharp.Common.Utilities" Version="1.0.0.30" />
@@ -37,4 +42,7 @@
     </None>
   </ItemGroup>
 
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />
+  </Target>
 </Project>
