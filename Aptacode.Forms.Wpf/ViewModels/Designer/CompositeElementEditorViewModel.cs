@@ -170,6 +170,47 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
             });
 
+        private DelegateCommand<CompositeElementViewModel> _moveElementUpCommand;
+
+        public DelegateCommand<CompositeElementViewModel> MoveElementUpCommand =>
+            _moveElementUpCommand ??= new DelegateCommand<CompositeElementViewModel>((parameter) =>
+            {
+                if (parameter != null)
+                {
+                    var position = SelectedElement.Children.IndexOf(parameter);
+                    var newPosition = position - 1;
+                    if(newPosition >= 0)
+                    {
+                        SelectedElement.Children.RemoveAt(position);
+                        SelectedElement.Children.Insert(newPosition, parameter);
+                    }
+
+
+                }
+
+            });
+
+        private DelegateCommand<CompositeElementViewModel> _moveElementDownCommand;
+
+        public DelegateCommand<CompositeElementViewModel> MoveElementDownCommand =>
+            _moveElementDownCommand ??= new DelegateCommand<CompositeElementViewModel>((parameter) =>
+            {
+                if (parameter != null)
+                {
+                    var position = SelectedElement.Children.IndexOf(parameter);
+                    var newPosition = position + 1;
+
+                    if (newPosition < SelectedElement.Children.Count)
+                    {
+                        SelectedElement.Children.RemoveAt(position);
+                        SelectedElement.Children.Insert(newPosition, parameter);
+                    }
+                }
+
+            });
+
+        
+
         #endregion
     }
 }
