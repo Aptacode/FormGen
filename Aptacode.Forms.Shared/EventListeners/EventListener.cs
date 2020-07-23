@@ -16,6 +16,10 @@ namespace Aptacode.Forms.Shared.EventListeners
             FormCondition = formCondition;
         }
 
+        public bool IsSatisfiedBy(FormViewModel formViewModel, FormElementEvent formEvent) =>
+            EventTrigger.IsSatisfiedBy(formEvent) &&
+            (FormCondition == null || FormCondition.IsSatisfiedBy(formViewModel));
+
         #region Properties
 
         public string Name { get; set; }
@@ -23,8 +27,5 @@ namespace Aptacode.Forms.Shared.EventListeners
         public Specification<FormViewModel> FormCondition { get; set; }
 
         #endregion
-
-        public bool IsSatisfiedBy(FormViewModel formViewModel, FormElementEvent formEvent) =>
-            EventTrigger.IsSatisfiedBy(formEvent) && (FormCondition == null || FormCondition.IsSatisfiedBy(formViewModel));
     }
 }

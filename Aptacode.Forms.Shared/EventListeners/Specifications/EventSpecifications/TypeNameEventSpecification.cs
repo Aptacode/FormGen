@@ -13,6 +13,7 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
         {
             EventType = eventType;
         }
+
         public TypeNameEventSpecification(Type eventType)
         {
             EventType = eventType.Name;

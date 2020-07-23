@@ -1,5 +1,7 @@
 ﻿using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.Models.Builders;
+using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
+using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels;
 using Xunit;
 
@@ -17,29 +19,25 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.FormSpecific
         [InlineData(TextElementName, "Content", TextElementValue, true)]
         [InlineData(CheckElementName, "IsChecked", CheckElementValue, true)]
         [InlineData(CheckElementName, "IsChecked", !CheckElementValue, false)]
-
         [InlineData(TextElementName, "Content", "IncorrectValue", false)]
         [InlineData("IncorrectElementName", "Content", TextElementValue, false)]
         [InlineData(TextElementName, "IncorrectPropertyName", TextElementValue, false)]
-
         public void IsSatisfiedBy(string elementName, string propertyName, object propertyValue, bool expectedResult)
         {
             //Arrange
             var sut = new ElementPropertyFormSpecification(elementName, propertyName, propertyValue);
-            var testForm = FormBuilder.CreateForm("Test Form Name", "Test Form Title");
-            var rootElement = 
-                FormBuilder.NewGroup("Test Group", "Test Group Title")
-                .AddText(TextElementName, ElementLabel.None,  ControlElement.VerticalAlignment.Center, TextElementValue)
-                .AddCheck(CheckElementName, ElementLabel.None, ControlElement.VerticalAlignment.Center, "Test Check Content", CheckElementValue);
-
-            testForm.SetRoot(rootElement);
-
+            var testForm = new FormBuilder().SetName("Test Form Name").SetTitle("Test Form Title").SetRoot(
+                new RowBuilder().SetName("Test Group").AddChildren(
+                        new TextElementBuilder().SetName(TextElementName).SetDefaultValue(TextElementValue).Build(),
+                        new CheckElementBuilder().SetName(CheckElementName).SetDefaultValue(CheckElementValue).Build())
+                    .Build()
+            ).Build();
+            var testFormVm = new FormViewModel(testForm);
             //Act
-            var result = sut.IsSatisfiedBy(testForm);
+            var result = sut.IsSatisfiedBy(testFormVm);
 
             //Assert
             Assert.Equal(expectedResult, result);
         }
-
     }
 }

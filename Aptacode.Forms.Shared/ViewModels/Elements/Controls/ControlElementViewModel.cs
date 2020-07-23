@@ -20,7 +20,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             {
                 SetProperty(ref _controlModel, value);
 
-                if(_controlModel != null)
+                if (_controlModel != null)
                 {
                     Name = _controlModel.Name;
                     Alignment = _controlModel.Alignment;
@@ -32,7 +32,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                     Alignment = ControlElement.VerticalAlignment.Center;
                     Label = new ElementLabelViewModel(ElementLabel.None);
                 }
-
             }
         }
 

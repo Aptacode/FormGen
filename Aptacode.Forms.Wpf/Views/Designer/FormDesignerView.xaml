@@ -40,25 +40,25 @@
         </ToolBarTray>
 
         <TabControl>
-        <TabItem Header="Elements">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
+            <TabItem Header="Elements">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
 
-                <GroupBox Header="Element Browser" Grid.Column="0" Margin="8">
-                    <local:FormElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
-                </GroupBox>
+                    <GroupBox Header="Element Browser" Grid.Column="0" Margin="8">
+                        <local:FormElementBrowserView DataContext="{Binding ElementBrowserViewModel}" />
+                    </GroupBox>
 
-                <GroupBox Header="Element Editor" Grid.Column="1" Margin="8">
-                    <ContentPresenter Content="{Binding ElementEditorViewModel}"></ContentPresenter>
-                </GroupBox>
-            </Grid>
-        </TabItem>
-        <TabItem Header="Listeners">
-                <local:EventListenerEditorView DataContext="{Binding EventListenerEditorViewModel}"/>
-        </TabItem>
+                    <GroupBox Header="Element Editor" Grid.Column="1" Margin="8">
+                        <ContentPresenter Content="{Binding ElementEditorViewModel}" />
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Listeners">
+                <local:EventListenerEditorView DataContext="{Binding EventListenerEditorViewModel}" />
+            </TabItem>
 
         </TabControl>
 

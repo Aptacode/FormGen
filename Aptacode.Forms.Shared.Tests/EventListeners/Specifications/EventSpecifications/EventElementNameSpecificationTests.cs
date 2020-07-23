@@ -10,7 +10,6 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.EventSpecifi
         [Theory]
         [InlineData("matchingElement", "matchingElement", true)]
         [InlineData("unmatchingElement", "testElement", false)]
-
         public void IsSatisfiedBy(string elementName, string eventElementName, bool expectedResult)
         {
             //Arrange

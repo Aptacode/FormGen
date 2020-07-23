@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using Aptacode.CSharp.Common.Persistence;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 
@@ -9,19 +10,20 @@ namespace Aptacode.Forms.Shared.Models
     ///     Models a Form
     ///     Contains a collection of Form Groups
     /// </summary>
-    public class Form
+    public class Form : IEntity<Guid>
     {
-        internal Form() { }
-
-        public Form(string name, string title, CompositeElement rootElement, params EventListener[] eventListeners)
+        public Form()
         {
-            Name = name;
-            Title = title;
-            RootElement = rootElement;
-            EventListeners = eventListeners?.ToList() ?? new List<EventListener>();
+            Id = Guid.NewGuid();
         }
 
+
         #region Properties
+
+        /// <summary>
+        ///     The Forms ID
+        /// </summary>
+        public Guid Id { get; set; }
 
         /// <summary>
         ///     The Forms name

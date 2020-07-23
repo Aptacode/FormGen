@@ -17,7 +17,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         public MainWindowViewModel()
         {
             FormDesignerViewModel = new FormDesignerViewModel();
-            FormViewModel = FormIO.CreateForm();
+            FormViewModel = DemoForm.CreateForm();
         }
 
         private void FormViewModelOnOnTriggered(object sender, (EventListener, FormElementEvent) e)
@@ -79,7 +79,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         private DelegateCommand _newCommand;
 
         public DelegateCommand NewCommand =>
-            _newCommand = new DelegateCommand(_ => { FormViewModel = FormIO.CreateForm(); });
+            _newCommand = new DelegateCommand(_ => { FormViewModel = DemoForm.CreateForm(); });
 
         private DelegateCommand _loadCommand;
 

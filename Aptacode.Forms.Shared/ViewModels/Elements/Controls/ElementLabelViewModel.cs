@@ -31,8 +31,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                     Text = string.Empty;
                     Position = ElementLabel.LabelPosition.Hidden;
                 }
-
-
             }
         }
 
@@ -67,7 +65,5 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
         }
 
         #endregion
-
-
     }
 }

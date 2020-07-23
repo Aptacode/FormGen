@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
@@ -12,11 +11,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class CheckElementViewModel : FieldElementViewModel, ICheckElementViewModel
     {
-        public CheckElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content,
-            bool defaultIsChecked, params ValidationRule<ICheckElementViewModel>[] rules) : this(
-            new CheckElement(name, label, alignment, content, defaultIsChecked,
-                rules?.ToList() ?? new List<ValidationRule<ICheckElementViewModel>>())) { }
-
         public CheckElementViewModel(CheckElement model) : base(model)
         {
             Model = model;
@@ -41,8 +35,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
                 SetProperty(ref _model, value);
                 FieldModel = _model;
                 Content = _model.Content;
-                IsChecked = _model.DefaultIsChecked;
-                DefaultIsChecked = _model.DefaultIsChecked;
+                IsChecked = _model.DefaultValue;
+                DefaultIsChecked = _model.DefaultValue;
             }
         }
 
@@ -74,7 +68,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
                 SetProperty(ref _defaultIsChecked, value);
                 if (Model != null)
                 {
-                    Model.DefaultIsChecked = _defaultIsChecked;
+                    Model.DefaultValue = _defaultIsChecked;
                 }
             }
         }

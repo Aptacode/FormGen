@@ -2,7 +2,8 @@
 using System.Linq.Expressions;
 using Aptacode.CSharp.Common.Patterns.Specification;
 
-namespace Aptacode.Forms.Shared.EventListeners.Specifications {
+namespace Aptacode.Forms.Shared.EventListeners.Specifications
+{
     public class PropertyValueSpecification<T> : Specification<T>
     {
         internal PropertyValueSpecification() { }
@@ -19,9 +20,7 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications {
         public override Expression<Func<T, bool>> ToExpression() => input =>
             PropertyValue.Equals(GetValue(input, PropertyName));
 
-        protected static object GetValue(object target, string propertyName)
-        {
-            return target?.GetType().GetProperty(propertyName)?.GetValue(target);
-        }
+        protected static object GetValue(object target, string propertyName) =>
+            target?.GetType().GetProperty(propertyName)?.GetValue(target);
     }
 }

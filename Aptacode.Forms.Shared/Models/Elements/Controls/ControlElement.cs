@@ -7,14 +7,9 @@
     {
         public enum VerticalAlignment
         {
-            Center, Top, Bottom
-        }
-        internal ControlElement() { }
-
-        protected ControlElement(string name, ElementLabel label, VerticalAlignment alignment) : base(name)
-        {
-            Label = label;
-            Alignment = alignment;
+            Center,
+            Top,
+            Bottom
         }
 
         #region Properties
@@ -22,7 +17,6 @@
         public ElementLabel Label { get; set; }
 
         public VerticalAlignment Alignment { get; set; }
-
 
         #endregion
     }

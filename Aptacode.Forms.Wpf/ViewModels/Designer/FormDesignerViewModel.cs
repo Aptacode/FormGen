@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Aptacode.CSharp.Common.Patterns.Specification;
-using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
-using Aptacode.Forms.Shared.ViewModels;
+﻿using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
-using Aptacode.Forms.Wpf.ViewModels.Designer.Specification;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -21,8 +15,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             CompositeElementEditorViewModel = new CompositeElementEditorViewModel();
 
             ElementBrowserViewModel.OnElementSelected += OnEditElement;
-
-
         }
 
         private void OnEditElement(object sender, FormElementViewModel e)
@@ -31,7 +23,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 FormElementEditorViewModel.FormElement = controlElementViewModel;
                 ElementEditorViewModel = FormElementEditorViewModel;
-            }else if (e is CompositeElementViewModel compositeElementViewModel)
+            }
+            else if (e is CompositeElementViewModel compositeElementViewModel)
             {
                 CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
                 ElementEditorViewModel = CompositeElementEditorViewModel;
@@ -99,9 +92,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _eventListenerEditorViewModel;
             set => SetProperty(ref _eventListenerEditorViewModel, value);
         }
-
-        
-
 
         #endregion
     }

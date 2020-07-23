@@ -4,9 +4,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {
     public class HtmlElementViewModel : ControlElementViewModel
     {
-        public HtmlElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content) : this(
-            new HtmlElement(name, label, alignment, content)) { }
-
         public HtmlElementViewModel(HtmlElement model) : base(model)
         {
             Model = model;

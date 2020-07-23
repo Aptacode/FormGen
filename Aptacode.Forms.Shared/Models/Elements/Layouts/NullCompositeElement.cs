@@ -4,9 +4,5 @@
     ///     Form Column Model
     ///     Each Column contains one form element
     /// </summary>
-    public sealed class NullCompositeElement : CompositeElement
-    {
-
-        public NullCompositeElement() : base(string.Empty, new FormElement[] { }) { }
-    }
+    public sealed class NullCompositeElement : CompositeElement { }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
@@ -12,10 +11,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class TextElementViewModel : FieldElementViewModel, ITextElementViewModel
     {
-        public TextElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment verticalAlignment, string defaultContent,
-            params ValidationRule<ITextElementViewModel>[] rules) : this(new TextElement(name, label, verticalAlignment, defaultContent,
-            rules?.ToList() ?? new List<ValidationRule<ITextElementViewModel>>())) { }
-
         public TextElementViewModel(TextElement model) : base(model)
         {
             Model = model;
@@ -32,8 +27,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             {
                 SetProperty(ref _model, value);
                 FieldModel = _model;
-                DefaultContent = _model?.DefaultContent;
-                Content = _model?.DefaultContent;
+                DefaultContent = _model?.DefaultValue;
+                Content = _model?.DefaultValue;
             }
         }
 
@@ -67,7 +62,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
                 SetProperty(ref _defaultContent, value);
                 if (Model != null)
                 {
-                    Model.DefaultContent = _defaultContent;
+                    Model.DefaultValue = _defaultContent;
                 }
             }
         }

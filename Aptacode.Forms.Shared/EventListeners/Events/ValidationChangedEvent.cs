@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aptacode.Forms.Shared.EventListeners.Events {
+namespace Aptacode.Forms.Shared.EventListeners.Events
+{
     public class ValidationChangedEvent : FormFieldEvent
     {
         public ValidationChangedEvent(DateTime time, string elementName, IEnumerable<string> results) :

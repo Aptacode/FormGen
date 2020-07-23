@@ -43,7 +43,7 @@ namespace Aptacode.Forms.Shared.Json
         {
             settings.Converters.Add(JsonSubtypesConverterBuilder
                 .Of(typeof(Specification<ICheckElementViewModel>), "Type") // type property is only defined here
-                .RegisterSubtype(typeof(CheckElement_IsChecked_Validator), 
+                .RegisterSubtype(typeof(CheckElement_IsChecked_Validator),
                     nameof(CheckElement_IsChecked_Validator))
                 .RegisterSubtype(typeof(CheckElement_IsNotChecked_Validator),
                     nameof(CheckElement_IsNotChecked_Validator))
@@ -113,7 +113,6 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(SelectElementChangedEvent), nameof(SelectElementChangedEvent))
                 .RegisterSubtype(typeof(TextElementEvent), nameof(TextElementEvent))
                 .RegisterSubtype(typeof(TextElementChangedEvent), nameof(TextElementChangedEvent))
-
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
 

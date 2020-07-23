@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Aptacode.CSharp.Common.Patterns.Specification;
-using Aptacode.CSharp.Common.Utilities.Extensions;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 {
-
     public static class SpecificationExtensions
     {
         public static IEnumerable<Specification<T>> ToList<T>(this Specification<T> specification)
@@ -36,7 +34,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 
     public class SpecificationBuilderViewModel<T> : BindableBase
     {
-
         public SpecificationBuilderViewModel(IEnumerable<(string, Type)> specificationViewModelTypes)
         {
             Specifications = new ObservableCollection<SpecificationViewModel<T>>();
@@ -49,12 +46,20 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             SelectedOperation = "All";
         }
 
+        #region Events
+
+        public event EventHandler OnSpecificationChanged;
+
+        #endregion
+
         #region Methods
 
         public Specification<T> BuildSpecification()
         {
             if (!Specifications.Any())
+            {
                 return new NullSpecification<T>();
+            }
 
 
             Specification<T> outputSpecification = null;
@@ -76,6 +81,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 
             return outputSpecification;
         }
+
         public void Load(Specification<T> specification)
         {
             Specifications.Clear();
@@ -96,7 +102,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
                 if (_specificationViewModelTypes.TryGetValue(specificationTypeName,
                     out var specificationViewModelType))
                 {
-                    if (Activator.CreateInstance(specificationViewModelType) is SpecificationViewModel<T> specificationViewModel)
+                    if (Activator.CreateInstance(specificationViewModelType) is SpecificationViewModel<T>
+                        specificationViewModel)
                     {
                         specificationViewModel.LoadParameters(childSpecification);
                         specificationViewModel.OnSpecificationChanged += SpecificationViewModel_OnSpecificationChanged;
@@ -113,20 +120,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 
         public string GetNameWithoutGenericArity(Type t)
         {
-            string name = t.Name;
-            int index = name.IndexOf('`');
+            var name = t.Name;
+            var index = name.IndexOf('`');
             return index == -1 ? name : name.Substring(0, index);
         }
 
         #endregion
 
-        #region Events
-
-        public event EventHandler OnSpecificationChanged;
-
-        #endregion
-
         #region Properties
+
         public ObservableCollection<SpecificationViewModel<T>> Specifications { get; set; }
         public ObservableCollection<string> AllSpecificationTypes { get; set; }
 
@@ -141,7 +143,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
         private DelegateCommand<SpecificationViewModel<T>> _removeCommand;
 
         public DelegateCommand<SpecificationViewModel<T>> RemoveCommand =>
-            _removeCommand ??= new DelegateCommand<SpecificationViewModel<T>>((specification) =>
+            _removeCommand ??= new DelegateCommand<SpecificationViewModel<T>>(specification =>
             {
                 Specifications.Remove(specification);
                 OnSpecificationChanged?.Invoke(this, EventArgs.Empty);
@@ -151,7 +153,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ??= new DelegateCommand((_) =>
+            _createCommand ??= new DelegateCommand(_ =>
             {
                 if (!_specificationViewModelTypes.TryGetValue(SelectedSpecificationType,
                     out var specificationViewModelType))
@@ -168,11 +170,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
                 specificationViewModel.OnSpecificationChanged += SpecificationViewModel_OnSpecificationChanged;
                 Specifications.Add(specificationViewModel);
                 OnSpecificationChanged?.Invoke(this, EventArgs.Empty);
-
-
             });
 
         #endregion
-
     }
 }

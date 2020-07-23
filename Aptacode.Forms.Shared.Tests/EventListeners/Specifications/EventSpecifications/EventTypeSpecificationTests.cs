@@ -10,7 +10,6 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.EventSpecifi
         [Theory]
         [InlineData(nameof(ButtonElementClickedEvent), true)]
         [InlineData(nameof(TextElementChangedEvent), false)]
-
         public void IsSatisfiedBy(string eventType, bool expectedResult)
         {
             //Arrange

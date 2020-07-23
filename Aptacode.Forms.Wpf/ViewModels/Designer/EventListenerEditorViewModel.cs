@@ -15,23 +15,25 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class EventListenerEditorViewModel : BindableBase
     {
-
         public EventListenerEditorViewModel()
         {
-            EventTriggerSpecificationBuilder = new SpecificationBuilderViewModel<FormElementEvent>(new List<(string, Type)>
-            {
-                (nameof(ElementNameEventSpecification), typeof(ElementNameEventSpecificationViewModel)),
-                (nameof(IdentitySpecification<FormElementEvent>), typeof(IdentitySpecificationViewModel<FormElementEvent>)),
-                (nameof(PropertyValueEventSpecification), typeof(PropertyValueEventSpecificationViewModel)),
-                (nameof(TypeNameEventSpecification), typeof(TypeNameEventSpecificationViewModel)),
-            });
+            EventTriggerSpecificationBuilder = new SpecificationBuilderViewModel<FormElementEvent>(
+                new List<(string, Type)>
+                {
+                    (nameof(ElementNameEventSpecification), typeof(ElementNameEventSpecificationViewModel)),
+                    (nameof(IdentitySpecification<FormElementEvent>),
+                        typeof(IdentitySpecificationViewModel<FormElementEvent>)),
+                    (nameof(PropertyValueEventSpecification), typeof(PropertyValueEventSpecificationViewModel)),
+                    (nameof(TypeNameEventSpecification), typeof(TypeNameEventSpecificationViewModel))
+                });
 
-            FormConditionSpecificationBuilder = new SpecificationBuilderViewModel<FormViewModel>(new List<(string, Type)>
-            {
-                (nameof(IdentitySpecification<FormViewModel>), typeof(IdentitySpecificationViewModel<FormViewModel>)),
-                (nameof(ElementPropertyFormSpecification), typeof(ElementPropertyFormSpecificationViewModel)),
-                
-            });
+            FormConditionSpecificationBuilder = new SpecificationBuilderViewModel<FormViewModel>(
+                new List<(string, Type)>
+                {
+                    (nameof(IdentitySpecification<FormViewModel>),
+                        typeof(IdentitySpecificationViewModel<FormViewModel>)),
+                    (nameof(ElementPropertyFormSpecification), typeof(ElementPropertyFormSpecificationViewModel))
+                });
 
             EventTriggerSpecificationBuilder.OnSpecificationChanged += SpecificationBuilderChanged;
             FormConditionSpecificationBuilder.OnSpecificationChanged += SpecificationBuilderChanged;
@@ -51,10 +53,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public FormViewModel FormViewModel
         {
             get => _formViewModel;
-            set
-            {
-                SetProperty(ref _formViewModel, value);
-            }
+            set => SetProperty(ref _formViewModel, value);
         }
 
         private EventListener _selectedEventListener;
@@ -68,7 +67,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
                 EventTriggerSpecificationBuilder.Load(SelectedEventListener.EventTrigger);
                 FormConditionSpecificationBuilder.Load(SelectedEventListener.FormCondition);
-
             }
         }
 
@@ -96,15 +94,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private DelegateCommand _createCommand;
 
         public DelegateCommand CreateCommand =>
-            _createCommand ??= new DelegateCommand((_) =>
+            _createCommand ??= new DelegateCommand(_ =>
             {
-                FormViewModel.EventListeners.Add(new EventListener("New Event Listener", new IdentitySpecification<FormElementEvent>(), new IdentitySpecification<FormViewModel>()));
+                FormViewModel.EventListeners.Add(new EventListener("New Event Listener",
+                    new IdentitySpecification<FormElementEvent>(), new IdentitySpecification<FormViewModel>()));
             });
 
         private DelegateCommand<EventListener> _removeCommand;
 
         public DelegateCommand<EventListener> RemoveCommand =>
-            _removeCommand ??= new DelegateCommand<EventListener>((parameter) =>
+            _removeCommand ??= new DelegateCommand<EventListener>(parameter =>
             {
                 FormViewModel.EventListeners.Remove(parameter);
             });

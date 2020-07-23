@@ -10,9 +10,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
     /// </summary>
     public class ButtonElementViewModel : ControlElementViewModel
     {
-        public ButtonElementViewModel(string name, ElementLabel label, ControlElement.VerticalAlignment alignment, string content) : this(
-            new ButtonElement(name, label, alignment, content)) { }
-
         public ButtonElementViewModel(ButtonElement model) : base(model)
         {
             Model = model;

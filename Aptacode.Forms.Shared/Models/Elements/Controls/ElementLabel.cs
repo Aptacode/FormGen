@@ -14,15 +14,15 @@
             Right
         }
 
-        public string Text { get; set; }
-        public LabelPosition Position { get; set; }
-        public bool IsHidden => Position == LabelPosition.Hidden;
-
         public ElementLabel(LabelPosition position, string text)
         {
             Position = position;
             Text = text;
         }
+
+        public string Text { get; set; }
+        public LabelPosition Position { get; set; }
+        public bool IsHidden => Position == LabelPosition.Hidden;
 
         public static ElementLabel None => new ElementLabel(LabelPosition.Hidden, "");
         public static ElementLabel Above(string text) => new ElementLabel(LabelPosition.Above, text);

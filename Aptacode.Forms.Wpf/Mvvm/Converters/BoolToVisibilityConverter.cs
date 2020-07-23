@@ -3,7 +3,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Aptacode.Forms.Wpf.Mvvm.Converters {
+namespace Aptacode.Forms.Wpf.Mvvm.Converters
+{
     public class BoolToVisibilityConverter : IValueConverter
     {
         #region Implementation of IValueConverter

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 
-namespace Aptacode.Forms.Wpf.Mvvm.Converters {
+namespace Aptacode.Forms.Wpf.Mvvm.Converters
+{
     public class FormVerticalAlignmentToWpfVerticalAlignment : IValueConverter
     {
         #region Implementation of IValueConverter

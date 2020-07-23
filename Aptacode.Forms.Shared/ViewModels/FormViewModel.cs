@@ -19,7 +19,6 @@ namespace Aptacode.Forms.Shared.ViewModels
 {
     public class FormViewModel : BindableBase
     {
-        public ObservableCollection<EventListener> EventListeners { get; set; } = new ObservableCollection<EventListener>();
         public ObservableCollection<FormElementEvent> EventLog = new ObservableCollection<FormElementEvent>();
 
         public FormViewModel(Form model)
@@ -28,9 +27,13 @@ namespace Aptacode.Forms.Shared.ViewModels
             EventListeners.CollectionChanged += EventListenersOnCollectionChanged;
         }
 
+        public ObservableCollection<EventListener> EventListeners { get; set; } =
+            new ObservableCollection<EventListener>();
+
         public event EventHandler<(EventListener, FormElementEvent)> OnTriggered;
 
         #region Elements
+
         public IEnumerable<FormElementViewModel> Elements { get; private set; }
         private IEnumerable<FieldElementViewModel> Fields => Elements.OfType<FieldElementViewModel>();
 
@@ -57,7 +60,8 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public string ValidationMessage =>
             string.Join("\n",
-                 Fields.SelectMany(field => field.Validate()).Where(result => result.HasMessage).Select(result => result.Message));
+                Fields.SelectMany(field => field.Validate()).Where(result => result.HasMessage)
+                    .Select(result => result.Message));
 
         #endregion
 
