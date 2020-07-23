@@ -3,11 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel LastChildFill="True">
-        <TextBlock Text="{Binding Label.Text}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:LabelPositionToDockConverter x:Key="LabelPositionToDockConverter" />
+            <converters:LabelPositionToVisibilityConverter x:Key="LabelPositionToVisibilityConverter" />
+            <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True"
+               HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
+               VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
+        <TextBlock Text="{Binding Label.Text}"
+                   Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
+                   DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
+                   Width="150" TextWrapping="WrapWithOverflow"
                    TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
+
         <TextBox Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  AcceptsReturn="True" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     </DockPanel>

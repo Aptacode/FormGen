@@ -3,13 +3,20 @@ using System.Linq.Expressions;
 using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Shared.EventListeners.Events;
 
-namespace Aptacode.Forms.Shared.EventListeners.Specifications.Event
+namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications
 {
-    public sealed class EventTypeSpecification : Specification<FormElementEvent>
+    public sealed class TypeNameEventSpecification : Specification<FormElementEvent>
     {
-        public EventTypeSpecification(string eventType)
+        internal TypeNameEventSpecification() { }
+
+        public TypeNameEventSpecification(string eventType)
         {
             EventType = eventType;
+        }
+
+        public TypeNameEventSpecification(Type eventType)
+        {
+            EventType = eventType.Name;
         }
 
         public string EventType { get; set; }

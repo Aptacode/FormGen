@@ -7,6 +7,7 @@
             IsValid = isValid;
             Message = message;
         }
+
         public ValidationResult(bool isValid)
         {
             IsValid = isValid;
@@ -16,25 +17,17 @@
         #region Properties
 
         public bool IsValid { get; }
-        public string Message { get; private set; }
+        public string Message { get; }
 
         public bool HasMessage => !string.IsNullOrEmpty(Message);
+
         #endregion
 
-        public static ValidationResult Success(string message = "")
-        {
-            return new ValidationResult(true, message);
-        }
+        public static ValidationResult Success(string message = "") => new ValidationResult(true, message);
 
-        public static ValidationResult Fail(string message = "")
-        {
-            return new ValidationResult(false, message);
-        }
+        public static ValidationResult Fail(string message = "") => new ValidationResult(false, message);
 
-        public ValidationResult WithMessage(string message)
-        {
-            return new ValidationResult(this.IsValid, message);
-        }
+        public ValidationResult WithMessage(string message) => new ValidationResult(IsValid, message);
 
 
         #region Equals
@@ -49,10 +42,7 @@
             return IsValid == other.IsValid && Message == other.Message;
         }
 
-        public override int GetHashCode()
-        {
-            return (IsValid, Message).GetHashCode();
-        }
+        public override int GetHashCode() => (IsValid, Message).GetHashCode();
 
         #endregion
     }

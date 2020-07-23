@@ -1,49 +1,60 @@
 ﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.Designer.FormElementBrowserView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:layouts="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Layouts;assembly=Aptacode.Forms.Shared"
              xmlns:controls="clr-namespace:Aptacode.Forms.Shared.ViewModels.Elements.Controls;assembly=Aptacode.Forms.Shared"
              xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <converters:ModelToIconConverter x:Key="ModelToIconConverter"/>
+                    <converters:ModelToIconConverter x:Key="ModelToIconConverter" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <Button DockPanel.Dock="Top" Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}" CommandParameter="{Binding FormViewModel.RootElement}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
+        <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Top"
+                Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}"
+                CommandParameter="{Binding FormViewModel.RootElement}" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding  FormViewModel.RootElement.Model, Converter={StaticResource ModelToIconConverter}}"></Image>
-                <Label Content="{Binding  FormViewModel.RootElement.Name}"></Label>
+                <Image
+                    Source="{Binding  FormViewModel.RootElement.Model, Converter={StaticResource ModelToIconConverter}}" />
+                <Label Content="{Binding  FormViewModel.RootElement.Name}" />
             </StackPanel>
         </Button>
         <TreeView DockPanel.Dock="Bottom" ItemsSource="{Binding FormViewModel.RootElement.Children}">
             <TreeView.Resources>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type layouts:CompositeElementViewModel}">
-                    <Button Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}"
+                                          DataType="{x:Type layouts:CompositeElementViewModel}">
+                    <Button Background="Transparent" BorderThickness="0"
+                            Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}"
+                            CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}"></Image>
-                            <Label Content="{Binding Name}"></Label>
+                            <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}" />
+                            <Label Content="{Binding Name}" />
                         </StackPanel>
                     </Button>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type controls:ControlElementViewModel}">
-                    <Button Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}" CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
+                    <Button Background="Transparent" BorderThickness="0"
+                            Command="{Binding DataContext.ElementClickedCommand, RelativeSource={RelativeSource AncestorType={x:Type local:FormElementBrowserView}}}"
+                            CommandParameter="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}"></Image>
-                            <Label Content="{Binding Name}"></Label>
+                            <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}" />
+                            <Label Content="{Binding Name}" />
                         </StackPanel>
                     </Button>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
-</DockPanel>
+    </DockPanel>
 </UserControl>

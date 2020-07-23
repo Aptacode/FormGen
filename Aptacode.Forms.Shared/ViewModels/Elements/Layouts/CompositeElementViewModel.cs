@@ -56,6 +56,5 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
             new ObservableCollection<FormElementViewModel>();
 
         #endregion
-
     }
 }

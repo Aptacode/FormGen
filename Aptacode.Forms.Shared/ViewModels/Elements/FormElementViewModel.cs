@@ -1,5 +1,6 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Elements;
 
@@ -23,7 +24,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             {
                 SetProperty(ref _elementModel, value);
 
-                Name = _elementModel?.Name;
+                Name = _elementModel.Name;
+                HorizontalAlignment = _elementModel.HorizontalAlignment;
+                VerticalAlignment = _elementModel.VerticalAlignment;
             }
         }
 
@@ -38,6 +41,34 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
                 if (ElementModel != null)
                 {
                     ElementModel.Name = _name;
+                }
+            }
+        }
+
+        private VerticalAlignment _verticalAlignment;
+        public VerticalAlignment VerticalAlignment
+        {
+            get => _verticalAlignment;
+            set
+            {
+                SetProperty(ref _verticalAlignment, value);
+                if (ElementModel != null)
+                {
+                    ElementModel.VerticalAlignment = _verticalAlignment;
+                }
+            }
+        }
+
+        private HorizontalAlignment _horizontalAlignment;
+        public HorizontalAlignment HorizontalAlignment
+        {
+            get => _horizontalAlignment;
+            set
+            {
+                SetProperty(ref _horizontalAlignment, value);
+                if (ElementModel != null)
+                {
+                    ElementModel.HorizontalAlignment = _horizontalAlignment;
                 }
             }
         }

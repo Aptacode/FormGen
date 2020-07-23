@@ -1,7 +1,7 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Conditions;
-using Aptacode.Forms.Shared.EventListeners.Specifications.Event;
+using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
+using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
@@ -42,14 +42,25 @@ namespace Aptacode.Forms.Shared.Json
         public static JsonSerializerSettings AddValidatorConverter(this JsonSerializerSettings settings)
         {
             settings.Converters.Add(JsonSubtypesConverterBuilder
-                .Of(typeof(Specification<IFieldViewModel>), "Type") // type property is only defined here
-                .RegisterSubtype(typeof(CheckElement_IsChecked_Validator), nameof(CheckElement_IsChecked_Validator))
+                .Of(typeof(Specification<ICheckElementViewModel>), "Type") // type property is only defined here
+                .RegisterSubtype(typeof(CheckElement_IsChecked_Validator),
+                    nameof(CheckElement_IsChecked_Validator))
                 .RegisterSubtype(typeof(CheckElement_IsNotChecked_Validator),
                     nameof(CheckElement_IsNotChecked_Validator))
+                .SerializeDiscriminatorProperty() // ask to serialize the type property
+                .Build());
+
+            settings.Converters.Add(JsonSubtypesConverterBuilder
+                .Of(typeof(Specification<ISelectElementViewModel>), "Type") // type property is only defined here
                 .RegisterSubtype(typeof(SelectElement_SelectionMade_Validator),
                     nameof(SelectElement_SelectionMade_Validator))
-                .RegisterSubtype(typeof(TextElement_MaximunLength_Validator),
-                    nameof(TextElement_MaximunLength_Validator))
+                .SerializeDiscriminatorProperty() // ask to serialize the type property
+                .Build());
+
+            settings.Converters.Add(JsonSubtypesConverterBuilder
+                .Of(typeof(Specification<ITextElementViewModel>), "Type") // type property is only defined here
+                .RegisterSubtype(typeof(TextElement_MaximumLength_Validator),
+                    nameof(TextElement_MaximumLength_Validator))
                 .RegisterSubtype(typeof(TextElement_MinimunLength_Validator),
                     nameof(TextElement_MinimunLength_Validator))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
@@ -67,8 +78,8 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormElementEvent>), nameof(NotSpecification<FormElementEvent>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormElementEvent>),
                     nameof(IdentitySpecification<FormElementEvent>))
-                .RegisterSubtype(typeof(EventElementNameSpecification), nameof(EventElementNameSpecification))
-                .RegisterSubtype(typeof(EventTypeSpecification), nameof(EventTypeSpecification))
+                .RegisterSubtype(typeof(ElementNameEventSpecification), nameof(ElementNameEventSpecification))
+                .RegisterSubtype(typeof(TypeNameEventSpecification), nameof(TypeNameEventSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
             return settings;
@@ -83,7 +94,7 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormViewModel>), nameof(NotSpecification<FormViewModel>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormViewModel>),
                     nameof(IdentitySpecification<FormViewModel>))
-                .RegisterSubtype(typeof(SelectElementSelectionCondition), nameof(SelectElementSelectionCondition))
+                .RegisterSubtype(typeof(ElementPropertyFormSpecification), nameof(ElementPropertyFormSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
 
@@ -102,7 +113,6 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(SelectElementChangedEvent), nameof(SelectElementChangedEvent))
                 .RegisterSubtype(typeof(TextElementEvent), nameof(TextElementEvent))
                 .RegisterSubtype(typeof(TextElementChangedEvent), nameof(TextElementChangedEvent))
-
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());
 

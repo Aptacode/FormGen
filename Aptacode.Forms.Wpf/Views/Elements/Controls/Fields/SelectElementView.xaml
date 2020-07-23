@@ -9,12 +9,20 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:LabelPositionToDockConverter x:Key="LabelPositionToDockConverter" />
+            <converters:LabelPositionToVisibilityConverter x:Key="LabelPositionToVisibilityConverter" />
+            <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />       
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True">
-        <TextBlock Text="{Binding Label.Text}" DockPanel.Dock="Left" Width="150" TextWrapping="WrapWithOverflow"
+    <DockPanel LastChildFill="True"
+               HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
+               VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
+        <TextBlock Text="{Binding Label.Text}"
+                   Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
+                   DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
+                   Width="150" TextWrapping="WrapWithOverflow"
                    TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
-
         <Grid>
             <ComboBox x:Name="comboBox" SelectedItem="{Binding SelectedItem, Mode=TwoWay, ValidatesOnDataErrors=True}"
                       ItemsSource="{Binding Items}" />

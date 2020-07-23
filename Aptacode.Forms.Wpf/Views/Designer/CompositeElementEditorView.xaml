@@ -1,19 +1,21 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
-             xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
-             x:Class="Aptacode.Forms.Wpf.Views.Designer.CompositeElementEditorView"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Designer"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:behaviors="clr-namespace:Aptacode.Wpf.Utilities.Behaviors;assembly=Aptacode.Wpf.Utilities"
+    x:Class="Aptacode.Forms.Wpf.Views.Designer.CompositeElementEditorView"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <converters:ModelToIconConverter x:Key="ModelToIconConverter"/>
+                    <converters:ModelToIconConverter x:Key="ModelToIconConverter" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -21,43 +23,61 @@
 
     <Grid Margin="8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Content="Name: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedElement.Name, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="Name: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" />
+        <TextBox Grid.Column="1" Grid.Row="0"
+                 Text="{Binding SelectedElement.Name, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8" />
 
-        <Label Grid.Column="0" Grid.Row="1" Content="Type: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8" SelectedItem="{Binding SelectedElementType}">
+        <Label Grid.Column="0" Grid.Row="1" Content="Type: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" />
+        <ComboBox Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                  Margin="8" SelectedItem="{Binding SelectedElementType}">
             <System:String>GroupElement</System:String>
             <System:String>RowElement</System:String>
             <System:String>ColumnElement</System:String>
         </ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="2" Content="Title: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedElement.Title, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="Title: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" />
+        <TextBox Grid.Column="1" Grid.Row="2"
+                 Text="{Binding SelectedElement.Title, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8" />
 
-        <Label Grid.Column="0" Grid.Row="3" Content="Children: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top"/>
-        <ListBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding SelectedElement.Children}" SelectedItem="{Binding SelectedChildElement}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}"></Image>
-                        <Label Content="{Binding Name}"></Label>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Label Grid.Column="0" Grid.Row="3" Content="Horizontal Alignment: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
+        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedHorizontalAlignment}" Width="200" Margin="8">
+            <System:String>Left</System:String>
+            <System:String>Right</System:String>
+            <System:String>Center</System:String>
+            <System:String>Stretch</System:String>
+        </ComboBox>
 
-        <StackPanel  Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-            <Button Content="Add" Margin="8" Command="{Binding AddElementCommand}"></Button>
+        <Label Grid.Column="0" Grid.Row="4" Content="Vertical Alignment: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
+        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding SelectedVerticalAlignment}" Width="200" Margin="8">
+            <System:String>Top</System:String>
+            <System:String>Bottom</System:String>
+            <System:String>Center</System:String>
+            <System:String>Stretch</System:String>
+        </ComboBox>
+
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Children: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
             <ComboBox SelectedItem="{Binding NewElementType}" Width="200" Margin="8">
                 <System:String>GroupElement</System:String>
                 <System:String>RowElement</System:String>
@@ -68,8 +88,42 @@
                 <System:String>CheckElement</System:String>
                 <System:String>HtmlElement</System:String>
             </ComboBox>
-            <Button Content="Remove" Margin="8" Command="{Binding RemoveElementCommand}"></Button>
+            <Button Content="Add" Margin="8" Command="{Binding AddElementCommand}" />
         </StackPanel>
+
+        <ListView Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedElement.Children}"
+                  SelectedItem="{Binding SelectedChildElement}" HorizontalContentAlignment="Left"
+                  VerticalContentAlignment="Center" Margin="8">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid Rows="1" HorizontalAlignment="Stretch">
+                        <Image Source="{Binding Model, Converter={StaticResource ModelToIconConverter}}" />
+                        <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                 Background="Transparent" BorderBrush="Transparent">
+                            <i:Interaction.Behaviors>
+                                <behaviors:DoubleClickTextBoxBehaviour />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
+                        <Button Content="Up" Margin="8"
+                                Command="{Binding DataContext.MoveElementUpCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CompositeElementEditorView}}}"
+                                CommandParameter="{Binding}" />
+                        <Button Content="Down" Margin="8"
+                                Command="{Binding DataContext.MoveElementDownCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CompositeElementEditorView}}}"
+                                CommandParameter="{Binding}" />
+                        <Button Content="Remove" Margin="8"
+                                Command="{Binding DataContext.RemoveElementCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CompositeElementEditorView}}}"
+                                CommandParameter="{Binding}" />
+
+                    </UniformGrid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </UserControl>

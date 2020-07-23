@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
@@ -12,12 +11,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 {
     public class SelectElementViewModel : FieldElementViewModel, ISelectElementViewModel
     {
-        public SelectElementViewModel(string name, ElementLabel label, IEnumerable<string> items,
-            string defaultSelectedItem,
-            params ValidationRule<ISelectElementViewModel>[] rules) : this(new SelectElement(name, label, items,
-            defaultSelectedItem,
-            rules?.ToList() ?? new List<ValidationRule<ISelectElementViewModel>>())) { }
-
         public SelectElementViewModel(SelectElement model) : base(model)
         {
             Model = model;
@@ -38,8 +31,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
         {
             get
             {
-                _model.Items = Items;
-                _model.DefaultSelectedItem = DefaultSelectedItem;
+                _model.Values = Items;
+                _model.DefaultValue = DefaultSelectedItem;
                 return _model;
             }
             set
@@ -50,11 +43,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
                 Items.Clear();
                 if (_model != null)
                 {
-                    Items.AddRange(_model.Items);
+                    Items.AddRange(_model.Values);
                 }
 
-                SelectedItem = _model?.DefaultSelectedItem;
-                DefaultSelectedItem = _model?.DefaultSelectedItem;
+                SelectedItem = _model?.DefaultValue;
+                DefaultSelectedItem = _model?.DefaultValue;
             }
         }
 
@@ -70,7 +63,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
                 SetProperty(ref _defaultSelectedItem, value);
                 if (_model != null)
                 {
-                    _model.DefaultSelectedItem = _defaultSelectedItem;
+                    _model.DefaultValue = _defaultSelectedItem;
                 }
             }
         }

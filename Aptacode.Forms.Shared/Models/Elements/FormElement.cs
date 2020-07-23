@@ -1,18 +1,26 @@
-﻿namespace Aptacode.Forms.Shared.Models.Elements
+﻿using System;
+using Aptacode.CSharp.Common.Persistence;
+using Aptacode.Forms.Shared.Enums;
+
+namespace Aptacode.Forms.Shared.Models.Elements
 {
     /// <summary>
     ///     Abstract Form Element Model
     /// </summary>
-    public abstract class FormElement
+    public abstract class FormElement : IEntity<Guid>
     {
-        protected FormElement(string name)
+        protected FormElement()
         {
-            Name = name;
+            Id = Guid.Empty;
         }
 
         #region Properties
 
+        public Guid Id { get; set; }
         public string Name { get; set; }
+
+        public VerticalAlignment VerticalAlignment { get; set; }
+        public HorizontalAlignment HorizontalAlignment { get; set; }
 
         #endregion
     }

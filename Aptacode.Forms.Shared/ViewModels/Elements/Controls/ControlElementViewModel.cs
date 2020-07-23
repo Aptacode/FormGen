@@ -20,14 +20,22 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             {
                 SetProperty(ref _controlModel, value);
 
-                Name = _controlModel?.Name;
-                Label = _controlModel?.Label ?? default;
+                if (_controlModel != null)
+                {
+                    Name = _controlModel.Name;
+                    Label = new ElementLabelViewModel(_controlModel.Label);
+                }
+                else
+                {
+                    Name = string.Empty;
+                    Label = new ElementLabelViewModel(ElementLabel.None);
+                }
             }
         }
 
-        private ElementLabel _label;
+        private ElementLabelViewModel _label;
 
-        public ElementLabel Label
+        public ElementLabelViewModel Label
         {
             get => _label;
             set
@@ -35,11 +43,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 SetProperty(ref _label, value);
                 if (ElementModel != null)
                 {
-                    ControlModel.Label = _label;
+                    ControlModel.Label = _label.Model;
                 }
             }
         }
-
         #endregion
     }
 }

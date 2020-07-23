@@ -19,12 +19,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private void OnEditElement(object sender, FormElementViewModel e)
         {
-
-            if(e is ControlElementViewModel controlElementViewModel)
+            if (e is ControlElementViewModel controlElementViewModel)
             {
                 FormElementEditorViewModel.FormElement = controlElementViewModel;
                 ElementEditorViewModel = FormElementEditorViewModel;
-            }else if (e is CompositeElementViewModel compositeElementViewModel)
+            }
+            else if (e is CompositeElementViewModel compositeElementViewModel)
             {
                 CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
                 ElementEditorViewModel = CompositeElementEditorViewModel;
@@ -45,6 +45,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 ElementBrowserViewModel.FormViewModel = FormViewModel;
                 FormElementEditorViewModel.FormViewModel = FormViewModel;
                 CompositeElementEditorViewModel.FormViewModel = FormViewModel;
+                EventListenerEditorViewModel = new EventListenerEditorViewModel
+                {
+                    FormViewModel = FormViewModel
+                };
             }
         }
 
@@ -81,7 +85,13 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _elementEditorViewModel, value);
         }
 
-        
+        private EventListenerEditorViewModel _eventListenerEditorViewModel;
+
+        public EventListenerEditorViewModel EventListenerEditorViewModel
+        {
+            get => _eventListenerEditorViewModel;
+            set => SetProperty(ref _eventListenerEditorViewModel, value);
+        }
 
         #endregion
     }
