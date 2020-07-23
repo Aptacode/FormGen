@@ -1,4 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
@@ -56,7 +57,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                         .WithFailMessage("You must accept the terms and conditions")).Build();
 
             var submitButton = new ButtonElementBuilder().SetName("Submit Button").SetContent("Submit")
-                .SetAlignment(ControlElement.VerticalAlignment.Bottom).Build();
+                .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
             var submitEventListener = new EventListener("submit",
                 new ElementNameEventSpecification("submit").And(

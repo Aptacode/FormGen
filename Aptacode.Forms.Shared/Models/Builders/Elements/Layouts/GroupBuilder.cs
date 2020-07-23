@@ -18,6 +18,8 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
             {
                 Id = Id,
                 Name = Name,
+                HorizontalAlignment = HorizontalAlignment,
+                VerticalAlignment = VerticalAlignment,
                 Children = Children,
                 Title = Title
             };

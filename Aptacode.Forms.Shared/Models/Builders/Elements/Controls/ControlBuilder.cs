@@ -1,4 +1,5 @@
 ﻿using System;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
@@ -9,17 +10,22 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
         protected Guid Id { get; set; } = Guid.NewGuid();
         protected string Name { get; set; } = string.Empty;
         public ElementLabel Label { get; set; }
-        public ControlElement.VerticalAlignment Alignment { get; set; }
-
+        protected HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Stretch;
+        protected VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Stretch;
         public TBuilder SetLabel(ElementLabel label)
         {
             Label = label;
             return this as TBuilder;
         }
 
-        public TBuilder SetAlignment(ControlElement.VerticalAlignment alignment)
+        public TBuilder SetVerticalAlignment(VerticalAlignment verticalAlignment)
         {
-            Alignment = alignment;
+            VerticalAlignment = verticalAlignment;
+            return this as TBuilder;
+        }
+        public TBuilder SetHorizontalAlignment(HorizontalAlignment horizontalAlignment)
+        {
+            HorizontalAlignment = horizontalAlignment;
             return this as TBuilder;
         }
 
@@ -42,7 +48,8 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
             Id = Guid.NewGuid();
             Name = string.Empty;
             Label = ElementLabel.None;
-            Alignment = ControlElement.VerticalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Stretch;
+            HorizontalAlignment = HorizontalAlignment.Stretch;
         }
 
         public TBuilder FromTemplate(ControlElement element)
@@ -50,7 +57,8 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
             Id = element.Id;
             Name = element.Name;
             Label = element.Label;
-            Alignment = element.Alignment;
+            VerticalAlignment = VerticalAlignment;
+            HorizontalAlignment = HorizontalAlignment; 
             return this as TBuilder;
         }
     }

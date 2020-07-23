@@ -11,10 +11,12 @@
             <converters:LabelPositionToDockConverter x:Key="LabelPositionToDockConverter" />
             <converters:LabelPositionToVisibilityConverter x:Key="LabelPositionToVisibilityConverter" />
             <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel LastChildFill="True"
-               VerticalAlignment="{Binding Alignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
+               HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
+               VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
         <TextBlock Text="{Binding Label.Text}"
                    Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
                    DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"

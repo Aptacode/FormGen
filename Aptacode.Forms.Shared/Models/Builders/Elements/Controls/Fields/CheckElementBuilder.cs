@@ -47,7 +47,8 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields
                 Name = Name,
                 Content = Content,
                 Label = Label,
-                Alignment = Alignment,
+                HorizontalAlignment = HorizontalAlignment,
+                VerticalAlignment = VerticalAlignment,
                 DefaultValue = DefaultValue,
                 Rules = Rules
             };

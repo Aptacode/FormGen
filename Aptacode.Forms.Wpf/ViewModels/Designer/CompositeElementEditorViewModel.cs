@@ -1,4 +1,6 @@
-﻿using Aptacode.CSharp.Common.Utilities.Mvvm;
+﻿using System;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
@@ -73,6 +75,37 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _newElementType, value);
         }
 
+        private string _selectedHorizontalAlignment;
+
+        public string SelectedHorizontalAlignment
+        {
+            get => _selectedHorizontalAlignment;
+            set
+            {
+                SetProperty(ref _selectedHorizontalAlignment, value);
+
+                if (Enum.TryParse(_selectedHorizontalAlignment, true, out HorizontalAlignment alignment))
+                {
+                    SelectedElement.HorizontalAlignment = alignment;
+                }
+            } 
+        }
+        private string _selectedVerticalAlignment;
+
+        public string SelectedVerticalAlignment
+        {
+            get => _selectedVerticalAlignment;
+            set
+            {
+                SetProperty(ref _selectedVerticalAlignment, value);
+
+                if (Enum.TryParse(_selectedVerticalAlignment, true, out VerticalAlignment alignment))
+                {
+                    SelectedElement.VerticalAlignment = alignment;
+                }
+            }
+        }
+
 
         private FormElementViewModel _selectedChildElement;
 
@@ -91,6 +124,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 SetProperty(ref _selectedElement, value);
                 SelectedElementType = _selectedElement?.Model.GetType().Name;
+                SelectedHorizontalAlignment = _selectedElement?.Model.HorizontalAlignment.ToString();
+                SelectedVerticalAlignment = _selectedElement?.Model.VerticalAlignment.ToString();
             }
         }
 
@@ -149,10 +184,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<CompositeElementViewModel> _removeElementCommand;
+        private DelegateCommand<FormElementViewModel> _removeElementCommand;
 
-        public DelegateCommand<CompositeElementViewModel> RemoveElementCommand =>
-            _removeElementCommand ??= new DelegateCommand<CompositeElementViewModel>(parameter =>
+        public DelegateCommand<FormElementViewModel> RemoveElementCommand =>
+            _removeElementCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {
@@ -160,10 +195,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<CompositeElementViewModel> _moveElementUpCommand;
+        private DelegateCommand<FormElementViewModel> _moveElementUpCommand;
 
-        public DelegateCommand<CompositeElementViewModel> MoveElementUpCommand =>
-            _moveElementUpCommand ??= new DelegateCommand<CompositeElementViewModel>(parameter =>
+        public DelegateCommand<FormElementViewModel> MoveElementUpCommand =>
+            _moveElementUpCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {
@@ -177,10 +212,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<CompositeElementViewModel> _moveElementDownCommand;
+        private DelegateCommand<FormElementViewModel> _moveElementDownCommand;
 
-        public DelegateCommand<CompositeElementViewModel> MoveElementDownCommand =>
-            _moveElementDownCommand ??= new DelegateCommand<CompositeElementViewModel>(parameter =>
+        public DelegateCommand<FormElementViewModel> MoveElementDownCommand =>
+            _moveElementDownCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {

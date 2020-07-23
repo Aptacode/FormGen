@@ -12,22 +12,23 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ControlElement.VerticalAlignment verticalAlignment)
+            if (value is Forms.Shared.Enums.VerticalAlignment alignment)
             {
-                switch (verticalAlignment)
+                switch (alignment)
                 {
-                    case ControlElement.VerticalAlignment.Top:
+                    case Forms.Shared.Enums.VerticalAlignment.Top:
                         return VerticalAlignment.Top;
-                    case ControlElement.VerticalAlignment.Bottom:
+                    case Forms.Shared.Enums.VerticalAlignment.Bottom:
                         return VerticalAlignment.Bottom;
-                    case ControlElement.VerticalAlignment.Center:
+                    case Forms.Shared.Enums.VerticalAlignment.Center:
                         return VerticalAlignment.Center;
+                    case Forms.Shared.Enums.VerticalAlignment.Stretch:
+                        return VerticalAlignment.Stretch;
                 }
             }
 
-            return VerticalAlignment.Center;
+            return VerticalAlignment.Stretch;
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
             throw new NotImplementedException();
 

@@ -6,10 +6,6 @@
     /// </summary>
     public sealed class RowElement : CompositeElement
     {
-        #region Properties
 
-        public int Span { get; set; }
-
-        #endregion
     }
 }

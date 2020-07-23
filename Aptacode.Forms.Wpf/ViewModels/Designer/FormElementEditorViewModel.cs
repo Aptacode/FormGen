@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Builders;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
@@ -24,6 +25,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         private readonly TextElementViewModel _elementNameTextBox;
         private readonly SelectElementViewModel _elementTypeComboBox;
         private readonly SelectElementViewModel _elementVerticalAlignment;
+        private readonly SelectElementViewModel _elementHorizontalAlignment;
 
         public FormElementEditorViewModel()
         {
@@ -52,27 +54,44 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementVerticalAlignment =
                 new SelectElementViewModel(
                     new SelectElementBuilder().SetName("elementVerticalAlignment")
-                        .SetLabel(ElementLabel.Left("Vertical Alignment")).AddValues("Center", "Top", "Bottom")
-                        .SetDefaultValue("Center").Build());
-
+                        .SetLabel(ElementLabel.Left("Vertical Alignment")).AddValues("Center", "Top", "Bottom", "Stretch")
+                        .SetDefaultValue("Stretch").Build());
+            _elementHorizontalAlignment            =     new SelectElementViewModel(
+                new SelectElementBuilder().SetName("elementHorizontalAlignment")
+                    .SetLabel(ElementLabel.Left("Horizontal Alignment")).AddValues("Center", "Left", "Right", "Stretch")
+                    .SetDefaultValue("Stretch").Build());
 
             _elementTypeComboBox.OnFormEvent += ElementTypeComboBoxOnOnFormEvent;
             _elementNameTextBox.OnFormEvent += ElementNameTextBoxOnOnFormEvent;
             _elementLabelTextBox.OnFormEvent += ElementLabelTextBoxOnOnFormEvent;
             _elementLabelPosition.OnFormEvent += _elementLabelPosition_OnFormEvent;
             _elementVerticalAlignment.OnFormEvent += _elementVerticalAlignment_OnFormEvent;
+            _elementHorizontalAlignment.OnFormEvent += _elementHorizontalAlignment_OnFormEvent;
+        }
+
+        private void _elementHorizontalAlignment_OnFormEvent(object sender, FormElementEvent e)
+        {
+            if (e is SelectElementChangedEvent eventArgs)
+            {
+                if (!Enum.TryParse(eventArgs.NewValue, out HorizontalAlignment alignment))
+                {
+                    alignment = HorizontalAlignment.Center;
+                }
+
+                FormElement.HorizontalAlignment = alignment;
+            }
         }
 
         private void _elementVerticalAlignment_OnFormEvent(object sender, FormElementEvent e)
         {
             if (e is SelectElementChangedEvent eventArgs)
             {
-                if (!Enum.TryParse(eventArgs.NewValue, out ControlElement.VerticalAlignment alignment))
+                if (!Enum.TryParse(eventArgs.NewValue, out VerticalAlignment alignment))
                 {
-                    alignment = ControlElement.VerticalAlignment.Center;
+                    alignment = VerticalAlignment.Center;
                 }
 
-                FormElement.Alignment = alignment;
+                FormElement.VerticalAlignment = alignment;
             }
         }
 
@@ -185,7 +204,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new TextElementBuilder()
                         .SetName("buttonContentTextBox")
                         .SetLabel(ElementLabel.Left("Content"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(button.Content).Build());
 
             textField.OnFormEvent += (s, e) =>
@@ -206,7 +224,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new ButtonElementBuilder()
                         .SetName("editHtml")
                         .SetLabel(ElementLabel.Left("Edit"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetContent("Edit").Build());
 
             buttonField.OnFormEvent += (s, e) =>
@@ -231,7 +248,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new TextElementBuilder()
                         .SetName("htmlContent")
                         .SetLabel(ElementLabel.Left("Content"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(element.DefaultContent).Build());
 
             textField.OnFormEvent += (s, e) =>
@@ -253,7 +269,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new TextElementBuilder()
                         .SetName("options")
                         .SetLabel(ElementLabel.Left("Options"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(string.Join(",", element.Items)).Build());
 
             var defaultSelectedText =
@@ -261,7 +276,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new TextElementBuilder()
                         .SetName("defaultText")
                         .SetLabel(ElementLabel.Left("Default Text"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(element.DefaultSelectedItem).Build());
 
             var defaultSelectedItem =
@@ -269,7 +283,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new SelectElementBuilder()
                         .SetName("defaultItem")
                         .SetLabel(ElementLabel.Left("Default Item"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(element.DefaultSelectedItem)
                         .AddValues(element.Items).Build());
 
@@ -328,7 +341,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new TextElementBuilder()
                         .SetName("contentTextField")
                         .SetLabel(ElementLabel.Left("Default Content"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(element.Content).Build());
 
             var checkedField =
@@ -336,7 +348,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                     new CheckElementBuilder()
                         .SetName("checkbox")
                         .SetLabel(ElementLabel.Left("Default Value"))
-                        .SetAlignment(ControlElement.VerticalAlignment.Center)
                         .SetDefaultValue(element.DefaultIsChecked)
                         .SetContent(element.Content).Build());
 
@@ -401,17 +412,21 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 .FirstOrDefault(e => e.Children.Contains(FormElement));
 
 
-            var group = new GroupElementViewModel(new GroupBuilder().Build());
+            var group = new RowElementViewModel(new RowBuilder().Build());
             group.Children.Add(_elementTypeComboBox);
             group.Children.Add(_elementNameTextBox);
             group.Children.Add(_elementLabelTextBox);
             group.Children.Add(_elementLabelPosition);
             group.Children.Add(_elementVerticalAlignment);
+            group.Children.Add(_elementHorizontalAlignment);
+
 
             _elementNameTextBox.Content = FormElement.Name;
             _elementLabelTextBox.Content = FormElement.Label.Text;
             _elementLabelPosition.SelectedItem = FormElement.Label.Position.ToString();
-            _elementVerticalAlignment.SelectedItem = FormElement.Alignment.ToString();
+            _elementVerticalAlignment.SelectedItem = FormElement.VerticalAlignment.ToString();
+            _elementHorizontalAlignment.SelectedItem = FormElement.HorizontalAlignment.ToString();
+
             _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.ControlModel?.GetType());
 
 

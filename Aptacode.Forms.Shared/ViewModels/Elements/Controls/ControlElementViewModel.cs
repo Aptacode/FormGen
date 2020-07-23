@@ -23,13 +23,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 if (_controlModel != null)
                 {
                     Name = _controlModel.Name;
-                    Alignment = _controlModel.Alignment;
                     Label = new ElementLabelViewModel(_controlModel.Label);
                 }
                 else
                 {
                     Name = string.Empty;
-                    Alignment = ControlElement.VerticalAlignment.Center;
                     Label = new ElementLabelViewModel(ElementLabel.None);
                 }
             }
@@ -49,22 +47,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 }
             }
         }
-
-        private ControlElement.VerticalAlignment _alignment;
-
-        public ControlElement.VerticalAlignment Alignment
-        {
-            get => _alignment;
-            set
-            {
-                SetProperty(ref _alignment, value);
-                if (ElementModel != null)
-                {
-                    ControlModel.Alignment = _alignment;
-                }
-            }
-        }
-
         #endregion
     }
 }

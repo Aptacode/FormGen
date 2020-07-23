@@ -1,5 +1,6 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Persistence;
+using Aptacode.Forms.Shared.Enums;
 
 namespace Aptacode.Forms.Shared.Models.Elements
 {
@@ -17,6 +18,9 @@ namespace Aptacode.Forms.Shared.Models.Elements
 
         public Guid Id { get; set; }
         public string Name { get; set; }
+
+        public VerticalAlignment VerticalAlignment { get; set; }
+        public HorizontalAlignment HorizontalAlignment { get; set; }
 
         #endregion
     }

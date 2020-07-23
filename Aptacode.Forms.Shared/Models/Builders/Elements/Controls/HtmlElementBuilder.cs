@@ -19,7 +19,8 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
                 Id = Id,
                 Name = Name,
                 Label = Label,
-                Alignment = Alignment,
+                HorizontalAlignment = HorizontalAlignment,
+                VerticalAlignment = VerticalAlignment,
                 Content = Content
             };
 
