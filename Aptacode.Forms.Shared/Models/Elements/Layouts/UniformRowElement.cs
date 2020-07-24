@@ -4,5 +4,5 @@
     ///     Models a Form Row
     ///     Contains a collection of Form Columns
     /// </summary>
-    public sealed class RowElement : CompositeElement { }
+    public sealed class UniformRowElement : CompositeElement { }
 }

@@ -1,19 +1,12 @@
-﻿namespace Aptacode.Forms.Shared.Models.Elements.Controls
+﻿using Aptacode.Forms.Shared.Enums;
+
+namespace Aptacode.Forms.Shared.Models.Elements.Controls
 {
     public class ElementLabel
     {
         /// <summary>
         ///     The position of a FormElement's Label relative to its content
         /// </summary>
-        public enum LabelPosition
-        {
-            Hidden = 0,
-            Above,
-            Below,
-            Left,
-            Right
-        }
-
         public ElementLabel(LabelPosition position, string text)
         {
             Position = position;

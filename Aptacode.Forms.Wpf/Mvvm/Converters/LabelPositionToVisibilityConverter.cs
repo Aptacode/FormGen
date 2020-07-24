@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.Enums;
 
 namespace Aptacode.Forms.Wpf.Mvvm.Converters
 {
@@ -11,7 +11,7 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
         #region Implementation of IValueConverter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            value is ElementLabel.LabelPosition labelPosition && labelPosition != ElementLabel.LabelPosition.Hidden
+            value is LabelPosition labelPosition && labelPosition != LabelPosition.Hidden
                 ? Visibility.Visible
                 : Visibility.Collapsed;
 

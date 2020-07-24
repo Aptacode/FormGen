@@ -43,7 +43,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             }
 
             AllSpecificationTypes = new ObservableCollection<string>(_specificationViewModelTypes.Keys);
-            SelectedOperation = "All";
+            SelectedOperation = "Any";
         }
 
         #region Events
@@ -80,6 +80,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             }
 
             return outputSpecification;
+        }
+
+        public void Clear()
+        {
+            Specifications.Clear();
         }
 
         public void Load(Specification<T> specification)

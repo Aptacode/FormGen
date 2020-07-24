@@ -1,4 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
@@ -29,7 +30,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 else
                 {
                     Text = string.Empty;
-                    Position = ElementLabel.LabelPosition.Hidden;
+                    Position = LabelPosition.Hidden;
                 }
             }
         }
@@ -49,9 +50,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             }
         }
 
-        private ElementLabel.LabelPosition _position;
+        private LabelPosition _position;
 
-        public ElementLabel.LabelPosition Position
+        public LabelPosition Position
         {
             get => _position;
             set

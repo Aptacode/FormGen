@@ -33,7 +33,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _model, value);
-                FieldModel = _model;
                 Content = _model.Content;
                 IsChecked = _model.DefaultValue;
                 DefaultIsChecked = _model.DefaultValue;

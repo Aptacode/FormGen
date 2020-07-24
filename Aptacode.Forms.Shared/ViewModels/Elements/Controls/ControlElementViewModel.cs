@@ -23,6 +23,12 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 if (_controlModel != null)
                 {
                     Name = _controlModel.Name;
+
+                    if (_controlModel.Label == null)
+                    {
+                        _controlModel.Label = ElementLabel.None;
+                    }
+
                     Label = new ElementLabelViewModel(_controlModel.Label);
                 }
                 else
@@ -41,12 +47,14 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             set
             {
                 SetProperty(ref _label, value);
-                if (ElementModel != null)
+
+                if (_controlModel != null && _label != null)
                 {
-                    ControlModel.Label = _label.Model;
+                    _controlModel.Label = _label.Model;
                 }
             }
         }
+
         #endregion
     }
 }

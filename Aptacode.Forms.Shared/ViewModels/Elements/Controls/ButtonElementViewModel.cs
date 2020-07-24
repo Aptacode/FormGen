@@ -26,7 +26,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             {
                 SetProperty(ref _model, value);
                 Content = _model?.Content;
-                ElementModel = _model;
             }
         }
 

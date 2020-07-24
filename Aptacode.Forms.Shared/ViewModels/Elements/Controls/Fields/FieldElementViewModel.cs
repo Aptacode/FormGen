@@ -60,11 +60,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
         public FieldElement FieldModel
         {
             get => _fieldModel;
-            set
-            {
-                SetProperty(ref _fieldModel, value);
-                ElementModel = _fieldModel;
-            }
+            set => SetProperty(ref _fieldModel, value);
         }
 
         #endregion

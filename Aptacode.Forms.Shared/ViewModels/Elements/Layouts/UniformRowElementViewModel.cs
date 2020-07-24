@@ -2,16 +2,16 @@
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
-    public class RowElementViewModel : CompositeElementViewModel
+    public class UniformRowElementViewModel : CompositeElementViewModel
     {
-        private RowElement _model;
+        private UniformRowElement _model;
 
-        public RowElementViewModel(RowElement model) : base(model)
+        public UniformRowElementViewModel(UniformRowElement model) : base(model)
         {
             Model = model;
         }
 
-        public new RowElement Model
+        public new UniformRowElement Model
         {
             get => _model;
             set => SetProperty(ref _model, value);

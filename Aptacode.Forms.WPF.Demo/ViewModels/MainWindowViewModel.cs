@@ -27,6 +27,9 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 case "submit":
                     Submit();
                     break;
+                case "tooLittleExperiance":
+                    MessageBox.Show("Sorry you've too little exp!");
+                    break;
             }
         }
 

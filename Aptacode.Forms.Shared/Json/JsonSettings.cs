@@ -24,6 +24,7 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(GroupElement), nameof(GroupElement))
                 .RegisterSubtype(typeof(ColumnElement), nameof(ColumnElement))
                 .RegisterSubtype(typeof(RowElement), nameof(RowElement))
+                .RegisterSubtype(typeof(UniformRowElement), nameof(UniformRowElement))
                 .RegisterSubtype(typeof(NullElement), nameof(NullElement))
                 .RegisterSubtype(typeof(NullCompositeElement), nameof(NullCompositeElement))
                 .RegisterSubtype(typeof(ControlElement), nameof(ControlElement))
@@ -78,6 +79,8 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormElementEvent>), nameof(NotSpecification<FormElementEvent>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormElementEvent>),
                     nameof(IdentitySpecification<FormElementEvent>))
+                .RegisterSubtype(typeof(NullSpecification<FormElementEvent>),
+                    nameof(NullSpecification<FormElementEvent>))
                 .RegisterSubtype(typeof(ElementNameEventSpecification), nameof(ElementNameEventSpecification))
                 .RegisterSubtype(typeof(TypeNameEventSpecification), nameof(TypeNameEventSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
@@ -94,6 +97,8 @@ namespace Aptacode.Forms.Shared.Json
                 .RegisterSubtype(typeof(NotSpecification<FormViewModel>), nameof(NotSpecification<FormViewModel>))
                 .RegisterSubtype(typeof(IdentitySpecification<FormViewModel>),
                     nameof(IdentitySpecification<FormViewModel>))
+                .RegisterSubtype(typeof(NullSpecification<FormViewModel>),
+                    nameof(NullSpecification<FormViewModel>))
                 .RegisterSubtype(typeof(ElementPropertyFormSpecification), nameof(ElementPropertyFormSpecification))
                 .SerializeDiscriminatorProperty() // ask to serialize the type property
                 .Build());

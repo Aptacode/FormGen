@@ -2,11 +2,11 @@
 
 namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
 {
-    public class ColumnBuilder : LayoutBuilder<ColumnElement, ColumnBuilder>
+    public class UniformRowBuilder : LayoutBuilder<UniformRowElement, UniformRowBuilder>
     {
-        public override ColumnElement Build()
+        public override UniformRowElement Build()
         {
-            var newElement = new ColumnElement
+            var newElement = new UniformRowElement
             {
                 Id = Id,
                 Name = Name,

@@ -20,41 +20,48 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <specification:SpecificationBuilderView Margin="8" Grid.Row="0" Grid.Column="1"
-                                                DataContext="{Binding EventTriggerSpecificationBuilder}" />
-        <specification:SpecificationBuilderView Margin="8" Grid.Row="1" Grid.Column="1"
-                                                DataContext="{Binding FormConditionSpecificationBuilder}" />
+        <GroupBox Header="Event Triggers" Margin="8" Grid.Row="0" Grid.Column="1">
+            <specification:SpecificationBuilderView
+                DataContext="{Binding EventTriggerSpecificationBuilder}" />
+        </GroupBox>
 
-        <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+        <GroupBox Header="Form Conditions" Margin="8" Grid.Row="1" Grid.Column="1">
+            <specification:SpecificationBuilderView
+                DataContext="{Binding FormConditionSpecificationBuilder}" />
+        </GroupBox>
 
-            <Button Command="{Binding CreateCommand}" Content="Create" DockPanel.Dock="Top" />
+        <GroupBox Header="Event Listeners" Margin="8" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <DockPanel LastChildFill="True">
 
-            <ListView Margin="8" DockPanel.Dock="Left" ItemsSource="{Binding FormViewModel.EventListeners}"
-                      SelectedItem="{Binding SelectedEventListener}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <UniformGrid Rows="1" HorizontalAlignment="Stretch">
-                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
-                                     Background="Transparent" BorderBrush="Transparent">
-                                <i:Interaction.Behaviors>
-                                    <behaviors:DoubleClickTextBoxBehaviour />
-                                </i:Interaction.Behaviors>
-                            </TextBox>
-                            <Button Content="Remove"
-                                    Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:EventListenerEditorView}}}"
-                                    CommandParameter="{Binding}" />
-                        </UniformGrid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <Button Command="{Binding CreateCommand}" Content="Create" DockPanel.Dock="Top" />
 
-        </DockPanel>
+                <ListView Margin="8" DockPanel.Dock="Left" ItemsSource="{Binding FormViewModel.EventListeners}"
+                          SelectedItem="{Binding SelectedEventListener}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <UniformGrid Rows="1" HorizontalAlignment="Stretch">
+                                <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                         Background="Transparent" BorderBrush="Transparent">
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:DoubleClickTextBoxBehaviour />
+                                    </i:Interaction.Behaviors>
+                                </TextBox>
+                                <Button Content="Remove"
+                                        Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type local:EventListenerEditorView}}}"
+                                        CommandParameter="{Binding}" />
+                            </UniformGrid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </DockPanel>
+        </GroupBox>
 
     </Grid>
 

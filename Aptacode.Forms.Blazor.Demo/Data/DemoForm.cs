@@ -3,7 +3,6 @@ using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
-using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Models.Builders;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
@@ -12,8 +11,12 @@ using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
+namespace Aptacode.Forms.Blazor.Demo.Data
 {
     public static class DemoForm
     {
@@ -60,15 +63,10 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             var submitButton = new ButtonElementBuilder().SetName("Submit Button").SetContent("Submit")
                 .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
-            var submitEventListenerAcceptsTerms = new EventListener("submit",
-                new ElementNameEventSpecification("Submit Button").And(
+            var submitEventListener = new EventListener("submit",
+                new ElementNameEventSpecification("submit").And(
                     new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
-                new ElementPropertyFormSpecification("TermsAndConditions", "IsChecked", "True"));
-
-            var submitEventListenerExperience = new EventListener("tooLittleExperiance",
-                new ElementNameEventSpecification("Submit Button").And(
-                    new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
-                new ElementPropertyFormSpecification("experienceSelection", "SelectedItem", "0-1"));
+                new IdentitySpecification<FormViewModel>());
 
             var rowGroup1 = new RowBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();
@@ -77,7 +75,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 .AddChildren(rowGroup1, submitButton).Build();
 
             var newForm = new FormBuilder().SetName("Demo Form").SetTitle("Demo Form Title").SetRoot(rootGroup)
-                .AddEventListeners(submitEventListenerAcceptsTerms, submitEventListenerExperience)
+                .AddEventListeners(submitEventListener)
                 .Build();
 
             return new FormViewModel(newForm);

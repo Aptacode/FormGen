@@ -11,7 +11,8 @@
             <converters:LabelPositionToDockConverter x:Key="LabelPositionToDockConverter" />
             <converters:LabelPositionToVisibilityConverter x:Key="LabelPositionToVisibilityConverter" />
             <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
-            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment
+                x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel LastChildFill="True"

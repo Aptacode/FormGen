@@ -38,7 +38,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _model, value);
-                FieldModel = _model;
 
                 Items.Clear();
                 if (_model != null)

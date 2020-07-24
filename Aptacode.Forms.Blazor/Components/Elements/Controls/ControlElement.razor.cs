@@ -1,4 +1,5 @@
-﻿using Aptacode.Forms.Shared.Models.Elements.Controls;
+﻿using Aptacode.Forms.Shared.Enums;
+using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Microsoft.AspNetCore.Components;
 
@@ -9,7 +10,7 @@ namespace Aptacode.Forms.Blazor.Components.Elements.Controls
         #region Properties
 
         [Parameter] public ControlElementViewModel ViewModel { get; set; }
-        public bool IsFormHorizontal => ViewModel.Label.Position == ElementLabel.LabelPosition.Left;
+        public bool IsFormHorizontal => ViewModel.Label.Position == LabelPosition.Left;
 
         #endregion
     }

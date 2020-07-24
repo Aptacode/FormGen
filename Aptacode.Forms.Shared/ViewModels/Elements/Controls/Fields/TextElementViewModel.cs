@@ -26,7 +26,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _model, value);
-                FieldModel = _model;
                 DefaultContent = _model?.DefaultValue;
                 Content = _model?.DefaultValue;
             }

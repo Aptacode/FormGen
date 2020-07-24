@@ -18,9 +18,24 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications
         public object PropertyValue { get; set; }
 
         public override Expression<Func<T, bool>> ToExpression() => input =>
-            PropertyValue.Equals(GetValue(input, PropertyName));
+            ValuesMatch(PropertyValue, GetValue(input, PropertyName));
 
         protected static object GetValue(object target, string propertyName) =>
             target?.GetType().GetProperty(propertyName)?.GetValue(target);
+
+        protected static bool ValuesMatch(object left, object right)
+        {
+            var result = false;
+            if (left == right)
+            {
+                result = true;
+            }
+            else
+            {
+                result = string.Equals(left.ToString(), right.ToString(), StringComparison.OrdinalIgnoreCase);
+            }
+
+            return result;
+        }
     }
 }

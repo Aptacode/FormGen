@@ -1,6 +1,4 @@
-﻿using Aptacode.Forms.Shared.Enums;
-
-namespace Aptacode.Forms.Shared.Models.Elements.Controls
+﻿namespace Aptacode.Forms.Shared.Models.Elements.Controls
 {
     /// <summary>
     ///     Abstract Form Element Model
@@ -9,7 +7,7 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls
     {
         #region Properties
 
-        public ElementLabel Label { get; set; }
+        public ElementLabel Label { get; set; } = ElementLabel.None;
 
         #endregion
     }

@@ -12,8 +12,7 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
                 Name = Name,
                 Children = Children,
                 HorizontalAlignment = HorizontalAlignment,
-                VerticalAlignment = VerticalAlignment,
-
+                VerticalAlignment = VerticalAlignment
             };
 
             Reset();
