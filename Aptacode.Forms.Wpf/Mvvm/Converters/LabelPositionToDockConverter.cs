@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Wpf.Mvvm.Converters
@@ -12,17 +13,17 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ElementLabel.LabelPosition labelPosition)
+            if (value is LabelPosition labelPosition)
             {
                 switch (labelPosition)
                 {
-                    case ElementLabel.LabelPosition.Above:
+                    case LabelPosition.Above:
                         return Dock.Top;
-                    case ElementLabel.LabelPosition.Below:
+                    case LabelPosition.Below:
                         return Dock.Bottom;
-                    case ElementLabel.LabelPosition.Left:
+                    case LabelPosition.Left:
                         return Dock.Left;
-                    case ElementLabel.LabelPosition.Right:
+                    case LabelPosition.Right:
                         return Dock.Right;
                 }
             }

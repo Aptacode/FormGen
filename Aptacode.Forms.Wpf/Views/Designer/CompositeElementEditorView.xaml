@@ -47,6 +47,7 @@
                   Margin="8" SelectedItem="{Binding SelectedElementType}">
             <System:String>GroupElement</System:String>
             <System:String>RowElement</System:String>
+            <System:String>UniformRowElement</System:String>
             <System:String>ColumnElement</System:String>
         </ComboBox>
 
@@ -58,7 +59,7 @@
 
         <Label Grid.Column="0" Grid.Row="3" Content="Horizontal Alignment: " HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
-        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedHorizontalAlignment}" Width="200" Margin="8">
+        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedHorizontalAlignment}" Margin="8">
             <System:String>Left</System:String>
             <System:String>Right</System:String>
             <System:String>Center</System:String>
@@ -67,7 +68,7 @@
 
         <Label Grid.Column="0" Grid.Row="4" Content="Vertical Alignment: " HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
-        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding SelectedVerticalAlignment}" Width="200" Margin="8">
+        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding SelectedVerticalAlignment}" Margin="8">
             <System:String>Top</System:String>
             <System:String>Bottom</System:String>
             <System:String>Center</System:String>
@@ -81,6 +82,7 @@
             <ComboBox SelectedItem="{Binding NewElementType}" Width="200" Margin="8">
                 <System:String>GroupElement</System:String>
                 <System:String>RowElement</System:String>
+                <System:String>UniformRowElement</System:String>
                 <System:String>ColumnElement</System:String>
                 <System:String>ButtonElement</System:String>
                 <System:String>TextElement</System:String>

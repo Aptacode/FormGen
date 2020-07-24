@@ -43,6 +43,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                             newElementViewModel =
                                 new RowElementViewModel(new RowBuilder().FromTemplate(SelectedElement.Model).Build());
                             break;
+                        case nameof(UniformRowElement):
+                            newElementViewModel =
+                                new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(SelectedElement.Model).Build());
+                            break;
                         case nameof(ColumnElement):
                             newElementViewModel =
                                 new ColumnElementViewModel(new ColumnBuilder().FromTemplate(SelectedElement.Model)
@@ -158,6 +162,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                             break;
                         case nameof(RowElement):
                             newChildElement = new RowBuilder().SetName(elementName).Build();
+                            break;
+                        case nameof(UniformRowElement):
+                            newChildElement = new UniformRowBuilder().SetName(elementName).Build();
                             break;
                         case nameof(ColumnElement):
                             newChildElement = new ColumnBuilder().SetName(elementName).Build();

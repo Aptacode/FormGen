@@ -65,8 +65,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 SetProperty(ref _selectedEventListener, value);
 
-                EventTriggerSpecificationBuilder.Load(SelectedEventListener.EventTrigger);
-                FormConditionSpecificationBuilder.Load(SelectedEventListener.FormCondition);
+                if(SelectedEventListener != null)
+                {
+                    EventTriggerSpecificationBuilder.Load(SelectedEventListener.EventTrigger);
+                    FormConditionSpecificationBuilder.Load(SelectedEventListener.FormCondition);
+                }
+                else
+                {
+                    EventTriggerSpecificationBuilder.Clear();
+                    FormConditionSpecificationBuilder.Clear();
+                }
             }
         }
 

@@ -99,9 +99,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         {
             if (e is SelectElementChangedEvent eventArgs)
             {
-                if (!Enum.TryParse(eventArgs.NewValue, out ElementLabel.LabelPosition position))
+                if (!Enum.TryParse(eventArgs.NewValue, out LabelPosition position))
                 {
-                    position = ElementLabel.LabelPosition.Hidden;
+                    position = LabelPosition.Hidden;
                 }
 
                 FormElement.Label.Position = position;

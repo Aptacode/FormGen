@@ -1,10 +1,12 @@
 ﻿@using Aptacode.Forms.Shared.ViewModels.Elements.Controls
 @using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
+@using Aptacode.Forms.Shared.Enums
+ 
 @inherits ControlElementBase
 
 <Field Horizontal="@IsFormHorizontal">
 
-    @if (!ViewModel.Label.IsHidden)
+    @if (ViewModel.Label.Position != LabelPosition.Hidden)
     {
         <FieldLabel>@ViewModel.Label.Text</FieldLabel>
     }

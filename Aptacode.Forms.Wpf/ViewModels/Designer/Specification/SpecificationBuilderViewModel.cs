@@ -82,6 +82,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             return outputSpecification;
         }
 
+        public void Clear()
+        {
+            Specifications.Clear();
+        }
+
         public void Load(Specification<T> specification)
         {
             Specifications.Clear();
