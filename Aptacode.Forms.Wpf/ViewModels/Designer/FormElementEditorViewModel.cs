@@ -327,11 +327,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-            var newRow = new RowElementViewModel(new RowBuilder().Build());
+            group.Children.Add(optionsField);
+            group.Children.Add(defaultSelectedItem);
+            group.Children.Add(defaultSelectedText);
 
-            newRow.Children.Add(optionsField);
-            newRow.Children.Add(defaultSelectedItem);
-            newRow.Children.Add(defaultSelectedText);
         }
 
         private void AddCheckBoxConfigurationRows(CompositeElementViewModel group, CheckElementViewModel element)
