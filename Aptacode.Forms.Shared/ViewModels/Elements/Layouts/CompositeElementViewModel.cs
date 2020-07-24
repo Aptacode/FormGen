@@ -1,59 +1,33 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels.Factories;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
-    public abstract class CompositeElementViewModel : FormElementViewModel
+    public abstract class CompositeElementViewModel<TElement> : FormElementViewModel<TElement>,
+        ICompositeElementViewModel where TElement : CompositeElement, new()
     {
-        protected CompositeElementViewModel(CompositeElement model) : base(model)
+        protected CompositeElementViewModel(TElement model) : base(model)
         {
-            Model = model ?? throw new ArgumentNullException(nameof(CompositeElement));
+            Children = new ObservableCollection<IFormElementViewModel>(
+                model.Children.Select(FormElementViewModelFactory.Create));
             Children.CollectionChanged += CollectionChanged;
         }
 
         private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (_model != null && !_swappingModel)
-            {
-                _model.Children = Children.Select(e => e.ElementModel);
-            }
+            Model.Children = Children.Select(child => child.Model);
         }
 
         #region Properties
 
-        private bool _swappingModel;
+        public ObservableCollection<IFormElementViewModel> Children { get; }
 
-        private CompositeElement _model;
-
-        public CompositeElement Model
-        {
-            get => _model;
-            set
-            {
-                _swappingModel = true;
-                SetProperty(ref _model, value);
-
-                Name = Model?.Name;
-
-                Children.Clear();
-                if (_model != null)
-                {
-                    foreach (var group in _model?.Children.Select(FormElementViewModelFactory.Create))
-                    {
-                        Children.Add(group);
-                    }
-                }
-
-                _swappingModel = false;
-            }
-        }
-
-        public ObservableCollection<FormElementViewModel> Children { get; } =
-            new ObservableCollection<FormElementViewModel>();
+        CompositeElement ICompositeElementViewModel.Model => base.Model;
 
         #endregion
     }

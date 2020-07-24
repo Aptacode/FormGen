@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Aptacode.CSharp.Common.Utilities.Extensions;
 using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Builders;
@@ -9,10 +10,11 @@ using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 using Aptacode.Forms.Wpf.Views.Designer;
 using Prism.Mvvm;
 
@@ -134,38 +136,38 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 return;
             }
 
-            if (ElementTypeToFriendlyName(FormElement?.ControlModel.GetType()) == eventArgs.NewValue)
+            if (ElementTypeToFriendlyName(FormElement?.Model.GetType()) == eventArgs.NewValue)
             {
                 return;
             }
 
-            ControlElementViewModel newElementViewModel = null;
+            IControlElementViewModel newElementViewModel = null;
 
             switch (eventArgs.NewValue)
             {
                 case "Button":
                     newElementViewModel =
-                        new ButtonElementViewModel(new ButtonElementBuilder().FromTemplate(oldElement.ControlModel)
+                        new ButtonElementViewModel(new ButtonElementBuilder().FromTemplate(oldElement.Model)
                             .Build());
                     break;
                 case "Html":
                     newElementViewModel =
-                        new HtmlElementViewModel(new HtmlElementBuilder().FromTemplate(oldElement.ControlModel)
+                        new HtmlElementViewModel(new HtmlElementBuilder().FromTemplate(oldElement.Model)
                             .Build());
                     break;
                 case "CheckBox":
                     newElementViewModel =
-                        new CheckElementViewModel(new CheckElementBuilder().FromTemplate(oldElement.ControlModel)
+                        new CheckElementViewModel(new CheckElementBuilder().FromTemplate(oldElement.Model)
                             .Build());
                     break;
                 case "TextBox":
                     newElementViewModel =
-                        new TextElementViewModel(new TextElementBuilder().FromTemplate(oldElement.ControlModel)
+                        new TextElementViewModel(new TextElementBuilder().FromTemplate(oldElement.Model)
                             .Build());
                     break;
                 case "ComboBox":
                     newElementViewModel =
-                        new SelectElementViewModel(new SelectElementBuilder().FromTemplate(oldElement.ControlModel)
+                        new SelectElementViewModel(new SelectElementBuilder().FromTemplate(oldElement.Model)
                             .Build());
                     break;
             }
@@ -181,7 +183,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private string ElementTypeToFriendlyName(Type elementType)
         {
-            switch (elementType.Name)
+            switch (elementType?.Name)
             {
                 case nameof(ButtonElement):
                     return "Button";
@@ -198,7 +200,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             return string.Empty;
         }
 
-        private void AddButtonConfigurationRows(CompositeElementViewModel group, ButtonElementViewModel button)
+        private void AddButtonConfigurationRows(ICompositeElementViewModel group, ButtonElementViewModel button)
         {
             var textField =
                 new TextElementViewModel(
@@ -218,7 +220,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(textField);
         }
 
-        private void AddHtmlConfigurationRows(CompositeElementViewModel group, HtmlElementViewModel element)
+        private void AddHtmlConfigurationRows(ICompositeElementViewModel group, HtmlElementViewModel element)
         {
             var buttonField =
                 new ButtonElementViewModel(
@@ -242,7 +244,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(buttonField);
         }
 
-        private void AddTextConfigurationRows(CompositeElementViewModel group, TextElementViewModel element)
+        private void AddTextConfigurationRows(ICompositeElementViewModel group, TextElementViewModel element)
         {
             var textField =
                 new TextElementViewModel(
@@ -263,7 +265,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(textField);
         }
 
-        private void AddComboBoxConfigurationRows(CompositeElementViewModel group, SelectElementViewModel element)
+        private void AddComboBoxConfigurationRows(ICompositeElementViewModel group, ISelectElementViewModel element)
         {
             var optionsField =
                 new TextElementViewModel(
@@ -291,18 +293,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (e is TextElementChangedEvent eventArgs)
                 {
-                    var newModel = element.Model;
-                    newModel.Values = eventArgs.NewValue.Split(',').ToList();
+                    element.Items.Clear();
+                    element.Items.AddRange(eventArgs.NewValue.Split(','));
 
                     defaultSelectedItem.Items.Clear();
                     defaultSelectedItem.Items.AddRange(eventArgs.NewValue.Split(',').ToList());
                     if (!defaultSelectedItem.Items.Contains(element.DefaultSelectedItem))
                     {
                         defaultSelectedItem.DefaultSelectedItem = string.Empty;
-                        newModel.DefaultValue = string.Empty;
+                        element.DefaultSelectedItem = string.Empty;
                     }
-
-                    element.Model = newModel;
                 }
             };
 
@@ -333,7 +333,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(defaultSelectedText);
         }
 
-        private void AddCheckBoxConfigurationRows(CompositeElementViewModel group, CheckElementViewModel element)
+        private void AddCheckBoxConfigurationRows(ICompositeElementViewModel group, ICheckElementViewModel element)
         {
             var textField =
                 new TextElementViewModel(
@@ -372,7 +372,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(checkedField);
         }
 
-        private void AddElementConfigurationRows(CompositeElementViewModel group, FormElementViewModel formElement)
+        private void AddElementConfigurationRows(ICompositeElementViewModel group, IFormElementViewModel formElement)
         {
             switch (formElement)
             {
@@ -407,7 +407,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 return;
             }
 
-            ParentElement = FormViewModel.Elements.OfType<CompositeElementViewModel>()
+            ParentElement = FormViewModel.Elements.OfType<ICompositeElementViewModel>()
                 .FirstOrDefault(e => e.Children.Contains(FormElement));
 
 
@@ -426,7 +426,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementVerticalAlignment.SelectedItem = FormElement.VerticalAlignment.ToString();
             _elementHorizontalAlignment.SelectedItem = FormElement.HorizontalAlignment.ToString();
 
-            _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.ControlModel?.GetType());
+            _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.Model?.GetType());
 
 
             AddElementConfigurationRows(group, FormElement);
@@ -443,26 +443,26 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Events
 
-        public EventHandler<FormElementViewModel> OnSelected { get; set; }
-        public EventHandler<FormElementViewModel> OnRemoved { get; set; }
-        public EventHandler<FormElementViewModel> OnCreated { get; set; }
+        public EventHandler<IFormElementViewModel> OnSelected { get; set; }
+        public EventHandler<IFormElementViewModel> OnRemoved { get; set; }
+        public EventHandler<IFormElementViewModel> OnCreated { get; set; }
 
         #endregion
 
         #region Properties
 
-        private CompositeElementViewModel _parentElement;
+        private ICompositeElementViewModel _parentElement;
 
-        public CompositeElementViewModel ParentElement
+        public ICompositeElementViewModel ParentElement
         {
             get => _parentElement;
             set => SetProperty(ref _parentElement, value);
         }
 
 
-        private ControlElementViewModel _formElement;
+        private IControlElementViewModel _formElement;
 
-        public ControlElementViewModel FormElement
+        public IControlElementViewModel FormElement
         {
             get => _formElement;
             set

@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using Aptacode.CSharp.Common.Utilities.Extensions;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
-namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
+namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {
-    public abstract class FieldElementViewModel : ControlElementViewModel, IFieldViewModel, IDataErrorInfo
+    public abstract class FieldElementViewModel<TElement> : ControlElementViewModel<TElement>, IFieldViewModel
+        where TElement : FieldElement, new()
     {
-        protected FieldElementViewModel(FieldElement fieldModel) : base(fieldModel)
-        {
-            FieldModel = fieldModel;
-        }
+        protected FieldElementViewModel(TElement model) : base(model) { }
 
         public ObservableCollection<ValidationResult> ValidationResults { get; set; } =
             new ObservableCollection<ValidationResult>();
 
 
         public abstract FieldElementResult GetResult();
+        FieldElement IFieldViewModel.Model => base.Model;
 
         #region IDataErrorInfo
 
@@ -50,18 +48,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 
         public IEnumerable<string> ValidationMessages =>
             ValidationResults.Where(r => r.HasMessage).Select(r => r.Message);
-
-        #endregion
-
-        #region Properties
-
-        private FieldElement _fieldModel;
-
-        public FieldElement FieldModel
-        {
-            get => _fieldModel;
-            set => SetProperty(ref _fieldModel, value);
-        }
 
         #endregion
     }

@@ -10,10 +10,10 @@ using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
-using Aptacode.Forms.Shared.ViewModels.Elements;
-using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels.Factories;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels
 {
@@ -24,6 +24,10 @@ namespace Aptacode.Forms.Shared.ViewModels
         public FormViewModel(Form model)
         {
             Model = model;
+            Name = Model.Name;
+            Title = Model.Title;
+            EventListeners.AddRange(Model.EventListeners);
+            RootElement = FormElementViewModelFactory.CreateComposite(Model.RootElement);
             EventListeners.CollectionChanged += EventListenersOnCollectionChanged;
         }
 
@@ -34,18 +38,15 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         #region Elements
 
-        public IEnumerable<FormElementViewModel> Elements { get; private set; }
-        private IEnumerable<FieldElementViewModel> Fields => Elements.OfType<FieldElementViewModel>();
+        public IEnumerable<IFormElementViewModel> Elements { get; private set; }
+        private IEnumerable<IFieldViewModel> Fields => Elements.OfType<IFieldViewModel>();
 
-        public TFieldViewModel GetElement<TFieldViewModel>(string elementName)
-            where TFieldViewModel : FormElementViewModel =>
-            this[elementName] as TFieldViewModel;
+        public IFieldViewModel this[string elementName] =>
+            Elements.FirstOrDefault(e => e.Name == elementName) as IFieldViewModel;
 
-        public FormElementViewModel this[string elementName] => Elements.FirstOrDefault(e => e.Name == elementName);
-
-        public CompositeElementViewModel GetParent(FormElementViewModel element)
+        public ICompositeElementViewModel GetParent(IFormElementViewModel element)
         {
-            return RootElement.GetDescendants().OfType<CompositeElementViewModel>()
+            return RootElement.GetDescendants().OfType<ICompositeElementViewModel>()
                 .FirstOrDefault(compositeElement => compositeElement.Children.Contains(element));
         }
 
@@ -55,7 +56,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         public bool IsValid => Fields.All(field => field.IsValid);
 
-        public IEnumerable<(FieldElementViewModel, IEnumerable<ValidationResult>)> ValidationResults =>
+        public IEnumerable<(IFieldViewModel, IEnumerable<ValidationResult>)> ValidationResults =>
             Fields.Select(field => (field, field.Validate()));
 
         public string ValidationMessage =>
@@ -83,10 +84,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         private void EventListenersOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (_model != null)
-            {
-                _model.EventListeners = EventListeners.ToList();
-            }
+            Model.EventListeners = EventListeners.ToList();
         }
 
         public void Handle(FormElementEvent formEvent)
@@ -112,27 +110,7 @@ namespace Aptacode.Forms.Shared.ViewModels
         #endregion
 
         #region Properties
-
-        private Form _model;
-
-        public Form Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-
-                Name = _model?.Name;
-                Title = _model?.Title;
-                EventListeners.Clear();
-
-                if (_model != null)
-                {
-                    EventListeners.AddRange(_model?.EventListeners);
-                    RootElement = FormElementViewModelFactory.CreateComposite(_model.RootElement);
-                }
-            }
-        }
+        public Form Model { get; }
 
         private string _name;
 
@@ -142,10 +120,7 @@ namespace Aptacode.Forms.Shared.ViewModels
             set
             {
                 SetProperty(ref _name, value);
-                if (_model != null)
-                {
-                    _model.Name = _name;
-                }
+                Model.Name = _name;
             }
         }
 
@@ -157,16 +132,14 @@ namespace Aptacode.Forms.Shared.ViewModels
             set
             {
                 SetProperty(ref _title, value);
-                if (_model != null)
-                {
-                    _model.Title = _title;
-                }
+                Model.Title = _title;
+
             }
         }
 
-        private CompositeElementViewModel _rootElement;
+        private ICompositeElementViewModel _rootElement;
 
-        public CompositeElementViewModel RootElement
+        public ICompositeElementViewModel RootElement
         {
             get => _rootElement;
             set
@@ -175,10 +148,8 @@ namespace Aptacode.Forms.Shared.ViewModels
                 Elements = RootElement.GetDescendants();
                 SubscribeToFormEvents();
 
-                if (_model != null)
-                {
-                    _model.RootElement = _rootElement.Model;
-                }
+                Model.RootElement = _rootElement.Model;
+
             }
         }
 

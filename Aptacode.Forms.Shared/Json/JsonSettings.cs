@@ -8,7 +8,7 @@ using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 using JsonSubTypes;
 using Newtonsoft.Json;
 

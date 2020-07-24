@@ -1,20 +1,10 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
-    public class ColumnElementViewModel : CompositeElementViewModel
+    public sealed class ColumnElementViewModel : CompositeElementViewModel<ColumnElement>, IColumnElementViewModel
     {
-        private ColumnElement _model;
-
-        public ColumnElementViewModel(ColumnElement model) : base(model)
-        {
-            Model = model;
-        }
-
-        public new ColumnElement Model
-        {
-            get => _model;
-            set => SetProperty(ref _model, value);
-        }
+        public ColumnElementViewModel(ColumnElement model) : base(model) { }
     }
 }

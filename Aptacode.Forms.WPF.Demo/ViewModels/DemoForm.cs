@@ -11,7 +11,7 @@ using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
 namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 {

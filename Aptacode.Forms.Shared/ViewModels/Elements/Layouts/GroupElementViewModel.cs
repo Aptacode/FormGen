@@ -1,27 +1,15 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
-    public class GroupElementViewModel : CompositeElementViewModel
+    public class GroupElementViewModel : CompositeElementViewModel<GroupElement>, IGroupElementViewModel
     {
-        private GroupElement _model;
-
         private string _title;
 
         public GroupElementViewModel(GroupElement model) : base(model)
         {
-            Model = model;
             Title = model.Title;
-        }
-
-        public new GroupElement Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-                Title = _model?.Title;
-            }
         }
 
         public string Title
@@ -30,11 +18,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
             set
             {
                 SetProperty(ref _title, value);
-                if (Model != null)
-                {
-                    Model.Title = _title;
-                }
+                Model.Title = _title;
             }
         }
+
+        GroupElement IGroupElementViewModel.Model => base.Model;
     }
 }

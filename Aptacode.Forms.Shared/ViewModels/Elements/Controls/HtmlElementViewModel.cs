@@ -1,32 +1,16 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {
-    public class HtmlElementViewModel : ControlElementViewModel
+    public class HtmlElementViewModel : ControlElementViewModel<HtmlElement>, IHtmlElementViewModel
     {
         public HtmlElementViewModel(HtmlElement model) : base(model)
         {
-            Model = model;
+            Content = model.Content;
         }
 
         #region Properties
-
-        private HtmlElement _model;
-
-        public HtmlElement Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-                if (Model == null)
-                {
-                    return;
-                }
-
-                Content = _model?.Content;
-            }
-        }
 
         private string _content;
 
@@ -36,10 +20,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             set
             {
                 SetProperty(ref _content, value);
-                if (Model != null)
-                {
-                    Model.Content = _content;
-                }
+                Model.Content = _content;
             }
         }
 

@@ -1,20 +1,12 @@
 ﻿using Aptacode.Forms.Shared.Models.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Layouts
 {
-    public class RowElementViewModel : CompositeElementViewModel
+    public class RowElementViewModel : CompositeElementViewModel<RowElement>, IRowElementViewModel
     {
-        private RowElement _model;
+        public RowElementViewModel(RowElement model) : base(model) { }
 
-        public RowElementViewModel(RowElement model) : base(model)
-        {
-            Model = model;
-        }
-
-        public new RowElement Model
-        {
-            get => _model;
-            set => SetProperty(ref _model, value);
-        }
+        RowElement IRowElementViewModel.Model => base.Model;
     }
 }

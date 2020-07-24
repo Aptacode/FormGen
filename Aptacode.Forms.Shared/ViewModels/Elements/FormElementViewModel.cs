@@ -3,32 +3,25 @@ using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
-    public abstract class FormElementViewModel : BindableBase
+    public abstract class FormElementViewModel<TElement> : BindableBase, IFormElementViewModel
+        where TElement : FormElement, new()
     {
-        protected FormElementViewModel(FormElement elementModel)
+        protected FormElementViewModel(TElement model)
         {
-            ElementModel = elementModel;
+            Model = model;
+            Name = Model.Name;
+            HorizontalAlignment = Model.HorizontalAlignment;
+            VerticalAlignment = Model.VerticalAlignment;
         }
 
         #region Properties
 
-        private FormElement _elementModel;
-
-        public FormElement ElementModel
-        {
-            get => _elementModel;
-            set
-            {
-                SetProperty(ref _elementModel, value);
-
-                Name = _elementModel.Name;
-                HorizontalAlignment = _elementModel.HorizontalAlignment;
-                VerticalAlignment = _elementModel.VerticalAlignment;
-            }
-        }
+        FormElement IFormElementViewModel.Model => Model;
+        public TElement Model { get; }
 
         private string _name;
 
@@ -38,10 +31,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _name, value);
-                if (ElementModel != null)
-                {
-                    ElementModel.Name = _name;
-                }
+                Model.Name = _name;
             }
         }
 
@@ -53,10 +43,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _verticalAlignment, value);
-                if (ElementModel != null)
-                {
-                    ElementModel.VerticalAlignment = _verticalAlignment;
-                }
+                Model.VerticalAlignment = _verticalAlignment;
             }
         }
 
@@ -68,10 +55,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
             set
             {
                 SetProperty(ref _horizontalAlignment, value);
-                if (ElementModel != null)
-                {
-                    ElementModel.HorizontalAlignment = _horizontalAlignment;
-                }
+                Model.HorizontalAlignment = _horizontalAlignment;
             }
         }
 
@@ -80,7 +64,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         #region Events
 
         public event EventHandler<FormElementEvent> OnFormEvent;
-        protected void TriggerEvent(FormElementEvent @event) => OnFormEvent?.Invoke(this, @event);
+        public void TriggerEvent(FormElementEvent @event) => OnFormEvent?.Invoke(this, @event);
 
         #endregion
     }

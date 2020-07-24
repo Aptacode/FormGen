@@ -5,16 +5,16 @@ using Aptacode.Forms.Shared.Models.Elements;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
-using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Factories
 {
     public static class FormElementViewModelFactory
     {
-        public static FormElementViewModel Create(FormElement model)
+        public static IFormElementViewModel Create(FormElement model)
         {
             switch (model)
             {
@@ -38,7 +38,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
             }
         }
 
-        public static CompositeElementViewModel CreateComposite(CompositeElement model)
+        public static ICompositeElementViewModel CreateComposite(CompositeElement model)
         {
             switch (model)
             {

@@ -4,9 +4,10 @@ using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels.Factories;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 using Microsoft.VisualBasic;
 using BindableBase = Prism.Mvvm.BindableBase;
 
@@ -14,7 +15,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public static class CompositeElementViewModelExtensions
     {
-        public static CompositeElementViewModel TransformInto(this CompositeElementViewModel viewModel,
+        public static ICompositeElementViewModel TransformInto(this ICompositeElementViewModel viewModel,
             string destinationTypeName)
         {
             switch (destinationTypeName)
@@ -108,23 +109,23 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         }
 
 
-        private FormElementViewModel _selectedChildElement;
+        private IFormElementViewModel _selectedChildElement;
 
-        public FormElementViewModel SelectedChildElement
+        public IFormElementViewModel SelectedChildElement
         {
             get => _selectedChildElement;
             set => SetProperty(ref _selectedChildElement, value);
         }
 
-        private CompositeElementViewModel _selectedElement;
+        private ICompositeElementViewModel _selectedElement;
 
-        public CompositeElementViewModel SelectedElement
+        public ICompositeElementViewModel SelectedElement
         {
             get => _selectedElement;
             set
             {
                 SetProperty(ref _selectedElement, value);
-                SelectedElementType = _selectedElement?.Model.GetType().Name;
+                SelectedElementType = _selectedElement.Model.GetType().Name;
                 SelectedHorizontalAlignment = _selectedElement?.Model.HorizontalAlignment.ToString();
                 SelectedVerticalAlignment = _selectedElement?.Model.VerticalAlignment.ToString();
             }
@@ -157,10 +158,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<FormElementViewModel> _removeElementCommand;
+        private DelegateCommand<IFormElementViewModel> _removeElementCommand;
 
-        public DelegateCommand<FormElementViewModel> RemoveElementCommand =>
-            _removeElementCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
+        public DelegateCommand<IFormElementViewModel> RemoveElementCommand =>
+            _removeElementCommand ??= new DelegateCommand<IFormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {
@@ -168,10 +169,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<FormElementViewModel> _moveElementUpCommand;
+        private DelegateCommand<IFormElementViewModel> _moveElementUpCommand;
 
-        public DelegateCommand<FormElementViewModel> MoveElementUpCommand =>
-            _moveElementUpCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
+        public DelegateCommand<IFormElementViewModel> MoveElementUpCommand =>
+            _moveElementUpCommand ??= new DelegateCommand<IFormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {
@@ -185,10 +186,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             });
 
-        private DelegateCommand<FormElementViewModel> _moveElementDownCommand;
+        private DelegateCommand<IFormElementViewModel> _moveElementDownCommand;
 
-        public DelegateCommand<FormElementViewModel> MoveElementDownCommand =>
-            _moveElementDownCommand ??= new DelegateCommand<FormElementViewModel>(parameter =>
+        public DelegateCommand<IFormElementViewModel> MoveElementDownCommand =>
+            _moveElementDownCommand ??= new DelegateCommand<IFormElementViewModel>(parameter =>
             {
                 if (parameter != null)
                 {

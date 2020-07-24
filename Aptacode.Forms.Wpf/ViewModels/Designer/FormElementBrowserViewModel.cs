@@ -1,7 +1,7 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
@@ -9,7 +9,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
     {
         #region Events
 
-        public EventHandler<FormElementViewModel> OnElementSelected { get; set; }
+        public EventHandler<IFormElementViewModel> OnElementSelected { get; set; }
 
         #endregion
 
@@ -27,10 +27,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         #region Commands
 
-        private DelegateCommand<FormElementViewModel> _elementClickedCommand;
+        private DelegateCommand<IFormElementViewModel> _elementClickedCommand;
 
-        public DelegateCommand<FormElementViewModel> ElementClickedCommand =>
-            _elementClickedCommand ??= new DelegateCommand<FormElementViewModel>(selectedElement =>
+        public DelegateCommand<IFormElementViewModel> ElementClickedCommand =>
+            _elementClickedCommand ??= new DelegateCommand<IFormElementViewModel>(selectedElement =>
             {
                 OnElementSelected?.Invoke(this, selectedElement);
             });

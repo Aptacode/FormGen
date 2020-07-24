@@ -5,15 +5,17 @@ using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
-namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
+namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {
-    public class CheckElementViewModel : FieldElementViewModel, ICheckElementViewModel
+    public class CheckElementViewModel : FieldElementViewModel<CheckElement>, ICheckElementViewModel
     {
         public CheckElementViewModel(CheckElement model) : base(model)
         {
-            Model = model;
+            Content = model.Content;
+            IsChecked = model.DefaultValue;
+            DefaultIsChecked = model.DefaultValue;
         }
 
         public override IEnumerable<ValidationResult> Validate()
@@ -25,19 +27,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
 
         #region Properties
 
-        private CheckElement _model;
-
-        public CheckElement Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-                Content = _model.Content;
-                IsChecked = _model.DefaultValue;
-                DefaultIsChecked = _model.DefaultValue;
-            }
-        }
+        CheckElement ICheckElementViewModel.Model => base.Model;
 
         private bool _isChecked;
 
@@ -47,10 +37,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _isChecked, value);
-                if (Model == null)
-                {
-                    return;
-                }
 
                 TriggerEvent(new CheckElementChangedEvent(DateTime.Now, Name, value));
                 UpdateValidationMessage();
@@ -65,10 +51,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _defaultIsChecked, value);
-                if (Model != null)
-                {
-                    Model.DefaultValue = _defaultIsChecked;
-                }
+                Model.DefaultValue = _defaultIsChecked;
             }
         }
 
@@ -80,10 +63,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields
             set
             {
                 SetProperty(ref _content, value);
-                if (Model != null)
-                {
-                    _model.Content = _content;
-                }
+                Model.Content = _content;
             }
         }
 
