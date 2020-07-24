@@ -17,6 +17,6 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications
         public string ElementName { get; set; }
 
         public override Expression<Func<FormViewModel, bool>> ToExpression() => input =>
-            PropertyValue.Equals(GetValue(input[ElementName], PropertyName));
+            ValuesMatch(PropertyValue, GetValue(input[ElementName], PropertyName));
     }
 }

@@ -17,26 +17,26 @@
             <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True"
+        <DockPanel LastChildFill="True"
                HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
                VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
-        <TextBlock Text="{Binding Label.Text}"
+
+            <TextBlock Text="{Binding Label.Text}"
                    Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
                    DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
                    Width="150" TextWrapping="WrapWithOverflow"
                    TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
-
-        <xctk:RichTextBox BorderThickness="0" Background="Transparent"
+            <xctk:RichTextBox BorderThickness="0" Background="Transparent"
                           Text="{Binding Content, Converter={StaticResource HtmlToXamlValueConverter}}"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                           IsHitTestVisible="False"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Center">
-            <xctk:RichTextBox.TextFormatter>
-                <xctk:XamlFormatter />
-            </xctk:RichTextBox.TextFormatter>
-        </xctk:RichTextBox>
-    </DockPanel>
+                <xctk:RichTextBox.TextFormatter>
+                    <xctk:XamlFormatter />
+                </xctk:RichTextBox.TextFormatter>
+            </xctk:RichTextBox>
+        </DockPanel>
 </UserControl>

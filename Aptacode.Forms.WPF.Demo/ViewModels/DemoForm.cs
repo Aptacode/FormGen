@@ -3,6 +3,7 @@ using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
+using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Models.Builders;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
@@ -60,9 +61,9 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
             var submitEventListener = new EventListener("submit",
-                new ElementNameEventSpecification("submit").And(
+                new ElementNameEventSpecification("Submit Button").And(
                     new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
-                new IdentitySpecification<FormViewModel>());
+                new ElementPropertyFormSpecification("TermsAndConditions", "IsChecked", "True"));
 
             var rowGroup1 = new RowBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();

@@ -15,13 +15,15 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ItemsControl ItemsSource="{Binding Children}" 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ItemsControl ItemsSource="{Binding Children}" 
                   HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
                   VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Columns="1" />
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>

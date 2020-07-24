@@ -13,15 +13,16 @@
             <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <ItemsControl ItemsSource="{Binding Children}" 
+
+
+
+        <ItemsControl ItemsSource="{Binding Children}" 
                   HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
                   VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel Orientation="Vertical"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
-
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
 </UserControl>
