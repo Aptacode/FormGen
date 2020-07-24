@@ -4,7 +4,6 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
 {
     public class ColumnBuilder : LayoutBuilder<ColumnElement, ColumnBuilder>
     {
-
         public override ColumnElement Build()
         {
             var newElement = new ColumnElement
@@ -13,7 +12,7 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
                 Name = Name,
                 Children = Children,
                 HorizontalAlignment = HorizontalAlignment,
-                VerticalAlignment = VerticalAlignment,
+                VerticalAlignment = VerticalAlignment
             };
 
             Reset();

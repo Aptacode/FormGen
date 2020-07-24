@@ -60,10 +60,15 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
             var submitButton = new ButtonElementBuilder().SetName("Submit Button").SetContent("Submit")
                 .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
-            var submitEventListener = new EventListener("submit",
+            var submitEventListenerAcceptsTerms = new EventListener("submit",
                 new ElementNameEventSpecification("Submit Button").And(
                     new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
                 new ElementPropertyFormSpecification("TermsAndConditions", "IsChecked", "True"));
+
+            var submitEventListenerExperience = new EventListener("tooLittleExperiance",
+                new ElementNameEventSpecification("Submit Button").And(
+                    new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
+                new ElementPropertyFormSpecification("experienceSelection", "SelectedItem", "0-1"));
 
             var rowGroup1 = new RowBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();
@@ -72,7 +77,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 .AddChildren(rowGroup1, submitButton).Build();
 
             var newForm = new FormBuilder().SetName("Demo Form").SetTitle("Demo Form Title").SetRoot(rootGroup)
-                .AddEventListeners(submitEventListener)
+                .AddEventListeners(submitEventListenerAcceptsTerms, submitEventListenerExperience)
                 .Build();
 
             return new FormViewModel(newForm);

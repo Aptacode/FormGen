@@ -12,7 +12,6 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields
         public List<ValidationRule<ITextElementViewModel>> Rules { get; set; } =
             new List<ValidationRule<ITextElementViewModel>>();
 
-
         public TextElementBuilder SetDefaultValue(string defaultValue)
         {
             DefaultValue = defaultValue;

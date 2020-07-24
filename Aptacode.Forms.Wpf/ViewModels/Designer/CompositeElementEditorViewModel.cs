@@ -14,7 +14,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public static class CompositeElementViewModelExtensions
     {
-        public static CompositeElementViewModel TransformInto(this CompositeElementViewModel viewModel, string destinationTypeName)
+        public static CompositeElementViewModel TransformInto(this CompositeElementViewModel viewModel,
+            string destinationTypeName)
         {
             switch (destinationTypeName)
             {
@@ -23,14 +24,16 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 case nameof(RowElement):
                     return new RowElementViewModel(new RowBuilder().FromTemplate(viewModel.Model).Build());
                 case nameof(UniformRowElement):
-                    return new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(viewModel.Model).Build());
+                    return new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(viewModel.Model)
+                        .Build());
                 case nameof(ColumnElement):
-                     return new ColumnElementViewModel(new ColumnBuilder().FromTemplate(viewModel.Model).Build());
+                    return new ColumnElementViewModel(new ColumnBuilder().FromTemplate(viewModel.Model).Build());
             }
 
             return viewModel;
         }
     }
+
     public class CompositeElementEditorViewModel : BindableBase
     {
         #region Properties
@@ -45,7 +48,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 SetProperty(ref _selectedElementType, value);
                 if (_selectedElement != null && SelectedElementType != _selectedElement?.Model.GetType().Name)
                 {
-
                     var newElementViewModel = SelectedElement.TransformInto(SelectedElementType);
 
                     if (SelectedElement != FormViewModel.RootElement)
@@ -86,8 +88,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 {
                     SelectedElement.HorizontalAlignment = alignment;
                 }
-            } 
+            }
         }
+
         private string _selectedVerticalAlignment;
 
         public string SelectedVerticalAlignment

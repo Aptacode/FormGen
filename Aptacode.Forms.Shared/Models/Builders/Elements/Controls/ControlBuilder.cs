@@ -2,11 +2,12 @@
 
 namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
 {
-    public abstract class ControlBuilder<TElement, TBuilder> : FormElementBuilder<TElement, TBuilder> 
+    public abstract class ControlBuilder<TElement, TBuilder> : FormElementBuilder<TElement, TBuilder>
         where TElement : ControlElement
         where TBuilder : ControlBuilder<TElement, TBuilder>
     {
-        public ElementLabel Label { get; set; }
+        public ElementLabel Label { get; set; } = ElementLabel.None;
+
         public TBuilder SetLabel(ElementLabel label)
         {
             Label = label;
@@ -14,7 +15,7 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements.Controls
         }
 
         public override void Reset()
-        { 
+        {
             Label = ElementLabel.None;
             base.Reset();
         }

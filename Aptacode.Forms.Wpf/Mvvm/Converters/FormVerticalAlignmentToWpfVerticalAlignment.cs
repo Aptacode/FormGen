@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.Enums;
 
 namespace Aptacode.Forms.Wpf.Mvvm.Converters
 {
@@ -12,23 +11,24 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Forms.Shared.Enums.VerticalAlignment alignment)
+            if (value is VerticalAlignment alignment)
             {
                 switch (alignment)
                 {
-                    case Forms.Shared.Enums.VerticalAlignment.Top:
-                        return VerticalAlignment.Top;
-                    case Forms.Shared.Enums.VerticalAlignment.Bottom:
-                        return VerticalAlignment.Bottom;
-                    case Forms.Shared.Enums.VerticalAlignment.Center:
-                        return VerticalAlignment.Center;
-                    case Forms.Shared.Enums.VerticalAlignment.Stretch:
-                        return VerticalAlignment.Stretch;
+                    case VerticalAlignment.Top:
+                        return System.Windows.VerticalAlignment.Top;
+                    case VerticalAlignment.Bottom:
+                        return System.Windows.VerticalAlignment.Bottom;
+                    case VerticalAlignment.Center:
+                        return System.Windows.VerticalAlignment.Center;
+                    case VerticalAlignment.Stretch:
+                        return System.Windows.VerticalAlignment.Stretch;
                 }
             }
 
-            return VerticalAlignment.Stretch;
+            return System.Windows.VerticalAlignment.Stretch;
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
             throw new NotImplementedException();
 

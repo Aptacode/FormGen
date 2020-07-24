@@ -18,6 +18,7 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements
             VerticalAlignment = verticalAlignment;
             return this as TBuilder;
         }
+
         public TBuilder SetHorizontalAlignment(HorizontalAlignment horizontalAlignment)
         {
             HorizontalAlignment = horizontalAlignment;
@@ -51,7 +52,7 @@ namespace Aptacode.Forms.Shared.Models.Builders.Elements
             Id = element.Id;
             Name = element.Name;
             VerticalAlignment = VerticalAlignment;
-            HorizontalAlignment = HorizontalAlignment; 
+            HorizontalAlignment = HorizontalAlignment;
             return this as TBuilder;
         }
     }

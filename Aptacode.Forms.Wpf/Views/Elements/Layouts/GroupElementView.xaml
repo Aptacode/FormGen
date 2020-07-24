@@ -10,12 +10,14 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
-            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment
+                x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <GroupBox Header="{Binding Title}" HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
-                                        VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
+    <GroupBox Header="{Binding Title}"
+              HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
+              VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Children}">
                 <ItemsControl.ItemsPanel>

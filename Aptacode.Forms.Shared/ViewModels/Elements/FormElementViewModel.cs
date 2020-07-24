@@ -46,6 +46,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         }
 
         private VerticalAlignment _verticalAlignment;
+
         public VerticalAlignment VerticalAlignment
         {
             get => _verticalAlignment;
@@ -60,6 +61,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements
         }
 
         private HorizontalAlignment _horizontalAlignment;
+
         public HorizontalAlignment HorizontalAlignment
         {
             get => _horizontalAlignment;

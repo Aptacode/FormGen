@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="Aptacode.Forms.Wpf.Views.Elements.Layouts.UniformRowElementView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Aptacode.Forms.Wpf.Views.Elements.Layouts"
              xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
              mc:Ignorable="d"
@@ -11,14 +11,15 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:FormVerticalAlignmentToWpfVerticalAlignment x:Key="FormVerticalAlignmentToWpfVerticalAlignment" />
-            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
+            <converters:FormHorizontalAlignmentToWpfHorizontalAlignment
+                x:Key="FormHorizontalAlignmentToWpfHorizontalAlignment" />
         </ResourceDictionary>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <ItemsControl ItemsSource="{Binding Children}" 
-                  HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
-                  VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
+        <ItemsControl ItemsSource="{Binding Children}"
+                      HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource FormHorizontalAlignmentToWpfHorizontalAlignment}}"
+                      VerticalAlignment="{Binding VerticalAlignment, Converter={StaticResource FormVerticalAlignmentToWpfVerticalAlignment}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1" />

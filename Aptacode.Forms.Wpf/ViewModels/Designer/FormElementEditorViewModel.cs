@@ -20,12 +20,12 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
     public class FormElementEditorViewModel : BindableBase
     {
+        private readonly SelectElementViewModel _elementHorizontalAlignment;
         private readonly SelectElementViewModel _elementLabelPosition;
         private readonly TextElementViewModel _elementLabelTextBox;
         private readonly TextElementViewModel _elementNameTextBox;
         private readonly SelectElementViewModel _elementTypeComboBox;
         private readonly SelectElementViewModel _elementVerticalAlignment;
-        private readonly SelectElementViewModel _elementHorizontalAlignment;
 
         public FormElementEditorViewModel()
         {
@@ -54,9 +54,10 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementVerticalAlignment =
                 new SelectElementViewModel(
                     new SelectElementBuilder().SetName("elementVerticalAlignment")
-                        .SetLabel(ElementLabel.Left("Vertical Alignment")).AddValues("Center", "Top", "Bottom", "Stretch")
+                        .SetLabel(ElementLabel.Left("Vertical Alignment"))
+                        .AddValues("Center", "Top", "Bottom", "Stretch")
                         .SetDefaultValue("Stretch").Build());
-            _elementHorizontalAlignment            =     new SelectElementViewModel(
+            _elementHorizontalAlignment = new SelectElementViewModel(
                 new SelectElementBuilder().SetName("elementHorizontalAlignment")
                     .SetLabel(ElementLabel.Left("Horizontal Alignment")).AddValues("Center", "Left", "Right", "Stretch")
                     .SetDefaultValue("Stretch").Build());
@@ -330,7 +331,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(optionsField);
             group.Children.Add(defaultSelectedItem);
             group.Children.Add(defaultSelectedText);
-
         }
 
         private void AddCheckBoxConfigurationRows(CompositeElementViewModel group, CheckElementViewModel element)

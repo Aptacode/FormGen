@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.29</Version>
+    <Version>1.0.0.33</Version>
     <Company>Aptacode</Company>
     <Authors>Aptacode</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,8 +17,8 @@
     <RootNamespace>Aptacode.Forms.Wpf</RootNamespace>
     <Description>Wpf implementation of Aptacode.Forms</Description>
     <PackageIcon>Logo.png</PackageIcon>
-    <AssemblyVersion>1.0.0.29</AssemblyVersion>
-    <FileVersion>1.0.0.29</FileVersion>
+    <AssemblyVersion>1.0.0.33</AssemblyVersion>
+    <FileVersion>1.0.0.33</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -4,7 +4,7 @@ using Aptacode.Forms.Shared.Models.Elements.Layouts;
 
 namespace Aptacode.Forms.Shared.Models.Builders.Elements.Layouts
 {
-    public abstract class LayoutBuilder<TCompositeElement, TBuilder> : FormElementBuilder<TCompositeElement, TBuilder> 
+    public abstract class LayoutBuilder<TCompositeElement, TBuilder> : FormElementBuilder<TCompositeElement, TBuilder>
         where TCompositeElement : CompositeElement
         where TBuilder : LayoutBuilder<TCompositeElement, TBuilder>
     {

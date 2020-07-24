@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.Enums;
 
 namespace Aptacode.Forms.Wpf.Mvvm.Converters
 {
@@ -12,22 +11,22 @@ namespace Aptacode.Forms.Wpf.Mvvm.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Forms.Shared.Enums.HorizontalAlignment alignment)
+            if (value is HorizontalAlignment alignment)
             {
                 switch (alignment)
                 {
-                    case Forms.Shared.Enums.HorizontalAlignment.Left:
-                        return HorizontalAlignment.Left;
-                    case Forms.Shared.Enums.HorizontalAlignment.Right:
-                        return HorizontalAlignment.Right;
-                    case Forms.Shared.Enums.HorizontalAlignment.Center:
-                        return HorizontalAlignment.Center;
-                    case Forms.Shared.Enums.HorizontalAlignment.Stretch:
-                        return HorizontalAlignment.Stretch;
+                    case HorizontalAlignment.Left:
+                        return System.Windows.HorizontalAlignment.Left;
+                    case HorizontalAlignment.Right:
+                        return System.Windows.HorizontalAlignment.Right;
+                    case HorizontalAlignment.Center:
+                        return System.Windows.HorizontalAlignment.Center;
+                    case HorizontalAlignment.Stretch:
+                        return System.Windows.HorizontalAlignment.Stretch;
                 }
             }
 
-            return HorizontalAlignment.Stretch;
+            return System.Windows.HorizontalAlignment.Stretch;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>

@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using Aptacode.Forms.Shared.Enums;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Wpf.Mvvm.Converters
 {

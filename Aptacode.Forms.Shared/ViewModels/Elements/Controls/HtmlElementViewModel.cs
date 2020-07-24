@@ -25,7 +25,6 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
                 }
 
                 Content = _model?.Content;
-                ElementModel = _model;
             }
         }
 

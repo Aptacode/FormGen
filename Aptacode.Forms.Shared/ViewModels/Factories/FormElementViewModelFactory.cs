@@ -1,5 +1,4 @@
-﻿using Aptacode.Forms.Shared.Models.Builders.Elements;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
+﻿using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
 using Aptacode.Forms.Shared.Models.Elements;
@@ -10,7 +9,6 @@ using Aptacode.Forms.Shared.ViewModels.Elements;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
-using System;
 
 namespace Aptacode.Forms.Shared.ViewModels.Factories
 {
@@ -58,7 +56,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
             }
         }
 
-        public static FormElement Create(string elementType, string elementName) 
+        public static FormElement Create(string elementType, string elementName)
         {
             switch (elementType)
             {
