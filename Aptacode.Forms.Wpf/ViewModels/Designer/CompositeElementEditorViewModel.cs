@@ -1,12 +1,7 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Enums;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
-using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements;
@@ -17,6 +12,25 @@ using BindableBase = Prism.Mvvm.BindableBase;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
+    public static class CompositeElementViewModelExtensions
+    {
+        public static CompositeElementViewModel TransformInto(this CompositeElementViewModel viewModel, string destinationTypeName)
+        {
+            switch (destinationTypeName)
+            {
+                case nameof(GroupElement):
+                    return new GroupElementViewModel(new GroupBuilder().FromTemplate(viewModel.Model).Build());
+                case nameof(RowElement):
+                    return new RowElementViewModel(new RowBuilder().FromTemplate(viewModel.Model).Build());
+                case nameof(UniformRowElement):
+                    return new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(viewModel.Model).Build());
+                case nameof(ColumnElement):
+                     return new ColumnElementViewModel(new ColumnBuilder().FromTemplate(viewModel.Model).Build());
+            }
+
+            return viewModel;
+        }
+    }
     public class CompositeElementEditorViewModel : BindableBase
     {
         #region Properties
@@ -31,28 +45,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 SetProperty(ref _selectedElementType, value);
                 if (_selectedElement != null && SelectedElementType != _selectedElement?.Model.GetType().Name)
                 {
-                    var newElementViewModel = _selectedElement;
-                    switch (SelectedElementType)
-                    {
-                        case nameof(GroupElement):
-                            newElementViewModel =
-                                new GroupElementViewModel(
-                                    new GroupBuilder().FromTemplate(SelectedElement.Model).Build());
-                            break;
-                        case nameof(RowElement):
-                            newElementViewModel =
-                                new RowElementViewModel(new RowBuilder().FromTemplate(SelectedElement.Model).Build());
-                            break;
-                        case nameof(UniformRowElement):
-                            newElementViewModel =
-                                new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(SelectedElement.Model).Build());
-                            break;
-                        case nameof(ColumnElement):
-                            newElementViewModel =
-                                new ColumnElementViewModel(new ColumnBuilder().FromTemplate(SelectedElement.Model)
-                                    .Build());
-                            break;
-                    }
+
+                    var newElementViewModel = SelectedElement.TransformInto(SelectedElementType);
 
                     if (SelectedElement != FormViewModel.RootElement)
                     {
@@ -152,42 +146,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 if (SelectedElement != null)
                 {
-                    FormElement newChildElement = null;
-                    var elementName =
-                        Interaction.InputBox("Enter a name for the new Element", "New Element");
-                    switch (NewElementType)
-                    {
-                        case nameof(GroupElement):
-                            newChildElement = new GroupBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(RowElement):
-                            newChildElement = new RowBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(UniformRowElement):
-                            newChildElement = new UniformRowBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(ColumnElement):
-                            newChildElement = new ColumnBuilder().SetName(elementName).Build();
-                            break;
+                    var elementName = Interaction.InputBox("Enter a name for the new Element", "New Element");
 
-                        case nameof(CheckElement):
-                            newChildElement = new CheckElementBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(SelectElement):
-                            newChildElement = new SelectElementBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(TextElement):
-                            newChildElement = new TextElementBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(ButtonElement):
-                            newChildElement = new ButtonElementBuilder().SetName(elementName).Build();
-                            break;
-                        case nameof(HtmlElement):
-                            newChildElement = new HtmlElementBuilder().SetName(elementName).Build();
-                            break;
-                    }
-
-                    SelectedElement.Children.Add(FormElementViewModelFactory.Create(newChildElement));
+                    var element = FormElementViewModelFactory.Create(NewElementType, elementName);
+                    var elementViewModel = FormElementViewModelFactory.Create(element);
+                    SelectedElement.Children.Add(elementViewModel);
                 }
             });
 
