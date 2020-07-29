@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace Aptacode.Forms.Wpf.Views.Elements.Composite {
+namespace Aptacode.Forms.Wpf.Views.Elements.Composite.LayoutStrategy {
     public class StretchLayoutStrategy : LayoutStrategy
     {
         public override Size ArrangeHorizontal(Size finalSize, IReadOnlyList<UIElement> children)

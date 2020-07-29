@@ -9,7 +9,7 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.35</Version>
+    <Version>1.0.0.36</Version>
     <Description>Create cross platform forms using C# .net</Description>
     <Product>Aptacode.Forms</Product>
     <Company>Aptacode</Company>
@@ -19,8 +19,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Timmoth/Aptacode.Forms</PackageProjectUrl>
     <PackageId>Aptacode.Forms.Shared</PackageId>
-    <AssemblyVersion>1.0.0.35</AssemblyVersion>
-    <FileVersion>1.0.0.35</FileVersion>
+    <AssemblyVersion>1.0.0.36</AssemblyVersion>
+    <FileVersion>1.0.0.36</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>../bin/debug</OutputPath>

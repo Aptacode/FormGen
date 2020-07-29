@@ -98,9 +98,7 @@
         <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal">
             <ComboBox SelectedItem="{Binding NewElementType}" Width="200" Margin="8">
                 <System:String>GroupElement</System:String>
-                <System:String>RowElement</System:String>
-                <System:String>UniformRowElement</System:String>
-                <System:String>ColumnElement</System:String>
+                <System:String>LinearLayoutElement</System:String>
                 <System:String>ButtonElement</System:String>
                 <System:String>TextElement</System:String>
                 <System:String>SelectElement</System:String>
