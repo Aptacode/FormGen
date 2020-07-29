@@ -7,13 +7,13 @@ using Aptacode.CSharp.Common.Utilities.Extensions;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models;
 using Aptacode.Forms.Shared.Results;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels.Factories;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels
 {
@@ -110,6 +110,7 @@ namespace Aptacode.Forms.Shared.ViewModels
         #endregion
 
         #region Properties
+
         public Form Model { get; }
 
         private string _name;
@@ -133,7 +134,6 @@ namespace Aptacode.Forms.Shared.ViewModels
             {
                 SetProperty(ref _title, value);
                 Model.Title = _title;
-
             }
         }
 
@@ -149,7 +149,6 @@ namespace Aptacode.Forms.Shared.ViewModels
                 SubscribeToFormEvents();
 
                 Model.RootElement = _rootElement.Model;
-
             }
         }
 

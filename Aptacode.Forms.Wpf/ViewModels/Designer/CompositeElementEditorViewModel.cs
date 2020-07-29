@@ -1,13 +1,13 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Forms.Shared.Builders.Elements.Composite;
 using Aptacode.Forms.Shared.Enums;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
-using Aptacode.Forms.Shared.Models.Elements.Layouts;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
+using Aptacode.Forms.Shared.Models.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels.Factories;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 using Microsoft.VisualBasic;
 using BindableBase = Prism.Mvvm.BindableBase;
 
@@ -22,13 +22,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             {
                 case nameof(GroupElement):
                     return new GroupElementViewModel(new GroupBuilder().FromTemplate(viewModel.Model).Build());
-                case nameof(RowElement):
-                    return new RowElementViewModel(new RowBuilder().FromTemplate(viewModel.Model).Build());
-                case nameof(UniformRowElement):
-                    return new UniformRowElementViewModel(new UniformRowBuilder().FromTemplate(viewModel.Model)
+                case nameof(LinearLayoutElement):
+                    return new LinearLayoutElementViewModel(new LinearLayoutBuilder().FromTemplate(viewModel.Model)
                         .Build());
-                case nameof(ColumnElement):
-                    return new ColumnElementViewModel(new ColumnBuilder().FromTemplate(viewModel.Model).Build());
             }
 
             return viewModel;
@@ -75,6 +71,39 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _newElementType;
             set => SetProperty(ref _newElementType, value);
         }
+
+        private string _selectedLayoutMode;
+
+        public string SelectedLayoutMode
+        {
+            get => _selectedLayoutMode;
+            set
+            {
+                SetProperty(ref _selectedLayoutMode, value);
+
+                if (Enum.TryParse(_selectedLayoutMode, true, out LayoutMode layoutMode))
+                {
+                    SelectedElement.LayoutMode = layoutMode;
+                }
+            }
+        }
+
+        private string _selectedLayoutOrientation;
+
+        public string SelectedLayoutOrientation
+        {
+            get => _selectedLayoutOrientation;
+            set
+            {
+                SetProperty(ref _selectedLayoutOrientation, value);
+
+                if (Enum.TryParse(_selectedLayoutOrientation, true, out LayoutOrientation layoutOrientation))
+                {
+                    SelectedElement.LayoutOrientation = layoutOrientation;
+                }
+            }
+        }
+
 
         private string _selectedHorizontalAlignment;
 
@@ -128,6 +157,8 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 SelectedElementType = _selectedElement.Model.GetType().Name;
                 SelectedHorizontalAlignment = _selectedElement?.Model.HorizontalAlignment.ToString();
                 SelectedVerticalAlignment = _selectedElement?.Model.VerticalAlignment.ToString();
+                SelectedLayoutOrientation = _selectedElement?.Model.LayoutOrientation.ToString();
+                SelectedLayoutMode = _selectedElement?.Model.LayoutMode.ToString();
             }
         }
 

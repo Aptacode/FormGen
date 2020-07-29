@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Linq;
 using Aptacode.CSharp.Common.Utilities.Extensions;
+using Aptacode.Forms.Shared.Builders;
+using Aptacode.Forms.Shared.Builders.Elements.Composite;
+using Aptacode.Forms.Shared.Builders.Elements.Controls;
+using Aptacode.Forms.Shared.Builders.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.Models.Builders;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ViewModels;
+using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
 using Aptacode.Forms.Wpf.Views.Designer;
 using Prism.Mvvm;
 
@@ -411,7 +411,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 .FirstOrDefault(e => e.Children.Contains(FormElement));
 
 
-            var group = new RowElementViewModel(new RowBuilder().Build());
+            var group = new LinearLayoutElementViewModel(new LinearLayoutBuilder().Build());
             group.Children.Add(_elementTypeComboBox);
             group.Children.Add(_elementNameTextBox);
             group.Children.Add(_elementLabelTextBox);

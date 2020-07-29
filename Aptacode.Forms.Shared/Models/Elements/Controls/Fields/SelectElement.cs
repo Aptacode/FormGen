@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.Models.Elements.Controls.Fields
 {

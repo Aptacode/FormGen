@@ -1,17 +1,17 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Forms.Shared.Builders;
+using Aptacode.Forms.Shared.Builders.Elements.Composite;
+using Aptacode.Forms.Shared.Builders.Elements.Controls;
+using Aptacode.Forms.Shared.Builders.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
-using Aptacode.Forms.Shared.Models.Builders;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
 
 namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
 {
@@ -45,8 +45,8 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                         .WithFailMessage("Last Name must be greater then 2 characters"))
                 .Build();
 
-            var personalDetails = new ColumnBuilder().SetName("personalDetails")
-                .AddChildren(firstNameText, lastNameText).Build();
+            var personalDetails = new LinearLayoutBuilder().SetName("personalDetails")
+                .AddChildren(firstNameText, lastNameText).SetOrientation(LayoutOrientation.Horizontal).Build();
 
 
             var experienceSelection = new SelectElementBuilder().SetName("experienceSelection")
@@ -70,7 +70,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                     new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
                 new ElementPropertyFormSpecification("experienceSelection", "SelectedItem", "0-1"));
 
-            var rowGroup1 = new RowBuilder().SetName("Data Entry Rows")
+            var rowGroup1 = new LinearLayoutBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();
 
             var rootGroup = new GroupBuilder().SetName("Test Group 1").SetTitle("Demo Form Title")

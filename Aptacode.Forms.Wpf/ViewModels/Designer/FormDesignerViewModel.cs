@@ -1,7 +1,7 @@
-﻿using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
+﻿using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
+using Aptacode.Forms.Shared.Interfaces.Controls;
+using Aptacode.Forms.Shared.ViewModels;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer

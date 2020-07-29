@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Layouts;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
 
 namespace Aptacode.Forms.Shared.ViewModels
 {

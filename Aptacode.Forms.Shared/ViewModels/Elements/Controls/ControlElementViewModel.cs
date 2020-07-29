@@ -1,5 +1,5 @@
-﻿using Aptacode.Forms.Shared.Models.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Interfaces.Controls;
+﻿using Aptacode.Forms.Shared.Interfaces.Controls;
+using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {

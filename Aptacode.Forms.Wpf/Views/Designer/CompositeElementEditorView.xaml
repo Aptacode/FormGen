@@ -33,6 +33,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Name: " HorizontalContentAlignment="Right"
@@ -46,9 +48,7 @@
         <ComboBox Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
                   Margin="8" SelectedItem="{Binding SelectedElementType}">
             <System:String>GroupElement</System:String>
-            <System:String>RowElement</System:String>
-            <System:String>UniformRowElement</System:String>
-            <System:String>ColumnElement</System:String>
+            <System:String>LinearLayoutElement</System:String>
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="2" Content="Title: " HorizontalContentAlignment="Right"
@@ -57,18 +57,35 @@
                  Text="{Binding SelectedElement.Title, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="8" />
 
-        <Label Grid.Column="0" Grid.Row="3" Content="Vertical Alignment: " HorizontalContentAlignment="Right"
+        <Label Grid.Column="0" Grid.Row="3" Content="Layout Mode: " HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
-        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedVerticalAlignment}" Margin="8">
+        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedLayoutMode}" Margin="8">
+            <System:String>Uniform</System:String>
+            <System:String>Stretch</System:String>
+            <System:String>Shrink</System:String>
+            <System:String>LastChildFill</System:String>
+        </ComboBox>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Layout Orientation: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
+        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding SelectedLayoutOrientation}" Margin="8">
+            <System:String>Horizontal</System:String>
+            <System:String>Vertical</System:String>
+        </ComboBox>
+
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Vertical Alignment: " HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
+        <ComboBox Grid.Column="1" Grid.Row="5" SelectedItem="{Binding SelectedVerticalAlignment}" Margin="8">
             <System:String>Top</System:String>
             <System:String>Bottom</System:String>
             <System:String>Center</System:String>
             <System:String>Stretch</System:String>
         </ComboBox>
 
-        <Label Grid.Column="0" Grid.Row="4" Content="Horizontal Alignment: " HorizontalContentAlignment="Right"
+        <Label Grid.Column="0" Grid.Row="6" Content="Horizontal Alignment: " HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
-        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding SelectedHorizontalAlignment}" Margin="8">
+        <ComboBox Grid.Column="1" Grid.Row="6" SelectedItem="{Binding SelectedHorizontalAlignment}" Margin="8">
             <System:String>Left</System:String>
             <System:String>Right</System:String>
             <System:String>Center</System:String>
@@ -76,9 +93,9 @@
         </ComboBox>
 
 
-        <Label Grid.Column="0" Grid.Row="5" Content="Children: " HorizontalContentAlignment="Right"
+        <Label Grid.Column="0" Grid.Row="7" Content="Children: " HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center" Margin="8" VerticalAlignment="Top" />
-        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+        <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal">
             <ComboBox SelectedItem="{Binding NewElementType}" Width="200" Margin="8">
                 <System:String>GroupElement</System:String>
                 <System:String>RowElement</System:String>
@@ -93,7 +110,7 @@
             <Button Content="Add" Margin="8" Command="{Binding AddElementCommand}" />
         </StackPanel>
 
-        <ListView Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedElement.Children}"
+        <ListView Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedElement.Children}"
                   SelectedItem="{Binding SelectedChildElement}" HorizontalContentAlignment="Left"
                   VerticalContentAlignment="Center" Margin="8">
             <ListView.ItemContainerStyle>

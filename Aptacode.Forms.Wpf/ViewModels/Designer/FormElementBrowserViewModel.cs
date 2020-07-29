@@ -1,7 +1,7 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Forms.Shared.Interfaces;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {

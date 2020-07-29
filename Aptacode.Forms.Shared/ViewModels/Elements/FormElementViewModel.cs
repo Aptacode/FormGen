@@ -2,8 +2,8 @@
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Enums;
 using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.Interfaces;
 using Aptacode.Forms.Shared.Models.Elements;
-using Aptacode.Forms.Shared.ViewModels.Interfaces;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements
 {
