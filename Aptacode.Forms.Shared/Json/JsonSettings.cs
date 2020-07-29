@@ -2,13 +2,13 @@
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.Models.Elements.Composite;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Elements.Layouts;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using JsonSubTypes;
 using Newtonsoft.Json;
 
@@ -22,9 +22,7 @@ namespace Aptacode.Forms.Shared.Json
                 .Of(typeof(FormElement), "Type") // type property is only defined here
                 .RegisterSubtype(typeof(CompositeElement), nameof(CompositeElement))
                 .RegisterSubtype(typeof(GroupElement), nameof(GroupElement))
-                .RegisterSubtype(typeof(ColumnElement), nameof(ColumnElement))
-                .RegisterSubtype(typeof(RowElement), nameof(RowElement))
-                .RegisterSubtype(typeof(UniformRowElement), nameof(UniformRowElement))
+                .RegisterSubtype(typeof(LinearLayoutElement), nameof(LinearLayoutElement))
                 .RegisterSubtype(typeof(NullElement), nameof(NullElement))
                 .RegisterSubtype(typeof(NullCompositeElement), nameof(NullCompositeElement))
                 .RegisterSubtype(typeof(ControlElement), nameof(ControlElement))

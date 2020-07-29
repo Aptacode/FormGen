@@ -1,7 +1,7 @@
-﻿using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
-using Aptacode.Forms.Shared.Models.Builders;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.Builders;
+using Aptacode.Forms.Shared.Builders.Elements.Composite;
+using Aptacode.Forms.Shared.Builders.Elements.Controls.Fields;
+using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.ViewModels;
 using Xunit;
 
@@ -27,7 +27,7 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.FormSpecific
             //Arrange
             var sut = new ElementPropertyFormSpecification(elementName, propertyName, propertyValue);
             var testForm = new FormBuilder().SetName("Test Form Name").SetTitle("Test Form Title").SetRoot(
-                new RowBuilder().SetName("Test Group").AddChildren(
+                new LinearLayoutBuilder().SetName("Test Group").AddChildren(
                         new TextElementBuilder().SetName(TextElementName).SetDefaultValue(TextElementValue).Build(),
                         new CheckElementBuilder().SetName(CheckElementName).SetDefaultValue(CheckElementValue).Build())
                     .Build()

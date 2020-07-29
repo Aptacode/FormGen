@@ -1,20 +1,20 @@
-﻿using Aptacode.Forms.Shared.Models.Builders.Elements.Controls;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Builders.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.Builders.Elements.Composite;
+using Aptacode.Forms.Shared.Builders.Elements.Controls;
+using Aptacode.Forms.Shared.Builders.Elements.Controls.Fields;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
 using Aptacode.Forms.Shared.Models.Elements;
+using Aptacode.Forms.Shared.Models.Elements.Composite;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.Models.Elements.Layouts;
-using Aptacode.Forms.Shared.ViewModels.Elements;
+using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Elements.Controls.Fields;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
 
 namespace Aptacode.Forms.Shared.ViewModels.Factories
 {
     public static class FormElementViewModelFactory
     {
-        public static FormElementViewModel Create(FormElement model)
+        public static IFormElementViewModel Create(FormElement model)
         {
             switch (model)
             {
@@ -38,19 +38,14 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
             }
         }
 
-        public static CompositeElementViewModel CreateComposite(CompositeElement model)
+        public static ICompositeElementViewModel CreateComposite(CompositeElement model)
         {
             switch (model)
             {
-                //Layouts
                 case GroupElement elementGroup:
                     return new GroupElementViewModel(elementGroup);
-                case RowElement rowLayout:
-                    return new RowElementViewModel(rowLayout);
-                case UniformRowElement uniformRowLayout:
-                    return new UniformRowElementViewModel(uniformRowLayout);
-                case ColumnElement columnLayout:
-                    return new ColumnElementViewModel(columnLayout);
+                case LinearLayoutElement linearLayout:
+                    return new LinearLayoutElementViewModel(linearLayout);
                 default:
                     return new NullCompositeViewModel();
             }
@@ -62,12 +57,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
             {
                 case nameof(GroupElement):
                     return new GroupBuilder().SetName(elementName).Build();
-                case nameof(RowElement):
-                    return new RowBuilder().SetName(elementName).Build();
-                case nameof(UniformRowElement):
-                    return new UniformRowBuilder().SetName(elementName).Build();
-                case nameof(ColumnElement):
-                    return new ColumnBuilder().SetName(elementName).Build();
+                case nameof(LinearLayoutElement):
+                    return new LinearLayoutBuilder().SetName(elementName).Build();
                 case nameof(CheckElement):
                     return new CheckElementBuilder().SetName(elementName).Build();
                 case nameof(SelectElement):

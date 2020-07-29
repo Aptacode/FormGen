@@ -1,7 +1,7 @@
-﻿using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements;
-using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
+using Aptacode.Forms.Shared.Interfaces.Controls;
+using Aptacode.Forms.Shared.ViewModels;
 using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
@@ -17,14 +17,14 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             ElementBrowserViewModel.OnElementSelected += OnEditElement;
         }
 
-        private void OnEditElement(object sender, FormElementViewModel e)
+        private void OnEditElement(object sender, IFormElementViewModel e)
         {
-            if (e is ControlElementViewModel controlElementViewModel)
+            if (e is IControlElementViewModel controlElementViewModel)
             {
                 FormElementEditorViewModel.FormElement = controlElementViewModel;
                 ElementEditorViewModel = FormElementEditorViewModel;
             }
-            else if (e is CompositeElementViewModel compositeElementViewModel)
+            else if (e is ICompositeElementViewModel compositeElementViewModel)
             {
                 CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
                 ElementEditorViewModel = CompositeElementEditorViewModel;

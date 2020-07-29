@@ -1,6 +1,7 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.EventListeners.Events;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
 
 namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
@@ -8,26 +9,14 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
     /// <summary>
     ///     Button Element View Model
     /// </summary>
-    public class ButtonElementViewModel : ControlElementViewModel
+    public class ButtonElementViewModel : ControlElementViewModel<ButtonElement>, IButtonElementViewModel
     {
         public ButtonElementViewModel(ButtonElement model) : base(model)
         {
-            Model = model;
+            Content = Model.Content;
         }
 
         #region Properties
-
-        private ButtonElement _model;
-
-        public ButtonElement Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-                Content = _model?.Content;
-            }
-        }
 
         private string _content;
 
@@ -37,10 +26,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             set
             {
                 SetProperty(ref _content, value);
-                if (Model != null)
-                {
-                    Model.Content = _content;
-                }
+                Model.Content = _content;
             }
         }
 

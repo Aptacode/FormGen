@@ -1,5 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {

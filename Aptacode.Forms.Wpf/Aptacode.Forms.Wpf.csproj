@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.33</Version>
+    <Version>1.0.0.36</Version>
     <Company>Aptacode</Company>
     <Authors>Aptacode</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,8 +17,8 @@
     <RootNamespace>Aptacode.Forms.Wpf</RootNamespace>
     <Description>Wpf implementation of Aptacode.Forms</Description>
     <PackageIcon>Logo.png</PackageIcon>
-    <AssemblyVersion>1.0.0.33</AssemblyVersion>
-    <FileVersion>1.0.0.33</FileVersion>
+    <AssemblyVersion>1.0.0.36</AssemblyVersion>
+    <FileVersion>1.0.0.36</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -76,14 +76,8 @@
       <SubType>Code</SubType>
       <DependentUpon>FormView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Elements\Layouts\ColumnElementView.xaml.cs">
-      <DependentUpon>ColumnElementView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Elements\Layouts\GroupElementView.xaml.cs">
+    <Compile Update="Views\Elements\Composite\GroupElementView.xaml.cs">
       <DependentUpon>GroupElementView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Elements\Layouts\RowElementView.xaml.cs">
-      <DependentUpon>RowElementView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -112,13 +106,7 @@
     <Page Update="Views\FormView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Elements\Layouts\ColumnElementView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Elements\Layouts\GroupElementView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Elements\Layouts\RowElementView.xaml">
+    <Page Update="Views\Elements\Composite\GroupElementView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

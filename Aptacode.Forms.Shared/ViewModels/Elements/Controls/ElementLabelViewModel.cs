@@ -9,31 +9,13 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
         public ElementLabelViewModel(ElementLabel model)
         {
             Model = model;
+            Text = Model.Text;
+            Position = Model.Position;
         }
 
         #region Properties
 
-        private ElementLabel _model;
-
-        public ElementLabel Model
-        {
-            get => _model;
-            set
-            {
-                SetProperty(ref _model, value);
-
-                if (_model != null)
-                {
-                    Text = _model.Text;
-                    Position = _model.Position;
-                }
-                else
-                {
-                    Text = string.Empty;
-                    Position = LabelPosition.Hidden;
-                }
-            }
-        }
+        public ElementLabel Model { get; }
 
         private string _text;
 
@@ -43,10 +25,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             set
             {
                 SetProperty(ref _text, value);
-                if (_model != null)
-                {
-                    _model.Text = _text;
-                }
+                Model.Text = _text;
             }
         }
 
@@ -58,10 +37,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             set
             {
                 SetProperty(ref _position, value);
-                if (_model != null)
-                {
-                    _model.Position = _position;
-                }
+                Model.Position = _position;
             }
         }
 

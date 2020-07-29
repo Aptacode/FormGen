@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aptacode.Forms.Shared.ViewModels.Elements;
-using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+using Aptacode.Forms.Shared.Interfaces;
+using Aptacode.Forms.Shared.Interfaces.Composite;
 
 namespace Aptacode.Forms.Shared.ViewModels
 {
     public static class FormElementViewModelExtensions
     {
-        public static IEnumerable<FormElementViewModel> GetDescendants(this FormElementViewModel element)
+        public static IEnumerable<IFormElementViewModel> GetDescendants(this IFormElementViewModel element)
         {
-            var elements = new List<FormElementViewModel> {element};
+            var elements = new List<IFormElementViewModel> {element};
 
-            if (element is CompositeElementViewModel compositeElement)
+            if (element is ICompositeElementViewModel compositeElement)
             {
                 elements.AddRange(compositeElement.Children.SelectMany(GetDescendants));
             }
