@@ -1,8 +1,8 @@
-﻿@inherits RowElementBase
+﻿@inherits LinearLayoutElementBase
 
 @foreach (var child in ViewModel.Children)
 {
-    <Row>
+    <Column>
         <FormElement ViewModel="@child" />
-    </Row>
+    </Column>
 }

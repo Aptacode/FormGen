@@ -23,8 +23,8 @@
                    Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
                    DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
                    Width="150" TextWrapping="WrapWithOverflow"
-                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" FontSize="20"/>
 
-        <Button Content="{Binding Content}" Command="{Binding ButtonClickedCommand}" />
+        <Button Content="{Binding Content}" Command="{Binding ButtonClickedCommand}" FontSize="20" />
     </DockPanel>
 </UserControl>

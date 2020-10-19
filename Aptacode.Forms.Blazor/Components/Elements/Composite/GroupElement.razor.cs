@@ -1,4 +1,4 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Microsoft.AspNetCore.Components;
 
 namespace Aptacode.Forms.Blazor.Components.Elements.Composite

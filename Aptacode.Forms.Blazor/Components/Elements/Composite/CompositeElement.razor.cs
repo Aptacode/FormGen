@@ -1,4 +1,4 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Layouts;
+﻿using Aptacode.Forms.Shared.Interfaces.Composite;
 using Microsoft.AspNetCore.Components;
 
 namespace Aptacode.Forms.Blazor.Components.Elements.Composite
@@ -7,7 +7,7 @@ namespace Aptacode.Forms.Blazor.Components.Elements.Composite
     {
         #region Properties
 
-        [Parameter] public CompositeElementViewModel ViewModel { get; set; }
+        [Parameter] public ICompositeElementViewModel ViewModel { get; set; }
 
         #endregion
     }

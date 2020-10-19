@@ -1,15 +1,11 @@
-﻿@using Aptacode.Forms.Shared.ViewModels.Elements.Layouts
-@inherits CompositeElementBase
+﻿@inherits CompositeElementBase
 
 @switch (ViewModel)
 {
     case GroupElementViewModel groupElementViewModel:
         <GroupElement ViewModel="@groupElementViewModel" />
         break;
-    case RowElementViewModel rowElementViewModel:
-        <RowElement ViewModel="@rowElementViewModel" />
-        break;
-    case ColumnElementViewModel columnElementViewModel:
-        <ColumnElement ViewModel="@columnElementViewModel" />
+    case LinearLayoutElementViewModel linearElementViewModel:
+        <LinearLayoutElement ViewModel="@linearElementViewModel" />
         break;
 }

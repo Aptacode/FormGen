@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.Forms.Blazor.Demo.Data;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
-using Aptacode.Forms.Shared.Models.Elements.Controls;
-using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
-using Aptacode.Forms.Shared.ViewModels.Elements.Interfaces;
 using Microsoft.AspNetCore.Components;
 
 namespace Aptacode.Forms.Blazor.Demo.Pages

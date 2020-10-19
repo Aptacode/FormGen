@@ -23,13 +23,13 @@
                    Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
                    DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
                    Width="150" TextWrapping="WrapWithOverflow"
-                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" FontSize="20"/>
         <Grid>
             <ComboBox x:Name="comboBox" SelectedItem="{Binding SelectedItem, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                      ItemsSource="{Binding Items}" />
+                      ItemsSource="{Binding Items}" FontSize="20"/>
             <TextBlock VerticalAlignment="Center"
                        Visibility="{Binding SelectedItem, ElementName=comboBox, Converter={StaticResource NullToVisibilityConverter}}"
-                       IsHitTestVisible="False" Text="{Binding DefaultSelectedItem}" />
+                       IsHitTestVisible="False" Text="{Binding DefaultSelectedItem}" FontSize="20"/>
         </Grid>
 
 

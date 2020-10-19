@@ -26,7 +26,7 @@
                    Visibility="{Binding Label.Position, Converter={StaticResource LabelPositionToVisibilityConverter}}"
                    DockPanel.Dock="{Binding Label.Position, Converter={StaticResource LabelPositionToDockConverter}}"
                    Width="150" TextWrapping="WrapWithOverflow"
-                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" />
+                   TextAlignment="Right" VerticalAlignment="Center" Margin="8" FontSize="16"/>
         <xctk:RichTextBox BorderThickness="0" Background="Transparent"
                           Text="{Binding Content, Converter={StaticResource HtmlToXamlValueConverter}}"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
