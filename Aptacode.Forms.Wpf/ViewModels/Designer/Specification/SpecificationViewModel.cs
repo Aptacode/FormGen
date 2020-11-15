@@ -1,6 +1,6 @@
 ﻿using System;
-using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Expressions.Bool;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 {
@@ -18,15 +18,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
         #endregion
 
 
-        public abstract void LoadParameters(Specification<T> specification);
+        public abstract void LoadParameters(IBooleanExpression<T> specification);
 
-        public abstract Specification<T> BuildSpecification();
+        public abstract IBooleanExpression<T> BuildSpecification();
 
         #region Properties
 
         public string Type { get; set; }
 
-        private string _parameters;
+        public string _parameters;
 
         public string Parameters
         {

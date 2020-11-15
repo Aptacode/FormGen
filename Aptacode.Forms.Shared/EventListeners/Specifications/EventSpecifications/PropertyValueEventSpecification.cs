@@ -4,8 +4,6 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
 {
     public class PropertyValueEventSpecification : PropertyValueSpecification<FormElementEvent>
     {
-        internal PropertyValueEventSpecification() { }
-
         public PropertyValueEventSpecification(string propertyName, object propertyValue) : base(propertyName,
             propertyValue) { }
     }

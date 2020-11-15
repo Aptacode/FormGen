@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aptacode.CSharp.Common.Patterns.Specification;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class TextElement_MaximumLength_Validator : Specification<ITextElementViewModel>
+    public class TextElement_MaximumLength_Validator : TerminalBoolExpression<ITextElementViewModel>
     {
         public TextElement_MaximumLength_Validator(int maxLength)
         {
@@ -14,7 +12,6 @@ namespace Aptacode.Forms.Shared.ValidationRules
 
         public int MaxLength { get; set; }
 
-        public override Expression<Func<ITextElementViewModel, bool>> ToExpression() =>
-            textElement => textElement.Content.Length <= MaxLength;
+        public override bool Interpret(ITextElementViewModel context) => context.Content.Length <= MaxLength;
     }
 }

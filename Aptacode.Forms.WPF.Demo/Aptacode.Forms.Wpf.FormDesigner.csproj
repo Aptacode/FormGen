@@ -49,6 +49,9 @@
     <Reference Include="Aptacode.CSharp.Common.Utilities, Version=1.0.0.30, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Aptacode.CSharp.Common.Utilities.1.0.0.30\lib\net461\Aptacode.CSharp.Common.Utilities.dll</HintPath>
     </Reference>
+    <Reference Include="Aptacode.Expressions, Version=1.0.0.22, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aptacode.Expressions.1.0.0.22\lib\net45\Aptacode.Expressions.dll</HintPath>
+    </Reference>
     <Reference Include="Aptacode.Wpf.Utilities, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Aptacode.Wpf.Utilities.1.0.0.8\lib\net472\Aptacode.Wpf.Utilities.dll</HintPath>
     </Reference>

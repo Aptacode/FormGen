@@ -34,7 +34,7 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.FormSpecific
             ).Build();
             var testFormVm = new FormViewModel(testForm);
             //Act
-            var result = sut.IsSatisfiedBy(testFormVm);
+            var result = sut.Interpret(testFormVm);
 
             //Assert
             Assert.Equal(expectedResult, result);

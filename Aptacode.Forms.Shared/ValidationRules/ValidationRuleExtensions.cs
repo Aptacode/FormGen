@@ -1,4 +1,4 @@
-﻿using Aptacode.CSharp.Common.Patterns.Specification;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
@@ -6,7 +6,7 @@ namespace Aptacode.Forms.Shared.ValidationRules
     public static class ValidationRuleExtensions
     {
         public static ValidationRule<TField> WithSpecification<TField>(this ValidationRule<TField> rule,
-            Specification<TField> specification) where TField : IFieldViewModel
+            TerminalBoolExpression<TField> specification) where TField : IFieldViewModel
         {
             rule.Specification = specification;
             return rule;

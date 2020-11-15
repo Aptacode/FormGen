@@ -6,8 +6,6 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications
 {
     public class ElementPropertyFormSpecification : PropertyValueSpecification<FormViewModel>
     {
-        internal ElementPropertyFormSpecification() { }
-
         public ElementPropertyFormSpecification(string elementName, string propertyName, object propertyValue) : base(
             propertyName, propertyValue)
         {
@@ -16,7 +14,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications
 
         public string ElementName { get; set; }
 
-        public override Expression<Func<FormViewModel, bool>> ToExpression() => input =>
-            ValuesMatch(PropertyValue, GetValue(input[ElementName], PropertyName));
+        public override bool Interpret(FormViewModel context)
+        {
+            return ValuesMatch(PropertyValue, GetValue(context[ElementName], PropertyName));
+        }
     }
 }

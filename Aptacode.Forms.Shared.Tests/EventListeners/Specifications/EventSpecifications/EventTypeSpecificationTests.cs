@@ -17,7 +17,7 @@ namespace Aptacode.Forms.Shared.Tests.EventListeners.Specifications.EventSpecifi
             var elementEvent = new ButtonElementClickedEvent(DateTime.Now, "Test Button");
 
             //Act
-            var result = sut.IsSatisfiedBy(elementEvent);
+            var result = sut.Interpret(elementEvent);
 
             //Assert
             Assert.Equal(expectedResult, result);

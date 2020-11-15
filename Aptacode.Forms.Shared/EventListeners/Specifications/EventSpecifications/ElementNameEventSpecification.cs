@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aptacode.CSharp.Common.Patterns.Specification;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.EventListeners.Events;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications
 {
-    public sealed class ElementNameEventSpecification : Specification<FormElementEvent>
+    public sealed class ElementNameEventSpecification : TerminalBoolExpression<FormElementEvent>
     {
-        internal ElementNameEventSpecification() { }
-
         public ElementNameEventSpecification(string elementName)
         {
             ElementName = elementName;
@@ -16,7 +12,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
 
         public string ElementName { get; set; }
 
-        public override Expression<Func<FormElementEvent, bool>> ToExpression() =>
-            formEvent => formEvent.ElementName == ElementName;
+        public override bool Interpret(FormElementEvent context)
+        {
+            return context.ElementName == ElementName;
+        }
     }
 }

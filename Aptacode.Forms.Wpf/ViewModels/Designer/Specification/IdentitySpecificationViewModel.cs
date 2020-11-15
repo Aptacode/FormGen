@@ -1,4 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Expressions.Bool;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 {
@@ -6,11 +7,11 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
     {
         public IdentitySpecificationViewModel() : base(nameof(IdentitySpecification<T>)) { }
 
-        public override void LoadParameters(Specification<T> specification)
+        public override void LoadParameters(IBooleanExpression<T> specification)
         {
             Parameters = "";
         }
 
-        public override Specification<T> BuildSpecification() => new IdentitySpecification<T>();
+        public override IBooleanExpression<T> BuildSpecification() => new ConstantBool<T>(true);
     }
 }

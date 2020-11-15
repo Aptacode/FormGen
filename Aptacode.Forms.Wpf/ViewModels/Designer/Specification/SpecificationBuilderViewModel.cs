@@ -2,29 +2,31 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Bool.Extensions;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 {
     public static class SpecificationExtensions
     {
-        public static IEnumerable<Specification<T>> ToList<T>(this Specification<T> specification)
+        public static IEnumerable<IBooleanExpression<T>> ToList<T>(this IBooleanExpression<T> specification)
         {
-            var specificationList = new List<Specification<T>> {specification};
+            var specificationList = new List<IBooleanExpression<T>> {specification};
 
             switch (specification)
             {
-                case AndSpecification<T> andSpecification:
-                    specificationList.AddRange(andSpecification.Left.ToList());
-                    specificationList.AddRange(andSpecification.Right.ToList());
+                case And<T> andSpecification:
+                    specificationList.AddRange(andSpecification.Lhs.ToList());
+                    specificationList.AddRange(andSpecification.Rhs.ToList());
                     break;
-                case OrSpecification<T> orSpecification:
-                    specificationList.AddRange(orSpecification.Left.ToList());
-                    specificationList.AddRange(orSpecification.Right.ToList());
+                case Or<T> orSpecification:
+                    specificationList.AddRange(orSpecification.Lhs.ToList());
+                    specificationList.AddRange(orSpecification.Rhs.ToList());
                     break;
-                case NotSpecification<T> notSpecification:
-                    specificationList.AddRange(notSpecification.Specification.ToList());
+                case Not<T> notSpecification:
+                    specificationList.AddRange(notSpecification.Expression.ToList());
                     break;
             }
 
@@ -54,15 +56,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 
         #region Methods
 
-        public Specification<T> BuildSpecification()
+        public IBooleanExpression<T> BuildSpecification()
         {
             if (!Specifications.Any())
             {
-                return new NullSpecification<T>();
+                return new ConstantBool<T>(false);
             }
 
 
-            Specification<T> outputSpecification = null;
+            IBooleanExpression<T> outputSpecification = null;
             foreach (var specification in Specifications.Select(vm => vm.BuildSpecification()))
             {
                 if (outputSpecification == null)
@@ -87,18 +89,18 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             Specifications.Clear();
         }
 
-        public void Load(Specification<T> specification)
+        public void Load(IBooleanExpression<T> specification)
         {
             Specifications.Clear();
 
             var childSpecifications = specification.ToList();
 
-            SelectedOperation = childSpecifications.OfType<AndSpecification<T>>().Any() ? "All" : "Any";
+            SelectedOperation = childSpecifications.OfType<And<T>>().Any() ? "All" : "Any";
 
             foreach (var childSpecification in childSpecifications)
             {
-                if (childSpecification is AndSpecification<T> || childSpecification is OrSpecification<T> ||
-                    childSpecification is NotSpecification<T>)
+                if (childSpecification is And<T> || childSpecification is Or<T> ||
+                    childSpecification is Not<T>)
                 {
                     continue;
                 }

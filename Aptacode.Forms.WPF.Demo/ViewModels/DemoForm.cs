@@ -1,4 +1,5 @@
 ﻿using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Expressions.Bool.Extensions;
 using Aptacode.Forms.Shared.Builders;
 using Aptacode.Forms.Shared.Builders.Elements.Composite;
 using Aptacode.Forms.Shared.Builders.Elements.Controls;

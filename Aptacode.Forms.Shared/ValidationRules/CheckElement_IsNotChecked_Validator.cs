@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aptacode.CSharp.Common.Patterns.Specification;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class CheckElement_IsNotChecked_Validator : Specification<ICheckElementViewModel>
+    public class CheckElement_IsNotChecked_Validator : TerminalBoolExpression<ICheckElementViewModel>
     {
-        public override Expression<Func<ICheckElementViewModel, bool>> ToExpression() => element => !element.IsChecked;
+        public override bool Interpret(ICheckElementViewModel context) => !context.IsChecked;
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Aptacode.CSharp.Common.Patterns.Specification;
+using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.ViewModels;
 
@@ -9,7 +9,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification.Events
     {
         public ElementPropertyFormSpecificationViewModel() : base(nameof(ElementPropertyFormSpecification)) { }
 
-        public override Specification<FormViewModel> BuildSpecification()
+        public override IBooleanExpression<FormViewModel> BuildSpecification()
         {
             var parameters = Parameters?.Split(',');
             var parameter1 = parameters?.ElementAt(0);
@@ -18,7 +18,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification.Events
             return new ElementPropertyFormSpecification(parameter1, parameter2, parameter3);
         }
 
-        public override void LoadParameters(Specification<FormViewModel> specification)
+        public override void LoadParameters(IBooleanExpression<FormViewModel> specification)
         {
             if (specification is ElementPropertyFormSpecification spec)
             {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aptacode.CSharp.Common.Patterns.Specification;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.EventListeners;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
@@ -21,7 +21,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 new List<(string, Type)>
                 {
                     (nameof(ElementNameEventSpecification), typeof(ElementNameEventSpecificationViewModel)),
-                    (nameof(IdentitySpecification<FormElementEvent>),
+                    (nameof(ConstantBool<FormElementEvent>),
                         typeof(IdentitySpecificationViewModel<FormElementEvent>)),
                     (nameof(PropertyValueEventSpecification), typeof(PropertyValueEventSpecificationViewModel)),
                     (nameof(TypeNameEventSpecification), typeof(TypeNameEventSpecificationViewModel))
@@ -30,7 +30,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             FormConditionSpecificationBuilder = new SpecificationBuilderViewModel<FormViewModel>(
                 new List<(string, Type)>
                 {
-                    (nameof(IdentitySpecification<FormViewModel>),
+                    (nameof(ConstantBool<FormViewModel>),
                         typeof(IdentitySpecificationViewModel<FormViewModel>)),
                     (nameof(ElementPropertyFormSpecification), typeof(ElementPropertyFormSpecificationViewModel))
                 });
@@ -105,7 +105,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _createCommand ??= new DelegateCommand(_ =>
             {
                 FormViewModel.EventListeners.Add(new EventListener("New Event Listener",
-                    new IdentitySpecification<FormElementEvent>(), new IdentitySpecification<FormViewModel>()));
+                    new ConstantBool<FormElementEvent>(true), new ConstantBool<FormViewModel>(true)));
             });
 
         private DelegateCommand<EventListener> _removeCommand;
