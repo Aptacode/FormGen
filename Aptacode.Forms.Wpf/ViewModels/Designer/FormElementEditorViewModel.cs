@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Aptacode.CSharp.Common.Utilities.Extensions;
+using Aptacode.CSharp.Common.Utilities.Mvvm;
 using Aptacode.Forms.Shared.Builders;
 using Aptacode.Forms.Shared.Builders.Elements.Composite;
 using Aptacode.Forms.Shared.Builders.Elements.Controls;
@@ -16,7 +17,6 @@ using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
 using Aptacode.Forms.Wpf.Views.Designer;
-using Prism.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
@@ -67,48 +67,54 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementTypeComboBox.OnFormEvent += ElementTypeComboBoxOnOnFormEvent;
             _elementNameTextBox.OnFormEvent += ElementNameTextBoxOnOnFormEvent;
             _elementLabelTextBox.OnFormEvent += ElementLabelTextBoxOnOnFormEvent;
-            _elementLabelPosition.OnFormEvent += _elementLabelPosition_OnFormEvent;
-            _elementVerticalAlignment.OnFormEvent += _elementVerticalAlignment_OnFormEvent;
-            _elementHorizontalAlignment.OnFormEvent += _elementHorizontalAlignment_OnFormEvent;
+            _elementLabelPosition.OnFormEvent += ElementLabelPosition_OnFormEvent;
+            _elementVerticalAlignment.OnFormEvent += ElementVerticalAlignment_OnFormEvent;
+            _elementHorizontalAlignment.OnFormEvent += ElementHorizontalAlignment_OnFormEvent;
         }
 
-        private void _elementHorizontalAlignment_OnFormEvent(object sender, FormElementEvent e)
+        private void ElementHorizontalAlignment_OnFormEvent(object sender, FormElementEvent e)
         {
-            if (e is SelectElementChangedEvent eventArgs)
+            if (!(e is SelectElementChangedEvent eventArgs))
             {
-                if (!Enum.TryParse(eventArgs.NewValue, out HorizontalAlignment alignment))
-                {
-                    alignment = HorizontalAlignment.Center;
-                }
-
-                FormElement.HorizontalAlignment = alignment;
+                return;
             }
+
+            if (!Enum.TryParse(eventArgs.NewValue, out HorizontalAlignment alignment))
+            {
+                alignment = HorizontalAlignment.Center;
+            }
+
+            FormElement.HorizontalAlignment = alignment;
         }
 
-        private void _elementVerticalAlignment_OnFormEvent(object sender, FormElementEvent e)
+        private void ElementVerticalAlignment_OnFormEvent(object sender, FormElementEvent e)
         {
-            if (e is SelectElementChangedEvent eventArgs)
+            if (!(e is SelectElementChangedEvent eventArgs))
             {
-                if (!Enum.TryParse(eventArgs.NewValue, out VerticalAlignment alignment))
-                {
-                    alignment = VerticalAlignment.Center;
-                }
-
-                FormElement.VerticalAlignment = alignment;
+                return;
             }
+
+            if (!Enum.TryParse(eventArgs.NewValue, out VerticalAlignment alignment))
+            {
+                alignment = VerticalAlignment.Center;
+            }
+
+            FormElement.VerticalAlignment = alignment;
         }
 
-        private void _elementLabelPosition_OnFormEvent(object sender, FormElementEvent e)
+        private void ElementLabelPosition_OnFormEvent(object sender, FormElementEvent e)
         {
-            if (e is SelectElementChangedEvent eventArgs)
+            if (!(e is SelectElementChangedEvent eventArgs))
             {
-                if (!Enum.TryParse(eventArgs.NewValue, out LabelPosition position))
-                {
-                    position = LabelPosition.Hidden;
-                }
-
-                FormElement.Label.Position = position;
+                return;
             }
+
+            if (!Enum.TryParse(eventArgs.NewValue, out LabelPosition position))
+            {
+                position = LabelPosition.Hidden;
+            }
+
+            FormElement.Label.Position = position;
         }
 
         private void ElementLabelTextBoxOnOnFormEvent(object sender, FormElementEvent e)
@@ -183,21 +189,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private string ElementTypeToFriendlyName(Type elementType)
         {
-            switch (elementType?.Name)
+            return elementType?.Name switch
             {
-                case nameof(ButtonElement):
-                    return "Button";
-                case nameof(HtmlElement):
-                    return "Html";
-                case nameof(CheckElement):
-                    return "CheckBox";
-                case nameof(TextElement):
-                    return "TextBox";
-                case nameof(SelectElement):
-                    return "ComboBox";
-            }
-
-            return string.Empty;
+                nameof(ButtonElement) => "Button",
+                nameof(HtmlElement) => "Html",
+                nameof(CheckElement) => "CheckBox",
+                nameof(TextElement) => "TextBox",
+                nameof(SelectElement) => "ComboBox",
+                _ => string.Empty
+            };
         }
 
         private void AddButtonConfigurationRows(ICompositeElementViewModel group, ButtonElementViewModel button)
@@ -306,7 +306,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-
             defaultSelectedItem.OnFormEvent += (s, e) =>
             {
                 if (e is SelectElementChangedEvent eventArgs && element.SelectedItem != eventArgs.NewValue)
@@ -367,7 +366,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             };
 
-
             group.Children.Add(textField);
             group.Children.Add(checkedField);
         }
@@ -410,7 +408,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             ParentElement = FormViewModel.Elements.OfType<ICompositeElementViewModel>()
                 .FirstOrDefault(e => e.Children.Contains(FormElement));
 
-
             var group = new LinearLayoutElementViewModel(new LinearLayoutBuilder().Build());
             group.Children.Add(_elementTypeComboBox);
             group.Children.Add(_elementNameTextBox);
@@ -419,7 +416,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             group.Children.Add(_elementVerticalAlignment);
             group.Children.Add(_elementHorizontalAlignment);
 
-
             _elementNameTextBox.Content = FormElement.Name;
             _elementLabelTextBox.Content = FormElement.Label.Text;
             _elementLabelPosition.SelectedItem = FormElement.Label.Position.ToString();
@@ -427,7 +423,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             _elementHorizontalAlignment.SelectedItem = FormElement.HorizontalAlignment.ToString();
 
             _elementTypeComboBox.SelectedItem = ElementTypeToFriendlyName(FormElement?.Model?.GetType());
-
 
             AddElementConfigurationRows(group, FormElement);
 
@@ -459,7 +454,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set => SetProperty(ref _parentElement, value);
         }
 
-
         private IControlElementViewModel _formElement;
 
         public IControlElementViewModel FormElement
@@ -479,7 +473,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _elementEditorFormViewModel;
             set => SetProperty(ref _elementEditorFormViewModel, value);
         }
-
 
         private FormViewModel _formViewModel;
 

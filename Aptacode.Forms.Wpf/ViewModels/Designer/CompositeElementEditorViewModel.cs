@@ -9,7 +9,6 @@ using Aptacode.Forms.Shared.ViewModels;
 using Aptacode.Forms.Shared.ViewModels.Elements.Composite;
 using Aptacode.Forms.Shared.ViewModels.Factories;
 using Microsoft.VisualBasic;
-using BindableBase = Prism.Mvvm.BindableBase;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
@@ -18,16 +17,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
         public static ICompositeElementViewModel TransformInto(this ICompositeElementViewModel viewModel,
             string destinationTypeName)
         {
-            switch (destinationTypeName)
+            return destinationTypeName switch
             {
-                case nameof(GroupElement):
-                    return new GroupElementViewModel(new GroupBuilder().FromTemplate(viewModel.Model).Build());
-                case nameof(LinearLayoutElement):
-                    return new LinearLayoutElementViewModel(new LinearLayoutBuilder().FromTemplate(viewModel.Model)
-                        .Build());
-            }
-
-            return viewModel;
+                nameof(GroupElement) => new GroupElementViewModel(new GroupBuilder().FromTemplate(viewModel.Model)
+                    .Build()),
+                nameof(LinearLayoutElement) => new LinearLayoutElementViewModel(new LinearLayoutBuilder()
+                    .FromTemplate(viewModel.Model)
+                    .Build()),
+                _ => viewModel
+            };
         }
     }
 
@@ -43,24 +41,26 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             set
             {
                 SetProperty(ref _selectedElementType, value);
-                if (_selectedElement != null && SelectedElementType != _selectedElement?.Model.GetType().Name)
+                if (_selectedElement == null || SelectedElementType == _selectedElement?.Model.GetType().Name)
                 {
-                    var newElementViewModel = SelectedElement.TransformInto(SelectedElementType);
-
-                    if (SelectedElement != FormViewModel.RootElement)
-                    {
-                        var parentElement = FormViewModel.GetParent(SelectedElement);
-                        var selectedElementIndex = parentElement.Children.IndexOf(SelectedElement);
-                        parentElement.Children.RemoveAt(selectedElementIndex);
-                        parentElement.Children.Insert(selectedElementIndex, newElementViewModel);
-                    }
-                    else
-                    {
-                        FormViewModel.RootElement = newElementViewModel;
-                    }
-
-                    SelectedElement = newElementViewModel;
+                    return;
                 }
+
+                var newElementViewModel = SelectedElement.TransformInto(SelectedElementType);
+
+                if (SelectedElement != FormViewModel.RootElement)
+                {
+                    var parentElement = FormViewModel.GetParent(SelectedElement);
+                    var selectedElementIndex = parentElement.Children.IndexOf(SelectedElement);
+                    parentElement.Children.RemoveAt(selectedElementIndex);
+                    parentElement.Children.Insert(selectedElementIndex, newElementViewModel);
+                }
+                else
+                {
+                    FormViewModel.RootElement = newElementViewModel;
+                }
+
+                SelectedElement = newElementViewModel;
             }
         }
 
@@ -104,7 +104,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             }
         }
 
-
         private string _selectedHorizontalAlignment;
 
         public string SelectedHorizontalAlignment
@@ -136,7 +135,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
                 }
             }
         }
-
 
         private IFormElementViewModel _selectedChildElement;
 

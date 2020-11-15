@@ -30,6 +30,5 @@ namespace Aptacode.Forms.Blazor.Demo.Pages
             FormEventLog.Add(e.Item2);
             InvokeAsync(StateHasChanged);
         }
-   
     }
 }

@@ -18,7 +18,7 @@ namespace Aptacode.Forms.Shared.EventListeners
 
         public bool IsSatisfiedBy(FormViewModel formViewModel, FormElementEvent formEvent) =>
             EventTrigger.IsSatisfiedBy(formEvent) &&
-            (FormCondition == null || FormCondition.IsSatisfiedBy(formViewModel));
+            (FormCondition?.IsSatisfiedBy(formViewModel) != false);
 
         #region Properties
 

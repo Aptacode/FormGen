@@ -8,6 +8,7 @@
     xmlns:converters="clr-namespace:Aptacode.Forms.Wpf.Mvvm.Converters"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:behaviors="clr-namespace:Aptacode.Wpf.Utilities.Behaviors;assembly=Aptacode.Wpf.Utilities"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     x:Class="Aptacode.Forms.Wpf.Views.Designer.CompositeElementEditorView"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -123,9 +124,9 @@
                         <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                                  Background="Transparent" BorderBrush="Transparent">
-                            <i:Interaction.Behaviors>
+                            <b:Interaction.Behaviors>
                                 <behaviors:DoubleClickTextBoxBehaviour />
-                            </i:Interaction.Behaviors>
+                            </b:Interaction.Behaviors>
                         </TextBox>
                         <Button Content="Up" Margin="8"
                                 Command="{Binding DataContext.MoveElementUpCommand, RelativeSource={RelativeSource AncestorType={x:Type local:CompositeElementEditorView}}}"

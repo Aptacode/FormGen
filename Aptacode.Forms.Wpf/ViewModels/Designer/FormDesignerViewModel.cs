@@ -2,7 +2,7 @@
 using Aptacode.Forms.Shared.Interfaces.Composite;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.ViewModels;
-using Prism.Mvvm;
+using BindableBase = Aptacode.CSharp.Common.Utilities.Mvvm.BindableBase;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
@@ -19,15 +19,15 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
 
         private void OnEditElement(object sender, IFormElementViewModel e)
         {
-            if (e is IControlElementViewModel controlElementViewModel)
-            {
-                FormElementEditorViewModel.FormElement = controlElementViewModel;
-                ElementEditorViewModel = FormElementEditorViewModel;
-            }
-            else if (e is ICompositeElementViewModel compositeElementViewModel)
-            {
-                CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
-                ElementEditorViewModel = CompositeElementEditorViewModel;
+            switch (e) {
+                case IControlElementViewModel controlElementViewModel:
+                    FormElementEditorViewModel.FormElement = controlElementViewModel;
+                    ElementEditorViewModel = FormElementEditorViewModel;
+                    break;
+                case ICompositeElementViewModel compositeElementViewModel:
+                    CompositeElementEditorViewModel.SelectedElement = compositeElementViewModel;
+                    ElementEditorViewModel = CompositeElementEditorViewModel;
+                    break;
             }
         }
 
@@ -75,7 +75,6 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer
             get => _compositeElementEditorViewModel;
             set => SetProperty(ref _compositeElementEditorViewModel, value);
         }
-
 
         private BindableBase _elementEditorViewModel;
 

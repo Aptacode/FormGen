@@ -6,7 +6,7 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Composite
     {
         public override LinearLayoutElement Build()
         {
-            var newElement = new LinearLayoutElement
+            return new LinearLayoutElement
             {
                 Id = Id,
                 Name = Name,
@@ -16,15 +16,6 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Composite
                 LayoutMode = LayoutMode,
                 LayoutOrientation = LayoutOrientation
             };
-
-            Reset();
-
-            return newElement;
-        }
-
-        public override void Reset()
-        {
-            base.Reset();
         }
     }
 }

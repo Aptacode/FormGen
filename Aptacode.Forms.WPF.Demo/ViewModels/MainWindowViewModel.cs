@@ -82,7 +82,7 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
         private DelegateCommand _newCommand;
 
         public DelegateCommand NewCommand =>
-            _newCommand = new DelegateCommand(_ => { FormViewModel = DemoForm.CreateForm(); });
+            _newCommand = new DelegateCommand(_ => FormViewModel = DemoForm.CreateForm());
 
         private DelegateCommand _loadCommand;
 
@@ -103,10 +103,8 @@ namespace Aptacode.Forms.Wpf.FormDesigner.ViewModels
                 }
             });
 
-        private DelegateCommand _saveCommand;
-
         public DelegateCommand SaveCommand =>
-            _saveCommand = new DelegateCommand(_ =>
+            new DelegateCommand(_ =>
             {
                 var jsonString = JsonConvert.SerializeObject(FormViewModel.Model, SerializerSettings);
                 File.WriteAllText($"{FormViewModel.Model.Name}.json", jsonString);

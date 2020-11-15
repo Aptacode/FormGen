@@ -39,7 +39,6 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Composite
             return this as TBuilder;
         }
 
-
         public override void Reset()
         {
             Children = new List<FormElement>();

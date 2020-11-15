@@ -1,4 +1,4 @@
-﻿using Prism.Mvvm;
+﻿using Aptacode.CSharp.Common.Utilities.Mvvm;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer
 {
