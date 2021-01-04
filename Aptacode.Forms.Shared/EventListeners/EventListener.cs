@@ -1,4 +1,5 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using Aptacode.Expressions;
+using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.ViewModels;
 
@@ -8,8 +9,8 @@ namespace Aptacode.Forms.Shared.EventListeners
     {
         public EventListener(
             string name,
-            IBooleanExpression<FormElementEvent> eventTrigger,
-            IBooleanExpression<FormViewModel> formCondition)
+            IExpression<bool,FormElementEvent> eventTrigger,
+            IExpression<bool,FormViewModel> formCondition)
         {
             Name = name;
             EventTrigger = eventTrigger;
@@ -23,8 +24,8 @@ namespace Aptacode.Forms.Shared.EventListeners
         #region Properties
 
         public string Name { get; set; }
-        public IBooleanExpression<FormElementEvent> EventTrigger { get; set; }
-        public IBooleanExpression<FormViewModel> FormCondition { get; set; }
+        public IExpression<bool,FormElementEvent> EventTrigger { get; set; }
+        public IExpression<bool,FormViewModel> FormCondition { get; set; }
 
         #endregion
     }

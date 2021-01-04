@@ -3,7 +3,7 @@ using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class TextElement_MaximumLength_Validator : TerminalBoolExpression<ITextElementViewModel>
+    public class TextElement_MaximumLength_Validator : NaryBoolExpression<ITextElementViewModel>
     {
         public TextElement_MaximumLength_Validator(int maxLength)
         {

@@ -1,10 +1,12 @@
 ﻿using System;
+using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Visitor;
 using Aptacode.Forms.Shared.EventListeners.Events;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications
 {
-    public sealed class TypeNameEventSpecification : TerminalBoolExpression<FormElementEvent>
+    public sealed class TypeNameEventSpecification : NaryBoolExpression<FormElementEvent>
     {
         internal TypeNameEventSpecification() { }
 

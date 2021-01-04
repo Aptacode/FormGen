@@ -3,7 +3,7 @@ using Aptacode.Expressions.Bool;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications
 {
-    public class PropertyValueSpecification<T> : TerminalBoolExpression<T>
+    public class PropertyValueSpecification<T> : NaryBoolExpression<T>
     {
         public PropertyValueSpecification(string propertyName, object propertyValue)
         {

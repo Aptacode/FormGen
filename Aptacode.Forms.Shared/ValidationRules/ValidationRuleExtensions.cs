@@ -6,7 +6,7 @@ namespace Aptacode.Forms.Shared.ValidationRules
     public static class ValidationRuleExtensions
     {
         public static ValidationRule<TField> WithSpecification<TField>(this ValidationRule<TField> rule,
-            TerminalBoolExpression<TField> specification) where TField : IFieldViewModel
+            NaryBoolExpression<TField> specification) where TField : IFieldViewModel
         {
             rule.Specification = specification;
             return rule;

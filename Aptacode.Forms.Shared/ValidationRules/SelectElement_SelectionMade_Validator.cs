@@ -5,7 +5,7 @@ using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
 {
-    public class SelectElement_SelectionMade_Validator : TerminalBoolExpression<ISelectElementViewModel>
+    public class SelectElement_SelectionMade_Validator : NaryBoolExpression<ISelectElementViewModel>
     {
         public SelectElement_SelectionMade_Validator(string selectedItem)
         {

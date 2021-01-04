@@ -1,5 +1,6 @@
 ﻿using System;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
@@ -18,9 +19,9 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
         #endregion
 
 
-        public abstract void LoadParameters(IBooleanExpression<T> specification);
+        public abstract void LoadParameters(IExpression<bool,T> specification);
 
-        public abstract IBooleanExpression<T> BuildSpecification();
+        public abstract IExpression<bool,T> BuildSpecification();
 
         #region Properties
 

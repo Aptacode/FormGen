@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Aptacode.CSharp.Common.Utilities.Mvvm;
+using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Expression;
-using Aptacode.Expressions.Bool.Extensions;
+using Aptacode.Expressions.Bool.LogicalOperators;
+using Aptacode.Expressions.Bool.LogicalOperators.Extensions;
 
 namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 {
     public static class SpecificationExtensions
     {
-        public static IEnumerable<IBooleanExpression<T>> ToList<T>(this IBooleanExpression<T> specification)
+        public static IEnumerable<IExpression<bool,T>> ToList<T>(this IExpression<bool,T> specification)
         {
-            var specificationList = new List<IBooleanExpression<T>> {specification};
+            var specificationList = new List<IExpression<bool,T>> {specification};
 
             switch (specification)
             {
@@ -56,7 +57,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
 
         #region Methods
 
-        public IBooleanExpression<T> BuildSpecification()
+        public IExpression<bool,T> BuildSpecification()
         {
             if (!Specifications.Any())
             {
@@ -64,7 +65,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             }
 
 
-            IBooleanExpression<T> outputSpecification = null;
+            IExpression<bool,T> outputSpecification = null;
             foreach (var specification in Specifications.Select(vm => vm.BuildSpecification()))
             {
                 if (outputSpecification == null)
@@ -89,7 +90,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification
             Specifications.Clear();
         }
 
-        public void Load(IBooleanExpression<T> specification)
+        public void Load(IExpression<bool,T> specification)
         {
             Specifications.Clear();
 

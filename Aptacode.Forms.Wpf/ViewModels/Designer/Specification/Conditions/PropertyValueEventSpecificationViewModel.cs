@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.EventListeners.Events;
 using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
@@ -9,7 +10,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification.Conditions
     {
         public PropertyValueEventSpecificationViewModel() : base(nameof(PropertyValueEventSpecification)) { }
 
-        public override IBooleanExpression<FormElementEvent> BuildSpecification()
+        public override IExpression<bool,FormElementEvent> BuildSpecification()
         {
             var parameters = Parameters?.Split(',');
             var parameter1 = parameters?.ElementAt(0);
@@ -17,7 +18,7 @@ namespace Aptacode.Forms.Wpf.ViewModels.Designer.Specification.Conditions
             return new PropertyValueEventSpecification(parameter1, parameter2);
         }
 
-        public override void LoadParameters(IBooleanExpression<FormElementEvent> specification)
+        public override void LoadParameters(IExpression<bool,FormElementEvent> specification)
         {
             if (specification is PropertyValueEventSpecification spec)
             {
