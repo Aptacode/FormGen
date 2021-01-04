@@ -2,7 +2,9 @@
 {
     public abstract class FieldElementResult
     {
-        internal FieldElementResult() { }
+        internal FieldElementResult()
+        {
+        }
 
         protected FieldElementResult(string elementName)
         {

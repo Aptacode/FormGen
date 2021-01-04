@@ -12,9 +12,7 @@ namespace Aptacode.Forms.Shared.ViewModels
             var elements = new List<IFormElementViewModel> {element};
 
             if (element is ICompositeElementViewModel compositeElement)
-            {
                 elements.AddRange(compositeElement.Children.SelectMany(GetDescendants));
-            }
 
             return elements;
         }

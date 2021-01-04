@@ -17,10 +17,26 @@ namespace Aptacode.Forms.Shared.Models.Elements.Controls
         public LabelPosition Position { get; set; }
         public bool IsHidden => Position == LabelPosition.Hidden;
 
-        public static ElementLabel None => new ElementLabel(LabelPosition.Hidden, "");
-        public static ElementLabel Above(string text) => new ElementLabel(LabelPosition.Above, text);
-        public static ElementLabel Below(string text) => new ElementLabel(LabelPosition.Below, text);
-        public static ElementLabel Left(string text) => new ElementLabel(LabelPosition.Left, text);
-        public static ElementLabel Right(string text) => new ElementLabel(LabelPosition.Right, text);
+        public static ElementLabel None => new(LabelPosition.Hidden, "");
+
+        public static ElementLabel Above(string text)
+        {
+            return new(LabelPosition.Above, text);
+        }
+
+        public static ElementLabel Below(string text)
+        {
+            return new(LabelPosition.Below, text);
+        }
+
+        public static ElementLabel Left(string text)
+        {
+            return new(LabelPosition.Left, text);
+        }
+
+        public static ElementLabel Right(string text)
+        {
+            return new(LabelPosition.Right, text);
+        }
     }
 }

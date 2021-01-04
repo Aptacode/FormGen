@@ -2,7 +2,9 @@
 {
     public class SelectElementResult : FieldElementResult
     {
-        internal SelectElementResult() { }
+        internal SelectElementResult()
+        {
+        }
 
         public SelectElementResult(string elementName, string selectedItem) : base(elementName)
         {

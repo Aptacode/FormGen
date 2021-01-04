@@ -12,7 +12,7 @@ namespace Aptacode.Forms.Shared.Builders
         private string Name { get; set; } = string.Empty;
         private string Title { get; set; } = string.Empty;
         private CompositeElement RootElement { get; set; } = new NullCompositeElement();
-        private List<EventListener> EventListeners { get; set; } = new List<EventListener>();
+        private List<EventListener> EventListeners { get; set; } = new();
 
         public FormBuilder AddEventListeners(IEnumerable<EventListener> eventListeners)
         {

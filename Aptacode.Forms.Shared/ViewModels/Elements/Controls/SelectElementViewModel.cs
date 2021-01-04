@@ -25,7 +25,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             return Model.Rules.Select(rule => rule.Validate(this));
         }
 
-        public override FieldElementResult GetResult() => new SelectElementResult(Name, SelectedItem);
+        public override FieldElementResult GetResult()
+        {
+            return new SelectElementResult(Name, SelectedItem);
+        }
 
         private void Items_CollectionChanged(object sender,
             NotifyCollectionChangedEventArgs e)

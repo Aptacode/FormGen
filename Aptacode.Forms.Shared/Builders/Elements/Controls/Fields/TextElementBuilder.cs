@@ -10,7 +10,7 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Controls.Fields
         public string DefaultValue { get; set; } = string.Empty;
 
         public List<ValidationRule<ITextElementViewModel>> Rules { get; set; } =
-            new List<ValidationRule<ITextElementViewModel>>();
+            new();
 
         public TextElementBuilder SetDefaultValue(string defaultValue)
         {

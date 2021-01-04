@@ -5,7 +5,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
     public abstract class CheckElementEvent : FormFieldEvent
     {
         protected CheckElementEvent(DateTime time, string elementName) : base(time,
-            elementName) { }
+            elementName)
+        {
+        }
     }
 
     public class CheckElementChangedEvent : CheckElementEvent
@@ -18,6 +20,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 
         public bool NewValue { get; set; }
 
-        public override string ToString() => $"CheckBox Checked: {NewValue}";
+        public override string ToString()
+        {
+            return $"CheckBox Checked: {NewValue}";
+        }
     }
 }

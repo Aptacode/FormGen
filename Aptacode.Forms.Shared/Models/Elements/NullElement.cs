@@ -2,5 +2,7 @@
 
 namespace Aptacode.Forms.Shared.Models.Elements
 {
-    public sealed class NullElement : ControlElement { }
+    public sealed class NullElement : ControlElement
+    {
+    }
 }

@@ -19,10 +19,7 @@ namespace Aptacode.Forms.Shared.Tests.ViewModels.Elements.Fields
             var sut = new TextElementViewModel(new TextElementBuilder().Build()) {Content = startString};
             sut.OnFormEvent += (s, e) =>
             {
-                if (!(e is TextElementChangedEvent textChangedEvent))
-                {
-                    return;
-                }
+                if (!(e is TextElementChangedEvent textChangedEvent)) return;
 
                 textChangedOldString = textChangedEvent.OldValue;
                 textChangedNewString = textChangedEvent.NewValue;

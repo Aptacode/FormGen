@@ -8,10 +8,10 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Controls.Fields
     public class SelectElementBuilder : ControlBuilder<SelectElement, SelectElementBuilder>
     {
         public string DefaultValue { get; set; } = string.Empty;
-        public List<string> Values { get; set; } = new List<string>();
+        public List<string> Values { get; set; } = new();
 
         public List<ValidationRule<ISelectElementViewModel>> Rules { get; set; } =
-            new List<ValidationRule<ISelectElementViewModel>>();
+            new();
 
 
         public SelectElementBuilder SetDefaultValue(string defaultValue)

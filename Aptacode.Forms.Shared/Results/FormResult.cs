@@ -15,8 +15,10 @@ namespace Aptacode.Forms.Shared.Results
         public FieldElementResult this[string elementName] =>
             FieldResults.FirstOrDefault(r => r.ElementName == elementName);
 
-        public TFieldResult Get<TFieldResult>(string elementName) where TFieldResult : FieldElementResult =>
-            this[elementName] as TFieldResult;
+        public TFieldResult Get<TFieldResult>(string elementName) where TFieldResult : FieldElementResult
+        {
+            return this[elementName] as TFieldResult;
+        }
 
         public IEnumerable<TFieldResult> GetAll<TFieldResult>() where TFieldResult : FieldElementResult
         {

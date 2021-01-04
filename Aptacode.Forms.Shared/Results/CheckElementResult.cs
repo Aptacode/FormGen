@@ -2,7 +2,9 @@
 {
     public class CheckElementResult : FieldElementResult
     {
-        internal CheckElementResult() { }
+        internal CheckElementResult()
+        {
+        }
 
         public CheckElementResult(string elementName, bool isChecked) : base(elementName)
         {

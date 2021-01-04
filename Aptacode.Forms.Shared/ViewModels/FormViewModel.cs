@@ -19,7 +19,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 {
     public class FormViewModel : BindableBase
     {
-        public ObservableCollection<FormElementEvent> EventLog = new ObservableCollection<FormElementEvent>();
+        public ObservableCollection<FormElementEvent> EventLog = new();
 
         public FormViewModel(Form model)
         {
@@ -32,7 +32,7 @@ namespace Aptacode.Forms.Shared.ViewModels
         }
 
         public ObservableCollection<EventListener> EventListeners { get; set; } =
-            new ObservableCollection<EventListener>();
+            new();
 
         public event EventHandler<(EventListener, FormElementEvent)> OnTriggered;
 
@@ -91,12 +91,8 @@ namespace Aptacode.Forms.Shared.ViewModels
         {
             EventLog.Add(formEvent);
             foreach (var eventListener in EventListeners)
-            {
                 if (eventListener.IsSatisfiedBy(this, formEvent))
-                {
                     OnTriggered?.Invoke(this, (eventListener, formEvent));
-                }
-            }
         }
 
         #endregion
@@ -105,7 +101,7 @@ namespace Aptacode.Forms.Shared.ViewModels
 
         private IEnumerable<FieldElementResult> FieldResults => Fields.Select(field => field.GetResult());
 
-        public FormResult Results => new FormResult(FieldResults);
+        public FormResult Results => new(FieldResults);
 
         #endregion
 

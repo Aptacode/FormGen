@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aptacode.Expressions.Bool;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 
 namespace Aptacode.Forms.Shared.ValidationRules
@@ -14,6 +12,9 @@ namespace Aptacode.Forms.Shared.ValidationRules
 
         public string SelectedItem { get; set; }
 
-        public override bool Interpret(ISelectElementViewModel context) => context.SelectedItem == SelectedItem;
+        public override bool Interpret(ISelectElementViewModel context)
+        {
+            return context.SelectedItem == SelectedItem;
+        }
     }
 }

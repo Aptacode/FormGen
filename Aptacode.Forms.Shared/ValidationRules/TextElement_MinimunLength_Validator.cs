@@ -12,6 +12,9 @@ namespace Aptacode.Forms.Shared.ValidationRules
 
         public int MinimunLength { get; set; }
 
-        public override bool Interpret(ITextElementViewModel context) => context.Content.Length >= MinimunLength;
+        public override bool Interpret(ITextElementViewModel context)
+        {
+            return context.Content.Length >= MinimunLength;
+        }
     }
 }

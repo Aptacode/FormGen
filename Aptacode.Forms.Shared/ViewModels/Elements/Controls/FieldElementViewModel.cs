@@ -14,10 +14,12 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
     public abstract class FieldElementViewModel<TElement> : ControlElementViewModel<TElement>, IFieldViewModel
         where TElement : FieldElement, new()
     {
-        protected FieldElementViewModel(TElement model) : base(model) { }
+        protected FieldElementViewModel(TElement model) : base(model)
+        {
+        }
 
         public ObservableCollection<ValidationResult> ValidationResults { get; set; } =
-            new ObservableCollection<ValidationResult>();
+            new();
 
 
         public abstract FieldElementResult GetResult();
@@ -34,10 +36,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
         public void UpdateValidationMessage()
         {
             var newValidationResults = Validate();
-            if (ValidationResults.SequenceEqual(newValidationResults))
-            {
-                return;
-            }
+            if (ValidationResults.SequenceEqual(newValidationResults)) return;
 
             ValidationResults.Clear();
             ValidationResults.AddRange(newValidationResults);

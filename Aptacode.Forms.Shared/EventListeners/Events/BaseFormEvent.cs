@@ -18,6 +18,8 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
     public abstract class FormFieldEvent : FormElementEvent
     {
         protected FormFieldEvent(DateTime time, string elementName) : base(time,
-            elementName) { }
+            elementName)
+        {
+        }
     }
 }

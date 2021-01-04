@@ -4,5 +4,7 @@
     ///     Form Column Model
     ///     Each Column contains one form element
     /// </summary>
-    public sealed class NullCompositeElement : CompositeElement { }
+    public sealed class NullCompositeElement : CompositeElement
+    {
+    }
 }

@@ -6,6 +6,8 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Composite
     public sealed class LinearLayoutElementViewModel : CompositeElementViewModel<LinearLayoutElement>,
         ILinearLayoutElementViewModel
     {
-        public LinearLayoutElementViewModel(LinearLayoutElement model) : base(model) { }
+        public LinearLayoutElementViewModel(LinearLayoutElement model) : base(model)
+        {
+        }
     }
 }

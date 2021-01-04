@@ -6,8 +6,11 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
 {
     public sealed class NullElementViewModel : ControlElementViewModel<NullElement>, INullElementViewModel
     {
-        public NullElementViewModel() : base(new NullElement()) { }
-        public new ElementLabelViewModel Label { get; set; } = new ElementLabelViewModel(ElementLabel.None);
+        public NullElementViewModel() : base(new NullElement())
+        {
+        }
+
+        public new ElementLabelViewModel Label { get; set; } = new(ElementLabel.None);
         NullElement INullElementViewModel.Model => base.Model;
     }
 }

@@ -13,7 +13,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 
         public IEnumerable<string> Results { get; set; }
 
-        public override string ToString() =>
-            $"Validation Result Changed: {string.Join("\n", Results)}";
+        public override string ToString()
+        {
+            return $"Validation Result Changed: {string.Join("\n", Results)}";
+        }
     }
 }

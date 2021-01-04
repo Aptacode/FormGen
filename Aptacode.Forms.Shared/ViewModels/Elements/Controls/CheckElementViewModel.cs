@@ -23,7 +23,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             return Model.Rules.Select(rule => rule.Validate(this));
         }
 
-        public override FieldElementResult GetResult() => new CheckElementResult(Name, IsChecked);
+        public override FieldElementResult GetResult()
+        {
+            return new CheckElementResult(Name, IsChecked);
+        }
 
         #region Properties
 

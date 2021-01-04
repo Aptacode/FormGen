@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Aptacode.Forms.Blazor.Demo.Data;
@@ -15,7 +14,10 @@ namespace Aptacode.Forms.Blazor.Demo.Pages
         public FormViewModel FormModel { get; set; }
         public List<FormElementEvent> FormEventLog { get; set; }
 
-        public IEnumerable<FormElementEvent> GetRecentEvents() => FormEventLog.TakeLast(10).Reverse();
+        public IEnumerable<FormElementEvent> GetRecentEvents()
+        {
+            return FormEventLog.TakeLast(10).Reverse();
+        }
 
         protected override Task OnInitializedAsync()
         {

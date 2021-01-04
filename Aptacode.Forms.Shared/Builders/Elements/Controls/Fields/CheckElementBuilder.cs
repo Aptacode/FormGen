@@ -11,7 +11,7 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Controls.Fields
         public bool DefaultValue { get; set; }
 
         public List<ValidationRule<ICheckElementViewModel>> Rules { get; set; } =
-            new List<ValidationRule<ICheckElementViewModel>>();
+            new();
 
         public CheckElementBuilder SetContent(string content)
         {

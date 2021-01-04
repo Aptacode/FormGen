@@ -5,6 +5,8 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
     public class PropertyValueEventSpecification : PropertyValueSpecification<FormElementEvent>
     {
         public PropertyValueEventSpecification(string propertyName, object propertyValue) : base(propertyName,
-            propertyValue) { }
+            propertyValue)
+        {
+        }
     }
 }

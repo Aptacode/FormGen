@@ -9,7 +9,6 @@ namespace Aptacode.Forms.Blazor.Components.Elements
 
         [Parameter] public IFormElementViewModel ViewModel { get; set; }
 
-
         #endregion
     }
 }

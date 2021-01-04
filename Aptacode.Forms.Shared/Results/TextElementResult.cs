@@ -2,7 +2,9 @@
 {
     public class TextElementResult : FieldElementResult
     {
-        internal TextElementResult() { }
+        internal TextElementResult()
+        {
+        }
 
         public TextElementResult(string elementName, string content) : base(elementName)
         {

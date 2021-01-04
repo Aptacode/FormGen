@@ -5,6 +5,9 @@ namespace Aptacode.Forms.Shared.ValidationRules
 {
     public class CheckElement_IsChecked_Validator : NaryBoolExpression<ICheckElementViewModel>
     {
-        public override bool Interpret(ICheckElementViewModel context) => context.IsChecked;
+        public override bool Interpret(ICheckElementViewModel context)
+        {
+            return context.IsChecked;
+        }
     }
 }

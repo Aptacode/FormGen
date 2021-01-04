@@ -5,7 +5,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
     public abstract class SelectElementEvent : FormFieldEvent
     {
         protected SelectElementEvent(DateTime time, string elementName) : base(time,
-            elementName) { }
+            elementName)
+        {
+        }
     }
 
     public class SelectElementChangedEvent : SelectElementEvent
@@ -17,6 +19,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
 
         public string NewValue { get; set; }
 
-        public override string ToString() => $"ComboBox Selection Changed: {NewValue}";
+        public override string ToString()
+        {
+            return $"ComboBox Selection Changed: {NewValue}";
+        }
     }
 }

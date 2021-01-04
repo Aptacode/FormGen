@@ -6,7 +6,7 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Composite
     {
         public override LinearLayoutElement Build()
         {
-            return new LinearLayoutElement
+            return new()
             {
                 Id = Id,
                 Name = Name,

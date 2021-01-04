@@ -19,7 +19,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
             return model switch
             {
                 //Layouts
-                CompositeElement compositeElement => (IFormElementViewModel) CreateComposite(compositeElement),
+                CompositeElement compositeElement => CreateComposite(compositeElement),
                 //Controls
                 HtmlElement htmlElement => new HtmlElementViewModel(htmlElement),
                 ButtonElement buttonElement => new ButtonElementViewModel(buttonElement),
@@ -35,7 +35,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
         {
             return model switch
             {
-                GroupElement elementGroup => (ICompositeElementViewModel) new GroupElementViewModel(elementGroup),
+                GroupElement elementGroup => new GroupElementViewModel(elementGroup),
                 LinearLayoutElement linearLayout => new LinearLayoutElementViewModel(linearLayout),
                 _ => new NullCompositeViewModel()
             };
@@ -45,7 +45,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
         {
             return elementType switch
             {
-                nameof(GroupElement) => (FormElement) new GroupBuilder().SetName(elementName).Build(),
+                nameof(GroupElement) => new GroupBuilder().SetName(elementName).Build(),
                 nameof(LinearLayoutElement) => new LinearLayoutBuilder().SetName(elementName).Build(),
                 nameof(CheckElement) => new CheckElementBuilder().SetName(elementName).Build(),
                 nameof(SelectElement) => new SelectElementBuilder().SetName(elementName).Build(),

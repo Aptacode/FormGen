@@ -10,7 +10,7 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Composite
         where TCompositeElement : CompositeElement
         where TBuilder : CompositeBuilder<TCompositeElement, TBuilder>
     {
-        protected List<FormElement> Children { get; set; } = new List<FormElement>();
+        protected List<FormElement> Children { get; set; } = new();
         protected LayoutMode LayoutMode { get; set; } = LayoutMode.Shrink;
         protected LayoutOrientation LayoutOrientation { get; set; } = LayoutOrientation.Vertical;
 

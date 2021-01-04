@@ -23,26 +23,35 @@
 
         #endregion
 
-        public static ValidationResult Success(string message = "") => new ValidationResult(true, message);
+        public static ValidationResult Success(string message = "")
+        {
+            return new(true, message);
+        }
 
-        public static ValidationResult Fail(string message = "") => new ValidationResult(false, message);
+        public static ValidationResult Fail(string message = "")
+        {
+            return new(false, message);
+        }
 
-        public ValidationResult WithMessage(string message) => new ValidationResult(IsValid, message);
+        public ValidationResult WithMessage(string message)
+        {
+            return new(IsValid, message);
+        }
 
 
         #region Equals
 
         public override bool Equals(object obj)
         {
-            if (!(obj is ValidationResult other))
-            {
-                return false;
-            }
+            if (!(obj is ValidationResult other)) return false;
 
             return IsValid == other.IsValid && Message == other.Message;
         }
 
-        public override int GetHashCode() => (IsValid, Message).GetHashCode();
+        public override int GetHashCode()
+        {
+            return (IsValid, Message).GetHashCode();
+        }
 
         #endregion
     }

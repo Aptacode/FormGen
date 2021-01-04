@@ -1,14 +1,14 @@
 ﻿using System;
-using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Visitor;
 using Aptacode.Forms.Shared.EventListeners.Events;
 
 namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications
 {
     public sealed class TypeNameEventSpecification : NaryBoolExpression<FormElementEvent>
     {
-        internal TypeNameEventSpecification() { }
+        internal TypeNameEventSpecification()
+        {
+        }
 
         public TypeNameEventSpecification(string eventType)
         {
@@ -22,6 +22,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecification
 
         public string EventType { get; set; }
 
-        public override bool Interpret(FormElementEvent context) => context.GetType().Name == EventType;
+        public override bool Interpret(FormElementEvent context)
+        {
+            return context.GetType().Name == EventType;
+        }
     }
 }

@@ -5,7 +5,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
     public abstract class TextElementEvent : FormFieldEvent
     {
         protected TextElementEvent(DateTime time, string elementName) : base(time,
-            elementName) { }
+            elementName)
+        {
+        }
     }
 
     public class TextElementChangedEvent : TextElementEvent
@@ -21,6 +23,9 @@ namespace Aptacode.Forms.Shared.EventListeners.Events
         public string OldValue { get; set; }
         public string NewValue { get; set; }
 
-        public override string ToString() => $"TextField Changed: {OldValue} => {NewValue}";
+        public override string ToString()
+        {
+            return $"TextField Changed: {OldValue} => {NewValue}";
+        }
     }
 }

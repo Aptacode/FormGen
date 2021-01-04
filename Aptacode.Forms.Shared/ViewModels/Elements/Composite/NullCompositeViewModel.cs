@@ -5,7 +5,9 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Composite
 {
     public class NullCompositeViewModel : CompositeElementViewModel<NullCompositeElement>, INullCompositeViewModel
     {
-        public NullCompositeViewModel() : base(new NullCompositeElement()) { }
+        public NullCompositeViewModel() : base(new NullCompositeElement())
+        {
+        }
 
         NullCompositeElement INullCompositeViewModel.Model => base.Model;
     }

@@ -51,7 +51,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
             return Model.Rules.Select(rule => rule.Validate(this));
         }
 
-        public override FieldElementResult GetResult() => new TextElementResult(Name, Content);
+        public override FieldElementResult GetResult()
+        {
+            return new TextElementResult(Name, Content);
+        }
 
         #endregion
     }
