@@ -9,7 +9,6 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.37</Version>
     <Description>Create cross platform forms using C# .net</Description>
     <Product>Aptacode.Forms</Product>
     <Company>Aptacode</Company>
@@ -19,15 +18,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Timmoth/Aptacode.Forms</PackageProjectUrl>
     <PackageId>Aptacode.Forms.Shared</PackageId>
-    <AssemblyVersion>1.0.0.37</AssemblyVersion>
-    <FileVersion>1.0.0.37</FileVersion>
+    <Version>1.0.1.0</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>../bin/debug</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>../bin/release</OutputPath>
-  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Aptacode.CSharp.Common.Patterns" Version="1.0.0.33" />
     <PackageReference Include="Aptacode.CSharp.Common.Persistence" Version="1.0.0.30" />
@@ -43,8 +38,4 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
-  <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="../bin/nuget" />
-  </Target>
 </Project>
