@@ -9,9 +9,20 @@
             <Container>
                 @foreach (var child in ViewModel.Children)
                 {
-                    <Row>
-                        <FormElement ViewModel="@child"/>
-                    </Row>                }
+                    if (ViewModel.LayoutOrientation == Aptacode.Forms.Shared.Enums.LayoutOrientation.Vertical)
+                    {                    
+                        <Row>
+                            <FormElement ViewModel="@child"/>
+                         </Row>
+                    }
+                    else
+                    {
+                        <Column>
+                            <FormElement ViewModel="@child"/>
+                        </Column>
+                    }
+
+                }
             </Container>
         </Table>
     </CardBody>

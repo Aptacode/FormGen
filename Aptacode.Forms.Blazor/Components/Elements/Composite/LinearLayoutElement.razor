@@ -2,6 +2,17 @@
 
 @foreach (var child in ViewModel.Children)
 {
-    <Column>
-        <FormElement ViewModel="@child"/>
-    </Column>}
+    if (ViewModel.LayoutOrientation == Aptacode.Forms.Shared.Enums.LayoutOrientation.Vertical)
+    {                    
+        <Row>
+            <FormElement ViewModel="@child"/>
+        </Row>
+    }
+    else
+    {
+        <Column>
+            <FormElement ViewModel="@child"/>
+        </Column>
+    }
+
+}
