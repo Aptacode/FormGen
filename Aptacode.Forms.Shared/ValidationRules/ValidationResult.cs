@@ -43,7 +43,10 @@
 
         public override bool Equals(object obj)
         {
-            if (!(obj is ValidationResult other)) return false;
+            if (!(obj is ValidationResult other))
+            {
+                return false;
+            }
 
             return IsValid == other.IsValid && Message == other.Message;
         }

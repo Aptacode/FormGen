@@ -91,8 +91,12 @@ namespace Aptacode.Forms.Shared.ViewModels
         {
             EventLog.Add(formEvent);
             foreach (var eventListener in EventListeners)
+            {
                 if (eventListener.IsSatisfiedBy(this, formEvent))
+                {
                     OnTriggered?.Invoke(this, (eventListener, formEvent));
+                }
+            }
         }
 
         #endregion

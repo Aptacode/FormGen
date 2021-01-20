@@ -1,4 +1,6 @@
-﻿using Aptacode.Expressions.Bool.LogicalOperators.Extensions;
+﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Bool.LogicalOperators;
+using Aptacode.Expressions.Bool.LogicalOperators.Extensions;
 using Aptacode.Forms.Shared.Builders;
 using Aptacode.Forms.Shared.Builders.Elements.Composite;
 using Aptacode.Forms.Shared.Builders.Elements.Controls;
@@ -28,7 +30,8 @@ namespace Aptacode.Forms.Blazor.Demo.Data
                 .SetLabel(ElementLabel.Left("First Name: "))
                 .SetDefaultValue("First Name")
                 .AddRules(
-                    ValidationRule<ITextElementViewModel>.Create(new TextElement_MaximumLength_Validator(10))
+                    ValidationRule<ITextElementViewModel>.Create(
+                            new TextElement_MaximumLength_Validator(10))
                         .WithFailMessage("First Name must be less then 10 characters"),
                     ValidationRule<ITextElementViewModel>.Create(new TextElement_MinimunLength_Validator(2))
                         .WithFailMessage("First Name must be greater then 2 characters"))
@@ -61,14 +64,19 @@ namespace Aptacode.Forms.Blazor.Demo.Data
                 .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
             var submitEventListenerAcceptsTerms = new EventListener("submit",
-                new ElementNameEventSpecification("Submit Button").And(
-                    new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
-                new ElementPropertyFormSpecification("TermsAndConditions", "IsChecked", "True"));
+                new And<FormElementEvent>(
+                    new ElementNameEventSpecification("Submit Button"),
+                    new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))), new ConstantBool<FormViewModel>(true));
 
             var submitEventListenerExperience = new EventListener("tooLittleExperiance",
                 new ElementNameEventSpecification("Submit Button").And(
                     new TypeNameEventSpecification(nameof(ButtonElementClickedEvent))),
                 new ElementPropertyFormSpecification("experienceSelection", "SelectedItem", "0-1"));
+
+
+            var validationEventListenerExperience = new EventListener("validationChanged",
+                new TypeNameEventSpecification(nameof(ValidationChangedEvent)),
+                new ConstantBool<FormViewModel>(true));
 
             var rowGroup1 = new LinearLayoutBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();
@@ -77,7 +85,7 @@ namespace Aptacode.Forms.Blazor.Demo.Data
                 .AddChildren(rowGroup1, submitButton).Build();
 
             var newForm = new FormBuilder().SetName("Demo Form").SetTitle("Demo Form Title").SetRoot(rootGroup)
-                .AddEventListeners(submitEventListenerAcceptsTerms, submitEventListenerExperience)
+                .AddEventListeners(submitEventListenerAcceptsTerms, submitEventListenerExperience, validationEventListenerExperience)
                 .Build();
 
             return new FormViewModel(newForm);

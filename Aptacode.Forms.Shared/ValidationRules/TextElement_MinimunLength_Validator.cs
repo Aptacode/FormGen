@@ -14,7 +14,7 @@ namespace Aptacode.Forms.Shared.ValidationRules
 
         public override bool Interpret(ITextElementViewModel context)
         {
-            return context.Content.Length >= MinimunLength;
+            return context.Content?.Length >= MinimunLength;
         }
     }
 }

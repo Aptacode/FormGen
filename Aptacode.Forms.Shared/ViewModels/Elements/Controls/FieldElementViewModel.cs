@@ -36,7 +36,10 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Controls
         public void UpdateValidationMessage()
         {
             var newValidationResults = Validate();
-            if (ValidationResults.SequenceEqual(newValidationResults)) return;
+            if (ValidationResults.SequenceEqual(newValidationResults))
+            {
+                return;
+            }
 
             ValidationResults.Clear();
             ValidationResults.AddRange(newValidationResults);
