@@ -8,8 +8,8 @@
     <Authors>Aptacode</Authors>
     <PackageIcon>Logo.png</PackageIcon>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
-    <Version>1.0.1.0</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
+    <FileVersion>1.0.1.1</FileVersion>
   </PropertyGroup>
 
 
