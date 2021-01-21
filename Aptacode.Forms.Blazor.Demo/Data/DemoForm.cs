@@ -83,7 +83,8 @@ namespace Aptacode.Forms.Blazor.Demo.Data
                 new ConstantBool<FormViewModel>(true));
 
             var listEditElement = new ListEditElementBuilder().SetName("listEditElement").SetItemType(() => 
-            new LinearLayoutBuilder().AddChildren(new ButtonElement(), new TextElement()).SetOrientation(LayoutOrientation.Horizontal).Build()).Build();
+            new LinearLayoutBuilder().AddChildren(new ButtonElement(), new TextElement()).SetOrientation(LayoutOrientation.Horizontal).Build())
+                .AddValues(new TextElement() { DefaultValue= "test" }).Build();
 
             var rowGroup1 = new LinearLayoutBuilder().SetName("Data Entry Rows")
                 .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions, listEditElement, selectElement).Build();

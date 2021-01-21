@@ -35,13 +35,13 @@ namespace Aptacode.Forms.Shared.Builders.Elements.Controls.Fields
             return this;
         }
 
-        public ListEditElementBuilder AddValues(IEnumerable<TextElement> values)
+        public ListEditElementBuilder AddValues(IEnumerable<FormElement> values)
         {
             Values.AddRange(values);
             return this;
         }
 
-        public ListEditElementBuilder AddValues(TextElement value, params TextElement[] values)
+        public ListEditElementBuilder AddValues(FormElement value, params FormElement[] values)
         {
             Values.Add(value);
             Values.AddRange(values);
