@@ -1,0 +1,24 @@
+﻿@inherits ListEditElementBase
+
+<Table>
+    <TableBody>
+        <TableRow>
+            <Button Clicked="@OnAddClicked" Color="Color.Primary" Block="true" Margin="Margin.Is2">Add</Button>
+        </TableRow>
+        @foreach (var item in ViewModel.Items)
+        {
+            <TableRow Margin="Margin.Is2">
+
+                <Addons>
+                    <Addon AddonType="AddonType.Body">
+                        <FormElement ViewModel="@item" />
+                    </Addon>
+                    <Addon AddonType="AddonType.End">
+                        <Button Color="Color.Dark" Command="@RemoveCommand" CommandParameter="item">X</Button>
+                    </Addon>
+                </Addons>
+            </TableRow>
+
+        }
+    </TableBody>
+</Table>

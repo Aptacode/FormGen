@@ -14,7 +14,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
 {
     public static class FormElementViewModelFactory
     {
-        public static IFormElementViewModel Create(FormElement model)
+        public static IFormElementViewModel ToViewModel(this FormElement model)
         {
             return model switch
             {
@@ -27,6 +27,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
                 TextElement textField => new TextElementViewModel(textField),
                 SelectElement comboBoxField => new SelectElementViewModel(comboBoxField),
                 CheckElement checkBoxField => new CheckElementViewModel(checkBoxField),
+                ListEditElement listEditElement => new ListEditElementViewModel(listEditElement),
                 _ => new NullElementViewModel()
             };
         }
@@ -52,6 +53,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Factories
                 nameof(TextElement) => new TextElementBuilder().SetName(elementName).Build(),
                 nameof(ButtonElement) => new ButtonElementBuilder().SetName(elementName).Build(),
                 nameof(HtmlElement) => new HtmlElementBuilder().SetName(elementName).Build(),
+                nameof(ListEditElement) => new ListEditElementBuilder().SetName(elementName).Build(),
                 _ => new NullElement()
             };
         }

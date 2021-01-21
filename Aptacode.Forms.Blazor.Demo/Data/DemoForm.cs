@@ -12,6 +12,7 @@ using Aptacode.Forms.Shared.EventListeners.Specifications.EventSpecifications;
 using Aptacode.Forms.Shared.EventListeners.Specifications.FormSpecifications;
 using Aptacode.Forms.Shared.Interfaces.Controls;
 using Aptacode.Forms.Shared.Models.Elements.Controls;
+using Aptacode.Forms.Shared.Models.Elements.Controls.Fields;
 using Aptacode.Forms.Shared.ValidationRules;
 using Aptacode.Forms.Shared.ViewModels;
 
@@ -51,7 +52,6 @@ namespace Aptacode.Forms.Blazor.Demo.Data
             var personalDetails = new LinearLayoutBuilder().SetName("personalDetails")
                 .AddChildren(firstNameText, lastNameText).SetOrientation(LayoutOrientation.Horizontal).Build();
 
-
             var experienceSelection = new SelectElementBuilder().SetName("experienceSelection")
                 .SetLabel(ElementLabel.Left("How many years experience have you got?")).AddValues("0-1", "1-5", "5+")
                 .SetDefaultValue("Select a value").Build();
@@ -78,8 +78,11 @@ namespace Aptacode.Forms.Blazor.Demo.Data
                 new TypeNameEventSpecification(nameof(ValidationChangedEvent)),
                 new ConstantBool<FormViewModel>(true));
 
+            var listEditElement = new ListEditElementBuilder().SetName("listEditElement").SetItemType(() => 
+            new LinearLayoutBuilder().AddChildren(new ButtonElement(), new TextElement()).SetOrientation(LayoutOrientation.Horizontal).Build()).Build();
+
             var rowGroup1 = new LinearLayoutBuilder().SetName("Data Entry Rows")
-                .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions).Build();
+                .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions, listEditElement).Build();
 
             var rootGroup = new GroupBuilder().SetName("Test Group 1").SetTitle("Demo Form Title")
                 .AddChildren(rowGroup1, submitButton).Build();

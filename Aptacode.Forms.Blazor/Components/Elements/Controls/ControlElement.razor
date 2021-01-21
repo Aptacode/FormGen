@@ -5,8 +5,8 @@
 
     @if (ViewModel.Label.Position != LabelPosition.Hidden)
     {
-        <FieldLabel>@ViewModel.Label.Text</FieldLabel>    }
-
+        <FieldLabel>@ViewModel.Label.Text</FieldLabel>    
+        }
     <FieldBody>
 
         @switch (ViewModel)
@@ -25,6 +25,9 @@
                 break;
             case HtmlElementViewModel htmlElementViewModel:
                 <HtmlElement ViewModel="@htmlElementViewModel"/>
+                break;
+            case ListEditElementViewModel listEditElementViewModel:
+                <ListEditElement ViewModel="@listEditElementViewModel"/>
                 break;
         }
     </FieldBody>

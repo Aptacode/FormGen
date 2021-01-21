@@ -1,4 +1,4 @@
-﻿using Aptacode.Forms.Shared.ViewModels.Elements.Controls;
+﻿using Aptacode.Forms.Shared.Interfaces.Controls;
 using Microsoft.AspNetCore.Components;
 
 namespace Aptacode.Forms.Blazor.Components.Elements.Controls
@@ -7,7 +7,7 @@ namespace Aptacode.Forms.Blazor.Components.Elements.Controls
     {
         #region Properties
 
-        [Parameter] public TextElementViewModel ViewModel { get; set; }
+        [Parameter] public ITextElementViewModel ViewModel { get; set; }
 
         #endregion
     }

@@ -15,7 +15,7 @@ namespace Aptacode.Forms.Shared.ViewModels.Elements.Composite
         protected CompositeElementViewModel(TElement model) : base(model)
         {
             Children = new ObservableCollection<IFormElementViewModel>(
-                model.Children.Select(FormElementViewModelFactory.Create));
+                model.Children.Select(FormElementViewModelFactory.ToViewModel));
             Children.CollectionChanged += CollectionChanged;
             LayoutOrientation = model.LayoutOrientation;
             LayoutMode = model.LayoutMode;
