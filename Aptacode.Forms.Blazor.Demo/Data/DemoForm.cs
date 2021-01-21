@@ -63,6 +63,10 @@ namespace Aptacode.Forms.Blazor.Demo.Data
             var submitButton = new ButtonElementBuilder().SetName("Submit Button").SetContent("Submit")
                 .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
 
+
+            var selectElement = new SelectElementBuilder().SetName("Submit Button").AddValues("1", "2", "3")
+                .SetVerticalAlignment(VerticalAlignment.Bottom).Build();
+
             var submitEventListenerAcceptsTerms = new EventListener("submit",
                 new And<FormElementEvent>(
                     new ElementNameEventSpecification("Submit Button"),
@@ -82,7 +86,7 @@ namespace Aptacode.Forms.Blazor.Demo.Data
             new LinearLayoutBuilder().AddChildren(new ButtonElement(), new TextElement()).SetOrientation(LayoutOrientation.Horizontal).Build()).Build();
 
             var rowGroup1 = new LinearLayoutBuilder().SetName("Data Entry Rows")
-                .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions, listEditElement).Build();
+                .AddChildren(htmlContent, personalDetails, experienceSelection, termsAndConditions, listEditElement, selectElement).Build();
 
             var rootGroup = new GroupBuilder().SetName("Test Group 1").SetTitle("Demo Form Title")
                 .AddChildren(rowGroup1, submitButton).Build();
